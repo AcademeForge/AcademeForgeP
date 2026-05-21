@@ -1935,7 +1935,7 @@ html[data-theme="dark"] .footer {
         const mobile = digits(byId("statusMobile").value);
 
         if (!applicationId && (!email || !mobile)) {
-          showAlert("error", "Application ID enter karo ya email + mobile number dono enter karo.");
+          showAlert("error", "Enter only Application ID OR Enter Both Email + Mobile Number.");
           return;
         }
 
