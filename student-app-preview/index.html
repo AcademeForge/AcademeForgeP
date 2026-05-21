@@ -1572,6 +1572,142 @@
     width: min(278px, 100%) !important;
   }
 }
+    /* =========================================================
+   MOVING TEXT BANNER FIX - MOBILE + LAPTOP + DESKTOP
+   Paste at VERY END of CSS
+========================================================= */
+
+.top-banner,
+.text-banner,
+.marquee,
+.news-ticker,
+.update-strip {
+  position: relative !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  isolation: isolate;
+}
+
+/* Common inner/track selectors */
+.top-banner-track,
+.text-banner-track,
+.marquee-track,
+.news-ticker-track,
+.update-strip-track,
+.top-banner .track,
+.text-banner .track,
+.marquee .track,
+.news-ticker .track,
+.update-strip .track {
+  display: flex !important;
+  align-items: center !important;
+  width: max-content !important;
+  min-width: max-content !important;
+  white-space: nowrap !important;
+  will-change: transform !important;
+  animation-name: afMarqueeMove !important;
+  animation-duration: 22s !important;
+  animation-timing-function: linear !important;
+  animation-iteration-count: infinite !important;
+  animation-play-state: running !important;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Text items */
+.top-banner span,
+.text-banner span,
+.marquee span,
+.news-ticker span,
+.update-strip span,
+.top-banner a,
+.text-banner a,
+.marquee a,
+.news-ticker a,
+.update-strip a {
+  flex: 0 0 auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+}
+
+/* Main animation */
+@keyframes afMarqueeMove {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Desktop/laptop force animation ON */
+@media (min-width: 769px) {
+  .top-banner-track,
+  .text-banner-track,
+  .marquee-track,
+  .news-ticker-track,
+  .update-strip-track,
+  .top-banner .track,
+  .text-banner .track,
+  .marquee .track,
+  .news-ticker .track,
+  .update-strip .track {
+    animation-name: afMarqueeMove !important;
+    animation-duration: 26s !important;
+    animation-timing-function: linear !important;
+    animation-iteration-count: infinite !important;
+    animation-play-state: running !important;
+  }
+}
+
+/* Mobile slightly faster */
+@media (max-width: 768px) {
+  .top-banner-track,
+  .text-banner-track,
+  .marquee-track,
+  .news-ticker-track,
+  .update-strip-track,
+  .top-banner .track,
+  .text-banner .track,
+  .marquee .track,
+  .news-ticker .track,
+  .update-strip .track {
+    animation-duration: 18s !important;
+  }
+}
+
+/* Do not pause on hover */
+.top-banner:hover .top-banner-track,
+.text-banner:hover .text-banner-track,
+.marquee:hover .marquee-track,
+.news-ticker:hover .news-ticker-track,
+.update-strip:hover .update-strip-track,
+.top-banner:hover .track,
+.text-banner:hover .track,
+.marquee:hover .track,
+.news-ticker:hover .track,
+.update-strip:hover .track {
+  animation-play-state: running !important;
+}
+
+/* If browser has reduced-motion ON, still allow slow banner */
+@media (prefers-reduced-motion: reduce) {
+  .top-banner-track,
+  .text-banner-track,
+  .marquee-track,
+  .news-ticker-track,
+  .update-strip-track,
+  .top-banner .track,
+  .text-banner .track,
+  .marquee .track,
+  .news-ticker .track,
+  .update-strip .track {
+    animation-duration: 45s !important;
+    animation-play-state: running !important;
+  }
+}
   </style>
 </head>
 
