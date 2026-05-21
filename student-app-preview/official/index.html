@@ -1770,126 +1770,135 @@
   visibility: hidden !important;
   pointer-events: none !important;
 }
-   /* =========================================================
-   FLOATING BACK TO HOME BUTTON
-   Fixed bottom button beside AI launcher
+  /* =========================================================
+   FLOATING BACK TO HOME - CENTER FIXED FULL BOX
+   Replace old .floating-home-btn CSS with this
 ========================================================= */
 
 .floating-home-btn {
-  position: fixed;
-  right: 92px;
-  bottom: 22px;
-  z-index: 9998;
-  min-height: 54px;
-  padding: 0 18px 0 12px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border-radius: 999px;
-  text-decoration: none;
-  color: #111827;
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+  transform: translateX(-50%) !important;
+  z-index: 9997 !important;
+
+  min-width: 178px !important;
+  min-height: 52px !important;
+  padding: 0 20px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+
+  border-radius: 999px !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+
+  color: #111827 !important;
   background:
-    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.48), transparent 30%),
-    linear-gradient(135deg, #f97316, #facc15);
-  border: 1px solid rgba(255, 255, 255, 0.38);
+    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.48), transparent 32%),
+    linear-gradient(135deg, #f97316, #facc15) !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.38) !important;
   box-shadow:
     0 18px 52px rgba(249, 115, 22, 0.34),
-    0 10px 28px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.38);
-  font-size: 0.94rem;
-  font-weight: 1000;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  white-space: nowrap;
-  cursor: pointer;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
+    0 10px 28px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.38) !important;
+
+  font-size: 0.94rem !important;
+  font-weight: 1000 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1 !important;
+
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    filter 0.2s ease;
+    filter 0.2s ease,
+    box-shadow 0.2s ease !important;
 }
 
 .floating-home-btn:hover {
-  transform: translateY(-3px);
-  filter: saturate(1.08);
+  filter: saturate(1.08) !important;
   box-shadow:
     0 24px 70px rgba(249, 115, 22, 0.42),
-    0 12px 34px rgba(0, 0, 0, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+    0 12px 34px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42) !important;
 }
 
 .floating-home-btn:active {
-  transform: translateY(-1px) scale(0.98);
+  transform: translateX(-50%) scale(0.98) !important;
 }
 
 .floating-home-btn:focus-visible {
-  outline: 3px solid rgba(249, 115, 22, 0.35);
-  outline-offset: 4px;
+  outline: 3px solid rgba(249, 115, 22, 0.35) !important;
+  outline-offset: 4px !important;
 }
 
 .floating-home-icon {
-  width: 34px;
-  height: 34px;
-  flex: 0 0 34px;
-  display: inline-grid;
-  place-items: center;
-  border-radius: 50%;
-  color: #111827;
-  background: rgba(255, 255, 255, 0.38);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.34);
-  font-size: 1.05rem;
-  font-weight: 1000;
+  width: 32px !important;
+  height: 32px !important;
+  flex: 0 0 32px !important;
+
+  display: inline-grid !important;
+  place-items: center !important;
+
+  border-radius: 50% !important;
+  color: #111827 !important;
+  background: rgba(255, 255, 255, 0.38) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.34) !important;
+
+  font-size: 1rem !important;
+  font-weight: 1000 !important;
 }
 
 .floating-home-text {
-  display: inline-block;
+  display: inline-block !important;
 }
 
-/* Mobile: keep it bottom beside AI, compact */
+/* Mobile: still full box, centered */
 @media (max-width: 767px) {
   .floating-home-btn {
-    right: 82px;
-    bottom: 18px;
-    min-height: 50px;
-    padding: 0 14px 0 9px;
-    gap: 8px;
-    font-size: 0.82rem;
+    left: 50% !important;
+    right: auto !important;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+    transform: translateX(-50%) !important;
+
+    min-width: 168px !important;
+    min-height: 50px !important;
+    padding: 0 16px !important;
+
+    font-size: 0.86rem !important;
+    gap: 8px !important;
   }
 
   .floating-home-icon {
-    width: 32px;
-    height: 32px;
-    flex-basis: 32px;
-    font-size: 1rem;
-  }
-}
-
-/* Very small screens: icon-only to avoid overlap */
-@media (max-width: 390px) {
-  .floating-home-btn {
-    right: 78px;
-    bottom: 16px;
-    width: 50px;
-    min-width: 50px;
-    height: 50px;
-    padding: 0;
-    border-radius: 50%;
+    width: 30px !important;
+    height: 30px !important;
+    flex-basis: 30px !important;
+    font-size: 0.95rem !important;
   }
 
   .floating-home-text {
-    display: none;
-  }
-
-  .floating-home-icon {
-    width: 34px;
-    height: 34px;
-    flex-basis: 34px;
+    display: inline-block !important;
   }
 }
-    body:has(.ai-chat-panel.open) .floating-home-btn {
-  display: none !important;
+
+/* Very small phones: do NOT make it icon-only */
+@media (max-width: 390px) {
+  .floating-home-btn {
+    min-width: 158px !important;
+    min-height: 48px !important;
+    padding: 0 14px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .floating-home-text {
+    display: inline-block !important;
+  }
 }
   </style>
 </head>
@@ -2735,7 +2744,7 @@
 
   <a
     class="floating-home-btn"
-    href="https://academeforge.in/student-app-preview/student.html/"
+    href="https://academeforge.in/student-app-preview/#student.html/"
     aria-label="Back To Home"
   >
     <span class="floating-home-icon">⌂</span>
