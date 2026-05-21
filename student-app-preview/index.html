@@ -10,7 +10,7 @@
 
   <style>
     /* =========================================================
-       ACADEMEFORGE STUDENT APP DESKTOP MOBILE EXPERIENCE
+       ACADEMEFORGE STUDENT APP PREVIEW + DOWNLOAD PAGE
        Single file: HTML + CSS + JS
     ========================================================= */
 
@@ -133,6 +133,10 @@
       margin-inline: auto;
     }
 
+    /* =========================================================
+       MOVING TEXT BANNER
+    ========================================================= */
+
     .top-strip {
       position: relative;
       z-index: 20;
@@ -155,6 +159,7 @@
       letter-spacing: 0.34em;
       text-transform: uppercase;
       white-space: nowrap;
+      will-change: transform;
       animation: stripMove 24s linear infinite;
     }
 
@@ -172,6 +177,14 @@
       background: linear-gradient(135deg, var(--brand), var(--gold));
       box-shadow: 0 0 20px rgba(249, 115, 22, 0.55);
     }
+
+    .top-strip:hover .strip-track {
+      animation-play-state: paused;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
 
     .header {
       position: sticky;
@@ -320,7 +333,11 @@
       font-weight: 1000;
       white-space: nowrap;
       cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
     }
 
     .btn::after {
@@ -334,11 +351,15 @@
     }
 
     .btn:hover {
-      transform: translateY(-1px);
+      transform: translateY(-2px) scale(1.015);
     }
 
     .btn:hover::after {
       transform: translateX(120%);
+    }
+
+    .btn:active {
+      transform: translateY(0) scale(0.985);
     }
 
     .btn-primary {
@@ -347,11 +368,20 @@
       box-shadow: 0 18px 44px rgba(249, 115, 22, 0.24);
     }
 
+    .btn-primary:hover {
+      box-shadow: 0 22px 58px rgba(249, 115, 22, 0.36);
+    }
+
     .btn-ghost {
       border: 1px solid var(--line);
       background: var(--panel);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--line2);
+      background: var(--panel2);
     }
 
     .theme-btn {
@@ -384,6 +414,10 @@
     html[data-theme="dark"] .theme-dot {
       left: 22px;
     }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
 
     .main {
       position: relative;
@@ -424,6 +458,7 @@
       box-shadow: var(--shadow2);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
+      animation: fadeUp 0.7s ease both;
     }
 
     .badge-dot {
@@ -444,6 +479,7 @@
       line-height: 0.92;
       font-weight: 1000;
       letter-spacing: -0.085em;
+      animation: fadeUp 0.82s 0.08s ease both;
     }
 
     .accent-ring {
@@ -465,6 +501,7 @@
       border-radius: 50%;
       transform: rotate(-3deg);
       filter: drop-shadow(0 10px 18px rgba(250, 204, 21, 0.18));
+      animation: ringDraw 1.25s 0.45s ease both;
     }
 
     .hero p {
@@ -474,6 +511,7 @@
       font-size: clamp(18px, 2vw, 25px);
       line-height: 1.72;
       letter-spacing: -0.035em;
+      animation: fadeUp 0.82s 0.16s ease both;
     }
 
     .hero-actions {
@@ -481,6 +519,7 @@
       flex-wrap: wrap;
       gap: 14px;
       margin-top: 34px;
+      animation: fadeUp 0.82s 0.24s ease both;
     }
 
     .metrics {
@@ -489,6 +528,7 @@
       max-width: 660px;
       gap: 18px;
       margin-top: 36px;
+      animation: fadeUp 0.82s 0.32s ease both;
     }
 
     .metric {
@@ -501,6 +541,13 @@
       box-shadow: var(--shadow2);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    }
+
+    .metric:hover {
+      transform: translateY(-6px);
+      border-color: rgba(249, 115, 22, 0.42);
+      background: var(--panel2);
     }
 
     .metric::before {
@@ -540,6 +587,7 @@
       box-shadow: var(--shadow2);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
+      animation: fadeUp 0.82s 0.4s ease both;
     }
 
     .feature {
@@ -551,6 +599,11 @@
       font-size: 15px;
       font-weight: 900;
       letter-spacing: -0.025em;
+      transition: transform 0.18s ease;
+    }
+
+    .feature:hover {
+      transform: translateX(5px);
     }
 
     .feature i {
@@ -568,12 +621,17 @@
       box-shadow: 0 10px 24px rgba(249, 115, 22, 0.25);
     }
 
+    /* =========================================================
+       PHONE PREVIEW
+    ========================================================= */
+
     .hero-right {
       position: relative;
       display: grid;
       place-items: center;
       min-width: 0;
       isolation: isolate;
+      animation: fadeScale 0.9s 0.18s ease both;
     }
 
     .phone-orbit {
@@ -627,6 +685,12 @@
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       animation: floatY 4.2s ease-in-out infinite;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .floating-card:hover {
+      border-color: rgba(249, 115, 22, 0.42);
+      transform: translateY(-8px) scale(1.02);
     }
 
     .floating-card strong {
@@ -685,6 +749,11 @@
         0 0 0 1px rgba(255, 255, 255, 0.20) inset;
       transform: perspective(1200px) rotateY(-5deg) rotateX(2deg);
       animation: phoneFloat 5.2s ease-in-out infinite;
+      transition: transform 0.22s ease;
+    }
+
+    .phone-shell:hover {
+      transform: perspective(1200px) rotateY(-2deg) rotateX(1deg) translateY(-8px);
     }
 
     html[data-theme="light"] .phone-shell {
@@ -880,6 +949,329 @@
       box-shadow: 0 0 0 7px rgba(34, 197, 94, 0.12);
     }
 
+    /* =========================================================
+       DOWNLOAD SECTION
+    ========================================================= */
+
+    .download-section {
+      position: relative;
+      padding: clamp(54px, 7vw, 110px) 0;
+      overflow: hidden;
+    }
+
+    .download-section::before {
+      content: "";
+      position: absolute;
+      inset: 8% -10%;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(249, 115, 22, 0.18), transparent 28%),
+        radial-gradient(circle at 78% 52%, rgba(37, 99, 235, 0.14), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(250, 204, 21, 0.12), transparent 30%);
+      filter: blur(8px);
+    }
+
+    .download-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 38px;
+      padding: clamp(24px, 4vw, 46px);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.055)),
+        var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .download-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.16), transparent 48%);
+      transform: translateX(-70%);
+      animation: sectionShine 7s ease-in-out infinite;
+    }
+
+    .download-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .download-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--soft);
+      font-size: 12px;
+      font-weight: 1000;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .download-kicker i {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--brand), var(--gold));
+      box-shadow: 0 0 0 7px rgba(249, 115, 22, 0.12);
+    }
+
+    .download-title {
+      margin: 18px 0 0;
+      color: var(--heading);
+      font-size: clamp(38px, 5vw, 72px);
+      line-height: 0.95;
+      font-weight: 1000;
+      letter-spacing: -0.075em;
+    }
+
+    .download-copy {
+      max-width: 780px;
+      margin: 18px 0 0;
+      color: var(--soft);
+      font-size: clamp(16px, 1.7vw, 21px);
+      line-height: 1.72;
+      letter-spacing: -0.03em;
+    }
+
+    .download-badge {
+      display: grid;
+      place-items: center;
+      width: 138px;
+      height: 138px;
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.42), transparent 28%),
+        linear-gradient(135deg, var(--brand), var(--gold));
+      color: #111827;
+      box-shadow: 0 26px 70px rgba(249, 115, 22, 0.26);
+      animation: floatY 4.4s ease-in-out infinite;
+    }
+
+    .download-badge strong {
+      display: block;
+      font-size: 34px;
+      font-weight: 1000;
+      letter-spacing: -0.08em;
+      text-align: center;
+    }
+
+    .download-badge span {
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
+      font-weight: 1000;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .platform-btn {
+      position: relative;
+      min-height: 160px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.075);
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      box-shadow: var(--shadow2);
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease,
+        box-shadow 0.22s ease;
+    }
+
+    .platform-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 18% 10%, rgba(249, 115, 22, 0.18), transparent 36%);
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+
+    .platform-btn:hover {
+      transform: translateY(-8px);
+      border-color: rgba(249, 115, 22, 0.45);
+      background: rgba(255, 255, 255, 0.115);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.30);
+    }
+
+    .platform-btn:hover::before {
+      opacity: 1;
+    }
+
+    .platform-btn.active {
+      border-color: rgba(250, 204, 21, 0.48);
+      background:
+        linear-gradient(135deg, rgba(249, 115, 22, 0.18), rgba(250, 204, 21, 0.10)),
+        rgba(255, 255, 255, 0.10);
+    }
+
+    .platform-icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--heading);
+      font-size: 24px;
+      font-weight: 1000;
+      margin-bottom: 18px;
+    }
+
+    .platform-btn.active .platform-icon {
+      background: linear-gradient(135deg, var(--brand), var(--gold));
+      color: #111827;
+      box-shadow: 0 16px 36px rgba(249, 115, 22, 0.28);
+    }
+
+    .platform-btn strong {
+      position: relative;
+      z-index: 1;
+      display: block;
+      color: var(--heading);
+      font-size: 18px;
+      font-weight: 1000;
+      letter-spacing: -0.04em;
+    }
+
+    .platform-btn span {
+      position: relative;
+      z-index: 1;
+      display: block;
+      margin-top: 8px;
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .platform-btn em {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      z-index: 1;
+      border-radius: 999px;
+      padding: 6px 9px;
+      background: rgba(255, 255, 255, 0.10);
+      color: var(--muted);
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 1000;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .platform-btn.active em {
+      background: rgba(34, 197, 94, 0.16);
+      color: #86efac;
+    }
+
+    html[data-theme="light"] .platform-btn.active em {
+      color: #15803d;
+    }
+
+    .download-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 22px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 16px 18px;
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--soft);
+      font-size: 14px;
+      font-weight: 850;
+      line-height: 1.6;
+    }
+
+    .download-note i {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.14);
+      color: #86efac;
+      font-style: normal;
+      font-weight: 1000;
+    }
+
+    html[data-theme="light"] .download-note i {
+      color: #15803d;
+    }
+
+    /* =========================================================
+       POPUP + SECURITY
+    ========================================================= */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 100000;
+      width: min(460px, calc(100% - 32px));
+      transform: translate(-50%, 140%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 16px 18px;
+      background: rgba(7, 10, 20, 0.92);
+      color: #ffffff;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      opacity: 0;
+      transition: transform 0.28s ease, opacity 0.28s ease;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    .toast strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 1000;
+      letter-spacing: -0.03em;
+    }
+
+    .toast span {
+      display: block;
+      margin-top: 4px;
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
     .security-overlay {
       position: fixed;
       inset: 0;
@@ -926,6 +1318,10 @@
     .security-box button {
       margin-top: 22px;
     }
+
+    /* =========================================================
+       ANIMATIONS
+    ========================================================= */
 
     @keyframes auroraSpin {
       to {
@@ -1034,6 +1430,58 @@
       }
     }
 
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeScale {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes ringDraw {
+      from {
+        opacity: 0;
+        transform: rotate(-8deg) scaleX(0.25);
+      }
+
+      to {
+        opacity: 1;
+        transform: rotate(-3deg) scaleX(1);
+      }
+    }
+
+    @keyframes sectionShine {
+      0%,
+      64%,
+      100% {
+        transform: translateX(-72%);
+      }
+
+      80% {
+        transform: translateX(72%);
+      }
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
     @media (max-width: 1180px) {
       .nav {
         display: none;
@@ -1068,6 +1516,19 @@
 
       .card-two {
         right: 4%;
+      }
+
+      .download-head {
+        grid-template-columns: 1fr;
+      }
+
+      .download-badge {
+        width: 116px;
+        height: 116px;
+      }
+
+      .platform-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -1153,6 +1614,18 @@
       .bottom-note {
         font-size: 12px;
       }
+
+      .download-title {
+        font-size: clamp(38px, 12vw, 58px);
+      }
+
+      .platform-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .platform-btn {
+        min-height: 132px;
+      }
     }
 
     @media (max-width: 420px) {
@@ -1194,10 +1667,12 @@
   <div class="top-strip" aria-hidden="true">
     <div class="strip-track">
       <span>Student App Experience</span>
+      <span>Android App Download Available</span>
       <span>AcademeForge Learning Beyond Classroom</span>
       <span>Mobile-first Interface</span>
       <span>Projects • Skills • Career</span>
       <span>Student App Experience</span>
+      <span>Android App Download Available</span>
       <span>AcademeForge Learning Beyond Classroom</span>
       <span>Mobile-first Interface</span>
       <span>Projects • Skills • Career</span>
@@ -1220,6 +1695,7 @@
         <a href="../index.html#help-desk">Help Desk</a>
         <a href="../index.html#certificate">Certificate</a>
         <a href="../index.html#join-team">Join Team</a>
+        <a href="#download">Download</a>
       </nav>
 
       <div class="header-actions">
@@ -1229,7 +1705,7 @@
             <span class="theme-dot"></span>
           </span>
         </button>
-        <a class="btn btn-primary" href="/studentapp/" target="studentAppFrame" rel="noopener">Open App</a>
+        <button class="btn btn-primary" type="button" data-download-android>Download App</button>
       </div>
     </div>
   </header>
@@ -1254,11 +1730,11 @@
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="/studentapp/" target="studentAppFrame" rel="noopener">
+          <a class="btn btn-primary" href="https://academeforge.github.io/YA/" target="studentAppFrame" rel="noopener">
             Launch Student App
           </a>
-          <a class="btn btn-ghost" href="../index.html#join-team">
-            Join AcademeForge
+          <a class="btn btn-ghost" href="#download">
+            Download App
           </a>
         </div>
 
@@ -1324,7 +1800,7 @@
               id="studentAppFrame"
               class="app-frame"
               name="studentAppFrame"
-              src="/studentapp/"
+              src="https://academeforge.github.io/YA/"
               title="AcademeForge Student App"
               loading="eager"
               referrerpolicy="strict-origin-when-cross-origin"
@@ -1338,11 +1814,93 @@
 
         <div class="bottom-note">
           <i></i>
-          <span>Desktop users get a realistic mobile app preview. Mobile users can open the app directly.</span>
+          <span>Desktop users get a realistic mobile app preview. Android APK download is available below.</span>
         </div>
       </div>
     </section>
   </main>
+
+  <section id="download" class="download-section">
+    <div class="cw">
+      <div class="download-card">
+        <div class="download-head">
+          <div>
+            <div class="download-kicker">
+              <i></i>
+              Download Center
+            </div>
+
+            <h2 class="download-title">
+              Install AcademeForge<br>
+              on your device.
+            </h2>
+
+            <p class="download-copy">
+              Android users can download the current AcademeForge APK now. Other platforms are being prepared and will
+              be enabled after rollout.
+            </p>
+          </div>
+
+          <div class="download-badge" aria-hidden="true">
+            <div>
+              <strong>APK</strong>
+              <span>Android</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="platform-grid" aria-label="Download platform options">
+          <button class="platform-btn active" type="button" data-download-android>
+            <em>Active</em>
+            <span class="platform-icon">🤖</span>
+            <strong>Android</strong>
+            <span>Download AcademeForge APK for Android phones and tablets.</span>
+          </button>
+
+          <button class="platform-btn" type="button" data-disabled-platform="iOS">
+            <em>Soon</em>
+            <span class="platform-icon"></span>
+            <strong>iOS</strong>
+            <span>iPhone and iPad app rollout is currently enrolling.</span>
+          </button>
+
+          <button class="platform-btn" type="button" data-disabled-platform="Windows">
+            <em>Soon</em>
+            <span class="platform-icon">⊞</span>
+            <strong>Windows</strong>
+            <span>Desktop app support will be enabled after testing.</span>
+          </button>
+
+          <button class="platform-btn" type="button" data-disabled-platform="Linux">
+            <em>Soon</em>
+            <span class="platform-icon">◆</span>
+            <strong>Linux</strong>
+            <span>Linux build is planned for advanced learners and labs.</span>
+          </button>
+
+          <button class="platform-btn" type="button" data-disabled-platform="MacBook">
+            <em>Soon</em>
+            <span class="platform-icon">⌘</span>
+            <strong>MacBook</strong>
+            <span>macOS app experience is being prepared for release.</span>
+          </button>
+        </div>
+
+        <div class="download-note">
+          <i>✓</i>
+          <span>
+            Android download is active now. If your browser warns about APK installation, allow installation only if you
+            trust AcademeForge and downloaded the file from the official page.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <strong id="toastTitle">Notice</strong>
+    <span id="toastMessage">Message</span>
+  </div>
 
   <div id="securityOverlay" class="security-overlay" aria-hidden="true">
     <div class="security-box">
@@ -1360,6 +1918,9 @@
 
     const THEME_KEY = "academeforge_student_app_preview_theme";
     const DEVTOOLS_THRESHOLD = 170;
+    const ANDROID_APK_PATH = "academeforge.apk";
+
+    let toastTimer = 0;
 
     function byId(id) {
       return document.getElementById(id);
@@ -1446,6 +2007,59 @@
       window.setTimeout(function () {
         loader.classList.add("hidden");
       }, 4500);
+    }
+
+    function showToast(title, message) {
+      const toast = byId("toast");
+      const toastTitle = byId("toastTitle");
+      const toastMessage = byId("toastMessage");
+
+      if (!toast || !toastTitle || !toastMessage) {
+        alert(message);
+        return;
+      }
+
+      window.clearTimeout(toastTimer);
+
+      toastTitle.textContent = title;
+      toastMessage.textContent = message;
+      toast.classList.add("show");
+
+      toastTimer = window.setTimeout(function () {
+        toast.classList.remove("show");
+      }, 3200);
+    }
+
+    function downloadAndroidApp() {
+      const link = document.createElement("a");
+
+      link.href = ANDROID_APK_PATH;
+      link.download = "academeforge.apk";
+      link.rel = "noopener";
+      link.style.display = "none";
+
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      showToast("Download started", "AcademeForge Android APK download has started.");
+    }
+
+    function initDownloadButtons() {
+      const androidButtons = document.querySelectorAll("[data-download-android]");
+      const disabledButtons = document.querySelectorAll("[data-disabled-platform]");
+
+      androidButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          downloadAndroidApp();
+        });
+      });
+
+      disabledButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          showToast("Coming soon", "This feature is enrolling, check back later.");
+        });
+      });
     }
 
     function showSecurityOverlay() {
@@ -1557,6 +2171,7 @@
       initTheme();
       updatePhoneTime();
       initFrameLoader();
+      initDownloadButtons();
       initBasicProtection();
       initDevtoolsHeuristic();
       initVisibilityRefreshProtection();
