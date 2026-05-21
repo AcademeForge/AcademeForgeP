@@ -1,1217 +1,3351 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AcademeForge</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>
-
-    *{
-      font-family:'Poppins',sans-serif;
-      scroll-behavior:smooth;
-    }
-
-    body{
-      overflow-x:hidden;
-      background:#fff;
-    }
-
-    .hero-overlay{
-      background:linear-gradient(to right, rgba(0,0,0,0.40), rgba(0,0,0,0.15));
-    }
-
-    .glass{
-      backdrop-filter:blur(12px);
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.1);
-    }
-
-    .hover-up{
-      transition:all .4s ease;
-    }
-
-    .hover-up:hover{
-      transform:translateY(-10px);
-    }
-
-    
-    .faq-content{
-      max-height:0;
-      overflow:hidden;
-      transition:max-height .4s ease;
-    }
-
-    .faq.active .faq-content{
-      max-height:200px;
-    }
-
-    .faq.active .faq-icon{
-      transform:rotate(45deg);
-    }
-
-    .faq-icon{
-      transition:.3s;
-    }
-
-    @keyframes popupAnim{
-      from{
-        opacity:0;
-        transform:translateY(40px) scale(.95);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-      }
-    }
-
-    .animate-popup{
-      animation:popupAnim .35s ease;
-    }
-
-    @media(max-width:768px){
-
-      .hero-title{
-        font-size:42px !important;
-        line-height:1.2;
-      }
-
-      
-      .section-title{
-        font-size:34px !important;
-      }
-
-      .top-header{
-        flex-direction:column;
-        gap:10px;
-        text-align:center;
-      }
-
-      .navbar{
-        padding-top:14px;
-        padding-bottom:14px;
-      }
-
-    }
-
-  </style>
-
-</head>
-
-<body class="bg-white text-gray-900">
-
-<!-- TOP HEADER -->
-<div class="bg-black text-white text-sm py-3 px-4 md:px-6 flex justify-between items-center top-header">
-
-  <div>
-    📞 +91 XXXXX XXXXX | academeforge@gmail.com
-  </div>
-
-  <div class="flex gap-4 md:gap-5">
-   <a href="https://www.linkedin.com/company/academeforge/" class="hover:text-red-400">Linkedin</a>
-    <a href="https://www.instagram.com/academeforge.in?igsh=MXc2eTlmenozNnN1Mg==" class="hover:text-red-400">Instagram</a>
-    <a href="https://youtube.com/@academeforgepro?si=3jOxYewYdb0NNXSG" class="hover:text-red-400">Youtube</a>
-    <a href="https://t.me/+46ubatq-EV0wNjY1" class="hover:text-red-400">Telegram</a>
-  </div>
-
-</div>
-
-<!-- NAVBAR -->
-<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg shadow-lg border-b border-gray-100">
-
-  <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-6 py-4 navbar">
-
-    <div>
-
-      <h1 class="text-2xl md:text-3xl font-extrabold text-red-700">
-        AcademeForge
-      </h1>
-
-      <p class="text-xs text-gray-500">
-        Learning Beyond The Classroom
-      </p>
-
-    </div>
-
-    <nav class="hidden lg:flex items-center gap-8 font-medium text-sm">
-      <a href="#about" class="hover:text-red-700">About</a>
-      <a href="#courses" class="hover:text-red-700">Courses</a>
-      <a href="#team" class="hover:text-red-700">Management</a>
-      <a href="#fees" class="hover:text-red-700">Fees</a>
-      <a href="#faq" class="hover:text-red-700">FAQ</a>
-      <a href="#contact" class="hover:text-red-700">Contact</a>
-    </nav>
-
-<a href="javascript:void(0)"
-   onclick="downloadAcademeForgeApk()"
-   class="bg-red-700 hover:bg-red-800 text-white px-5 py-3 rounded-xl font-semibold transition-all hover:scale-105 inline-block">
-  Install APP
-</a>
-
-  </div>
-
-</header>
-
-<!-- HERO -->
-<section class="relative min-h-screen overflow-hidden">
-
-  <img
-    src="AFhome.jpg"
-    class="absolute inset-0 w-full h-full object-cover"
-    alt="Campus"
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f8fafc" />
+  <meta
+    name="description"
+    content="AcademeForge Beta — Future Skills Learning Platform for practical learning, AI skills, coding, design, freelancing, and student growth."
   />
 
-  <div class="hero-overlay absolute inset-0"></div>
-
-  <div class="relative z-10 min-h-screen flex items-center">
-
-    <div class="max-w-7xl mx-auto px-4 md:px-6 text-white">
-
-      <p class="uppercase tracking-[5px] text-red-400 mb-4 text-xs md:text-sm">
-        REBUILDING A BETTER LEARNING EXPERIENCE
-      </p>
-
-      <h1 class="hero-title text-5xl md:text-7xl font-extrabold leading-tight mb-8 max-w-4xl">
-        Welcome to
-        <span class="text-red-500">AcademeForge</span>
-      </h1>
-
-      <p class="text-base md:text-lg text-gray-200 max-w-2xl leading-8 mb-10">
-        Empowering students through AI-Powered learning.
-      </p>
-
-      <div class="flex flex-wrap gap-4">
-
-        <button onclick="openPopup('Admissions Opening Soon','Admissions for Programs Is Under Development.')" class="bg-red-700 hover:bg-red-800 px-7 py-4 rounded-2xl font-bold transition-all hover:scale-105">
-          Apply For Admission
-        </button>
-
-        <button 
-onclick="openPopup(
-'Our Vision',
-`At AcademeForge, we believe that education should do more than prepare students for exams — it should prepare them for life, creativity, technology, and the rapidly changing digital world. In today’s generation, students are surrounded by endless information, yet very few are taught how to truly build skills, think independently, create opportunities, or use modern tools effectively. Traditional education often focuses only on memorization and marks, while real-world success increasingly depends on creativity, communication, adaptability, digital literacy, problem-solving, and practical execution..
-
-AcademeForge was created with a vision to bridge this gap.
-
-Our mission is to build a modern learning ecosystem where students can discover practical skills, explore their creativity, develop confidence, and learn how to use technology and artificial intelligence in meaningful and productive ways. We want students to move beyond passive learning and become active creators, builders, thinkers, and innovators who are capable of shaping their own future.
-
-We envision AcademeForge as a platform where learning feels inspiring, modern, and connected to the real world. Instead of long theoretical lectures and outdated systems, we focus on practical learning experiences that help students apply their knowledge through projects, creativity, experimentation, and execution. We believe students learn best when they build, create, solve, and experience things themselves.
-
-Through courses in Video & Media Editing, Creative & Graphic Design, Coding & Logic Building, Freelancing & Digital Monetization, AI Productivity, and future digital skills, we aim to give students access to the kind of education that schools often fail to provide. Our goal is not simply to teach software or tools, but to help learners understand how to think creatively, solve problems, communicate ideas, and use technology intelligently in an AI-driven world.
-
-Artificial Intelligence is transforming the future of education, careers, businesses, and creativity. Rather than fearing this change, we want students to learn how to adapt to it, grow with it, and use it responsibly to unlock new opportunities. At AcademeForge, we believe AI should empower students to learn faster, create smarter, and explore possibilities that were previously inaccessible.
-
-But beyond digital skills, our vision is also deeply connected to personal growth. We want students to develop discipline, consistency, confidence, curiosity, and the courage to try new things. We want learners from every background — especially students from smaller cities and underserved communities — to feel that they too can build meaningful careers, create digital opportunities, and compete in the modern world regardless of where they come from.
-
-AcademeForge is not just an edtech platform or an online course website. It is a movement toward practical, modern, future-focused education. A platform designed for students who want to learn beyond textbooks, beyond limitations, and beyond the traditional classroom.
-
-We imagine a future where students do not wait for opportunities — they create them.
-
-A future where learning is driven by curiosity, creativity, technology, and execution.
-
-A future where every student has access to the skills, mindset, and confidence needed to thrive in the digital age.
-
-That is the future AcademeForge aims to build.`
-)" 
-class="border border-white hover:bg-white hover:text-black px-7 py-4 rounded-2xl font-bold transition-all hover:scale-105">
-    Our Vision
-</button>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- STATS -->
-<section class="py-16 md:py-20 bg-gray-100">
-
-  <div class="max-w-7xl mx-auto px-4 md:px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-    <div class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl text-center">
-      <h2 class="text-5xl font-extrabold text-red-700 mb-3">1000+</h2>
-      <p class="text-gray-600">Students Reached</p>
-    </div>
-
-    <div class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl text-center">
-      <h2 class="text-5xl font-extrabold text-red-700 mb-3">2024</h2>
-      <p class="text-gray-600">Founded</p>
-    </div>
-
-  <div class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl text-center">
-      <h2 class="text-5xl font-extrabold text-red-700 mb-3">4+</h2>
-      <p class="text-gray-600">Core Team Members</p>
-    </div>
-    
-<div class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl text-center">
-  <h2 id="apkDownloadCount" class="text-5xl font-extrabold text-red-700 mb-3">0+</h2>
-  <p class="text-gray-600">Install App Clicks</p>
-</div>
-
-  </div>
-
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="py-20 md:py-24">
-
-  <div class="max-w-7xl mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-14 md:gap-20 items-center">
-
-    <div>
-
-      <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
-        About Us
-      </p>
-
-      <h2 class="section-title text-4xl md:text-5xl font-bold leading-tight mb-8">
-        Building Future Creators & Innovators
-      </h2>
-
-      <p class="text-gray-600 leading-8 mb-6">
-        AcademeForge is a modern student-focused platform helping learners build practical skills, creativity, and AI-powered knowledge beyond traditional education.
-      </p>
-
-      <p class="text-gray-600 leading-8 mb-10">
-        Our mission is to transform students into industry-ready professionals.
-      </p>
-
-      <button 
-  onclick="openPopup(
-    'About AcademeForge',
-    `AcademeForge is a modern student-focused learning platform founded in India with a vision to transform the way students learn, grow, and prepare for the future. Built around the idea of “Learning Beyond the Classroom,” AcademeForge focuses on practical skills, digital creativity, AI-powered learning, and real-world knowledge that traditional education often fails to provide.
-
-The journey of AcademeForge began in January 2024, when it was initially started as a small Telegram community dedicated to helping Class 10 students solve doubts, participate in live quizzes, engage in discussions, and support each other academically. What started as a simple student-help initiative gradually evolved into a bigger vision — creating a modern learning ecosystem where students could access practical education, future-ready skills, mentorship, and opportunities beyond textbooks and exam-focused learning.
-
-AcademeForge was founded by Devraj Kumar, who started the platform at the age of just 17 while studying in Class 10. Devraj envisioned a platform that could help students explore creativity, technology, entrepreneurship, freelancing, digital skills, and artificial intelligence in a simple and beginner-friendly way. Later, Mandeep Harsh joined the initiative as Co-Founder, helping shape the vision and growth of the platform.
-
-Today, AcademeForge is powered by a small but passionate team of learners, creators, and young professionals:
-
-• Devraj Kumar — Founder 
-• Mandeep Harsh — Co-Founder 
-• Palak Kumari Jha — Moderator
-• Ayush Raj - Moderator
-
-As a youth-driven platform, AcademeForge strongly believes that students understand the struggles, pressure, and aspirations of other students better than anyone else. This understanding helps create learning experiences that feel relatable, modern, practical, and genuinely useful.
-
-At AcademeForge, we focus on teaching future-ready skills such as:
-
-• Video & Media Editing  
-• Creative & Graphic Design  
-• Coding Basics & Logic Building  
-• Freelancing & Digital Monetization  
-• AI-Powered Productivity & Digital Skills  
-
-Our learning approach is based on practical execution rather than memorization. Instead of long theoretical lectures, we encourage students to build projects, explore creativity, use AI tools intelligently, and develop confidence through hands-on learning experiences.
-
-What makes AcademeForge different is our belief that education should evolve with the modern world. While traditional systems often focus only on marks and rote learning, we focus on helping students become creators, problem-solvers, innovators, and independent thinkers prepared for the digital era.
-
-Although AcademeForge started from a small initiative in India, our vision is much larger. Over the next Ten years, we aim to impact and empower more than 100,000 students through accessible, practical, and AI-powered education.
-
-AcademeForge is not just a platform — it is a growing movement for students who want to learn beyond limitations and build a better future through skills, creativity, technology, and execution.
-
-Our Motto:
-“Learn Skills Schools Never Taught.”`
-  )" 
-  class="bg-red-700 text-white px-8 py-4 rounded-xl hover:bg-red-800 transition-all hover:scale-105">
-  Know More
-</button>
-
-    </div>
-
-    <div>
-
-      <img
-        src="stockIMG.jpg"
-        class="rounded-3xl shadow-2xl w-full"
-        alt="Students"
-      />
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- COURSES -->
-<section id="courses" class="bg-gray-50 py-20 md:py-24">
-
-  <div class="max-w-7xl mx-auto px-4 md:px-6">
-
-    <div class="text-center mb-16">
-
-      <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
-        Academic Programs
-      </p>
-
-      <h2 class="section-title text-4xl md:text-5xl font-bold">
-        Explore Our Courses
-      </h2>
-
-    </div>
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-      <!-- Video & Media Editing -->
-      <div onclick="openCourse(
-      'Video & Media Editing',
-      'Duration: 6 months',
-      'Annual Fees: To Be Announced',
-      'Create videos, reels, captions, thumbnails, and edits using Powerful AI tools.',
-      'AI editing tools, practical editing projects, creator workflows'
-      )"
-      class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl cursor-pointer">
-
-        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-700 text-2xl font-bold mb-6">
-          01
-        </div>
-
-        <h3 class="text-2xl font-bold mb-4">Video & Media Editing</h3>
-
-        <p class="text-gray-600 leading-7 mb-5">
-          Create content that captures attention and builds digital creativity.
-        </p>
-
-        <p class="font-semibold text-red-700 mb-5">
-          Fees: To Be Announced
-        </p>
-
-        <button class="bg-red-700 text-white px-5 py-3 rounded-xl">
-          View Details
-        </button>
-
-      </div>
-
-      <!-- Creative & Graphic Design -->
-      <div onclick="openCourse(
-      'Creative & Graphic Design',
-      'Duration: 6 Months',
-      'Annual Fees: To Be Announced',
-      'Design posters, social media graphics, and professional visuals with AI',
-      'Design labs, Canva & AI tools, branding practice projects'
-      )"
-      class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl cursor-pointer">
-
-        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-700 text-2xl font-bold mb-6">
-          02
-        </div>
-
-        <h3 class="text-2xl font-bold mb-4">Creative & Graphic Design</h3>
-
-        <p class="text-gray-600 leading-7 mb-5">
-          Turn ideas into visually engaging and impactful designs.
-        </p>
-
-        <p class="font-semibold text-red-700 mb-5">
-          Fees: To Be Announced
-        </p>
-
-        <button class="bg-red-700 text-white px-5 py-3 rounded-xl">
-          View Details
-        </button>
-
-      </div>
-
-      <!-- AI Coding & Logic Foundation -->
-      <div onclick="openCourse(
-      'AI Coding & Logic Foundation',
-      'Duration: 1 Years',
-      'Annual Fees: To Be Announced',
-      'Learn coding, websites, and logic building with beginner-friendly AI tools',
-      'Beginner coding environment, logic-building tasks, mini projects'
-      )"
-      class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl cursor-pointer">
-
-        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-700 text-2xl font-bold mb-6">
-          03
-        </div>
-
-        <h3 class="text-2xl font-bold mb-4">AI Coding & Logic Foundation</h3>
-
-        <p class="text-gray-600 leading-7 mb-5">
-          Develop smart thinking with modern coding and AI fundamentals.
-        </p>
-
-        <p class="font-semibold text-red-700 mb-5">
-          Fees: To Be Announced
-        </p>
-
-        <button class="bg-red-700 text-white px-5 py-3 rounded-xl">
-          View Details
-        </button>
-
-      </div>
-
-      <!-- Freelancing & Monetization -->
-      <div onclick="openCourse(
-      'Freelancing & Monetization',
-      'Duration: 1 Years',
-      'Annual Fees: To Be Announced',
-      'Learn how to earn online using AI-powered freelance and digital skills.',
-        'Portfolio guidance, freelancing resources, earning strategies'
-      )"
-      class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl cursor-pointer">
-
-        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-700 text-2xl font-bold mb-6">
-          04
-        </div>
-
-        <h3 class="text-2xl font-bold mb-4">Freelancing & Monetization</h3>
-
-        <p class="text-gray-600 leading-7 mb-5">
-          Learn how digital skills can create real online opportunities.
-        </p>
-
-        <p class="font-semibold text-red-700 mb-5">
-          Fees: To Be Announced
-        </p>
-
-        <button class="bg-red-700 text-white px-5 py-3 rounded-xl">
-          View Details
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- TEAM SECTION -->
-<section id="team" class="py-20 md:py-24 bg-gray-50">
-
-  <div class="max-w-7xl mx-auto px-4 md:px-6">
-
-    <!-- Heading -->
-    <div class="text-center mb-16">
-
-      <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
-        Our Team
-      </p>
-
-      <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">
-        Meet The People Behind AcademeForge
-      </h2>
-
-      <p class="text-gray-600 max-w-3xl mx-auto leading-8">
-        AcademeForge is powered by passionate young innovators, creators,
-        and learners dedicated to building a better future for students
-        through modern education and AI-powered learning.
-      </p>
-
-    </div>
-
-    <!-- Team Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-      <!-- Founder -->
-      
-          <div class="bg-white p-8 rounded-3xl shadow-xl text-center hover-up hover:shadow-2xl">
-
-        <div class="w-32 h-32 rounded-full bg-red-700 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-6 shadow-lg">
-  D
-</div>
-        <h3 class="text-2xl font-bold mb-2">
-          Devraj Kumar
-        </h3>
-
-        <p class="text-red-700 font-semibold mb-4">
-          Founder
-        </p>
-
-        <p class="text-gray-600 leading-7 text-sm">
-          Visionary behind AcademeForge focused on modern education,
-          AI-powered learning, creativity, and student empowerment.
-        </p>
-
-      </div>
-
-      <!-- Co-Founder -->
-      <div class="bg-white p-8 rounded-3xl shadow-xl text-center hover-up hover:shadow-2xl">
-
-       <div class="w-32 h-32 rounded-full bg-red-700 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-6 shadow-lg">
-  M
-</div>
-        <h3 class="text-2xl font-bold mb-2">
-          Mandeep Harsh
-        </h3>
-
-        <p class="text-red-700 font-semibold mb-4">
-          Co-Founder
-        </p>
-
-        <p class="text-gray-600 leading-7 text-sm">
-          Helping shape the growth, strategy, and vision of AcademeForge
-          while building impactful student learning experiences.
-        </p>
-
-      </div>
-
-      <!-- Moderator 1 -->
-      <div class="bg-white p-8 rounded-3xl shadow-xl text-center hover-up hover:shadow-2xl">
-
-      <div class="w-32 h-32 rounded-full bg-red-700 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-6 shadow-lg">
-  P
-</div>
-
-        <h3 class="text-2xl font-bold mb-2">
-          Palak Kumari Jha
-        </h3>
-
-        <p class="text-red-700 font-semibold mb-4">
-          Moderator
-        </p>
-
-        <p class="text-gray-600 leading-7 text-sm">
-          Supporting student engagement, community management,
-          and smooth learning experiences across the platform.
-        </p>
-
-      </div>
-
-      <!-- Moderator 2 -->
-      <div class="bg-white p-8 rounded-3xl shadow-xl text-center hover-up hover:shadow-2xl">
-
-       <div class="w-32 h-32 rounded-full bg-red-700 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-6 shadow-lg">
-  A
-</div>
-        <h3 class="text-2xl font-bold mb-2">
-          Ayush Raj
-        </h3>
-
-        <p class="text-red-700 font-semibold mb-4">
-          Moderator
-        </p>
-
-        <p class="text-gray-600 leading-7 text-sm">
-          Assisting with student coordination, platform activities,
-          and creating a positive learning environment.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- FEES -->
-<section id="fees" class="py-20 md:py-24 bg-white">
-
-  <div class="max-w-7xl mx-auto px-4 md:px-6">
-
-    <div class="text-center mb-16">
-
-      <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
-        Fee Structure
-      </p>
-
-      <h2 class="section-title text-4xl md:text-5xl font-bold">
-        Affordable Education
-      </h2>
-
-    </div>
-
-    <div class="overflow-x-auto rounded-3xl shadow-2xl">
-
-      <table class="w-full bg-white min-w-[700px]">
-
-        <thead class="bg-red-700 text-white">
-
-          <tr>
-            <th class="p-6 text-left">Program</th>
-            <th class="p-6 text-left">Duration</th>
-            <th class="p-6 text-left">Annual Fees</th>
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          <tr class="border-b">
-            <td class="p-6">Video & Media Editing</td>
-            <td class="p-6">6 Months</td>
-            <td class="p-6">To Be Announced</td>
-          </tr>
-
-          <tr class="border-b bg-gray-50">
-            <td class="p-6">Creative & Graphic Design</td>
-            <td class="p-6">6 Months</td>
-            <td class="p-6">To Be Announced</td>
-          </tr>
-
-          <tr class="border-b">
-            <td class="p-6">AI Coding & Logic Foundation</td>
-            <td class="p-6">1 Years</td>
-            <td class="p-6">To Be Announced</td>
-          </tr>
-
-          <tr class="bg-gray-50">
-            <td class="p-6">Freelancing & Monetization</td>
-            <td class="p-6">1 Years</td>
-            <td class="p-6">To Be Announced</td>
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- FAQ -->
-<section id="faq" class="bg-gray-50 py-20 md:py-24">
-
-  <div class="max-w-5xl mx-auto px-4 md:px-6">
-
-    <div class="text-center mb-16">
-
-      <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
-        Frequently Asked Questions
-      </p>
-
-      <h2 class="section-title text-4xl md:text-5xl font-bold">
-        Have Questions?
-      </h2>
-
-    </div>
-
-    <div class="space-y-5">
-
-      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-
-        <div class="flex justify-between items-center">
-
-          <h3 class="font-semibold text-lg">
-            Are scholarships available?
-          </h3>
-
-          <span class="faq-icon text-3xl text-red-700">+</span>
-
-        </div>
-
-        <div class="faq-content mt-4 text-gray-600 leading-7">
-          Merit-based and need-based scholarships are available.
-        </div>
-
-      </div>
-
-      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-
-        <div class="flex justify-between items-center">
-
-    <h3 class="font-semibold text-lg">
-      What is AcademeForge?
-    </h3>
-
-    <span class="faq-icon text-3xl text-red-700">+</span>
-  </div>
-
-  <div class="faq-content mt-4 text-gray-600 leading-7">
-    AcademeForge is a student-focused learning platform built around practical skills, creativity, and real-world learning beyond traditional classrooms.
-  </div>
-</div>
-
-<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-  <div class="flex justify-between items-center">
-    <h3 class="font-semibold text-lg">
-      Are admissions open right now?
-    </h3>
-
-    <span class="faq-icon text-3xl text-red-700">+</span>
-  </div>
-
-  <div class="faq-content mt-4 text-gray-600 leading-7">
-    No. Admissions in 2026 are currently paused while we rebuild and improve the platform, programs, and learning experience.
-  </div>
-</div>
-
-<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-  <div class="flex justify-between items-center">
-    <h3 class="font-semibold text-lg">
-      When will admissions start again?
-    </h3>
-
-    <span class="faq-icon text-3xl text-red-700">+</span>
-  </div>
-
-  <div class="faq-content mt-4 text-gray-600 leading-7">
-    Admissions are expected to open in upcoming academic sessions. Updates will be shared officially through the website and social platforms.
-  </div>
-</div>
-
-<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-  <div class="flex justify-between items-center">
-    <h3 class="font-semibold text-lg">
-      Is this beginner friendly?
-    </h3>
-
-    <span class="faq-icon text-3xl text-red-700">+</span>
-  </div>
-
-  <div class="faq-content mt-4 text-gray-600 leading-7">
-    Yes. Programs are being designed for both complete beginners and students who already have some basic knowledge.
-  </div>
-</div>
-
-<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-  <div class="flex justify-between items-center">
-    <h3 class="font-semibold text-lg">
-      What kind of skills will students learn?
-    </h3>
-
-    <span class="faq-icon text-3xl text-red-700">+</span>
-  </div>
-
-  <div class="faq-content mt-4 text-gray-600 leading-7">
-    Students will work on practical skills like digital tools, communication, creative thinking, technology basics, problem-solving, and project-based learning.
-  </div>
-</div>
-
-<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-  <div class="flex justify-between items-center">
-    <h3 class="font-semibold text-lg">
-      Will there be live classes or recorded content?
-    </h3>
-
-    <span class="faq-icon text-3xl text-red-700">+</span>
-  </div>
-
-  <div class="faq-content mt-4 text-gray-600 leading-7">
-    Learning may include a mix of live sessions, recorded lessons, workshops, and practical activities for flexible learning.
-  </div>
-</div>
-
-<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-  <div class="flex justify-between items-center">
-    <h3 class="font-semibold text-lg">
-      Do I need an expensive laptop or setup?
-    </h3>
-
-    <span class="faq-icon text-3xl text-red-700">+</span>
-  </div>
-
-  <div class="faq-content mt-4 text-gray-600 leading-7">
-    No. A normal laptop or mobile device with a stable internet connection is enough for most beginner-level learning activities.
-  </div>
-</div>
-
-<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-  <div class="flex justify-between items-center">
-    <h3 class="font-semibold text-lg">
-      Will students get mentorship and support?
-    </h3>
-
-    <span class="faq-icon text-3xl text-red-700">+</span>
-  </div>
-
-  <div class="faq-content mt-4 text-gray-600 leading-7">
-    Yes. Students will be able to interact with mentors, ask doubts, and receive guidance throughout the learning journey.
-  </div>
-</div>
-
-<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-  <div class="flex justify-between items-center">
-    <h3 class="font-semibold text-lg">
-      Will certificates be provided?
-    </h3>
-
-    <span class="faq-icon text-3xl text-red-700">+</span>
-  </div>
-
-  <div class="faq-content mt-4 text-gray-600 leading-7">
-    Yes. Certificates may be provided for selected programs, activities, or learning tracks after successful completion.
-  </div>
-</div>
-
-<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
-  <div class="flex justify-between items-center">
-    <h3 class="font-semibold text-lg">
-      What makes AcademeForge different?
-    </h3>
-
-    <span class="faq-icon text-3xl text-red-700">+</span>
-  </div>
-
-  <div class="faq-content mt-4 text-gray-600 leading-7">
-    AcademeForge focuses more on practical learning, consistency, execution, and real growth instead of only theory, memorization, or marks.
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="py-20 md:py-24 bg-black text-white relative overflow-hidden">
-
-  <div class="absolute top-0 left-0 w-full h-full opacity-10">
-    <div class="w-[500px] h-[500px] bg-red-700 rounded-full blur-3xl absolute -top-40 -left-40"></div>
-    <div class="w-[500px] h-[500px] bg-red-500 rounded-full blur-3xl absolute bottom-0 right-0"></div>
-  </div>
-
-  <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 text-center">
-
-    <p class="uppercase tracking-[4px] text-red-400 text-sm mb-4">
-      Contact Us
-    </p>
-
-    <h2 class="section-title text-4xl md:text-5xl font-bold mb-8">
-      Let’s Build Your Future
-    </h2>
-
-    <p class="text-gray-300 text-lg leading-8 max-w-3xl mx-auto mb-10">
-      Connect with AcademeForge for admissions and Program Details.
-    </p>
-
-    <div class="flex flex-col md:flex-row justify-center gap-8 text-lg">
-
-      <div class="glass px-8 py-6 rounded-3xl">
-        📍 Patna, Bihar, India
-      </div>
-
-      <div class="glass px-8 py-6 rounded-3xl">
-        📞 +91 XXXXX XXXXX
-      </div>
-
-      <div class="glass px-8 py-6 rounded-3xl">
-        ✉ academeforge@gmail.com
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- POPUP -->
-<div id="popup"
-class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-[999] p-4 overflow-y-auto">
-
-  <div class="bg-white max-w-lg w-full rounded-3xl p-8 relative animate-popup shadow-2xl max-h-[90vh] overflow-y-auto">
-
-    <button onclick="closePopup()"
-    class="absolute top-4 right-4 text-2xl font-bold text-gray-500 hover:text-red-700">
-      ×
-    </button>
-
-    <h2 id="popupTitle"
-    class="text-3xl font-extrabold mb-4 text-red-700"></h2>
-
-    <div id="popupText"
-    class="text-gray-600 leading-8 text-lg"></div>
-
-    <button onclick="closePopup()"
-    class="mt-8 bg-red-700 hover:bg-red-800 text-white px-7 py-3 rounded-xl font-semibold transition-all">
-      Close
-    </button>
-
-  </div>
-
-</div>
-
-<!-- FLOATING CONTACT BAR -->
-<div class="fixed bottom-6 right-6 z-50">
-
-  <div class="bg-black px-4 py-3 rounded-full flex items-center gap-4 shadow-2xl">
-
-    <!-- WhatsApp -->
-    <a
-      href="https://wa.me/+91 XXXXX XXXXX?text=Hello%20AcademeForge%20Team,%20please%20guide%20me%20regarding%20admissions."
-      target="_blank"
-      class="w-16 h-16 bg-green-500 hover:scale-110 transition-all duration-300 rounded-full flex items-center justify-center"
-    >
-
-      <svg xmlns="http://www.w3.org/2000/svg"
-           width="30"
-           height="30"
-           fill="white"
-           viewBox="0 0 24 24">
-        <path d="M20.52 3.48A11.79 11.79 0 0012.06 0C5.52 0 .19 5.33.19 11.87c0 2.09.55 4.14 1.6 5.95L0 24l6.37-1.67a11.79 11.79 0 005.69 1.45h.01c6.54 0 11.87-5.33 11.87-11.87a11.8 11.8 0 00-3.42-8.43z"/>
-      </svg>
-
-    </a>
-
-    <!-- Call Button -->
-    <a
-      href="tel:+91 XXXXX XXXXX"
-      class="w-16 h-16 bg-sky-500 hover:scale-110 transition-all duration-300 rounded-full flex items-center justify-center"
-    >
-
-      <svg xmlns="http://www.w3.org/2000/svg"
-           width="30"
-           height="30"
-           fill="none"
-           stroke="white"
-           stroke-width="2"
-           viewBox="0 0 24 24">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2
-        19.79 19.79 0 0 1-8.63-3.07
-        19.5 19.5 0 0 1-6-6
-        19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72
-        12.84 12.84 0 0 0 .7 2.81
-        2 2 0 0 1-.45 2.11L8.09 9.91
-        a16 16 0 0 0 6 6l1.27-1.27
-        a2 2 0 0 1 2.11-.45
-        12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-      </svg>
-
-    </a>
-
-   
-  </div>
-
-</div>
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 24 24">
-    <path d="M20.52 3.48A11.79 11.79 0 0012.06 0C5.52 0 .19 5.33.19 11.87c0 2.09.55 4.14 1.6 5.95L0 24l6.37-1.67a11.79 11.79 0 005.69 1.45h.01c6.54 0 11.87-5.33 11.87-11.87a11.8 11.8 0 00-3.42-8.43z"/>
-  </svg>
-
-</a>
-
-<!-- FOOTER -->
-<footer class="bg-black border-t border-gray-800 text-center py-6 text-gray-400 text-sm">
-  © 2026 AcademeForge. All Rights Reserved.
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-  const SUPABASE_URL = "https://afooyyydhlwngzssgqih.supabase.co";
-  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmb295eXlkaGx3bmd6c3NncWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NDQxMjgsImV4cCI6MjA5NDIyMDEyOH0.KG0XO0oP_2MpewHoIwTtbrKg5FkyOYRUtVzLH1MSJiE";
-
-  const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-  const APK_DOWNLOAD_URL = "academeforge.apk";
-
-  function getWebsiteDeviceId() {
-    let deviceId = localStorage.getItem("websiteDeviceId");
-
-    if (!deviceId) {
-      deviceId =
-        "web_" +
-        Date.now() +
-        "_" +
-        Math.random().toString(36).slice(2, 12);
-
-      localStorage.setItem("websiteDeviceId", deviceId);
+  <title>AcademeForge Beta — Future Skills Learning Platform</title>
+
+  <!-- =========================================================
+       FONTS
+  ========================================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* =========================================================
+       01. THEME VARIABLES
+    ========================================================== */
+
+    :root {
+      color-scheme: light;
+
+      --bg: #f8fafc;
+      --bg2: #eef2ff;
+      --surface: rgba(255, 255, 255, 0.86);
+      --surface2: rgba(255, 255, 255, 0.72);
+      --panel: rgba(255, 255, 255, 0.96);
+
+      --text: #0f172a;
+      --heading: #020617;
+      --muted: #475569;
+      --soft: #64748b;
+
+      --line: rgba(15, 23, 42, 0.12);
+      --line2: rgba(15, 23, 42, 0.18);
+
+      --brand: #f97316;
+      --gold: #f5c451;
+      --cyan: #0891b2;
+
+      --shadow: 0 24px 80px rgba(15, 23, 42, 0.12);
+      --shadow2: 0 34px 110px rgba(15, 23, 42, 0.18);
+
+      --header: rgba(255, 255, 255, 0.84);
+      --header2: rgba(255, 255, 255, 0.96);
+
+      --heroOverlay: linear-gradient(
+        90deg,
+        rgba(248, 250, 252, 0.98) 0%,
+        rgba(248, 250, 252, 0.88) 44%,
+        rgba(248, 250, 252, 0.42) 72%,
+        rgba(248, 250, 252, 0.16) 100%
+      );
+
+      --pad: clamp(14px, 3.6vw, 76px);
+      --safe: env(safe-area-inset-bottom, 0px);
     }
 
-    return deviceId;
-  }
+    html[data-theme="dark"] {
+      color-scheme: dark;
 
-  async function downloadAcademeForgeApk() {
-    const deviceId = getWebsiteDeviceId();
+      --bg: #050816;
+      --bg2: #080c18;
+      --surface: rgba(15, 23, 42, 0.72);
+      --surface2: rgba(255, 255, 255, 0.075);
+      --panel: rgba(5, 8, 22, 0.96);
 
-    try {
-      await db
-        .from("apk_downloads")
-        .insert([{
-          device_id: deviceId,
-          user_agent: navigator.userAgent || "",
-          page_url: window.location.href,
-          download_source: "main_website"
-        }]);
+      --text: #e5e7eb;
+      --heading: #f8fafc;
+      --muted: #cbd5e1;
+      --soft: #94a3b8;
 
-      await loadApkDownloadCount();
+      --line: rgba(255, 255, 255, 0.12);
+      --line2: rgba(255, 255, 255, 0.18);
+      --cyan: #67e8f9;
 
-    } catch (err) {
-      console.log("APK download tracking error:", err);
+      --shadow: 0 26px 90px rgba(0, 0, 0, 0.34);
+      --shadow2: 0 34px 110px rgba(0, 0, 0, 0.46);
+
+      --header: rgba(5, 8, 22, 0.82);
+      --header2: rgba(5, 8, 22, 0.96);
+
+      --heroOverlay: linear-gradient(
+        90deg,
+        rgba(5, 8, 22, 1) 0%,
+        rgba(5, 8, 22, 0.88) 44%,
+        rgba(5, 8, 22, 0.42) 72%,
+        rgba(5, 8, 22, 0.16) 100%
+      );
     }
 
-    const link = document.createElement("a");
-    link.href = APK_DOWNLOAD_URL;
-    link.download = "academeforge.apk";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
+    /* =========================================================
+       02. BASE RESET
+    ========================================================== */
 
-  async function loadApkDownloadCount() {
-    const countBox = document.getElementById("apkDownloadCount");
-    if (!countBox) return;
-
-    const { count, error } = await db
-      .from("apk_downloads")
-      .select("*", { count: "exact", head: true });
-
-    if (error) {
-      console.log("Download count error:", error);
-      countBox.textContent = "0+";
-      return;
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    countBox.textContent = (count || 0) + "+";
-  }
-
-  async function trackWebsiteVisit() {
-    const deviceId = getWebsiteDeviceId();
-
-    try {
-      await db
-        .from("website_visits")
-        .insert([{
-          device_id: deviceId,
-          page_url: window.location.href,
-          user_agent: navigator.userAgent || ""
-        }]);
-    } catch (err) {
-      console.log("Website visit tracking error:", err);
-    }
-  }
-
-  async function loadWebsiteVisitCount() {
-    const countBox = document.getElementById("websiteVisitCount");
-    if (!countBox) return;
-
-    const { count, error } = await db
-      .from("website_visits")
-      .select("*", { count: "exact", head: true });
-
-    if (error) {
-      console.log("Website visit count error:", error);
-      countBox.textContent = "0+";
-      return;
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% -5%, rgba(249, 115, 22, 0.16), transparent 34rem),
+        radial-gradient(circle at 92% 10%, rgba(8, 145, 178, 0.12), transparent 34rem),
+        linear-gradient(180deg, var(--bg), var(--bg2));
     }
 
-    countBox.textContent = (count || 0) + "+";
-  }
-
-  async function loadUniqueVisitorCount() {
-    const countBox = document.getElementById("uniqueVisitorCount");
-    if (!countBox) return;
-
-    const { data, error } = await db
-      .from("website_visits")
-      .select("device_id");
-
-    if (error) {
-      console.log("Unique visitor count error:", error);
-      countBox.textContent = "0+";
-      return;
+    html[data-theme="dark"] body {
+      background:
+        radial-gradient(circle at 12% 0, rgba(249, 115, 22, 0.22), transparent 35rem),
+        radial-gradient(circle at 85% 12%, rgba(103, 232, 249, 0.14), transparent 34rem),
+        #050816;
     }
 
-    const uniqueDevices = new Set((data || []).map(row => row.device_id)).size;
-    countBox.textContent = uniqueDevices + "+";
-  }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(circle at 50% 8%, black, transparent 78%);
+    }
 
-  document.addEventListener("DOMContentLoaded", async function() {
-    await trackWebsiteVisit();
+    html[data-theme="dark"] body::before {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    }
 
-    await loadApkDownloadCount();
-    await loadUniqueVisitorCount();
-    await loadWebsiteVisitCount();
-  });
+    body.lock {
+      overflow: hidden;
+    }
 
-  // FAQ
-  document.querySelectorAll(".faq").forEach((faq) => {
-    faq.addEventListener("click", () => {
-      faq.classList.toggle("active");
+    button,
+    a,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================================================
+       03. LAYOUT UTILITIES
+    ========================================================== */
+
+    .site {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    .cw,
+    .cx {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding-inline: var(--pad);
+    }
+
+    .section {
+      width: 100%;
+      padding-block: clamp(64px, 7vw, 118px);
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .center {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .glass {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--surface), var(--surface2));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    /* =========================================================
+       04. BUTTONS / BADGES / COMMON COMPONENTS
+    ========================================================== */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      min-height: 48px;
+      padding: 0.88rem 1.18rem;
+      border: 0;
+      border-radius: 999px;
+      font-weight: 900;
+      white-space: nowrap;
+      user-select: none;
+      touch-action: manipulation;
+      transition: 0.22s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow2);
+    }
+
+    .primary {
+      color: #111827;
+      background: linear-gradient(135deg, var(--brand), var(--gold));
+    }
+
+    .secondary {
+      color: var(--heading);
+      border: 1px solid var(--line);
+      background: rgba(15, 23, 42, 0.055);
+    }
+
+    html[data-theme="dark"] .secondary {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .darkbtn {
+      color: #ffffff;
+      border: 1px solid rgba(15, 23, 42, 0.16);
+      background: rgba(15, 23, 42, 0.88);
+    }
+
+    html[data-theme="dark"] .darkbtn {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(5, 8, 22, 0.86);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.48rem 0.78rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.52);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    html[data-theme="dark"] .eyebrow {
+      color: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 999px;
+      background: var(--brand);
+      box-shadow: 0 0 0 6px rgba(249, 115, 22, 0.15);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: #ea580c;
+      background: rgba(249, 115, 22, 0.14);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    html[data-theme="dark"] .badge {
+      color: #fdba74;
+    }
+
+    .num {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 18px;
+      color: var(--brand);
+      background: rgba(249, 115, 22, 0.12);
+      font-weight: 1000;
+    }
+
+    /* =========================================================
+       05. TOPBAR / MARQUEE
+    ========================================================== */
+
+    .topbar {
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      background: var(--header2);
+      font-size: 12px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 40px;
+      padding-block: 8px;
+    }
+
+    .topbar-left,
+    .topbar-right {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .topbar button {
+      padding: 0;
+      border: 0;
+      color: var(--muted);
+      background: transparent;
+      font-weight: 800;
+    }
+
+    .marquee-wrap {
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    html[data-theme="dark"] .marquee-wrap {
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      min-width: 200%;
+      animation: afMarquee 26s linear infinite;
+      will-change: transform;
+    }
+
+    .marquee-group {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 2.5rem;
+      min-width: 50vw;
+      padding: 0.72rem 1.25rem;
+      color: var(--muted);
+      white-space: nowrap;
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .marquee-group span::before {
+      content: "•";
+      margin-right: 1.1rem;
+      color: var(--brand);
+    }
+
+    @keyframes afMarquee {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+
+      to {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+
+    /* =========================================================
+       06. HEADER / NAVIGATION
+    ========================================================== */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: var(--header);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 78px;
+      padding-block: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      gap: 12px;
+    }
+
+    .logo {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 18px;
+      color: #111827;
+      background: linear-gradient(135deg, var(--brand), var(--gold));
+      box-shadow: 0 20px 70px rgba(249, 115, 22, 0.3);
+      font-weight: 1000;
+    }
+
+    .brand-title {
+      display: block;
+      color: var(--heading);
+      font-family: Manrope, Inter, sans-serif;
+      font-size: 1.45rem;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .brand-sub {
+      display: block;
+      margin-top: 4px;
+      color: var(--soft);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      gap: clamp(16px, 1.4vw, 26px);
+    }
+
+    .nav a,
+    .nav button {
+      position: relative;
+      padding: 0;
+      border: 0;
+      color: var(--muted);
+      background: transparent;
+      font-size: 0.9rem;
+      font-weight: 900;
+    }
+
+    .nav a:hover,
+    .nav button:hover {
+      color: var(--heading);
+    }
+
+    .nav a::after,
+    .nav button::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -9px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--brand), var(--gold));
+      transition: width 0.22s ease;
+    }
+
+    .nav a:hover::after,
+    .nav button:hover::after {
+      width: 100%;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      gap: 10px;
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 44px;
+      padding: 6px 10px 6px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--heading);
+      background: rgba(255, 255, 255, 0.55);
+      font-weight: 900;
+    }
+
+    html[data-theme="dark"] .theme-toggle {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .theme-toggle .switch {
+      position: relative;
+      width: 42px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.16);
+    }
+
+    html[data-theme="dark"] .theme-toggle .switch {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .theme-toggle .knob {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--brand), var(--gold));
+      transition: transform 0.22s ease;
+    }
+
+    html[data-theme="dark"] .theme-toggle .knob {
+      transform: translateX(18px);
+    }
+
+    .menu-btn {
+      display: none;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      color: var(--heading);
+      background: rgba(255, 255, 255, 0.45);
+      font-size: 24px;
+    }
+
+    /* =========================================================
+       07. MOBILE MENU
+    ========================================================== */
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0 0 0 auto;
+      z-index: 90;
+      width: min(88vw, 390px);
+      overflow-y: auto;
+      padding: 20px;
+      border-left: 1px solid var(--line);
+      background: var(--panel);
+      transform: translateX(105%);
+      transition: transform 0.28s ease;
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    .mobile-menu-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .close-btn {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      color: var(--heading);
+      background: rgba(255, 255, 255, 0.45);
+      font-size: 26px;
+    }
+
+    html[data-theme="dark"] .close-btn,
+    html[data-theme="dark"] .menu-btn {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .mobile-nav {
+      display: grid;
+      gap: 12px;
+      margin-top: 26px;
+      font-weight: 900;
+    }
+
+    .mobile-nav a,
+    .mobile-nav button {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      color: var(--heading);
+      background: var(--surface2);
+      text-align: left;
+    }
+
+    .mobile-actions {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    /* =========================================================
+       08. HERO
+    ========================================================== */
+
+    .hero {
+      position: relative;
+      min-height: calc(100svh - 118px);
+      overflow: hidden;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-media img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 58%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 72% center;
+      opacity: 0.72;
+      mask-image: linear-gradient(90deg, transparent 0%, black 14%, black 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 14%, black 100%);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--heroOverlay);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      align-items: center;
+      min-height: calc(100svh - 118px);
+      padding-block: 56px;
+    }
+
+    .hero-title {
+      max-width: 980px;
+      margin: 28px 0 0;
+      color: var(--heading);
+      font-family: Manrope, Inter, sans-serif;
+      font-size: clamp(4rem, 8.4vw, 9.8rem);
+      line-height: 0.88;
+      font-weight: 900;
+      letter-spacing: -0.078em;
+    }
+
+    .hero-text {
+      max-width: 760px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: clamp(1.03rem, 1.4vw, 1.25rem);
+      line-height: 1.75;
+    }
+
+    .hero-actions,
+    .section-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 820px;
+      margin-top: 36px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 26px;
+    }
+
+    .stat b {
+      display: block;
+      color: var(--heading);
+      font-size: clamp(1.8rem, 3vw, 2.35rem);
+    }
+
+    .stat p {
+      margin: 6px 0 0;
+      color: var(--soft);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       09. SECTION TYPOGRAPHY
+    ========================================================== */
+
+    .section-head {
+      max-width: 840px;
+    }
+
+    .section-title {
+      margin: 24px 0 0;
+      color: var(--heading);
+      font-family: Manrope, Inter, sans-serif;
+      font-size: clamp(2.55rem, 5.5vw, 5rem);
+      line-height: 0.96;
+      font-weight: 900;
+      letter-spacing: -0.055em;
+    }
+
+    .section-text {
+      max-width: 760px;
+      margin-top: 20px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .center .section-text {
+      margin-inline: auto;
+    }
+
+    /* =========================================================
+       10. CARDS / GRIDS
+    ========================================================== */
+
+    .about-grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .feature-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .program-grid,
+    .batch-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 56px;
+    }
+
+    .policy-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 56px;
+    }
+
+    .help-grid,
+    .fees-grid,
+    .founder-grid,
+    .contact-grid {
+      grid-template-columns: 0.85fr 1.15fr;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .card {
+      padding: 26px;
+      border-radius: 32px;
+      transition: 0.25s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(249, 115, 22, 0.5);
+      box-shadow: var(--shadow2);
+      transform: translateY(-7px);
+    }
+
+    .card h3 {
+      margin: 22px 0 0;
+      color: var(--heading);
+      font-size: 1.35rem;
+    }
+
+    .card p {
+      margin: 12px 0 0;
+      color: var(--soft);
+      line-height: 1.65;
+    }
+
+    .card .btn {
+      width: 100%;
+      margin-top: 24px;
+    }
+
+    .kv {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding-block: 8px;
+      color: var(--muted);
+    }
+
+    .kv b {
+      color: var(--heading);
+    }
+
+    .action-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 36px;
+    }
+
+    .action-grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    /* =========================================================
+       11. FOUNDER SECTION
+    ========================================================== */
+
+    .founder-card {
+      position: relative;
+      overflow: hidden;
+      padding: 16px;
+      border-radius: 40px;
+    }
+
+    .founder-card::before {
+      content: "";
+      position: absolute;
+      top: 50px;
+      left: -80px;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: rgba(249, 115, 22, 0.2);
+      filter: blur(48px);
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .founder-inner {
+      position: relative;
+      padding: clamp(24px, 3vw, 34px);
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: var(--surface2);
+    }
+
+    .founder-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .avatar {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 96px;
+      height: 96px;
+      border-radius: 30px;
+      color: #111827;
+      background: linear-gradient(135deg, var(--brand), var(--gold));
+      box-shadow: 0 20px 70px rgba(249, 115, 22, 0.3);
+      font-size: 48px;
+      font-weight: 1000;
+    }
+
+    .quote {
+      margin-top: 28px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: var(--surface2);
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.65;
+    }
+
+    .mini-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 24px;
+    }
+
+    /* =========================================================
+       12. FAQ
+    ========================================================== */
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 48px;
+    }
+
+    .faq {
+      padding: 22px;
+      border-radius: 26px;
+      cursor: pointer;
+    }
+
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .faq h3 {
+      margin: 0;
+      color: var(--heading);
+    }
+
+    .plus {
+      color: var(--brand);
+      font-size: 30px;
+      transition: transform 0.25s ease;
+    }
+
+    .ans {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.32s ease;
+    }
+
+    .ans p {
+      margin: 0;
+      padding-top: 16px;
+      color: var(--soft);
+      line-height: 1.7;
+    }
+
+    .faq.open .ans {
+      max-height: 260px;
+    }
+
+    .faq.open .plus {
+      transform: rotate(45deg);
+    }
+
+    /* =========================================================
+       13. CONTACT / FOOTER
+    ========================================================== */
+
+    .contact-box {
+      padding: clamp(24px, 4vw, 56px);
+      border-radius: 40px;
+    }
+
+    .quick-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 28px;
+    }
+
+    .quick-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      color: var(--heading);
+      background: var(--surface2);
+      text-align: left;
+      transition: 0.22s ease;
+    }
+
+    .quick-card:hover {
+      border-color: rgba(249, 115, 22, 0.5);
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
+    }
+
+    .quick-card span {
+      display: block;
+      margin-top: 8px;
+      color: var(--soft);
+      font-size: 14px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      background: var(--header2);
+    }
+
+    .footer-grid {
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      padding-block: 40px;
+    }
+
+    .footer h4 {
+      margin: 0;
+      color: var(--heading);
+    }
+
+    .footer p,
+    .footer a,
+    .footer button {
+      color: var(--soft);
+      font-size: 14px;
+    }
+
+    .footer button {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      text-align: left;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .copyright {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      padding-block: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    /* =========================================================
+       14. MODAL
+    ========================================================== */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 110;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(2, 6, 23, 0.62);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: min(760px, 100%);
+      max-height: min(84svh, 760px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: var(--panel);
+      box-shadow: var(--shadow2);
+      animation: modalIn 0.22s ease both;
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .modal-head h3 {
+      margin: 0;
+      color: var(--heading);
+      font-size: 1.35rem;
+    }
+
+    .modal-body {
+      max-height: calc(84svh - 86px);
+      overflow-y: auto;
+      padding: 22px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .modal-body p {
+      margin: 0 0 14px;
+    }
+
+    /* =========================================================
+       15. AI CHAT
+    ========================================================== */
+
+    .ai-chat-shell {
+      position: fixed;
+      right: 22px;
+      bottom: calc(22px + var(--safe));
+      z-index: 95;
+    }
+
+    .ai-chat-panel {
+      display: none;
+      width: min(480px, calc(100vw - 24px));
+      height: min(760px, calc(100svh - 96px));
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 20% 0, rgba(249, 115, 22, 0.14), transparent 16rem),
+        radial-gradient(circle at 100% 20%, rgba(8, 145, 178, 0.1), transparent 14rem),
+        var(--panel);
+      box-shadow: 0 28px 90px rgba(15, 23, 42, 0.22);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    html[data-theme="dark"] .ai-chat-panel {
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.5);
+    }
+
+    .ai-chat-panel.open {
+      display: flex;
+      flex-direction: column;
+      animation: chatIn 0.22s ease both;
+    }
+
+    .ai-chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ai-chat-header b {
+      color: var(--heading);
+    }
+
+    .ai-chat-header p {
+      margin: 3px 0 0;
+      color: var(--soft);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .ai-chat-body {
+      display: grid;
+      align-content: start;
+      flex: 1;
+      gap: 12px;
+      overflow-y: auto;
+      padding: 16px;
+    }
+
+    .ai-msg {
+      display: grid;
+      gap: 6px;
+      max-width: 92%;
+      padding: 12px 14px;
+      border-radius: 18px;
+      font-size: 14px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .ai-msg.bot {
+      justify-self: start;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.055);
+    }
+
+    html[data-theme="dark"] .ai-msg.bot {
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.075);
+    }
+
+    .ai-msg.user {
+      justify-self: end;
+      color: #111827;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.95), rgba(245, 196, 81, 0.95));
+      font-weight: 700;
+    }
+
+    .ai-chat-suggestions {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 0 16px 12px;
+    }
+
+    .ai-chat-suggestions button {
+      flex: 0 0 auto;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--heading);
+      background: var(--surface2);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .ai-chat-form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .ai-chat-form textarea {
+      min-height: 48px;
+      max-height: 120px;
+      resize: none;
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      outline: none;
+      color: var(--heading);
+      background: var(--surface2);
+      line-height: 1.4;
+    }
+
+    .ai-chat-form textarea::placeholder {
+      color: var(--soft);
+    }
+
+    .ai-chat-form button {
+      min-width: 58px;
+      border: 0;
+      border-radius: 18px;
+      color: #111827;
+      background: linear-gradient(135deg, var(--brand), var(--gold));
+      font-weight: 1000;
+    }
+
+    .ai-chat-launcher {
+      min-width: 58px;
+      min-height: 58px;
+      margin-top: 12px;
+      margin-left: auto;
+      border: 0;
+      border-radius: 999px;
+      color: #111827;
+      background: linear-gradient(135deg, var(--brand), var(--gold));
+      box-shadow: 0 22px 70px rgba(249, 115, 22, 0.35);
+      font-weight: 1000;
+      animation: pulseSoft 2.2s ease-in-out infinite;
+    }
+
+    .ai-chat-launcher span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 18px;
+    }
+
+    .ai-typing {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ai-typing i {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--soft);
+      opacity: 0.55;
+      animation: typingDot 1s ease-in-out infinite;
+    }
+
+    .ai-typing i:nth-child(2) {
+      animation-delay: 0.12s;
+    }
+
+    .ai-typing i:nth-child(3) {
+      animation-delay: 0.24s;
+    }
+
+    /* =========================================================
+       16. REVEAL ANIMATION
+    ========================================================== */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: 0.75s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       17. KEYFRAMES
+    ========================================================== */
+
+    @keyframes typingDot {
+      0%,
+      100% {
+        opacity: 0.4;
+        transform: translateY(0);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateY(-4px);
+      }
+    }
+
+    @keyframes pulseSoft {
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.36);
+      }
+
+      50% {
+        box-shadow: 0 0 0 12px rgba(249, 115, 22, 0);
+      }
+    }
+
+    @keyframes chatIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes modalIn {
+      0% {
+        opacity: 0;
+        transform: translateY(18px) scale(0.96);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-16px);
+      }
+    }
+
+    /* =========================================================
+       18. RESPONSIVE CSS
+    ========================================================== */
+
+    @media (max-width: 1279px) {
+      .nav-extra {
+        display: none !important;
+      }
+
+      .hero-title {
+        font-size: clamp(3.7rem, 9vw, 7.6rem);
+      }
+
+      .program-grid,
+      .batch-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .policy-grid,
+      .quick-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav,
+      .header-actions .btn {
+        display: none;
+      }
+
+      .menu-btn {
+        display: grid;
+      }
+
+      .header-actions {
+        margin-left: auto;
+      }
+
+      .theme-toggle {
+        min-height: 42px;
+        padding-inline: 10px;
+      }
+
+      .theme-toggle .label {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-media img {
+        width: 100%;
+        opacity: 0.38;
+        mask-image: linear-gradient(180deg, black 0%, black 56%, transparent 100%);
+        -webkit-mask-image: linear-gradient(180deg, black 0%, black 56%, transparent 100%);
+      }
+
+      .hero-overlay {
+        background: linear-gradient(180deg, var(--bg), rgba(248, 250, 252, 0.78), var(--bg));
+      }
+
+      html[data-theme="dark"] .hero-overlay {
+        background: linear-gradient(180deg, rgba(5, 8, 22, 0.96), rgba(5, 8, 22, 0.76), rgba(5, 8, 22, 1));
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        min-height: calc(100svh - 118px);
+      }
+
+      .hero-title {
+        font-size: clamp(3.1rem, 16vw, 5.2rem);
+      }
+
+      .about-grid,
+      .help-grid,
+      .fees-grid,
+      .founder-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .action-grid,
+      .action-grid.three {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .ai-chat-shell {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+      }
+
+      .ai-chat-panel {
+        width: min(520px, 100vw);
+        height: 100svh;
+        max-height: none;
+        border-top: 0;
+        border-right: 0;
+        border-bottom: 0;
+        border-radius: 0;
+        pointer-events: auto;
+        transform-origin: right center;
+      }
+
+      .ai-chat-launcher {
+        position: fixed;
+        right: 16px;
+        bottom: calc(16px + var(--safe));
+        pointer-events: auto;
+      }
+    }
+
+    @media (max-width: 767px) {
+      :root {
+        --pad: 14px;
+      }
+
+      .topbar-right {
+        gap: 12px;
+      }
+
+      .brand-title {
+        font-size: 1.18rem;
+      }
+
+      .brand-sub {
+        font-size: 9px;
+        letter-spacing: 0.16em;
+      }
+
+      .logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 16px;
+      }
+
+      .header-inner {
+        min-height: 72px;
+      }
+
+      .hero-grid {
+        padding-block: 44px;
+      }
+
+      .hero-title {
+        letter-spacing: -0.06em;
+      }
+
+      .hero-actions,
+      .section-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .stats,
+      .feature-grid,
+      .program-grid,
+      .batch-grid,
+      .policy-grid,
+      .quick-grid,
+      .footer-grid,
+      .mini-grid,
+      .action-grid,
+      .action-grid.three {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 22px;
+        border-radius: 26px;
+      }
+
+      .section-title {
+        font-size: clamp(2.25rem, 12vw, 3.7rem);
+      }
+
+      .founder-top {
+        flex-direction: column;
+      }
+
+      .contact-box {
+        border-radius: 30px;
+      }
+
+      .mobile-menu {
+        width: 100vw;
+      }
+
+      .ai-chat-shell {
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+
+      .ai-chat-panel {
+        width: 100vw;
+        height: 100svh;
+        border: 0;
+        border-radius: 0;
+      }
+
+      .ai-chat-launcher {
+        right: 12px;
+        left: 12px;
+        width: auto;
+      }
+
+      .ai-chat-launcher span {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .marquee-group {
+        gap: 1.5rem;
+        font-size: 0.68rem;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+
+      .marquee-track {
+        animation: none !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =========================================================
+       OFFLINE BANNER
+  ========================================================== -->
+  <div
+    id="offline"
+    style="display:none;position:fixed;top:0;left:0;right:0;z-index:120;background:#dc2626;color:#fff;text-align:center;font-weight:900;font-size:14px;padding:12px 16px;"
+  >
+    Internet connection error. Some features may not load until you are online.
+  </div>
+
+  <div class="site">
+    <!-- =========================================================
+         TOPBAR
+    ========================================================== -->
+    <div class="topbar">
+      <div class="cw topbar-inner">
+        <div class="topbar-left">
+          <span>● Patna, Bihar, India</span>
+          <a href="mailto:academeforge@gmail.com">academeforge@gmail.com</a>
+          <button type="button" onclick="openAIChat('I need help from AcademeForge support.')">
+            AI Help Desk
+          </button>
+        </div>
+
+        <div class="topbar-right">
+          <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/company/academeforge/">LinkedIn</a>
+          <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/academeforge.in?igsh=MXc2eTlmenozNnN1Mg==">Instagram</a>
+          <a target="_blank" rel="noopener noreferrer" href="https://youtube.com/@academeforgepro?si=3jOxYewYdb0NNXSG">YouTube</a>
+          <a target="_blank" rel="noopener noreferrer" href="https://t.me/+46ubatq-EV0wNjY1">Telegram</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         TOP MARQUEE
+    ========================================================== -->
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <span>Beta Version</span>
+          <span>Website content is being updated</span>
+          <span>Admissions under rebuild</span>
+          <span>New batches coming soon</span>
+          <span>Official information may change</span>
+        </div>
+
+        <div class="marquee-group" aria-hidden="true">
+          <span>Beta Version</span>
+          <span>Website content is being updated</span>
+          <span>Admissions under rebuild</span>
+          <span>New batches coming soon</span>
+          <span>Official information may change</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+    <header class="header">
+      <div class="cw header-inner">
+        <a href="#home" class="brand" aria-label="AcademeForge Home">
+          <span class="logo">AF</span>
+          <span>
+            <b class="brand-title">AcademeForge</b>
+            <small class="brand-sub">Beta Learning Platform</small>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#home">Home</a>
+          <a href="#programs">Programs</a>
+          <a href="#founder">Founder</a>
+          <a href="#batches">Batches</a>
+          <a href="#policies">Policies</a>
+          <a href="#help">Help Desk</a>
+          <a href="#contact">Contact</a>
+          <a class="nav-extra" href="#">Certificate</a>
+          <a class="nav-extra" href="#">Student Portal</a>
+          <a class="nav-extra" href="#">Join Team</a>
+        </nav>
+
+        <div class="header-actions">
+          <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle night mode" aria-pressed="false">
+            <span class="label">Night</span>
+            <span class="switch" aria-hidden="true">
+              <span class="knob"></span>
+            </span>
+          </button>
+
+          <a class="btn secondary" href="#">Admissions</a>
+          <button class="btn primary" type="button" onclick="downloadApk()">Install App</button>
+          <button id="openMenu" class="menu-btn" type="button" aria-label="Open menu">☰</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================================================
+         MOBILE MENU
+    ========================================================== -->
+    <aside id="menu" class="mobile-menu" aria-label="Mobile menu" aria-hidden="true">
+      <div class="mobile-menu-head">
+        <div>
+          <b class="brand-title">AcademeForge</b>
+          <p class="brand-sub">Mobile Interface</p>
+        </div>
+
+        <button id="closeMenu" class="close-btn" type="button" aria-label="Close menu">×</button>
+      </div>
+
+      <nav class="mobile-nav">
+        <a class="mlnk" href="#home">Home</a>
+        <a class="mlnk" href="#programs">Programs</a>
+        <a class="mlnk" href="#founder">Founder Profile</a>
+        <a class="mlnk" href="#batches">Batches</a>
+        <a class="mlnk" href="#policies">Policies</a>
+        <a class="mlnk" href="#help">Help Desk</a>
+        <a class="mlnk" href="#contact">Contact</a>
+        <a class="mlnk" href="#">Certificate Download</a>
+        <a class="mlnk" href="#">Student Portal</a>
+        <a class="mlnk" href="#">Join as Team Member</a>
+      </nav>
+
+      <div class="mobile-actions">
+        <button class="btn primary" type="button" onclick="downloadApk()">Install App</button>
+        <button class="btn secondary" type="button" onclick="openAIChat('Tell me about AcademeForge.')">Ask AI</button>
+      </div>
+    </aside>
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================== -->
+    <main>
+      <!-- HERO -->
+      <section id="home" class="hero">
+        <div class="hero-media">
+          <img src="AFhome.jpg" alt="AcademeForge learning platform" />
+          <div class="hero-overlay"></div>
+        </div>
+
+        <div class="cw hero-grid">
+          <div class="reveal">
+            <span class="eyebrow">Top-tier edtech beta experience</span>
+            <h1 class="hero-title">Learn skills schools never taught.</h1>
+            <p class="hero-text">
+              AcademeForge is being rebuilt into a premium practical-learning ecosystem for students who want to create,
+              code, design, communicate, use AI responsibly, and build real digital opportunities.
+            </p>
+
+            <div class="hero-actions">
+              <button class="btn primary" type="button" onclick="info('Our Vision', TEXT.vision)">Explore Vision</button>
+              <a class="btn secondary" href="#programs">View Programs</a>
+              <button class="btn darkbtn" type="button" onclick="openAIChat('Which AcademeForge program is best for me?')">Ask AI Guide</button>
+            </div>
+
+            <div class="stats">
+              <div class="glass stat">
+                <b>2024</b>
+                <p>Started</p>
+              </div>
+              <div class="glass stat">
+                <b>1000+</b>
+                <p>Reached</p>
+              </div>
+              <div class="glass stat">
+                <b id="apkCount">0+</b>
+                <p>App Clicks</p>
+              </div>
+              <div class="glass stat">
+                <b id="visitCount">0+</b>
+                <p>Visits</p>
+              </div>
+            </div>
+          </div>
+
+          <div></div>
+        </div>
+      </section>
+
+      <!-- SKILL MARQUEE -->
+      <section class="marquee-wrap">
+        <div class="marquee-track">
+          <div class="marquee-group">
+            <span>Creative Design</span>
+            <span>Freelancing</span>
+            <span>AI Productivity</span>
+            <span>Video Editing</span>
+            <span>Coding Logic</span>
+            <span>Portfolio Labs</span>
+            <span>Community Learning</span>
+            <span>Digital Confidence</span>
+          </div>
+
+          <div class="marquee-group" aria-hidden="true">
+            <span>Creative Design</span>
+            <span>Freelancing</span>
+            <span>AI Productivity</span>
+            <span>Video Editing</span>
+            <span>Coding Logic</span>
+            <span>Portfolio Labs</span>
+            <span>Community Learning</span>
+            <span>Digital Confidence</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="section">
+        <div class="cx grid about-grid">
+          <div class="reveal">
+            <span class="eyebrow">About AcademeForge</span>
+            <h2 class="section-title">A serious learning platform for practical student growth.</h2>
+            <p class="section-text">
+              AcademeForge started as a student-help community and is now being rebuilt as a structured edtech platform
+              focused on future-ready skills, AI workflows, creativity, communication, coding logic, and digital independence.
+            </p>
+
+            <div class="hero-actions">
+              <button class="btn primary" type="button" onclick="info('About AcademeForge', TEXT.about)">Read Full Story</button>
+              <button class="btn secondary" type="button" onclick="openAIChat('Tell me the full story of AcademeForge.')">Ask AI About Us</button>
+            </div>
+          </div>
+
+          <div class="grid feature-grid">
+            <div class="glass card reveal">
+              <b class="num">01</b>
+              <h3>Student-first learning</h3>
+              <p>Designed around real student confusion, beginner needs, and practical outcomes.</p>
+            </div>
+
+            <div class="glass card reveal">
+              <b class="num">02</b>
+              <h3>AI-native workflows</h3>
+              <p>AI is used as a productivity layer while still building thinking and execution.</p>
+            </div>
+
+            <div class="glass card reveal">
+              <b class="num">03</b>
+              <h3>Project-based outcomes</h3>
+              <p>Students learn through tasks, portfolio work, assignments, and guided labs.</p>
+            </div>
+
+            <div class="glass card reveal">
+              <b class="num">04</b>
+              <h3>Platform-grade structure</h3>
+              <p>Admissions, policies, support, batches, updates, and privacy sections included.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRAMS -->
+      <section id="programs" class="section" style="border-block:1px solid var(--line);background:rgba(255,255,255,.20);">
+        <div class="cx">
+          <div class="section-head center reveal">
+            <span class="eyebrow">Programs</span>
+            <h2 class="section-title">Future-skill tracks built for execution.</h2>
+            <p class="section-text">Each track is being rebuilt with beginner-friendly modules, practical assignments, and student support.</p>
+          </div>
+
+          <div class="grid program-grid">
+            <article class="glass card reveal">
+              <div style="display:flex;justify-content:space-between;gap:14px;align-items:center;">
+                <span class="num">01</span>
+                <span class="badge">6 months</span>
+              </div>
+              <h3>Video & Media Editing</h3>
+              <p>Reels, captions, thumbnails, short-form storytelling, editing workflows, and AI-assisted media production.</p>
+              <button
+                class="btn secondary"
+                type="button"
+                onclick="course('Video & Media Editing', '6 months', 'To be announced', 'Reels, captions, thumbnails, short-form storytelling, editing workflows, and AI-assisted media production.', 'Practical labs, assignments, student support, and portfolio-focused outcomes.')"
+              >
+                View Details
+              </button>
+            </article>
+
+            <article class="glass card reveal">
+              <div style="display:flex;justify-content:space-between;gap:14px;align-items:center;">
+                <span class="num">02</span>
+                <span class="badge">6 months</span>
+              </div>
+              <h3>Creative & Graphic Design</h3>
+              <p>Posters, social graphics, branding basics, layout discipline, Canva workflows, and AI design tools.</p>
+              <button
+                class="btn secondary"
+                type="button"
+                onclick="course('Creative & Graphic Design', '6 months', 'To be announced', 'Posters, social graphics, branding basics, layout discipline, Canva workflows, and AI design tools.', 'Practical labs, assignments, student support, and portfolio-focused outcomes.')"
+              >
+                View Details
+              </button>
+            </article>
+
+            <article class="glass card reveal">
+              <div style="display:flex;justify-content:space-between;gap:14px;align-items:center;">
+                <span class="num">03</span>
+                <span class="badge">1 year</span>
+              </div>
+              <h3>AI Coding & Logic Foundation</h3>
+              <p>HTML, CSS, JavaScript, logic building, debugging mindset, mini-projects, and AI-assisted development.</p>
+              <button
+                class="btn secondary"
+                type="button"
+                onclick="course('AI Coding & Logic Foundation', '1 year', 'To be announced', 'HTML, CSS, JavaScript, logic building, debugging mindset, mini-projects, and AI-assisted development.', 'Practical labs, assignments, student support, and portfolio-focused outcomes.')"
+              >
+                View Details
+              </button>
+            </article>
+
+            <article class="glass card reveal">
+              <div style="display:flex;justify-content:space-between;gap:14px;align-items:center;">
+                <span class="num">04</span>
+                <span class="badge">1 year</span>
+              </div>
+              <h3>Freelancing & Monetization</h3>
+              <p>Portfolio building, service packaging, client communication, online positioning, and responsible earning strategy.</p>
+              <button
+                class="btn secondary"
+                type="button"
+                onclick="course('Freelancing & Monetization', '1 year', 'To be announced', 'Portfolio building, service packaging, client communication, online positioning, and responsible earning strategy.', 'Practical labs, assignments, student support, and portfolio-focused outcomes.')"
+              >
+                View Details
+              </button>
+            </article>
+          </div>
+
+          <div class="grid action-grid three">
+            <button class="btn primary" type="button" onclick="openAIChat('Compare AcademeForge programs for me.')">Compare Programs with AI</button>
+            <button class="btn secondary" type="button" onclick="openAIChat('Which program should I choose?')">Program Advisor</button>
+            <a class="btn secondary" href="#">Portfolio Support</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOUNDER -->
+      <section id="founder" class="section">
+        <div class="cx grid founder-grid">
+          <div class="reveal">
+            <span class="eyebrow">Founder Profile</span>
+            <h2 class="section-title">Founder-led clarity. Student-built mission.</h2>
+            <p class="section-text">
+              AcademeForge is led by Devraj Kumar with a clear mission: make practical, AI-ready, digital learning accessible
+              to students who want more than textbook preparation.
+            </p>
+
+            <div class="grid feature-grid" style="margin-top:28px;">
+              <div class="glass card">
+                <p style="margin:0;font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);">Founder</p>
+                <h3 style="margin-top:8px;">Devraj Kumar</h3>
+              </div>
+
+              <div class="glass card">
+                <p style="margin:0;font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);">Mission</p>
+                <h3 style="margin-top:8px;">100,000+ Students</h3>
+              </div>
+            </div>
+
+            <div class="hero-actions">
+              <button class="btn primary" type="button" onclick="info('Founder Profile', TEXT.founder)">Read Profile</button>
+              <button class="btn secondary" type="button" onclick="openAIChat('Tell me about the founder of AcademeForge.')">Ask AI</button>
+            </div>
+          </div>
+
+          <div class="glass founder-card reveal">
+            <div class="founder-inner">
+              <div class="founder-top">
+                <div>
+                  <span class="eyebrow">Founder & Builder</span>
+                  <h3 class="section-title" style="font-size:clamp(2.4rem,4.4vw,4rem);">Devraj Kumar</h3>
+                  <p style="margin:8px 0 0;font-weight:900;color:var(--brand);">Founder, AcademeForge</p>
+                </div>
+
+                <div class="avatar">D</div>
+              </div>
+
+              <div class="quote">“Students should not wait for opportunities. They should learn how to create them.”</div>
+
+              <div class="grid mini-grid">
+                <div class="card" style="background:var(--surface2);border:1px solid var(--line);">
+                  <b class="num">01</b>
+                  <h3>Student empathy</h3>
+                  <p>Built from real student experience and learning gaps.</p>
+                </div>
+
+                <div class="card" style="background:var(--surface2);border:1px solid var(--line);">
+                  <b class="num">02</b>
+                  <h3>Builder mindset</h3>
+                  <p>Focus on creating systems, projects, and outcomes.</p>
+                </div>
+
+                <div class="card" style="background:var(--surface2);border:1px solid var(--line);">
+                  <b class="num">03</b>
+                  <h3>AI-first learning</h3>
+                  <p>Using AI responsibly to accelerate student growth.</p>
+                </div>
+              </div>
+
+              <button class="btn primary" type="button" style="width:100%;margin-top:24px;" onclick="info('Founder Profile', TEXT.founder)">
+                Open Founder Profile
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BATCHES -->
+      <section id="batches" class="section" style="border-block:1px solid var(--line);background:rgba(255,255,255,.20);">
+        <div class="cx">
+          <div class="section-head center reveal">
+            <span class="eyebrow">Batches & Learning Flow</span>
+            <h2 class="section-title">Structured like a modern edtech platform.</h2>
+            <p class="section-text">Batch pages, onboarding, help desk, assignments, certificates, and progress tracking are planned.</p>
+          </div>
+
+          <div class="grid batch-grid">
+            <div class="glass card reveal">
+              <b class="num">01</b>
+              <h3>Orientation</h3>
+              <p>Students understand platform rules, course flow, tools, and expectations.</p>
+            </div>
+
+            <div class="glass card reveal">
+              <b class="num">02</b>
+              <h3>Live + Recorded</h3>
+              <p>Hybrid learning structure for flexibility, revision, and implementation.</p>
+            </div>
+
+            <div class="glass card reveal">
+              <b class="num">03</b>
+              <h3>Assignments</h3>
+              <p>Students submit tasks, projects, creative work, and coding practice.</p>
+            </div>
+
+            <div class="glass card reveal">
+              <b class="num">04</b>
+              <h3>Certificates</h3>
+              <p>Completion certificates may be issued after defined requirements.</p>
+            </div>
+          </div>
+
+          <div class="grid action-grid">
+            <a class="btn primary" href="#">Batch Calendar</a>
+            <a class="btn secondary" href="#">Student Dashboard</a>
+            <a class="btn secondary" href="#">Verify Certificate</a>
+            <a class="btn secondary" href="#">Learning App</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEES -->
+      <section id="fees" class="section">
+        <div class="cx grid fees-grid">
+          <div class="reveal">
+            <span class="eyebrow">Fees</span>
+            <h2 class="section-title">Clean pricing status. No broken table overflow.</h2>
+            <p class="section-text">
+              Fees are intentionally marked as “To be announced” until the platform rebuild, admission structure, and batch
+              policies are finalized.
+            </p>
+
+            <div class="hero-actions">
+              <button class="btn primary" type="button" onclick="openAIChat('Tell me about AcademeForge fees.')">Ask AI About Fees</button>
+              <button class="btn secondary" type="button" onclick="info('Batch Policy', TEXT.batch)">Batch Policy</button>
+            </div>
+          </div>
+
+          <div class="grid feature-grid">
+            <div class="glass card reveal">
+              <div style="display:flex;justify-content:space-between;gap:12px;">
+                <h3 style="margin:0;">Video & Media Editing</h3>
+                <span class="badge">Rebuilding</span>
+              </div>
+              <div style="margin-top:18px;">
+                <div class="kv"><span>Duration</span><b>6 months</b></div>
+                <div class="kv"><span>Fees</span><b>To be announced</b></div>
+                <div class="kv"><span>Mode</span><b>Hybrid planned</b></div>
+              </div>
+            </div>
+
+            <div class="glass card reveal">
+              <div style="display:flex;justify-content:space-between;gap:12px;">
+                <h3 style="margin:0;">Creative & Graphic Design</h3>
+                <span class="badge">Rebuilding</span>
+              </div>
+              <div style="margin-top:18px;">
+                <div class="kv"><span>Duration</span><b>6 months</b></div>
+                <div class="kv"><span>Fees</span><b>To be announced</b></div>
+                <div class="kv"><span>Mode</span><b>Hybrid planned</b></div>
+              </div>
+            </div>
+
+            <div class="glass card reveal">
+              <div style="display:flex;justify-content:space-between;gap:12px;">
+                <h3 style="margin:0;">AI Coding & Logic Foundation</h3>
+                <span class="badge">Rebuilding</span>
+              </div>
+              <div style="margin-top:18px;">
+                <div class="kv"><span>Duration</span><b>1 year</b></div>
+                <div class="kv"><span>Fees</span><b>To be announced</b></div>
+                <div class="kv"><span>Mode</span><b>Hybrid planned</b></div>
+              </div>
+            </div>
+
+            <div class="glass card reveal">
+              <div style="display:flex;justify-content:space-between;gap:12px;">
+                <h3 style="margin:0;">Freelancing & Monetization</h3>
+                <span class="badge">Rebuilding</span>
+              </div>
+              <div style="margin-top:18px;">
+                <div class="kv"><span>Duration</span><b>1 year</b></div>
+                <div class="kv"><span>Fees</span><b>To be announced</b></div>
+                <div class="kv"><span>Mode</span><b>Hybrid planned</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- POLICIES -->
+      <section id="policies" class="section" style="border-block:1px solid var(--line);background:rgba(255,255,255,.20);">
+        <div class="cx">
+          <div class="section-head center reveal">
+            <span class="eyebrow">Trust, Safety & Policies</span>
+            <h2 class="section-title">Company-grade clarity for students and parents.</h2>
+            <p class="section-text">Policy sections are included so the website feels complete and professional.</p>
+          </div>
+
+          <div class="grid policy-grid">
+            <article class="glass card reveal">
+              <h3>Privacy Policy</h3>
+              <p>Explains what student data may be collected, why it is used, and how platform improvement data is handled.</p>
+              <button class="btn secondary" type="button" onclick="info('Privacy Policy', TEXT.privacy)">Open Details</button>
+            </article>
+
+            <article class="glass card reveal">
+              <h3>Student Data Usage</h3>
+              <p>Clarifies that data is used for learning access, support, analytics, safety, and platform improvement.</p>
+              <button class="btn secondary" type="button" onclick="info('Student Data Usage', TEXT.data)">Open Details</button>
+            </article>
+
+            <article class="glass card reveal">
+              <h3>Batch Policy</h3>
+              <p>Covers batch access, attendance expectations, assignment timelines, support windows, and completion rules.</p>
+              <button class="btn secondary" type="button" onclick="info('Batch Policy', TEXT.batch)">Open Details</button>
+            </article>
+
+            <article class="glass card reveal">
+              <h3>Community Policy</h3>
+              <p>Defines respectful behavior, anti-spam rules, safe learning conduct, and student community expectations.</p>
+              <button class="btn secondary" type="button" onclick="info('Community Policy', TEXT.community)">Open Details</button>
+            </article>
+
+            <article class="glass card reveal">
+              <h3>Terms & Conditions</h3>
+              <p>General website, app, learning content, admissions, support, and platform usage terms.</p>
+              <button class="btn secondary" type="button" onclick="info('Terms & Conditions', TEXT.terms)">Open Details</button>
+            </article>
+
+            <article class="glass card reveal">
+              <h3>Safety & Support</h3>
+              <p>Explains help desk routes, student support, reporting issues, and responsible platform use.</p>
+              <button class="btn secondary" type="button" onclick="info('Safety & Support', TEXT.safety)">Open Details</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- HELP DESK -->
+      <section id="help" class="section">
+        <div class="cx grid help-grid">
+          <div class="reveal">
+            <span class="eyebrow">Help Desk</span>
+            <h2 class="section-title">Support routes for every student need.</h2>
+            <p class="section-text">
+              WhatsApp and call are not available right now. Use AcademeForge AI Help Desk for website, program, policy,
+              admission, and support questions.
+            </p>
+
+            <div class="hero-actions">
+              <button class="btn primary" type="button" onclick="openAIChat('I need help with AcademeForge.')">Open AI Help Desk</button>
+              <a class="btn secondary" href="mailto:academeforge@gmail.com">Email Contact</a>
+            </div>
+          </div>
+
+          <div class="grid feature-grid">
+            <button class="glass card reveal" type="button" style="text-align:left;" onclick="openAIChat('I want to raise a support ticket.')">
+              <b class="num">01</b>
+              <h3>AI Support Ticket</h3>
+              <p>Ask AI about login, batch, certificate, payment, or class-related help.</p>
+            </button>
+
+            <button class="glass card reveal" type="button" style="text-align:left;" onclick="openAIChat('Explain AcademeForge settings and privacy.')">
+              <b class="num">02</b>
+              <h3>Settings & Privacy</h3>
+              <p>Profile, notification, language, account, and privacy preferences.</p>
+            </button>
+
+            <button class="glass card reveal" type="button" style="text-align:left;" onclick="openAIChat('I am a parent. Tell me about AcademeForge.')">
+              <b class="num">03</b>
+              <h3>Parent Support</h3>
+              <p>For guardians who want admission, safety, batch, or progress information.</p>
+            </button>
+
+            <button class="glass card reveal" type="button" style="text-align:left;" onclick="openAIChat('I want to report a website problem.')">
+              <b class="num">04</b>
+              <h3>Report a Problem</h3>
+              <p>Report broken links, app issues, wrong information, or support delays.</p>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="section" style="border-block:1px solid var(--line);background:rgba(255,255,255,.20);">
+        <div class="cx" style="max-width:1060px;margin-inline:auto;">
+          <div class="section-head center reveal">
+            <span class="eyebrow">FAQ</span>
+            <h2 class="section-title">Questions students ask first.</h2>
+          </div>
+
+          <div class="faq-list">
+            <div class="faq glass reveal">
+              <div class="faq-q">
+                <h3>Are admissions open right now?</h3>
+                <span class="plus">+</span>
+              </div>
+              <div class="ans">
+                <p>No. Admissions are currently paused while AcademeForge rebuilds the platform, program structure, policies, and learning experience.</p>
+              </div>
+            </div>
+
+            <div class="faq glass reveal">
+              <div class="faq-q">
+                <h3>Is AcademeForge beginner friendly?</h3>
+                <span class="plus">+</span>
+              </div>
+              <div class="ans">
+                <p>Yes. Programs are planned for beginners and students who need structure and practical guidance.</p>
+              </div>
+            </div>
+
+            <div class="faq glass reveal">
+              <div class="faq-q">
+                <h3>Will there be live classes?</h3>
+                <span class="plus">+</span>
+              </div>
+              <div class="ans">
+                <p>The model may include live sessions, recorded lessons, workshops, assignments, and practical labs.</p>
+              </div>
+            </div>
+
+            <div class="faq glass reveal">
+              <div class="faq-q">
+                <h3>Will students get certificates?</h3>
+                <span class="plus">+</span>
+              </div>
+              <div class="ans">
+                <p>Certificates may be issued for selected programs after completion requirements are met.</p>
+              </div>
+            </div>
+
+            <div class="faq glass reveal">
+              <div class="faq-q">
+                <h3>How is student data used?</h3>
+                <span class="plus">+</span>
+              </div>
+              <div class="ans">
+                <p>Student data may be used for account access, support, progress, communication, security, analytics, and improvement.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:32px;text-align:center;">
+            <button class="btn primary" type="button" onclick="openAIChat('Answer my question about AcademeForge.')">Ask AI Another Question</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section">
+        <div class="cx">
+          <div class="glass contact-box reveal">
+            <div class="grid contact-grid">
+              <div>
+                <span class="eyebrow">Contact</span>
+                <h2 class="section-title">Need help, updates, or collaboration?</h2>
+                <p class="section-text">
+                  Use official routes for admissions, program details, student support, parent support, partnerships, and platform updates.
+                  AI Help Desk is available on the website.
+                </p>
+
+                <div class="hero-actions">
+                  <a class="btn primary" href="mailto:academeforge@gmail.com">Email AcademeForge</a>
+                  <button class="btn secondary" type="button" onclick="openAIChat('I want to contact AcademeForge.')">AI Help Desk</button>
+                  <a class="btn secondary" href="#">Partnerships</a>
+                </div>
+              </div>
+
+              <div class="grid">
+                <div class="card" style="background:var(--surface2);border:1px solid var(--line);">
+                  <p style="margin:0;font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);">Location</p>
+                  <h3 style="margin-top:8px;">Patna, Bihar, India</h3>
+                </div>
+
+                <div class="card" style="background:var(--surface2);border:1px solid var(--line);">
+                  <p style="margin:0;font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);">Email</p>
+                  <h3 style="margin-top:8px;"><a href="mailto:academeforge@gmail.com">academeforge@gmail.com</a></h3>
+                </div>
+
+                <div class="card" style="background:var(--surface2);border:1px solid var(--line);">
+                  <p style="margin:0;font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);">AI Help Desk</p>
+                  <button
+                    type="button"
+                    style="margin-top:8px;background:transparent;border:0;color:var(--brand);font-weight:900;font-size:1.15rem;padding:0;"
+                    onclick="openAIChat('Hello AcademeForge AI.')"
+                  >
+                    Open AI Chat
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:42px;" class="reveal">
+            <span class="eyebrow">Platform Actions</span>
+            <h3 class="section-title" style="font-size:clamp(2rem,4vw,4rem);">Quick access buttons.</h3>
+
+            <div class="grid quick-grid">
+              <a class="quick-card" href="#"><b>Student Portal</b><span>Dashboard access</span></a>
+              <a class="quick-card" href="#"><b>Admission Form</b><span>Apply when open</span></a>
+              <a class="quick-card" href="#"><b>Download Brochure</b><span>Program overview</span></a>
+              <a class="quick-card" href="#"><b>Community</b><span>Student network</span></a>
+              <a class="quick-card" href="#"><b>Certificate Verification</b><span>Verify records</span></a>
+              <button class="quick-card" type="button" onclick="openAIChat('Open Help Center for me.')"><b>Help Center</b><span>AI support articles</span></button>
+              <a class="quick-card" href="#"><b>Settings & Privacy</b><span>Account controls</span></a>
+              <a class="quick-card" href="#"><b>Join AcademeForge as Team Member</b><span>Work with us</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+    <footer class="footer">
+      <div class="cw grid footer-grid">
+        <div>
+          <div class="brand">
+            <span class="logo" style="width:44px;height:44px;">AF</span>
+            <div>
+              <b class="brand-title">AcademeForge</b>
+              <p class="brand-sub">Beta Platform</p>
+            </div>
+          </div>
+          <p style="margin-top:18px;max-width:420px;line-height:1.7;">
+            Practical learning ecosystem for future-ready students. Website content and platform features are currently being updated.
+          </p>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#founder">Founder</a>
+            <a href="#">Careers</a>
+            <a href="#">Press</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Learning</h4>
+          <div class="footer-links">
+            <a href="#programs">Programs</a>
+            <a href="#batches">Batches</a>
+            <a href="#">Student App</a>
+            <a href="#">Mentorship</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Legal & Support</h4>
+          <div class="footer-links">
+            <button type="button" onclick="info('Privacy Policy', TEXT.privacy)">Privacy Policy</button>
+            <button type="button" onclick="info('Terms & Conditions', TEXT.terms)">Terms</button>
+            <button type="button" onclick="info('Safety & Support', TEXT.safety)">Safety</button>
+            <a href="#help">Help Desk</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cw copyright">
+        <span>© <span id="year"></span> AcademeForge. All rights reserved.</span>
+        <span>Beta website. Official information may change.</span>
+      </div>
+    </footer>
+
+    <!-- =========================================================
+         MODAL
+    ========================================================== -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+      <div class="modal-card">
+        <div class="modal-head">
+          <h3 id="mtitle">Details</h3>
+          <button class="close-btn" type="button" onclick="closeModal()" aria-label="Close modal">×</button>
+        </div>
+        <div id="mtext" class="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         AI CHAT
+    ========================================================== -->
+    <div class="ai-chat-shell">
+      <section id="aiChatPanel" class="ai-chat-panel" aria-label="AcademeForge AI Help Desk">
+        <div class="ai-chat-header">
+          <div>
+            <b>AcademeForge AI</b>
+            <p id="aiStatus">Online help desk</p>
+          </div>
+          <button class="close-btn" type="button" onclick="toggleAIChat(false)" aria-label="Close AI chat">×</button>
+        </div>
+
+        <div id="aiChatBody" class="ai-chat-body"></div>
+
+        <div class="ai-chat-suggestions">
+          <button type="button" onclick="sendSuggestedAI('What is AcademeForge?')">What is AcademeForge?</button>
+          <button type="button" onclick="sendSuggestedAI('Are admissions open?')">Admissions</button>
+          <button type="button" onclick="sendSuggestedAI('Tell me about programs.')">Programs</button>
+          <button type="button" onclick="sendSuggestedAI('How is student data used?')">Data usage</button>
+        </div>
+
+        <form id="aiChatForm" class="ai-chat-form">
+          <textarea id="aiInput" rows="1" maxlength="600" placeholder="Ask about programs, fees, founder, policies."></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </section>
+
+      <button id="aiLauncher" class="ai-chat-launcher" type="button" onclick="toggleAIChat(true)">
+        <span>Ask AcademeForge AI</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    "use strict";
+
+    /* =========================================================
+       01. CONFIG
+    ========================================================== */
+
+    const ACADEMEFORGE_ANALYTICS_ENDPOINT = "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/academeforge-analytics";
+    const ACADEMEFORGE_AI_ENDPOINT = "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/academeforge-ai-chat";
+
+    const APK_URL = "academeforge.apk";
+
+    const ANALYTICS_CACHE_KEY = "academeforge_analytics_cache_v4";
+    const DEVICE_ID_KEY = "academeforge_device_id_v4";
+    const AI_SESSION_KEY = "academeforge_ai_session_v2";
+    const AI_HISTORY_KEY = "academeforge_ai_history_v2";
+    const THEME_KEY = "academeforge_theme_v1";
+
+    /* =========================================================
+       02. WEBSITE TEXT / KNOWLEDGE BASE
+    ========================================================== */
+
+    const TEXT = {
+      vision:
+        "AcademeForge exists to help students learn beyond textbooks, marks, and memorization. The vision is to build a modern learning ecosystem where students develop practical skills, creativity, confidence, AI fluency, communication, and execution ability.\n\nThe platform is designed for students who want to become builders, creators, problem-solvers, and independent learners.",
+
+      about:
+        "AcademeForge began in January 2024 as a Telegram community for Class 10 students where learners could solve doubts, participate in quizzes, and support each other academically. It is now being rebuilt as a premium practical learning platform.\n\nAcademeForge focuses on practical skills, digital creativity, AI-powered learning, coding logic, freelancing, communication, portfolio building, and student confidence.",
+
+      founder:
+        "Devraj Kumar is the Founder of AcademeForge. He started the platform as a student with direct understanding of how students struggle with outdated learning systems, lack of practical exposure, and confusion around modern digital skills.\n\nThe long-term goal is to impact 100,000+ students with practical, AI-ready, beginner-friendly learning.",
+
+      privacy:
+        "AcademeForge may collect basic information needed for learning access, support, communication, analytics, security, and platform improvement. Student data should not be sold to advertisers. This beta text should be reviewed before official legal publication.",
+
+      data:
+        "Student data may be used for account creation, login support, batch allocation, class communication, assignment tracking, certificate verification, support tickets, safety monitoring, analytics, and platform improvement.",
+
+      batch:
+        "Batch access, class schedules, assignments, recordings, certificates, support windows, and completion rules will be announced before official admissions open.",
+
+      community:
+        "AcademeForge community spaces should remain respectful, safe, and learning-focused. Spam, harassment, abusive language, impersonation, cheating, misinformation, and unauthorized promotions should not be allowed.",
+
+      terms:
+        "By using AcademeForge website, app, community, or learning services, users should follow platform rules, respect intellectual property, avoid misuse, and use official channels for support.",
+
+      safety:
+        "Students should use only official AcademeForge links, avoid sharing OTPs or passwords, and report suspicious messages. Help desk and support channels should be used for platform issues.",
+
+      programs:
+        "AcademeForge planned programs include Video & Media Editing, Creative & Graphic Design, AI Coding & Logic Foundation, and Freelancing & Monetization. Fees are to be announced. Admissions are currently under rebuild.",
+
+      fees:
+        "Fees are currently marked as To be announced. Final fee structure will be published after the platform rebuild, admission structure, and batch policies are finalized.",
+
+      support:
+        "WhatsApp and call support are not available right now. Students can use AcademeForge AI Help Desk on the website or email academeforge@gmail.com."
+    };
+
+    const ACADEMEFORGE_KNOWLEDGE = Object.keys(TEXT).map((key) => ({
+      key,
+      title: key,
+      content: TEXT[key]
+    }));
+
+    /* =========================================================
+       03. DOM HELPERS
+    ========================================================== */
+
+    function qs(selector) {
+      return document.querySelector(selector);
+    }
+
+    function qsa(selector) {
+      return Array.from(document.querySelectorAll(selector));
+    }
+
+    function byId(id) {
+      return document.getElementById(id);
+    }
+
+    function esc(value) {
+      return String(value ?? "").replace(/[&<>"]/g, (match) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;"
+      }[match]));
+    }
+
+    function paras(text) {
+      return esc(text)
+        .split(/\n\s*\n/g)
+        .map((item) => `<p>${item.replace(/\n/g, "<br>")}</p>`)
+        .join("");
+    }
+
+    function safeNumber(value) {
+      const number = Number(value);
+      return Number.isFinite(number) && number >= 0 ? number : 0;
+    }
+
+    function formatCount(value) {
+      return `${safeNumber(value).toLocaleString("en-IN")}+`;
+    }
+
+    /* =========================================================
+       04. THEME
+    ========================================================== */
+
+    function setTheme(theme) {
+      const nextTheme = theme === "dark" ? "dark" : "light";
+
+      document.documentElement.setAttribute("data-theme", nextTheme);
+
+      const themeColorMeta = qs('meta[name="theme-color"]');
+      if (themeColorMeta) {
+        themeColorMeta.setAttribute("content", nextTheme === "dark" ? "#050816" : "#f8fafc");
+      }
+
+      try {
+        localStorage.setItem(THEME_KEY, nextTheme);
+      } catch (error) {
+        // localStorage can fail in private browsing. Theme still works for current page.
+      }
+
+      const toggle = byId("themeToggle");
+      if (!toggle) return;
+
+      toggle.setAttribute("aria-pressed", nextTheme === "dark" ? "true" : "false");
+
+      const label = toggle.querySelector(".label");
+      if (label) {
+        label.textContent = nextTheme === "dark" ? "Night On" : "Night";
+      }
+    }
+
+    function initTheme() {
+      let savedTheme = "light";
+
+      try {
+        savedTheme = localStorage.getItem(THEME_KEY) || "light";
+      } catch (error) {
+        savedTheme = "light";
+      }
+
+      setTheme(savedTheme === "dark" ? "dark" : "light");
+
+      const toggle = byId("themeToggle");
+      if (!toggle) return;
+
+      toggle.addEventListener("click", () => {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        setTheme(currentTheme === "dark" ? "light" : "dark");
+      });
+    }
+
+    /* =========================================================
+       05. MODAL
+    ========================================================== */
+
+    function openModal(title, html) {
+      const modal = byId("modal");
+      const modalTitle = byId("mtitle");
+      const modalText = byId("mtext");
+
+      if (!modal || !modalTitle || !modalText) {
+        alert(`${title}\n\n${String(html).replace(/<[^>]*>/g, "")}`);
+        return;
+      }
+
+      modalTitle.textContent = title;
+      modalText.innerHTML = html;
+      modal.classList.add("open");
+      document.body.classList.add("lock");
+    }
+
+    function info(title, text) {
+      openModal(title, paras(text));
+    }
+
+    function closeModal() {
+      const modal = byId("modal");
+      if (!modal) return;
+
+      modal.classList.remove("open");
+      document.body.classList.remove("lock");
+    }
+
+    function course(title, duration, fees, syllabus, facilities) {
+      openModal(
+        title,
+        `
+          <div class="grid">
+            <div class="card" style="background:var(--surface2);border:1px solid var(--line);">
+              <b>Duration</b>
+              <p>${esc(duration)}</p>
+            </div>
+            <div class="card" style="background:var(--surface2);border:1px solid var(--line);">
+              <b>Fees</b>
+              <p>${esc(fees)}</p>
+            </div>
+            <div class="card" style="background:var(--surface2);border:1px solid var(--line);">
+              <b>Learning Scope</b>
+              <p>${esc(syllabus)}</p>
+            </div>
+            <div class="card" style="background:var(--surface2);border:1px solid var(--line);">
+              <b>Facilities</b>
+              <p>${esc(facilities)}</p>
+            </div>
+          </div>
+        `
+      );
+    }
+
+    function initModalBackdrop() {
+      const modal = byId("modal");
+      if (!modal) return;
+
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
+    }
+
+    /* =========================================================
+       06. ANALYTICS
+    ========================================================== */
+
+    function getDeviceId() {
+      try {
+        let id = localStorage.getItem(DEVICE_ID_KEY);
+
+        if (!id) {
+          id = crypto && crypto.randomUUID
+            ? crypto.randomUUID()
+            : `dev-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+
+          localStorage.setItem(DEVICE_ID_KEY, id);
+        }
+
+        return id;
+      } catch (error) {
+        return `device-${Date.now().toString(36)}`;
+      }
+    }
+
+    function getAnalyticsCache() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(ANALYTICS_CACHE_KEY) || "{}");
+
+        return {
+          website_visits: safeNumber(parsed.website_visits),
+          apk_downloads: safeNumber(parsed.apk_downloads),
+          last_visit_tracked_at: safeNumber(parsed.last_visit_tracked_at)
+        };
+      } catch (error) {
+        return {
+          website_visits: 0,
+          apk_downloads: 0,
+          last_visit_tracked_at: 0
+        };
+      }
+    }
+
+    function setAnalyticsCache(cache) {
+      try {
+        localStorage.setItem(ANALYTICS_CACHE_KEY, JSON.stringify({
+          website_visits: safeNumber(cache.website_visits),
+          apk_downloads: safeNumber(cache.apk_downloads),
+          last_visit_tracked_at: safeNumber(cache.last_visit_tracked_at)
+        }));
+      } catch (error) {
+        // Ignore local cache write failure.
+      }
+    }
+
+    function updateCountersFromCache() {
+      const cache = getAnalyticsCache();
+      const visitCounter = byId("visitCount");
+      const apkCounter = byId("apkCount");
+
+      if (visitCounter) {
+        visitCounter.textContent = formatCount(cache.website_visits);
+      }
+
+      if (apkCounter) {
+        apkCounter.textContent = formatCount(cache.apk_downloads);
+      }
+    }
+
+    function updateCountersFromServerData(data) {
+      if (!data || typeof data !== "object") return;
+
+      const cache = getAnalyticsCache();
+
+      setAnalyticsCache({
+        website_visits: safeNumber(data.website_visits ?? data.visits ?? cache.website_visits),
+        apk_downloads: safeNumber(data.apk_downloads ?? data.downloads ?? cache.apk_downloads),
+        last_visit_tracked_at: cache.last_visit_tracked_at
+      });
+
+      updateCountersFromCache();
+    }
+
+    async function sendAnalytics(action, payload) {
+      try {
+        if (!navigator.onLine) {
+          return { success: false, error: "offline" };
+        }
+
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 6500);
+
+        const response = await fetch(ACADEMEFORGE_ANALYTICS_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            action,
+            device_id: getDeviceId(),
+            page: location.pathname,
+            user_agent: navigator.userAgent,
+            payload: payload || {}
+          }),
+          signal: controller.signal
+        });
+
+        clearTimeout(timeout);
+
+        let result = null;
+        try {
+          result = await response.json();
+        } catch (error) {
+          result = { success: response.ok };
+        }
+
+        if (!response.ok) {
+          return {
+            success: false,
+            error: result && result.error ? result.error : "Analytics request failed"
+          };
+        }
+
+        if (result && result.success && result.data) {
+          updateCountersFromServerData(result.data);
+        }
+
+        return result || { success: true };
+      } catch (error) {
+        return {
+          success: false,
+          error: error instanceof Error ? error.message : "Network request failed"
+        };
+      }
+    }
+
+    async function fetchAnalyticsCounts() {
+      const result = await sendAnalytics("counts", {});
+
+      if (result && result.success && result.data) {
+        updateCountersFromServerData(result.data);
+      }
+
+      return result;
+    }
+
+    async function trackWebsiteVisit() {
+      const cache = getAnalyticsCache();
+      const now = Date.now();
+
+      updateCountersFromCache();
+
+      if (now - cache.last_visit_tracked_at < 1800000) {
+        await fetchAnalyticsCounts();
+        return;
+      }
+
+      setAnalyticsCache({
+        ...cache,
+        website_visits: cache.website_visits + 1,
+        last_visit_tracked_at: now
+      });
+
+      updateCountersFromCache();
+      await sendAnalytics("website_visit", {});
+    }
+
+    async function downloadApk() {
+      const cache = getAnalyticsCache();
+
+      setAnalyticsCache({
+        ...cache,
+        apk_downloads: cache.apk_downloads + 1
+      });
+
+      updateCountersFromCache();
+      await sendAnalytics("apk_download", { download_source: "main_website" });
+
+      try {
+        const link = document.createElement("a");
+        link.href = APK_URL;
+        link.download = "academeforge.apk";
+        link.rel = "noopener noreferrer";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      } catch (error) {
+        window.location.href = APK_URL;
+      }
+    }
+
+    /* =========================================================
+       07. AI CHAT LOCAL ANSWERS
+    ========================================================== */
+
+    function findLocalAnswer(question) {
+      const raw = String(question || "").trim();
+      const q = raw.toLowerCase();
+
+      if (/^(hi|hii|hello|hey|heyy|namaste|namaskar|yo|sup|good morning|good afternoon|good evening)[!. ]*$/i.test(raw)) {
+        return "Hi. How can I help you with AcademeForge?";
+      }
+
+      if (/^(thanks|thank you|thx|ok thanks|okay thanks|done|nice|great)[!. ]*$/i.test(raw)) {
+        return "You’re welcome.";
+      }
+
+      if (q.includes("co founder") || q.includes("co-founder") || q.includes("cofounder")) {
+        return "AcademeForge has no officially listed co-founder in the current website data. The only listed founder is Devraj Kumar.";
+      }
+
+      if (q.includes("founder") || q.includes("devraj") || q.includes("owner") || q.includes("started")) {
+        return TEXT.founder;
+      }
+
+      if (q.includes("admission") || q.includes("apply") || q.includes("enroll") || q.includes("join course") || q.includes("registration")) {
+        return "Admissions are currently under rebuild. New batches and official admission details will be announced after the platform structure, policies, and learning experience are finalized.";
+      }
+
+      if (q.includes("fee") || q.includes("fees") || q.includes("price") || q.includes("pricing") || q.includes("cost") || q.includes("payment")) {
+        return TEXT.fees;
+      }
+
+      if (q.includes("program") || q.includes("course") || q.includes("courses") || q.includes("coding") || q.includes("design") || q.includes("editing") || q.includes("freelancing") || q.includes("video")) {
+        return TEXT.programs;
+      }
+
+      if (q.includes("what is academeforge") || q.includes("about academeforge") || q.includes("about") || q.includes("company") || q.includes("platform")) {
+        return TEXT.about;
+      }
+
+      if (q.includes("vision") || q.includes("mission") || q.includes("goal")) {
+        return TEXT.vision;
+      }
+
+      if (q.includes("privacy") || q.includes("data") || q.includes("student data") || q.includes("personal information")) {
+        return `${TEXT.data}\n\n${TEXT.privacy}`;
+      }
+
+      if (q.includes("batch") || q.includes("class") || q.includes("schedule") || q.includes("timing") || q.includes("recording")) {
+        return TEXT.batch;
+      }
+
+      if (q.includes("community") || q.includes("telegram") || q.includes("group")) {
+        return TEXT.community;
+      }
+
+      if (q.includes("support") || q.includes("help") || q.includes("contact") || q.includes("call") || q.includes("whatsapp") || q.includes("email")) {
+        return TEXT.support;
+      }
+
+      if (q.includes("certificate") || q.includes("verify") || q.includes("verification")) {
+        return "Certificate download and certificate verification are planned features. They are currently unavailable until the official system is ready.";
+      }
+
+      if (q.includes("team") || q.includes("career") || q.includes("job") || q.includes("member") || q.includes("join as team")) {
+        return "Join as Team Member is planned. The website currently uses a # link until the official team application system is ready.";
+      }
+
+      if (q.includes("not available") || q.includes("available") || q.includes("launch") || q.includes("when")) {
+        return "Several AcademeForge features are still being rebuilt. Admissions, batches, certificates, and some platform actions will be announced when they are officially ready.";
+      }
+
+      return "I do not have confirmed information about that in the current AcademeForge website data. Ask me about programs, admissions, fees, founder, policies, batches, certificates, or support.";
+    }
+
+    /* =========================================================
+       08. AI CHAT STORAGE
+    ========================================================== */
+
+    function getAIHistory() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(AI_HISTORY_KEY) || "[]");
+        return Array.isArray(parsed) ? parsed.slice(-20) : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function setAIHistory(history) {
+      try {
+        localStorage.setItem(AI_HISTORY_KEY, JSON.stringify(history.slice(-20)));
+      } catch (error) {
+        // Ignore history write failure.
+      }
+    }
+
+    function addAIHistory(role, content) {
+      const history = getAIHistory();
+
+      history.push({
+        role,
+        content: String(content || "").slice(0, 2000),
+        at: new Date().toISOString()
+      });
+
+      setAIHistory(history);
+    }
+
+    function getAISessionId() {
+      try {
+        let id = localStorage.getItem(AI_SESSION_KEY);
+
+        if (!id) {
+          id = crypto && crypto.randomUUID
+            ? crypto.randomUUID()
+            : `ai-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+
+          localStorage.setItem(AI_SESSION_KEY, id);
+        }
+
+        return id;
+      } catch (error) {
+        return `ai-${Date.now().toString(36)}`;
+      }
+    }
+
+    /* =========================================================
+       09. AI CHAT UI
+    ========================================================== */
+
+    function appendAIMessage(role, content, options) {
+      const body = byId("aiChatBody");
+      if (!body) return null;
+
+      const message = document.createElement("div");
+      message.className = `ai-msg ${role === "user" ? "user" : "bot"}`;
+
+      if (options && options.typing) {
+        message.innerHTML = '<span class="ai-typing"><i></i><i></i><i></i></span>';
+      } else {
+        message.textContent = String(content || "");
+      }
+
+      body.appendChild(message);
+      body.scrollTop = body.scrollHeight;
+
+      return message;
+    }
+
+    function setAIStatus(text) {
+      const status = byId("aiStatus");
+      if (status) {
+        status.textContent = text;
+      }
+    }
+
+    function toggleAIChat(forceOpen) {
+      const panel = byId("aiChatPanel");
+      const launcher = byId("aiLauncher");
+
+      if (!panel || !launcher) return;
+
+      const shouldOpen = typeof forceOpen === "boolean"
+        ? forceOpen
+        : !panel.classList.contains("open");
+
+      panel.classList.toggle("open", shouldOpen);
+      launcher.style.display = shouldOpen ? "none" : "inline-flex";
+
+      if (shouldOpen) {
+        seedAIChat();
+
+        const input = byId("aiInput");
+        if (input) {
+          setTimeout(() => input.focus(), 120);
+        }
+      }
+    }
+
+    function seedAIChat() {
+      const body = byId("aiChatBody");
+      if (!body || body.dataset.seeded === "true") return;
+
+      const history = getAIHistory();
+
+      if (history.length > 0) {
+        history.forEach((item) => {
+          appendAIMessage(item.role === "user" ? "user" : "bot", item.content);
+        });
+      } else {
+        const welcome = "Hi. I am AcademeForge AI Help Desk. Ask me about programs, admissions, fees, founder, policies, student data usage, certificates, or support.";
+        appendAIMessage("bot", welcome);
+        addAIHistory("assistant", welcome);
+      }
+
+      body.dataset.seeded = "true";
+    }
+
+    function openAIChat(prefill) {
+      toggleAIChat(true);
+
+      if (!prefill) return;
+
+      const input = byId("aiInput");
+      if (input) {
+        input.value = prefill;
+        input.focus();
+      }
+    }
+
+    async function askRemoteAI(question) {
+      try {
+        if (!navigator.onLine) {
+          return {
+            success: false,
+            answer: findLocalAnswer(question),
+            source: "local"
+          };
+        }
+
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 9000);
+
+        const response = await fetch(ACADEMEFORGE_AI_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            message: String(question || "").slice(0, 600),
+            session_id: getAISessionId(),
+            page: location.pathname,
+            knowledge: ACADEMEFORGE_KNOWLEDGE
+          }),
+          signal: controller.signal
+        });
+
+        clearTimeout(timeout);
+
+        let result = null;
+        try {
+          result = await response.json();
+        } catch (error) {
+          result = null;
+        }
+
+        if (!response.ok || !result) {
+          return {
+            success: false,
+            answer: findLocalAnswer(question),
+            source: "local"
+          };
+        }
+
+        const answer = result.answer || result.message || result.reply || "";
+
+        if (!answer || typeof answer !== "string") {
+          return {
+            success: false,
+            answer: findLocalAnswer(question),
+            source: "local"
+          };
+        }
+
+        return {
+          success: true,
+          answer: answer.slice(0, 2000),
+          source: "remote"
+        };
+      } catch (error) {
+        return {
+          success: false,
+          answer: findLocalAnswer(question),
+          source: "local"
+        };
+      }
+    }
+
+    async function handleAIQuestion(question) {
+      const cleanQuestion = String(question || "").trim();
+      if (!cleanQuestion) return;
+
+      appendAIMessage("user", cleanQuestion);
+      addAIHistory("user", cleanQuestion);
+
+      const typingMessage = appendAIMessage("bot", "", { typing: true });
+      setAIStatus("Thinking...");
+
+      const result = await askRemoteAI(cleanQuestion);
+      const answer = result.answer || findLocalAnswer(cleanQuestion);
+
+      if (typingMessage) {
+        typingMessage.textContent = answer;
+      } else {
+        appendAIMessage("bot", answer);
+      }
+
+      addAIHistory("assistant", answer);
+      setAIStatus(result.source === "remote" ? "Online help desk" : "Local help desk");
+    }
+
+    function sendSuggestedAI(text) {
+      handleAIQuestion(text);
+    }
+
+    function initAIForm() {
+      const form = byId("aiChatForm");
+      const input = byId("aiInput");
+
+      if (!form || !input) return;
+
+      input.addEventListener("input", () => {
+        input.style.height = "auto";
+        input.style.height = `${Math.min(input.scrollHeight, 120)}px`;
+      });
+
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          form.requestSubmit();
+        }
+      });
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const value = input.value.trim();
+        if (!value) return;
+
+        input.value = "";
+        input.style.height = "auto";
+        handleAIQuestion(value);
+      });
+    }
+
+    /* =========================================================
+       10. MENU / FAQ / REVEAL / OFFLINE / YEAR
+    ========================================================== */
+
+    function initMenu() {
+      const menu = byId("menu");
+      const openButton = byId("openMenu");
+      const closeButton = byId("closeMenu");
+
+      function setMenuState(isOpen) {
+        if (!menu) return;
+
+        menu.classList.toggle("open", isOpen);
+        menu.setAttribute("aria-hidden", isOpen ? "false" : "true");
+        document.body.classList.toggle("lock", isOpen);
+      }
+
+      if (openButton) {
+        openButton.addEventListener("click", () => setMenuState(true));
+      }
+
+      if (closeButton) {
+        closeButton.addEventListener("click", () => setMenuState(false));
+      }
+
+      qsa(".mlnk").forEach((link) => {
+        link.addEventListener("click", () => setMenuState(false));
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          setMenuState(false);
+          closeModal();
+          toggleAIChat(false);
+        }
+      });
+    }
+
+    function initFAQ() {
+      qsa(".faq").forEach((item) => {
+        item.addEventListener("click", () => {
+          item.classList.toggle("open");
+        });
+      });
+    }
+
+    function initReveal() {
+      const items = qsa(".reveal");
+
+      if (!("IntersectionObserver" in window)) {
+        items.forEach((item) => item.classList.add("show"));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12
+      });
+
+      items.forEach((item) => observer.observe(item));
+    }
+
+    function initOfflineBanner() {
+      const offlineBanner = byId("offline");
+
+      function syncOfflineState() {
+        if (offlineBanner) {
+          offlineBanner.style.display = navigator.onLine ? "none" : "block";
+        }
+      }
+
+      window.addEventListener("online", syncOfflineState);
+      window.addEventListener("offline", syncOfflineState);
+      syncOfflineState();
+    }
+
+    function initYear() {
+      const year = byId("year");
+      if (year) {
+        year.textContent = String(new Date().getFullYear());
+      }
+    }
+
+    /* =========================================================
+       11. APP BOOTSTRAP
+    ========================================================== */
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initTheme();
+      initMenu();
+      initFAQ();
+      initReveal();
+      initAIForm();
+      initOfflineBanner();
+      initYear();
+      initModalBackdrop();
+
+      updateCountersFromCache();
+      trackWebsiteVisit();
     });
-  });
-
-  // NORMAL POPUP
-  function openPopup(title,text){
-
-    document.getElementById("popup").classList.remove("hidden");
-    document.getElementById("popup").classList.add("flex");
-
-    document.getElementById("popupTitle").innerText = title;
-
-    document.getElementById("popupText").innerHTML = `
-      <p>${text}</p>
-    `;
-
-  }
-
-  // COURSE POPUP
-  function openCourse(title,duration,fees,syllabus,faculty){
-
-    document.getElementById("popup").classList.remove("hidden");
-    document.getElementById("popup").classList.add("flex");
-
-    document.getElementById("popupTitle").innerText = title;
-
-    document.getElementById("popupText").innerHTML = `
-
-      <div class="space-y-5">
-
-        <div class="bg-gray-100 p-5 rounded-2xl">
-          <h3 class="font-bold text-red-700 mb-2">Duration</h3>
-          <p>${duration}</p>
-        </div>
-
-        <div class="bg-gray-100 p-5 rounded-2xl">
-          <h3 class="font-bold text-red-700 mb-2">Fees</h3>
-          <p>${fees}</p>
-        </div>
-
-        <div class="bg-gray-100 p-5 rounded-2xl">
-          <h3 class="font-bold text-red-700 mb-2">Syllabus</h3>
-          <p>${syllabus}</p>
-        </div>
-
-        <div class="bg-gray-100 p-5 rounded-2xl">
-          <h3 class="font-bold text-red-700 mb-2">Faculty & Facilities</h3>
-          <p>${faculty}</p>
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-  // CLOSE POPUP
-  function closePopup(){
-
-    document.getElementById("popup").classList.add("hidden");
-    document.getElementById("popup").classList.remove("flex");
-
-  }
-
-function openPopup(title,text){
-  document.getElementById('popup').classList.remove('hidden');
-  document.getElementById('popup').classList.add('flex');
-
-  document.getElementById('popupTitle').innerText = title;
-  document.getElementById('popupText').innerText = text;
-
-  document.body.style.overflow = 'hidden';
-}
-
-function closePopup(){
-  document.getElementById('popup').classList.add('hidden');
-  document.getElementById('popup').classList.remove('flex');
-
-  document.body.style.overflow = 'auto';
-}
-
-</script>
-
-<script>
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-document.onkeydown = function(e) {
-  if (
-    e.keyCode == 123 ||
-    (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) ||
-    (e.ctrlKey && e.key.toUpperCase() == 'U')
-  ) {
-    return false;
-  }
-};
-</script>
-
+  </script>
 </body>
 </html>
