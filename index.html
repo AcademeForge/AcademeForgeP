@@ -1758,6 +1758,18 @@
     transform: translateX(80%) rotate(18deg);
   }
 }
+    /* =========================================================
+   AI LAUNCHER HIDE WHEN CHAT PANEL IS OPEN
+   Paste at VERY END of CSS
+========================================================= */
+
+#aiLauncher.ai-launcher-hidden,
+#aiLauncher.ai-chat-launcher.ai-launcher-hidden {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
   </style>
 </head>
 
@@ -3171,29 +3183,44 @@
       }
     }
 
-    function toggleAIChat(forceOpen) {
-      const panel = byId("aiChatPanel");
-      const launcher = byId("aiLauncher");
+  function setAILauncherVisible(isVisible) {
+  const launcher = byId("aiLauncher");
 
-      if (!panel || !launcher) return;
+  if (!launcher) {
+    return;
+  }
 
-      const shouldOpen = typeof forceOpen === "boolean"
-        ? forceOpen
-        : !panel.classList.contains("open");
+  launcher.classList.toggle("ai-launcher-hidden", !isVisible);
+  launcher.setAttribute("aria-hidden", String(!isVisible));
+  launcher.tabIndex = isVisible ? 0 : -1;
+}
 
-      panel.classList.toggle("open", shouldOpen);
-      launcher.style.display = shouldOpen ? "none" : "inline-flex";
+function toggleAIChat(forceOpen) {
+  const panel = byId("aiChatPanel");
+  const launcher = byId("aiLauncher");
 
-      if (shouldOpen) {
-        seedAIChat();
+  if (!panel || !launcher) {
+    return;
+  }
 
-        const input = byId("aiInput");
-        if (input) {
-          setTimeout(() => input.focus(), 120);
-        }
-      }
+  const shouldOpen = typeof forceOpen === "boolean"
+    ? forceOpen
+    : !panel.classList.contains("open");
+
+  panel.classList.toggle("open", shouldOpen);
+  panel.setAttribute("aria-hidden", shouldOpen ? "false" : "true");
+
+  setAILauncherVisible(!shouldOpen);
+
+  if (shouldOpen) {
+    seedAIChat();
+
+    const input = byId("aiInput");
+    if (input) {
+      setTimeout(() => input.focus(), 120);
     }
-
+  }
+}
     function seedAIChat() {
       const body = byId("aiChatBody");
       if (!body || body.dataset.seeded === "true") return;
