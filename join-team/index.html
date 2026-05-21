@@ -1287,812 +1287,906 @@
     </footer>
   </div>
 
+
   <script>
-    "use strict";
+  "use strict";
 
-    /* =========================================================
-       SUPABASE CONFIG
-       Replace these two values.
-    ========================================================== */
+  /* =========================================================
+     SUPABASE CONFIG
+  ========================================================== */
 
-    const SUPABASE_PROJECT_URL = "https://YOUR_PROJECT_REF.supabase.co";
-    const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
-    const EDGE_FUNCTION_NAME = "join-team-application";
+  const EDGE_FUNCTION_URL = "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/join-team-application";
 
-    /* =========================================================
-       STORAGE KEYS
-    ========================================================== */
+  /* =========================================================
+     STORAGE KEYS
+  ========================================================== */
 
-    const THEME_KEY = "academeforge_join_team_theme_v1";
-    const DRAFT_KEY = "academeforge_join_team_form_draft_v2";
+  const THEME_KEY = "academeforge_join_team_theme_v1";
+  const DRAFT_KEY = "academeforge_join_team_form_draft_v2";
 
-    /* =========================================================
-       DATA
-    ========================================================== */
+  /* =========================================================
+     DATA
+  ========================================================== */
 
-    const countryCodes = [
-      { country: "India", code: "+91" },
-      { country: "Nepal", code: "+977" },
-      { country: "Bangladesh", code: "+880" },
-      { country: "Bhutan", code: "+975" },
-      { country: "Sri Lanka", code: "+94" },
-      { country: "Maldives", code: "+960" },
-      { country: "Pakistan", code: "+92" },
-      { country: "Afghanistan", code: "+93" },
-      { country: "Myanmar", code: "+95" }
-    ];
+  const countryCodes = [
+    { country: "India", code: "+91" },
+    { country: "Nepal", code: "+977" },
+    { country: "Bangladesh", code: "+880" },
+    { country: "Bhutan", code: "+975" },
+    { country: "Sri Lanka", code: "+94" },
+    { country: "Maldives", code: "+960" },
+    { country: "Pakistan", code: "+92" },
+    { country: "Afghanistan", code: "+93" },
+    { country: "Myanmar", code: "+95" }
+  ];
 
-    const locationData = {
-      "India": {
-        "Andhra Pradesh": ["Alluri Sitharama Raju", "Anakapalli", "Anantapur", "Annamayya", "Bapatla", "Chittoor", "Dr. B.R. Ambedkar Konaseema", "East Godavari", "Eluru", "Guntur", "Kakinada", "Krishna", "Kurnool", "Nandyal", "NTR", "Palnadu", "Parvathipuram Manyam", "Prakasam", "Sri Potti Sriramulu Nellore", "Sri Sathya Sai", "Srikakulam", "Tirupati", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"],
-        "Arunachal Pradesh": ["Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Kamle", "Kra Daadi", "Kurung Kumey", "Lepa Rada", "Lohit", "Longding", "Lower Dibang Valley", "Lower Siang", "Lower Subansiri", "Namsai", "Pakke-Kessang", "Papum Pare", "Shi Yomi", "Siang", "Tawang", "Tirap", "Upper Siang", "Upper Subansiri", "West Kameng", "West Siang"],
-        "Assam": ["Baksa", "Barpeta", "Biswanath", "Bongaigaon", "Cachar", "Charaideo", "Chirang", "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Dima Hasao", "Goalpara", "Golaghat", "Hailakandi", "Hojai", "Jorhat", "Kamrup", "Kamrup Metropolitan", "Karbi Anglong", "Karimganj", "Kokrajhar", "Lakhimpur", "Majuli", "Morigaon", "Nagaon", "Nalbari", "Sivasagar", "Sonitpur", "South Salmara-Mankachar", "Tinsukia", "Udalguri", "West Karbi Anglong"],
-        "Bihar": ["Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar", "Darbhanga", "East Champaran", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnea", "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan", "Supaul", "Vaishali", "West Champaran"],
-        "Chhattisgarh": ["Balod", "Baloda Bazar", "Balrampur", "Bastar", "Bemetara", "Bijapur", "Bilaspur", "Dantewada", "Dhamtari", "Durg", "Gariaband", "Gaurela-Pendra-Marwahi", "Janjgir-Champa", "Jashpur", "Kabirdham", "Kanker", "Kondagaon", "Korba", "Koriya", "Mahasamund", "Mungeli", "Narayanpur", "Raigarh", "Raipur", "Rajnandgaon", "Sukma", "Surajpur", "Surguja"],
-        "Delhi": ["Central Delhi", "East Delhi", "New Delhi", "North Delhi", "North East Delhi", "North West Delhi", "Shahdara", "South Delhi", "South East Delhi", "South West Delhi", "West Delhi"],
-        "Goa": ["North Goa", "South Goa"],
-        "Gujarat": ["Ahmedabad", "Amreli", "Anand", "Aravalli", "Banaskantha", "Bharuch", "Bhavnagar", "Botad", "Chhota Udaipur", "Dahod", "Dang", "Devbhoomi Dwarka", "Gandhinagar", "Gir Somnath", "Jamnagar", "Junagadh", "Kheda", "Kutch", "Mahisagar", "Mehsana", "Morbi", "Narmada", "Navsari", "Panchmahal", "Patan", "Porbandar", "Rajkot", "Sabarkantha", "Surat", "Surendranagar", "Tapi", "Vadodara", "Valsad"],
-        "Haryana": ["Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram", "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"],
-        "Himachal Pradesh": ["Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Lahaul and Spiti", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"],
-        "Jharkhand": ["Bokaro", "Chatra", "Deoghar", "Dhanbad", "Dumka", "East Singhbhum", "Garhwa", "Giridih", "Godda", "Gumla", "Hazaribagh", "Jamtara", "Khunti", "Koderma", "Latehar", "Lohardaga", "Pakur", "Palamu", "Ramgarh", "Ranchi", "Sahibganj", "Seraikela Kharsawan", "Simdega", "West Singhbhum"],
-        "Karnataka": ["Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", "Bidar", "Chamarajanagar", "Chikkaballapur", "Chikkamagaluru", "Chitradurga", "Dakshina Kannada", "Davanagere", "Dharwad", "Gadag", "Hassan", "Haveri", "Kalaburagi", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysuru", "Raichur", "Ramanagara", "Shivamogga", "Tumakuru", "Udupi", "Uttara Kannada", "Vijayapura", "Yadgir"],
-        "Kerala": ["Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", "Thiruvananthapuram", "Thrissur", "Wayanad"],
-        "Madhya Pradesh": ["Agar Malwa", "Alirajpur", "Anuppur", "Ashoknagar", "Balaghat", "Barwani", "Betul", "Bhind", "Bhopal", "Burhanpur", "Chhatarpur", "Chhindwara", "Damoh", "Datia", "Dewas", "Dhar", "Dindori", "Guna", "Gwalior", "Harda", "Indore", "Jabalpur", "Jhabua", "Katni", "Khandwa", "Khargone", "Mandla", "Mandsaur", "Morena", "Narmadapuram", "Narsinghpur", "Neemuch", "Panna", "Raisen", "Rajgarh", "Ratlam", "Rewa", "Sagar", "Satna", "Sehore", "Seoni", "Shahdol", "Shajapur", "Sheopur", "Shivpuri", "Sidhi", "Singrauli", "Tikamgarh", "Ujjain", "Umaria", "Vidisha"],
-        "Maharashtra": ["Ahmednagar", "Akola", "Amravati", "Aurangabad", "Beed", "Bhandara", "Buldhana", "Chandrapur", "Dhule", "Gadchiroli", "Gondia", "Hingoli", "Jalgaon", "Jalna", "Kolhapur", "Latur", "Mumbai City", "Mumbai Suburban", "Nagpur", "Nanded", "Nandurbar", "Nashik", "Osmanabad", "Palghar", "Parbhani", "Pune", "Raigad", "Ratnagiri", "Sangli", "Satara", "Sindhudurg", "Solapur", "Thane", "Wardha", "Washim", "Yavatmal"],
-        "Manipur": ["Bishnupur", "Chandel", "Churachandpur", "Imphal East", "Imphal West", "Jiribam", "Kakching", "Kamjong", "Kangpokpi", "Noney", "Pherzawl", "Senapati", "Tamenglong", "Tengnoupal", "Thoubal", "Ukhrul"],
-        "Meghalaya": ["East Garo Hills", "East Jaintia Hills", "East Khasi Hills", "Eastern West Khasi Hills", "North Garo Hills", "Ri Bhoi", "South Garo Hills", "South West Garo Hills", "South West Khasi Hills", "West Garo Hills", "West Jaintia Hills", "West Khasi Hills"],
-        "Mizoram": ["Aizawl", "Champhai", "Hnahthial", "Khawzawl", "Kolasib", "Lawngtlai", "Lunglei", "Mamit", "Saiha", "Saitual", "Serchhip"],
-        "Nagaland": ["Chumoukedima", "Dimapur", "Kiphire", "Kohima", "Longleng", "Mokokchung", "Mon", "Niuland", "Noklak", "Peren", "Phek", "Shamator", "Tseminyu", "Tuensang", "Wokha", "Zunheboto"],
-        "Odisha": ["Angul", "Balangir", "Balasore", "Bargarh", "Bhadrak", "Boudh", "Cuttack", "Deogarh", "Dhenkanal", "Gajapati", "Ganjam", "Jagatsinghpur", "Jajpur", "Jharsuguda", "Kalahandi", "Kandhamal", "Kendrapara", "Kendujhar", "Khordha", "Koraput", "Malkangiri", "Mayurbhanj", "Nabarangpur", "Nayagarh", "Nuapada", "Puri", "Rayagada", "Sambalpur", "Subarnapur", "Sundargarh"],
-        "Punjab": ["Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Ferozepur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Malerkotla", "Mansa", "Moga", "Pathankot", "Patiala", "Rupnagar", "Sangrur", "SAS Nagar", "SBS Nagar", "Sri Muktsar Sahib", "Tarn Taran"],
-        "Rajasthan": ["Ajmer", "Alwar", "Anupgarh", "Balotra", "Banswara", "Baran", "Barmer", "Beawar", "Bharatpur", "Bhilwara", "Bikaner", "Bundi", "Chittorgarh", "Churu", "Dausa", "Deeg", "Dholpur", "Didwana-Kuchaman", "Dudu", "Dungarpur", "Gangapur City", "Hanumangarh", "Jaipur", "Jaipur Rural", "Jaisalmer", "Jalore", "Jhalawar", "Jhunjhunu", "Jodhpur", "Jodhpur Rural", "Karauli", "Kekri", "Khairthal-Tijara", "Kota", "Kotputli-Behror", "Nagaur", "Neem Ka Thana", "Pali", "Phalodi", "Pratapgarh", "Rajsamand", "Salumbar", "Sanchore", "Sawai Madhopur", "Shahpura", "Sikar", "Sirohi", "Sri Ganganagar", "Tonk", "Udaipur"],
-        "Sikkim": ["Gangtok", "Gyalshing", "Mangan", "Namchi", "Pakyong", "Soreng"],
-        "Tamil Nadu": ["Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kanchipuram", "Kanniyakumari", "Karur", "Krishnagiri", "Madurai", "Mayiladuthurai", "Nagapattinam", "Namakkal", "Nilgiris", "Perambalur", "Pudukkottai", "Ramanathapuram", "Ranipet", "Salem", "Sivaganga", "Tenkasi", "Thanjavur", "Theni", "Thoothukudi", "Tiruchirappalli", "Tirunelveli", "Tirupathur", "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore", "Viluppuram", "Virudhunagar"],
-        "Telangana": ["Adilabad", "Bhadradri Kothagudem", "Hanamkonda", "Hyderabad", "Jagtial", "Jangaon", "Jayashankar Bhupalpally", "Jogulamba Gadwal", "Kamareddy", "Karimnagar", "Khammam", "Komaram Bheem Asifabad", "Mahabubabad", "Mahabubnagar", "Mancherial", "Medak", "Medchal-Malkajgiri", "Mulugu", "Nagarkurnool", "Nalgonda", "Narayanpet", "Nirmal", "Nizamabad", "Peddapalli", "Rajanna Sircilla", "Rangareddy", "Sangareddy", "Siddipet", "Suryapet", "Vikarabad", "Wanaparthy", "Warangal", "Yadadri Bhuvanagiri"],
-        "Tripura": ["Dhalai", "Gomati", "Khowai", "North Tripura", "Sepahijala", "South Tripura", "Unakoti", "West Tripura"],
-        "Uttar Pradesh": ["Agra", "Aligarh", "Ambedkar Nagar", "Amethi", "Amroha", "Auraiya", "Ayodhya", "Azamgarh", "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Barabanki", "Bareilly", "Basti", "Bhadohi", "Bijnor", "Budaun", "Bulandshahr", "Chandauli", "Chitrakoot", "Deoria", "Etah", "Etawah", "Farrukhabad", "Fatehpur", "Firozabad", "Gautam Buddha Nagar", "Ghaziabad", "Ghazipur", "Gonda", "Gorakhpur", "Hamirpur", "Hapur", "Hardoi", "Hathras", "Jalaun", "Jaunpur", "Jhansi", "Kannauj", "Kanpur Dehat", "Kanpur Nagar", "Kasganj", "Kaushambi", "Kheri", "Kushinagar", "Lalitpur", "Lucknow", "Maharajganj", "Mahoba", "Mainpuri", "Mathura", "Mau", "Meerut", "Mirzapur", "Moradabad", "Muzaffarnagar", "Pilibhit", "Pratapgarh", "Prayagraj", "Raebareli", "Rampur", "Saharanpur", "Sambhal", "Sant Kabir Nagar", "Shahjahanpur", "Shamli", "Shravasti", "Siddharthnagar", "Sitapur", "Sonbhadra", "Sultanpur", "Unnao", "Varanasi"],
-        "Uttarakhand": ["Almora", "Bageshwar", "Chamoli", "Champawat", "Dehradun", "Haridwar", "Nainital", "Pauri Garhwal", "Pithoragarh", "Rudraprayag", "Tehri Garhwal", "Udham Singh Nagar", "Uttarkashi"],
-        "West Bengal": ["Alipurduar", "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Darjeeling", "Hooghly", "Howrah", "Jalpaiguri", "Jhargram", "Kalimpong", "Kolkata", "Malda", "Murshidabad", "Nadia", "North 24 Parganas", "Paschim Bardhaman", "Paschim Medinipur", "Purba Bardhaman", "Purba Medinipur", "Purulia", "South 24 Parganas", "Uttar Dinajpur"],
-        "Andaman and Nicobar Islands": ["Nicobar", "North and Middle Andaman", "South Andaman"],
-        "Chandigarh": ["Chandigarh"],
-        "Dadra and Nagar Haveli and Daman and Diu": ["Dadra and Nagar Haveli", "Daman", "Diu"],
-        "Jammu and Kashmir": ["Anantnag", "Bandipora", "Baramulla", "Budgam", "Doda", "Ganderbal", "Jammu", "Kathua", "Kishtwar", "Kulgam", "Kupwara", "Poonch", "Pulwama", "Rajouri", "Ramban", "Reasi", "Samba", "Shopian", "Srinagar", "Udhampur"],
-        "Ladakh": ["Kargil", "Leh"],
-        "Lakshadweep": ["Lakshadweep"],
-        "Puducherry": ["Karaikal", "Mahe", "Puducherry", "Yanam"]
-      },
-      "Nepal": {
-        "Koshi Province": ["Bhojpur", "Dhankuta", "Ilam", "Jhapa", "Khotang", "Morang", "Okhaldhunga", "Panchthar", "Sankhuwasabha", "Solukhumbu", "Sunsari", "Taplejung", "Terhathum", "Udayapur"],
-        "Madhesh Province": ["Bara", "Dhanusha", "Mahottari", "Parsa", "Rautahat", "Saptari", "Sarlahi", "Siraha"],
-        "Bagmati Province": ["Bhaktapur", "Chitwan", "Dhading", "Dolakha", "Kathmandu", "Kavrepalanchok", "Lalitpur", "Makwanpur", "Nuwakot", "Ramechhap", "Rasuwa", "Sindhuli", "Sindhupalchok"],
-        "Gandaki Province": ["Baglung", "Gorkha", "Kaski", "Lamjung", "Manang", "Mustang", "Myagdi", "Nawalpur", "Parbat", "Syangja", "Tanahun"],
-        "Lumbini Province": ["Arghakhanchi", "Banke", "Bardiya", "Dang", "Eastern Rukum", "Gulmi", "Kapilvastu", "Parasi", "Palpa", "Pyuthan", "Rolpa", "Rupandehi"],
-        "Karnali Province": ["Dailekh", "Dolpa", "Humla", "Jajarkot", "Jumla", "Kalikot", "Mugu", "Salyan", "Surkhet", "Western Rukum"],
-        "Sudurpashchim Province": ["Achham", "Baitadi", "Bajhang", "Bajura", "Dadeldhura", "Darchula", "Doti", "Kailali", "Kanchanpur"]
-      },
-      "Bangladesh": {
-        "Barishal": ["Barguna", "Barishal", "Bhola", "Jhalokati", "Patuakhali", "Pirojpur"],
-        "Chattogram": ["Bandarban", "Brahmanbaria", "Chandpur", "Chattogram", "Cox's Bazar", "Cumilla", "Feni", "Khagrachhari", "Lakshmipur", "Noakhali", "Rangamati"],
-        "Dhaka": ["Dhaka", "Faridpur", "Gazipur", "Gopalganj", "Kishoreganj", "Madaripur", "Manikganj", "Munshiganj", "Narayanganj", "Narsingdi", "Rajbari", "Shariatpur", "Tangail"],
-        "Khulna": ["Bagerhat", "Chuadanga", "Jashore", "Jhenaidah", "Khulna", "Kushtia", "Magura", "Meherpur", "Narail", "Satkhira"],
-        "Mymensingh": ["Jamalpur", "Mymensingh", "Netrokona", "Sherpur"],
-        "Rajshahi": ["Bogura", "Joypurhat", "Naogaon", "Natore", "Chapainawabganj", "Pabna", "Rajshahi", "Sirajganj"],
-        "Rangpur": ["Dinajpur", "Gaibandha", "Kurigram", "Lalmonirhat", "Nilphamari", "Panchagarh", "Rangpur", "Thakurgaon"],
-        "Sylhet": ["Habiganj", "Moulvibazar", "Sunamganj", "Sylhet"]
-      },
-      "Bhutan": {
-        "Bhutan": ["Bumthang", "Chhukha", "Dagana", "Gasa", "Haa", "Lhuentse", "Mongar", "Paro", "Pemagatshel", "Punakha", "Samdrup Jongkhar", "Samtse", "Sarpang", "Thimphu", "Trashigang", "Trashiyangtse", "Trongsa", "Tsirang", "Wangdue Phodrang", "Zhemgang"]
-      },
-      "Sri Lanka": {
-        "Central Province": ["Kandy", "Matale", "Nuwara Eliya"],
-        "Eastern Province": ["Ampara", "Batticaloa", "Trincomalee"],
-        "North Central Province": ["Anuradhapura", "Polonnaruwa"],
-        "Northern Province": ["Jaffna", "Kilinochchi", "Mannar", "Mullaitivu", "Vavuniya"],
-        "North Western Province": ["Kurunegala", "Puttalam"],
-        "Sabaragamuwa Province": ["Kegalle", "Ratnapura"],
-        "Southern Province": ["Galle", "Hambantota", "Matara"],
-        "Uva Province": ["Badulla", "Monaragala"],
-        "Western Province": ["Colombo", "Gampaha", "Kalutara"]
-      },
-      "Maldives": {
-        "Maldives": ["Addu City", "Fuvahmulah", "Male", "Alif Alif", "Alif Dhaal", "Baa", "Dhaalu", "Faafu", "Gaafu Alif", "Gaafu Dhaalu", "Gnaviyani", "Haa Alif", "Haa Dhaalu", "Kaafu", "Laamu", "Lhaviyani", "Meemu", "Noonu", "Raa", "Seenu", "Shaviyani", "Thaa", "Vaavu"]
-      },
-      "Pakistan": {
-        "Balochistan": ["Awaran", "Barkhan", "Chagai", "Dera Bugti", "Gwadar", "Harnai", "Jafarabad", "Jhal Magsi", "Kachhi", "Kalat", "Kech", "Kharan", "Khuzdar", "Killa Abdullah", "Killa Saifullah", "Kohlu", "Lasbela", "Loralai", "Mastung", "Musakhel", "Nasirabad", "Nushki", "Panjgur", "Pishin", "Quetta", "Sherani", "Sibi", "Sohbatpur", "Washuk", "Zhob", "Ziarat"],
-        "Khyber Pakhtunkhwa": ["Abbottabad", "Bannu", "Battagram", "Buner", "Charsadda", "Chitral", "Dera Ismail Khan", "Hangu", "Haripur", "Karak", "Kohat", "Kohistan", "Lakki Marwat", "Lower Dir", "Malakand", "Mansehra", "Mardan", "Nowshera", "Peshawar", "Shangla", "Swabi", "Swat", "Tank", "Upper Dir"],
-        "Punjab": ["Attock", "Bahawalnagar", "Bahawalpur", "Bhakkar", "Chakwal", "Chiniot", "Dera Ghazi Khan", "Faisalabad", "Gujranwala", "Gujrat", "Hafizabad", "Jhang", "Jhelum", "Kasur", "Khanewal", "Khushab", "Lahore", "Layyah", "Lodhran", "Mandi Bahauddin", "Mianwali", "Multan", "Muzaffargarh", "Narowal", "Nankana Sahib", "Okara", "Pakpattan", "Rahim Yar Khan", "Rajanpur", "Rawalpindi", "Sahiwal", "Sargodha", "Sheikhupura", "Sialkot", "Toba Tek Singh", "Vehari"],
-        "Sindh": ["Badin", "Dadu", "Ghotki", "Hyderabad", "Jacobabad", "Jamshoro", "Karachi Central", "Karachi East", "Karachi South", "Karachi West", "Kashmore", "Khairpur", "Larkana", "Matiari", "Mirpur Khas", "Naushahro Feroze", "Shaheed Benazirabad", "Sanghar", "Shikarpur", "Sukkur", "Tando Allahyar", "Tando Muhammad Khan", "Tharparkar", "Thatta", "Umerkot"],
-        "Islamabad Capital Territory": ["Islamabad"]
-      },
-      "Afghanistan": {
-        "Afghanistan": ["Badakhshan", "Badghis", "Baghlan", "Balkh", "Bamyan", "Daykundi", "Farah", "Faryab", "Ghazni", "Ghor", "Helmand", "Herat", "Jowzjan", "Kabul", "Kandahar", "Kapisa", "Khost", "Kunar", "Kunduz", "Laghman", "Logar", "Nangarhar", "Nimruz", "Nuristan", "Paktia", "Paktika", "Panjshir", "Parwan", "Samangan", "Sar-e Pol", "Takhar", "Urozgan", "Wardak", "Zabul"]
-      },
-      "Myanmar": {
-        "Myanmar": ["Ayeyarwady", "Bago", "Chin", "Kachin", "Kayah", "Kayin", "Magway", "Mandalay", "Mon", "Naypyidaw", "Rakhine", "Sagaing", "Shan", "Tanintharyi", "Yangon"]
+  const locationData = {
+    "India": {
+      "Andhra Pradesh": ["Alluri Sitharama Raju", "Anakapalli", "Anantapur", "Annamayya", "Bapatla", "Chittoor", "Dr. B.R. Ambedkar Konaseema", "East Godavari", "Eluru", "Guntur", "Kakinada", "Krishna", "Kurnool", "Nandyal", "NTR", "Palnadu", "Parvathipuram Manyam", "Prakasam", "Sri Potti Sriramulu Nellore", "Sri Sathya Sai", "Srikakulam", "Tirupati", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"],
+      "Arunachal Pradesh": ["Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Kamle", "Kra Daadi", "Kurung Kumey", "Lepa Rada", "Lohit", "Longding", "Lower Dibang Valley", "Lower Siang", "Lower Subansiri", "Namsai", "Pakke-Kessang", "Papum Pare", "Shi Yomi", "Siang", "Tawang", "Tirap", "Upper Siang", "Upper Subansiri", "West Kameng", "West Siang"],
+      "Assam": ["Baksa", "Barpeta", "Biswanath", "Bongaigaon", "Cachar", "Charaideo", "Chirang", "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Dima Hasao", "Goalpara", "Golaghat", "Hailakandi", "Hojai", "Jorhat", "Kamrup", "Kamrup Metropolitan", "Karbi Anglong", "Karimganj", "Kokrajhar", "Lakhimpur", "Majuli", "Morigaon", "Nagaon", "Nalbari", "Sivasagar", "Sonitpur", "South Salmara-Mankachar", "Tamulpur", "Tinsukia", "Udalguri", "West Karbi Anglong"],
+      "Bihar": ["Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar", "Darbhanga", "East Champaran", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnea", "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan", "Supaul", "Vaishali", "West Champaran"],
+      "Chhattisgarh": ["Balod", "Baloda Bazar", "Balrampur", "Bastar", "Bemetara", "Bijapur", "Bilaspur", "Dantewada", "Dhamtari", "Durg", "Gariaband", "Gaurela-Pendra-Marwahi", "Janjgir-Champa", "Jashpur", "Kabirdham", "Kanker", "Kondagaon", "Korba", "Korea", "Mahasamund", "Mungeli", "Narayanpur", "Raigarh", "Raipur", "Rajnandgaon", "Sukma", "Surajpur", "Surguja"],
+      "Delhi": ["Central Delhi", "East Delhi", "New Delhi", "North Delhi", "North East Delhi", "North West Delhi", "Shahdara", "South Delhi", "South East Delhi", "South West Delhi", "West Delhi"],
+      "Goa": ["North Goa", "South Goa"],
+      "Gujarat": ["Ahmedabad", "Amreli", "Anand", "Aravalli", "Banaskantha", "Bharuch", "Bhavnagar", "Botad", "Chhota Udaipur", "Dahod", "Dang", "Devbhoomi Dwarka", "Gandhinagar", "Gir Somnath", "Jamnagar", "Junagadh", "Kheda", "Kutch", "Mahisagar", "Mehsana", "Morbi", "Narmada", "Navsari", "Panchmahal", "Patan", "Porbandar", "Rajkot", "Sabarkantha", "Surat", "Surendranagar", "Tapi", "Vadodara", "Valsad"],
+      "Haryana": ["Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram", "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"],
+      "Himachal Pradesh": ["Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Lahaul and Spiti", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"],
+      "Jharkhand": ["Bokaro", "Chatra", "Deoghar", "Dhanbad", "Dumka", "East Singhbhum", "Garhwa", "Giridih", "Godda", "Gumla", "Hazaribagh", "Jamtara", "Khunti", "Koderma", "Latehar", "Lohardaga", "Pakur", "Palamu", "Ramgarh", "Ranchi", "Sahibganj", "Seraikela Kharsawan", "Simdega", "West Singhbhum"],
+      "Karnataka": ["Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", "Bidar", "Chamarajanagar", "Chikkaballapur", "Chikkamagaluru", "Chitradurga", "Dakshina Kannada", "Davanagere", "Dharwad", "Gadag", "Hassan", "Haveri", "Kalaburagi", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysuru", "Raichur", "Ramanagara", "Shivamogga", "Tumakuru", "Udupi", "Uttara Kannada", "Vijayapura", "Yadgir"],
+      "Kerala": ["Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", "Thiruvananthapuram", "Thrissur", "Wayanad"],
+      "Madhya Pradesh": ["Agar Malwa", "Alirajpur", "Anuppur", "Ashoknagar", "Balaghat", "Barwani", "Betul", "Bhind", "Bhopal", "Burhanpur", "Chhatarpur", "Chhindwara", "Damoh", "Datia", "Dewas", "Dhar", "Dindori", "Guna", "Gwalior", "Harda", "Indore", "Jabalpur", "Jhabua", "Katni", "Khandwa", "Khargone", "Mandla", "Mandsaur", "Morena", "Narmadapuram", "Narsinghpur", "Neemuch", "Niwari", "Panna", "Raisen", "Rajgarh", "Ratlam", "Rewa", "Sagar", "Satna", "Sehore", "Seoni", "Shahdol", "Shajapur", "Sheopur", "Shivpuri", "Sidhi", "Singrauli", "Tikamgarh", "Ujjain", "Umaria", "Vidisha"],
+      "Maharashtra": ["Ahmednagar", "Akola", "Amravati", "Aurangabad", "Beed", "Bhandara", "Buldhana", "Chandrapur", "Dhule", "Gadchiroli", "Gondia", "Hingoli", "Jalgaon", "Jalna", "Kolhapur", "Latur", "Mumbai City", "Mumbai Suburban", "Nagpur", "Nanded", "Nandurbar", "Nashik", "Osmanabad", "Palghar", "Parbhani", "Pune", "Raigad", "Ratnagiri", "Sangli", "Satara", "Sindhudurg", "Solapur", "Thane", "Wardha", "Washim", "Yavatmal"],
+      "Manipur": ["Bishnupur", "Chandel", "Churachandpur", "Imphal East", "Imphal West", "Jiribam", "Kakching", "Kamjong", "Kangpokpi", "Noney", "Pherzawl", "Senapati", "Tamenglong", "Tengnoupal", "Thoubal", "Ukhrul"],
+      "Meghalaya": ["East Garo Hills", "East Jaintia Hills", "East Khasi Hills", "Eastern West Khasi Hills", "North Garo Hills", "Ri Bhoi", "South Garo Hills", "South West Garo Hills", "South West Khasi Hills", "West Garo Hills", "West Jaintia Hills", "West Khasi Hills"],
+      "Mizoram": ["Aizawl", "Champhai", "Hnahthial", "Khawzawl", "Kolasib", "Lawngtlai", "Lunglei", "Mamit", "Saitual", "Serchhip", "Siaha"],
+      "Nagaland": ["Chumoukedima", "Dimapur", "Kiphire", "Kohima", "Longleng", "Mokokchung", "Mon", "Niuland", "Noklak", "Peren", "Phek", "Shamator", "Tseminyu", "Tuensang", "Wokha", "Zunheboto"],
+      "Odisha": ["Angul", "Balangir", "Balasore", "Bargarh", "Bhadrak", "Boudh", "Cuttack", "Deogarh", "Dhenkanal", "Gajapati", "Ganjam", "Jagatsinghpur", "Jajpur", "Jharsuguda", "Kalahandi", "Kandhamal", "Kendrapara", "Kendujhar", "Khordha", "Koraput", "Malkangiri", "Mayurbhanj", "Nabarangpur", "Nayagarh", "Nuapada", "Puri", "Rayagada", "Sambalpur", "Subarnapur", "Sundargarh"],
+      "Punjab": ["Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Ferozepur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Malerkotla", "Mansa", "Moga", "Pathankot", "Patiala", "Rupnagar", "Sangrur", "SAS Nagar", "Shaheed Bhagat Singh Nagar", "Sri Muktsar Sahib", "Tarn Taran"],
+      "Rajasthan": ["Ajmer", "Alwar", "Anupgarh", "Balotra", "Banswara", "Baran", "Barmer", "Beawar", "Bharatpur", "Bhilwara", "Bikaner", "Bundi", "Chittorgarh", "Churu", "Dausa", "Deeg", "Didwana-Kuchamana", "Dholpur", "Dudu", "Dungarpur", "Gangapur City", "Hanumangarh", "Jaipur", "Jaipur Rural", "Jaisalmer", "Jalore", "Jhalawar", "Jhunjhunu", "Jodhpur", "Jodhpur Rural", "Karauli", "Kekri", "Khairthal-Tijara", "Kota", "Kotputli-Behror", "Nagaur", "Neem Ka Thana", "Pali", "Phalodi", "Pratapgarh", "Rajsamand", "Salumbar", "Sanchore", "Sawai Madhopur", "Shahpura", "Sikar", "Sirohi", "Sri Ganganagar", "Tonk", "Udaipur"],
+      "Sikkim": ["Gangtok", "Gyalshing", "Mangan", "Namchi", "Pakyong", "Soreng"],
+      "Tamil Nadu": ["Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kancheepuram", "Kanniyakumari", "Karur", "Krishnagiri", "Madurai", "Mayiladuthurai", "Nagapattinam", "Namakkal", "Nilgiris", "Perambalur", "Pudukkottai", "Ramanathapuram", "Ranipet", "Salem", "Sivaganga", "Tenkasi", "Thanjavur", "Theni", "Thoothukudi", "Tiruchirappalli", "Tirunelveli", "Tirupathur", "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore", "Viluppuram", "Virudhunagar"],
+      "Telangana": ["Adilabad", "Bhadradri Kothagudem", "Hanamkonda", "Hyderabad", "Jagtial", "Jangaon", "Jayashankar Bhupalpally", "Jogulamba Gadwal", "Kamareddy", "Karimnagar", "Khammam", "Komaram Bheem Asifabad", "Mahabubabad", "Mahabubnagar", "Mancherial", "Medak", "Medchal-Malkajgiri", "Mulugu", "Nagarkurnool", "Nalgonda", "Narayanpet", "Nirmal", "Nizamabad", "Peddapalli", "Rajanna Sircilla", "Rangareddy", "Sangareddy", "Siddipet", "Suryapet", "Vikarabad", "Wanaparthy", "Warangal", "Yadadri Bhuvanagiri"],
+      "Tripura": ["Dhalai", "Gomati", "Khowai", "North Tripura", "Sepahijala", "South Tripura", "Unakoti", "West Tripura"],
+      "Uttar Pradesh": ["Agra", "Aligarh", "Ambedkar Nagar", "Amethi", "Amroha", "Auraiya", "Ayodhya", "Azamgarh", "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Barabanki", "Bareilly", "Basti", "Bhadohi", "Bijnor", "Budaun", "Bulandshahr", "Chandauli", "Chitrakoot", "Deoria", "Etah", "Etawah", "Farrukhabad", "Fatehpur", "Firozabad", "Gautam Buddha Nagar", "Ghaziabad", "Ghazipur", "Gonda", "Gorakhpur", "Hamirpur", "Hapur", "Hardoi", "Hathras", "Jalaun", "Jaunpur", "Jhansi", "Kannauj", "Kanpur Dehat", "Kanpur Nagar", "Kasganj", "Kaushambi", "Kheri", "Kushinagar", "Lalitpur", "Lucknow", "Maharajganj", "Mahoba", "Mainpuri", "Mathura", "Mau", "Meerut", "Mirzapur", "Moradabad", "Muzaffarnagar", "Pilibhit", "Pratapgarh", "Prayagraj", "Raebareli", "Rampur", "Saharanpur", "Sambhal", "Sant Kabir Nagar", "Shahjahanpur", "Shamli", "Shravasti", "Siddharthnagar", "Sitapur", "Sonbhadra", "Sultanpur", "Unnao", "Varanasi"],
+      "Uttarakhand": ["Almora", "Bageshwar", "Chamoli", "Champawat", "Dehradun", "Haridwar", "Nainital", "Pauri Garhwal", "Pithoragarh", "Rudraprayag", "Tehri Garhwal", "Udham Singh Nagar", "Uttarkashi"],
+      "West Bengal": ["Alipurduar", "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Darjeeling", "Hooghly", "Howrah", "Jalpaiguri", "Jhargram", "Kalimpong", "Kolkata", "Malda", "Murshidabad", "Nadia", "North 24 Parganas", "Paschim Bardhaman", "Paschim Medinipur", "Purba Bardhaman", "Purba Medinipur", "Purulia", "South 24 Parganas", "Uttar Dinajpur"]
+    },
+    "Nepal": {
+      "Nepal": ["Bagmati", "Gandaki", "Karnali", "Koshi", "Lumbini", "Madhesh", "Sudurpashchim"]
+    },
+    "Bangladesh": {
+      "Bangladesh": ["Barisal", "Chittagong", "Dhaka", "Khulna", "Mymensingh", "Rajshahi", "Rangpur", "Sylhet"]
+    },
+    "Bhutan": {
+      "Bhutan": ["Bumthang", "Chukha", "Dagana", "Gasa", "Haa", "Lhuntse", "Mongar", "Paro", "Pemagatshel", "Punakha", "Samdrup Jongkhar", "Samtse", "Sarpang", "Thimphu", "Trashigang", "Trashiyangtse", "Trongsa", "Tsirang", "Wangdue Phodrang", "Zhemgang"]
+    },
+    "Sri Lanka": {
+      "Sri Lanka": ["Ampara", "Anuradhapura", "Badulla", "Batticaloa", "Colombo", "Galle", "Gampaha", "Hambantota", "Jaffna", "Kalutara", "Kandy", "Kegalle", "Kilinochchi", "Kurunegala", "Mannar", "Matale", "Matara", "Monaragala", "Mullaitivu", "Nuwara Eliya", "Polonnaruwa", "Puttalam", "Ratnapura", "Trincomalee", "Vavuniya"]
+    },
+    "Maldives": {
+      "Maldives": ["Addu City", "Faadhippolhu", "Felidhu Atoll", "Fuvahmulah", "Hadhdhunmathi", "Kolhumadulu", "Male", "Mulaku Atoll", "North Ari Atoll", "North Huvadhu Atoll", "North Maalhosmadulu", "South Ari Atoll", "South Huvadhu Atoll", "South Maalhosmadulu"]
+    },
+    "Pakistan": {
+      "Pakistan": ["Abbottabad", "Attock", "Bahawalpur", "Bannu", "Chakwal", "Dera Ghazi Khan", "Dera Ismail Khan", "Faisalabad", "Gujranwala", "Gujrat", "Hyderabad", "Islamabad", "Jacobabad", "Jhang", "Karachi", "Kasur", "Kohat", "Lahore", "Larkana", "Mardan", "Multan", "Muzaffarabad", "Nawabshah", "Okara", "Peshawar", "Quetta", "Rahim Yar Khan", "Rawalpindi", "Sahiwal", "Sargodha", "Sheikhupura", "Sialkot", "Sukkur", "Swat", "Thatta"]
+    },
+    "Afghanistan": {
+      "Afghanistan": ["Badakhshan", "Badghis", "Baghlan", "Balkh", "Bamyan", "Daykundi", "Farah", "Faryab", "Ghazni", "Ghor", "Helmand", "Herat", "Jowzjan", "Kabul", "Kandahar", "Kapisa", "Khost", "Kunar", "Kunduz", "Laghman", "Logar", "Nangarhar", "Nimruz", "Nuristan", "Paktia", "Paktika", "Panjshir", "Parwan", "Samangan", "Sar-e Pol", "Takhar", "Urozgan", "Wardak", "Zabul"]
+    },
+    "Myanmar": {
+      "Myanmar": ["Ayeyarwady", "Bago", "Chin", "Kachin", "Kayah", "Kayin", "Magway", "Mandalay", "Mon", "Naypyidaw", "Rakhine", "Sagaing", "Shan", "Tanintharyi", "Yangon"]
+    }
+  };
+
+  const roles = [
+    ["Content Creator", "Educational posts, scripts, carousel content"],
+    ["Graphic Designer", "Posters, thumbnails, social creatives"],
+    ["Video Editor", "Reels, shorts, captions, course clips"],
+    ["Teaching Assistant", "Student doubts and lesson support"],
+    ["Community Moderator", "Group safety, spam control, rules"],
+    ["Student Support Executive", "Student help, batch access, queries"],
+    ["Operations Assistant", "Sheets, forms, schedules, task tracking"],
+    ["Campus Ambassador", "Student outreach and community growth"],
+    ["Social Media Manager", "Posting, planning, engagement"],
+    ["SEO Assistant", "Keywords, blogs, ranking support"],
+    ["Blog Writer", "Articles, explainers, student guides"],
+    ["Course Research Assistant", "Research lessons, topics, references"],
+    ["Doubt Support Assistant", "Help students with basic doubts"],
+    ["Sales Outreach Assistant", "Ethical outreach and follow-up"],
+    ["Partnership Coordinator", "School/college/community coordination"],
+    ["HR Intern", "Applicant tracking and onboarding help"],
+    ["Data Entry Assistant", "Clean data entry and verification"],
+    ["Quality Analyst", "Check content, forms, and app issues"],
+    ["Frontend Web Intern", "HTML, CSS, JS UI support"],
+    ["Backend Support Intern", "Supabase, data, API support"]
+  ];
+
+  const workTypes = [
+    ["Unpaid Internship - Certificate Included", "For learning and verified contribution"],
+    ["Paid Internship - Certificate Included", "For shortlisted skilled applicants"],
+    ["Full Time Joinee", "Long-term full-time joining"],
+    ["Part Time Join", "Part-time remote contribution"],
+    ["Volunteer Contributor", "Contribution-based support"],
+    ["Remote Freelancer", "Task/project based freelance work"],
+    ["Project Based Contributor", "Specific project delivery"],
+    ["Campus Ambassador Program", "Student/community promotion"],
+    ["Training + Internship", "Training followed by practical tasks"],
+    ["Probation Based Joining", "Trial period before final role"]
+  ];
+
+  const workTimeTypes = [
+    ["Task Based", "Work assigned task by task"],
+    ["Part Time Daily", "Daily limited work hours"],
+    ["Weekly Internship", "Weekly goals and reporting"],
+    ["Monthly Internship", "Monthly structured internship"],
+    ["Weekend Only", "Saturday/Sunday availability"],
+    ["Flexible Remote", "Flexible timing with deadlines"],
+    ["Fixed Shift Remote", "Fixed online work shift"],
+    ["Project Deadline Based", "Delivery by deadline"],
+    ["2 Hours Per Day", "Light daily availability"],
+    ["4 Hours Per Day", "Medium daily availability"]
+  ];
+
+  /* =========================================================
+     DOM HELPERS
+  ========================================================== */
+
+  function byId(id) {
+    return document.getElementById(id);
+  }
+
+  function qsa(selector) {
+    return Array.from(document.querySelectorAll(selector));
+  }
+
+  function cleanText(value) {
+    return String(value || "").trim().replace(/\s+/g, " ");
+  }
+
+  function cleanLongText(value) {
+    return String(value || "").trim().replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n");
+  }
+
+  function digitsOnly(value) {
+    return String(value || "").replace(/\D/g, "");
+  }
+
+  function showAlert(type, message) {
+    const alert = byId("formAlert");
+
+    if (!alert) {
+      return;
+    }
+
+    alert.className = "alert show " + type;
+    alert.textContent = message;
+
+    alert.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
+
+  function clearAlert() {
+    const alert = byId("formAlert");
+
+    if (!alert) {
+      return;
+    }
+
+    alert.className = "alert";
+    alert.textContent = "";
+  }
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(String(email || "").trim());
+  }
+
+  function isValidUrl(value) {
+    const text = String(value || "").trim();
+
+    if (!text) {
+      return true;
+    }
+
+    try {
+      const url = new URL(text);
+      return url.protocol === "https:" || url.protocol === "http:";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function safeElementValue(id) {
+    const element = byId(id);
+    return element ? element.value : "";
+  }
+
+  function safeElementChecked(id) {
+    const element = byId(id);
+    return element ? Boolean(element.checked) : false;
+  }
+
+  function setSafeValue(id, value) {
+    const element = byId(id);
+
+    if (element) {
+      element.value = value;
+    }
+  }
+
+  /* =========================================================
+     THEME
+  ========================================================== */
+
+  function setTheme(theme) {
+    const nextTheme = theme === "dark" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", nextTheme);
+
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+
+    if (metaTheme) {
+      metaTheme.setAttribute("content", nextTheme === "dark" ? "#050816" : "#f8fafc");
+    }
+
+    try {
+      localStorage.setItem(THEME_KEY, nextTheme);
+    } catch (error) {
+      console.warn("Theme save failed.", error);
+    }
+
+    const toggle = byId("themeToggle");
+
+    if (toggle) {
+      toggle.setAttribute("aria-pressed", nextTheme === "dark" ? "true" : "false");
+
+      const label = toggle.querySelector(".label");
+
+      if (label) {
+        label.textContent = nextTheme === "dark" ? "Night On" : "Night";
       }
-    };
+    }
+  }
 
-    const roles = [
-      ["Content Creator", "Educational posts, scripts, carousel content"],
-      ["Graphic Designer", "Posters, thumbnails, social creatives"],
-      ["Video Editor", "Reels, shorts, captions, course clips"],
-      ["Teaching Assistant", "Student doubts and lesson support"],
-      ["Community Moderator", "Group safety, spam control, rules"],
-      ["Student Support Executive", "Student help, batch access, queries"],
-      ["Operations Assistant", "Sheets, forms, schedules, task tracking"],
-      ["Campus Ambassador", "Student outreach and community growth"],
-      ["Social Media Manager", "Posting, planning, engagement"],
-      ["SEO Assistant", "Keywords, blogs, ranking support"],
-      ["Blog Writer", "Articles, explainers, student guides"],
-      ["Course Research Assistant", "Research lessons, topics, references"],
-      ["Doubt Support Assistant", "Help students with basic doubts"],
-      ["Sales Outreach Assistant", "Ethical outreach and follow-up"],
-      ["Partnership Coordinator", "School/college/community coordination"],
-      ["HR Intern", "Applicant tracking and onboarding help"],
-      ["Data Entry Assistant", "Clean data entry and verification"],
-      ["Quality Analyst", "Check content, forms, and app issues"],
-      ["Frontend Web Intern", "HTML, CSS, JS UI support"],
-      ["Backend Support Intern", "Supabase, data, API support"]
-    ];
+  function initTheme() {
+    let saved = "light";
 
-    const workTypes = [
-      ["Unpaid Internship - Certificate Included", "For learning and verified contribution"],
-      ["Paid Internship - Certificate Included", "For shortlisted skilled applicants"],
-      ["Full Time Joinee", "Long-term full-time joining"],
-      ["Part Time Join", "Part-time remote contribution"],
-      ["Volunteer Contributor", "Contribution-based support"],
-      ["Remote Freelancer", "Task/project based freelance work"],
-      ["Project Based Contributor", "Specific project delivery"],
-      ["Campus Ambassador Program", "Student/community promotion"],
-      ["Training + Internship", "Training followed by practical tasks"],
-      ["Probation Based Joining", "Trial period before final role"]
-    ];
-
-    const workTimeTypes = [
-      ["Task Based", "Work assigned task by task"],
-      ["Part Time Daily", "Daily limited work hours"],
-      ["Weekly Internship", "Weekly goals and reporting"],
-      ["Monthly Internship", "Monthly structured internship"],
-      ["Weekend Only", "Saturday/Sunday availability"],
-      ["Flexible Remote", "Flexible timing with deadlines"],
-      ["Fixed Shift Remote", "Fixed online work shift"],
-      ["Project Deadline Based", "Delivery by deadline"],
-      ["2 Hours Per Day", "Light daily availability"],
-      ["4 Hours Per Day", "Medium daily availability"]
-    ];
-
-    /* =========================================================
-       DOM HELPERS
-    ========================================================== */
-
-    function byId(id) {
-      return document.getElementById(id);
+    try {
+      saved = localStorage.getItem(THEME_KEY) || "light";
+    } catch (error) {
+      saved = "light";
     }
 
-    function qsa(selector) {
-      return Array.from(document.querySelectorAll(selector));
-    }
+    setTheme(saved === "dark" ? "dark" : "light");
 
-    function cleanText(value) {
-      return String(value || "").trim().replace(/\s+/g, " ");
-    }
+    const toggle = byId("themeToggle");
 
-    function cleanLongText(value) {
-      return String(value || "").trim().replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n");
-    }
-
-    function digitsOnly(value) {
-      return String(value || "").replace(/\D/g, "");
-    }
-
-    function showAlert(type, message) {
-      const alert = byId("formAlert");
-
-      if (!alert) {
-        return;
-      }
-
-      alert.className = "alert show " + type;
-      alert.textContent = message;
-
-      alert.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        const current = document.documentElement.getAttribute("data-theme");
+        setTheme(current === "dark" ? "light" : "dark");
       });
     }
+  }
 
-    function clearAlert() {
-      const alert = byId("formAlert");
+  /* =========================================================
+     PHONE CODES
+  ========================================================== */
 
-      if (!alert) {
+  function initCountryCodes() {
+    const selects = [byId("contactCountryCode"), byId("whatsappCountryCode")];
+
+    selects.forEach(function (select) {
+      if (!select) {
         return;
       }
 
-      alert.className = "alert";
-      alert.textContent = "";
+      select.innerHTML = "";
+
+      countryCodes.forEach(function (item) {
+        const option = document.createElement("option");
+        option.value = item.code;
+        option.textContent = item.code + " " + item.country;
+        select.appendChild(option);
+      });
+
+      select.value = "+91";
+    });
+  }
+
+  /* =========================================================
+     CHOICE BUTTONS
+  ========================================================== */
+
+  function createChoiceGrid(containerId, hiddenInputId, items, limitMessage) {
+    const container = byId(containerId);
+    const hidden = byId(hiddenInputId);
+
+    if (!container || !hidden) {
+      return;
     }
 
-    function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(String(email || "").trim());
-    }
+    container.innerHTML = "";
 
-    function isValidUrl(value) {
-      const text = String(value || "").trim();
+    items.forEach(function (item) {
+      const title = item[0];
+      const desc = item[1];
 
-      if (!text) {
-        return true;
-      }
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "choice-btn";
+      button.dataset.value = title;
+      button.innerHTML = title + "<small>" + desc + "</small>";
 
-      try {
-        const url = new URL(text);
-        return url.protocol === "https:" || url.protocol === "http:";
-      } catch (error) {
-        return false;
-      }
-    }
+      button.addEventListener("click", function () {
+        const alreadySelected = hidden.value;
 
-    /* =========================================================
-       THEME
-    ========================================================== */
-
-    function setTheme(theme) {
-      const nextTheme = theme === "dark" ? "dark" : "light";
-      document.documentElement.setAttribute("data-theme", nextTheme);
-
-      const metaTheme = document.querySelector('meta[name="theme-color"]');
-
-      if (metaTheme) {
-        metaTheme.setAttribute("content", nextTheme === "dark" ? "#050816" : "#f8fafc");
-      }
-
-      try {
-        localStorage.setItem(THEME_KEY, nextTheme);
-      } catch (error) {
-        console.warn("Theme save failed.", error);
-      }
-
-      const toggle = byId("themeToggle");
-
-      if (toggle) {
-        toggle.setAttribute("aria-pressed", nextTheme === "dark" ? "true" : "false");
-
-        const label = toggle.querySelector(".label");
-
-        if (label) {
-          label.textContent = nextTheme === "dark" ? "Night On" : "Night";
-        }
-      }
-    }
-
-    function initTheme() {
-      let saved = "light";
-
-      try {
-        saved = localStorage.getItem(THEME_KEY) || "light";
-      } catch (error) {
-        saved = "light";
-      }
-
-      setTheme(saved === "dark" ? "dark" : "light");
-
-      const toggle = byId("themeToggle");
-
-      if (toggle) {
-        toggle.addEventListener("click", function () {
-          const current = document.documentElement.getAttribute("data-theme");
-          setTheme(current === "dark" ? "light" : "dark");
-        });
-      }
-    }
-
-    /* =========================================================
-       PHONE CODES
-    ========================================================== */
-
-    function initCountryCodes() {
-      const selects = [byId("contactCountryCode"), byId("whatsappCountryCode")];
-
-      selects.forEach(function (select) {
-        if (!select) {
+        if (alreadySelected && alreadySelected !== title) {
+          showAlert("error", limitMessage);
           return;
         }
 
-        select.innerHTML = "";
+        if (alreadySelected === title) {
+          hidden.value = "";
+          button.classList.remove("selected");
+          clearAlert();
+          saveDraft();
+          return;
+        }
 
-        countryCodes.forEach(function (item) {
-          const option = document.createElement("option");
-          option.value = item.code;
-          option.textContent = item.code + " " + item.country;
-          select.appendChild(option);
+        hidden.value = title;
+
+        Array.from(container.querySelectorAll(".choice-btn")).forEach(function (btn) {
+          btn.classList.toggle("selected", btn.dataset.value === title);
         });
 
-        select.value = "+91";
+        clearAlert();
+        saveDraft();
       });
-    }
 
-    /* =========================================================
-       CHOICE BUTTONS
-    ========================================================== */
+      container.appendChild(button);
+    });
+  }
 
-    function createChoiceGrid(containerId, hiddenInputId, items, limitMessage) {
-      const container = byId(containerId);
-      const hidden = byId(hiddenInputId);
+  function initChoiceButtons() {
+    createChoiceGrid(
+      "roleGrid",
+      "selectedRole",
+      roles,
+      "You can apply for only 1 role. Clear the form if you want to change the selected role."
+    );
+
+    createChoiceGrid(
+      "workTypeGrid",
+      "workType",
+      workTypes,
+      "Select only one work type."
+    );
+
+    createChoiceGrid(
+      "workTimeTypeGrid",
+      "workTimeType",
+      workTimeTypes,
+      "Select only one work time type."
+    );
+  }
+
+  function syncChoiceButtons() {
+    [
+      ["roleGrid", "selectedRole"],
+      ["workTypeGrid", "workType"],
+      ["workTimeTypeGrid", "workTimeType"]
+    ].forEach(function (pair) {
+      const container = byId(pair[0]);
+      const hidden = byId(pair[1]);
 
       if (!container || !hidden) {
         return;
       }
 
-      container.innerHTML = "";
+      Array.from(container.querySelectorAll(".choice-btn")).forEach(function (btn) {
+        btn.classList.toggle("selected", btn.dataset.value === hidden.value);
+      });
+    });
+  }
 
-      items.forEach(function (item) {
-        const title = item[0];
-        const desc = item[1];
+  /* =========================================================
+     SEARCH SELECT
+  ========================================================== */
 
+  function setupSearchSelect(config) {
+    const input = byId(config.inputId);
+    const hidden = byId(config.hiddenId);
+    const list = byId(config.listId);
+
+    if (!input || !hidden || !list) {
+      return;
+    }
+
+    function render() {
+      const query = input.value.trim().toLowerCase();
+      const items = config.getItems();
+
+      list.innerHTML = "";
+
+      const filtered = items
+        .filter(function (item) {
+          return item.toLowerCase().includes(query);
+        })
+        .slice(0, 80);
+
+      filtered.forEach(function (item) {
         const button = document.createElement("button");
         button.type = "button";
-        button.className = "choice-btn";
-        button.dataset.value = title;
-        button.innerHTML = title + "<small>" + desc + "</small>";
+        button.className = "search-option";
+        button.textContent = item;
 
         button.addEventListener("click", function () {
-          const alreadySelected = hidden.value;
+          input.value = item;
+          hidden.value = item;
+          list.classList.remove("open");
 
-          if (alreadySelected && alreadySelected !== title && hiddenInputId === "selectedRole") {
-            showAlert("error", limitMessage);
-            return;
+          if (typeof config.onSelect === "function") {
+            config.onSelect(item);
           }
 
-          hidden.value = title;
-
-          Array.from(container.querySelectorAll(".choice-btn")).forEach(function (btn) {
-            btn.classList.toggle("selected", btn.dataset.value === title);
-          });
-
-          clearAlert();
           saveDraft();
+          clearAlert();
         });
 
-        container.appendChild(button);
+        list.appendChild(button);
       });
+
+      if (filtered.length === 0) {
+        const empty = document.createElement("button");
+        empty.type = "button";
+        empty.className = "search-option";
+        empty.textContent = "No result found";
+        empty.disabled = true;
+        list.appendChild(empty);
+      }
+
+      list.classList.add("open");
     }
 
-    function initChoiceButtons() {
-      createChoiceGrid(
-        "roleGrid",
-        "selectedRole",
-        roles,
-        "You can apply for only 1 role. Clear the form if you want to change the selected role."
-      );
+    input.addEventListener("focus", render);
 
-      createChoiceGrid(
-        "workTypeGrid",
-        "workType",
-        workTypes,
-        "Select only one work type."
-      );
+    input.addEventListener("input", function () {
+      hidden.value = "";
+      render();
+    });
 
-      createChoiceGrid(
-        "workTimeTypeGrid",
-        "workTimeType",
-        workTimeTypes,
-        "Select only one work time type."
-      );
+    document.addEventListener("click", function (event) {
+      if (input.parentElement && !input.parentElement.contains(event.target)) {
+        list.classList.remove("open");
+      }
+    });
+  }
+
+  function getCountries() {
+    return Object.keys(locationData);
+  }
+
+  function getStates() {
+    const country = safeElementValue("country");
+    const states = locationData[country] || {};
+    return Object.keys(states);
+  }
+
+  function getDistricts() {
+    const country = safeElementValue("country");
+    const state = safeElementValue("stateName");
+    const states = locationData[country] || {};
+    return states[state] || [];
+  }
+
+  function initLocationSelectors() {
+    setupSearchSelect({
+      inputId: "countrySearch",
+      hiddenId: "country",
+      listId: "countryList",
+      getItems: getCountries,
+      onSelect: function () {
+        setSafeValue("stateSearch", "");
+        setSafeValue("stateName", "");
+        setSafeValue("districtSearch", "");
+        setSafeValue("district", "");
+      }
+    });
+
+    setupSearchSelect({
+      inputId: "stateSearch",
+      hiddenId: "stateName",
+      listId: "stateList",
+      getItems: getStates,
+      onSelect: function () {
+        setSafeValue("districtSearch", "");
+        setSafeValue("district", "");
+      }
+    });
+
+    setupSearchSelect({
+      inputId: "districtSearch",
+      hiddenId: "district",
+      listId: "districtList",
+      getItems: getDistricts
+    });
+  }
+
+  /* =========================================================
+     FORM DATA
+  ========================================================== */
+
+  function getFormData() {
+    return {
+      fullName: cleanText(safeElementValue("fullName")),
+      email: cleanText(safeElementValue("email")).toLowerCase(),
+      contactCountryCode: cleanText(safeElementValue("contactCountryCode")),
+      contactNumber: digitsOnly(safeElementValue("contactNumber")),
+      whatsappCountryCode: cleanText(safeElementValue("whatsappCountryCode")),
+      whatsappNumber: digitsOnly(safeElementValue("whatsappNumber")),
+
+      dateOfBirth: cleanText(safeElementValue("dateOfBirth")),
+      ageGroup: cleanText(safeElementValue("ageGroup")),
+
+      gender: cleanText(safeElementValue("gender")),
+      country: cleanText(safeElementValue("country")),
+      stateName: cleanText(safeElementValue("stateName")),
+      district: cleanText(safeElementValue("district")),
+      pincode: digitsOnly(safeElementValue("pincode")),
+      postOffice: cleanText(safeElementValue("postOffice")),
+      fullAddress: cleanLongText(safeElementValue("fullAddress")),
+
+      selectedRole: cleanText(safeElementValue("selectedRole")),
+      workType: cleanText(safeElementValue("workType")),
+      workTimeType: cleanText(safeElementValue("workTimeType")),
+      weeklyAvailability: cleanText(safeElementValue("weeklyAvailability")),
+
+      educationLevel: cleanText(safeElementValue("educationLevel")),
+      currentStatus: cleanText(safeElementValue("currentStatus")),
+      experienceLevel: cleanText(safeElementValue("experienceLevel")),
+
+      skills: cleanLongText(safeElementValue("skills")),
+      portfolioUrl: cleanText(safeElementValue("portfolioUrl")),
+      linkedinUrl: cleanText(safeElementValue("linkedinUrl")),
+      githubUrl: cleanText(safeElementValue("githubUrl")),
+      instagramUrl: cleanText(safeElementValue("instagramUrl")),
+
+      whyJoin: cleanLongText(safeElementValue("whyJoin")),
+      previousWork: cleanLongText(safeElementValue("previousWork")),
+      certificateDeliveryRequired: safeElementChecked("certificateDeliveryRequired"),
+      consentAccuracy: safeElementChecked("consentAccuracy"),
+      consentContact: safeElementChecked("consentContact")
+    };
+  }
+
+  function validateForm(data) {
+    if (data.fullName.length < 2) return "Enter a valid full name.";
+    if (!isValidEmail(data.email)) return "Enter a valid Gmail/email address.";
+    if (!data.contactCountryCode) return "Select contact country code.";
+    if (data.contactNumber.length < 7 || data.contactNumber.length > 15) return "Enter a valid contact number.";
+
+    if (data.whatsappNumber) {
+      if (!data.whatsappCountryCode) return "Select WhatsApp country code.";
+      if (data.whatsappNumber.length < 7 || data.whatsappNumber.length > 15) return "Enter a valid WhatsApp number.";
     }
 
-    function syncChoiceButtons() {
-      [
-        ["roleGrid", "selectedRole"],
-        ["workTypeGrid", "workType"],
-        ["workTimeTypeGrid", "workTimeType"]
-      ].forEach(function (pair) {
-        const container = byId(pair[0]);
-        const hidden = byId(pair[1]);
+    if (!data.ageGroup) return "Select age group.";
+    if (!data.country) return "Select country from search list.";
+    if (!data.stateName) return "Select state/province from search list.";
+    if (!data.district) return "Select district from search list.";
+    if (data.pincode.length < 4 || data.pincode.length > 10) return "Enter a valid pincode/postal code.";
 
-        if (!container || !hidden) {
+    if (!data.selectedRole) return "Select one role.";
+    if (!data.workType) return "Select work type.";
+    if (!data.workTimeType) return "Select work time type.";
+    if (!data.weeklyAvailability) return "Select weekly availability.";
+
+    if (!data.educationLevel) return "Select education level.";
+    if (!data.currentStatus) return "Select current status.";
+    if (!data.experienceLevel) return "Select experience level.";
+
+    if (data.skills.length < 20) return "Write your skills in at least 20 characters.";
+    if (data.whyJoin.length < 40) return "Write why you want to join in at least 40 characters.";
+
+    if (!isValidUrl(data.portfolioUrl)) return "Portfolio URL must start with http:// or https://.";
+    if (!isValidUrl(data.linkedinUrl)) return "LinkedIn URL must start with http:// or https://.";
+    if (!isValidUrl(data.githubUrl)) return "GitHub URL must start with http:// or https://.";
+    if (!isValidUrl(data.instagramUrl)) return "Instagram URL must start with http:// or https://.";
+
+    if (!data.consentAccuracy) return "Confirm that your information is accurate.";
+    if (!data.consentContact) return "Allow AcademeForge to contact you.";
+
+    return "";
+  }
+
+  function buildApiPayload(data) {
+    const skillsList = data.skills
+      .split(/,|\n/)
+      .map(function (skill) {
+        return cleanText(skill);
+      })
+      .filter(Boolean);
+
+    return {
+      full_name: data.fullName,
+      email: data.email,
+
+      phone_country_code: data.contactCountryCode,
+      contact_number: data.contactNumber,
+
+      whatsapp_country_code: data.whatsappCountryCode || "",
+      whatsapp_number: data.whatsappNumber || "",
+
+      date_of_birth: data.dateOfBirth || "",
+      age_group: data.ageGroup,
+      gender: data.gender || "",
+
+      country: data.country,
+      state: data.stateName,
+      district: data.district,
+      pincode: data.pincode,
+      post_office: data.postOffice || "",
+      address_line: data.fullAddress || "",
+
+      selected_role: data.selectedRole,
+      work_type: data.workType,
+      work_time_type: data.workTimeType,
+      weekly_availability: data.weeklyAvailability,
+
+      education_level: data.educationLevel,
+      current_status: data.currentStatus,
+      experience_level: data.experienceLevel,
+
+      skills: skillsList,
+      skills_text: data.skills,
+
+      portfolio_url: data.portfolioUrl || "",
+      linkedin_url: data.linkedinUrl || "",
+      github_url: data.githubUrl || "",
+      instagram_url: data.instagramUrl || "",
+
+      why_join: data.whyJoin,
+      previous_work: data.previousWork || "",
+
+      certificate_delivery_needed: Boolean(data.certificateDeliveryRequired),
+      accuracy_confirmed: Boolean(data.consentAccuracy),
+      contact_permission: Boolean(data.consentContact),
+
+      source_page: window.location.href,
+      user_agent: navigator.userAgent,
+      submitted_at_client: new Date().toISOString()
+    };
+  }
+
+  /* =========================================================
+     DRAFT
+  ========================================================== */
+
+  function saveDraft() {
+    try {
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(getFormData()));
+    } catch (error) {
+      console.warn("Draft save failed.", error);
+    }
+  }
+
+  function restoreDraft() {
+    try {
+      const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}");
+
+      Object.keys(draft).forEach(function (key) {
+        const element = byId(key);
+
+        if (!element) {
           return;
         }
 
-        Array.from(container.querySelectorAll(".choice-btn")).forEach(function (btn) {
-          btn.classList.toggle("selected", btn.dataset.value === hidden.value);
-        });
-      });
-    }
-
-    /* =========================================================
-       SEARCH SELECT
-    ========================================================== */
-
-    function setupSearchSelect(config) {
-      const input = byId(config.inputId);
-      const hidden = byId(config.hiddenId);
-      const list = byId(config.listId);
-
-      if (!input || !hidden || !list) {
-        return;
-      }
-
-      function render() {
-        const query = input.value.trim().toLowerCase();
-        const items = config.getItems();
-
-        list.innerHTML = "";
-
-        const filtered = items
-          .filter(function (item) {
-            return item.toLowerCase().includes(query);
-          })
-          .slice(0, 80);
-
-        filtered.forEach(function (item) {
-          const button = document.createElement("button");
-          button.type = "button";
-          button.className = "search-option";
-          button.textContent = item;
-
-          button.addEventListener("click", function () {
-            input.value = item;
-            hidden.value = item;
-            list.classList.remove("open");
-
-            if (typeof config.onSelect === "function") {
-              config.onSelect(item);
-            }
-
-            saveDraft();
-            clearAlert();
-          });
-
-          list.appendChild(button);
-        });
-
-        if (filtered.length === 0) {
-          const empty = document.createElement("button");
-          empty.type = "button";
-          empty.className = "search-option";
-          empty.textContent = "No result found";
-          empty.disabled = true;
-          list.appendChild(empty);
-        }
-
-        list.classList.add("open");
-      }
-
-      input.addEventListener("focus", render);
-
-      input.addEventListener("input", function () {
-        hidden.value = "";
-        render();
-      });
-
-      document.addEventListener("click", function (event) {
-        if (!input.parentElement.contains(event.target)) {
-          list.classList.remove("open");
-        }
-      });
-    }
-
-    function getCountries() {
-      return Object.keys(locationData);
-    }
-
-    function getStates() {
-      const country = byId("country").value;
-      const states = locationData[country] || {};
-      return Object.keys(states);
-    }
-
-    function getDistricts() {
-      const country = byId("country").value;
-      const state = byId("stateName").value;
-      const states = locationData[country] || {};
-      return states[state] || [];
-    }
-
-    function initLocationSelectors() {
-      setupSearchSelect({
-        inputId: "countrySearch",
-        hiddenId: "country",
-        listId: "countryList",
-        getItems: getCountries,
-        onSelect: function () {
-          byId("stateSearch").value = "";
-          byId("stateName").value = "";
-          byId("districtSearch").value = "";
-          byId("district").value = "";
+        if (element.type === "checkbox") {
+          element.checked = Boolean(draft[key]);
+        } else {
+          element.value = draft[key] || "";
         }
       });
 
-      setupSearchSelect({
-        inputId: "stateSearch",
-        hiddenId: "stateName",
-        listId: "stateList",
-        getItems: getStates,
-        onSelect: function () {
-          byId("districtSearch").value = "";
-          byId("district").value = "";
-        }
-      });
+      setSafeValue("countrySearch", draft.country || "");
+      setSafeValue("stateSearch", draft.stateName || "");
+      setSafeValue("districtSearch", draft.district || "");
 
-      setupSearchSelect({
-        inputId: "districtSearch",
-        hiddenId: "district",
-        listId: "districtList",
-        getItems: getDistricts
-      });
+      syncChoiceButtons();
+    } catch (error) {
+      console.warn("Draft restore failed.", error);
     }
+  }
 
-    /* =========================================================
-       FORM DATA
-    ========================================================== */
-
-    function getFormData() {
-      return {
-        fullName: cleanText(byId("fullName").value),
-        email: cleanText(byId("email").value).toLowerCase(),
-        contactCountryCode: cleanText(byId("contactCountryCode").value),
-        contactNumber: digitsOnly(byId("contactNumber").value),
-        whatsappCountryCode: cleanText(byId("whatsappCountryCode").value),
-        whatsappNumber: digitsOnly(byId("whatsappNumber").value),
-
-        dateOfBirth: cleanText(byId("dateOfBirth").value),
-        ageGroup: cleanText(byId("ageGroup").value),
-
-        gender: cleanText(byId("gender").value),
-        country: cleanText(byId("country").value),
-        stateName: cleanText(byId("stateName").value),
-        district: cleanText(byId("district").value),
-        pincode: digitsOnly(byId("pincode").value),
-        postOffice: cleanText(byId("postOffice").value),
-        fullAddress: cleanLongText(byId("fullAddress").value),
-
-        selectedRole: cleanText(byId("selectedRole").value),
-        workType: cleanText(byId("workType").value),
-        workTimeType: cleanText(byId("workTimeType").value),
-        weeklyAvailability: cleanText(byId("weeklyAvailability").value),
-
-        educationLevel: cleanText(byId("educationLevel").value),
-        currentStatus: cleanText(byId("currentStatus").value),
-        experienceLevel: cleanText(byId("experienceLevel").value),
-
-        skills: cleanLongText(byId("skills").value),
-        portfolioUrl: cleanText(byId("portfolioUrl").value),
-        linkedinUrl: cleanText(byId("linkedinUrl").value),
-        githubUrl: cleanText(byId("githubUrl").value),
-        instagramUrl: cleanText(byId("instagramUrl").value),
-
-        whyJoin: cleanLongText(byId("whyJoin").value),
-        previousWork: cleanLongText(byId("previousWork").value),
-        certificateDeliveryRequired: byId("certificateDeliveryRequired").checked,
-        consentAccuracy: byId("consentAccuracy").checked,
-        consentContact: byId("consentContact").checked
-      };
+  function clearDraft() {
+    try {
+      localStorage.removeItem(DRAFT_KEY);
+    } catch (error) {
+      console.warn("Draft clear failed.", error);
     }
+  }
 
-    function validateForm(data) {
-      if (data.fullName.length < 2) return "Enter a valid full name.";
-      if (!isValidEmail(data.email)) return "Enter a valid Gmail/email address.";
-      if (!data.contactCountryCode) return "Select contact country code.";
-      if (data.contactNumber.length < 7 || data.contactNumber.length > 15) return "Enter a valid contact number.";
+  function resetHiddenAndSearchFields() {
+    setSafeValue("selectedRole", "");
+    setSafeValue("workType", "");
+    setSafeValue("workTimeType", "");
+    setSafeValue("country", "");
+    setSafeValue("stateName", "");
+    setSafeValue("district", "");
+    setSafeValue("countrySearch", "");
+    setSafeValue("stateSearch", "");
+    setSafeValue("districtSearch", "");
+    syncChoiceButtons();
+  }
 
-      if (data.whatsappNumber) {
-        if (!data.whatsappCountryCode) return "Select WhatsApp country code.";
-        if (data.whatsappNumber.length < 7 || data.whatsappNumber.length > 15) return "Enter a valid WhatsApp number.";
-      }
+  /* =========================================================
+     SUBMIT
+  ========================================================== */
 
-      if (!data.ageGroup) return "Select age group.";
-      if (!data.country) return "Select country from search list.";
-      if (!data.stateName) return "Select state/province from search list.";
-      if (!data.district) return "Select district from search list.";
-      if (data.pincode.length < 4 || data.pincode.length > 10) return "Enter a valid pincode/postal code.";
+  async function submitApplication(data) {
+    const payload = buildApiPayload(data);
 
-      if (!data.selectedRole) return "Select one role.";
-      if (!data.workType) return "Select work type.";
-      if (!data.workTimeType) return "Select work time type.";
-      if (!data.weeklyAvailability) return "Select weekly availability.";
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(function () {
+      controller.abort();
+    }, 25000);
 
-      if (!data.educationLevel) return "Select education level.";
-      if (!data.currentStatus) return "Select current status.";
-      if (!data.experienceLevel) return "Select experience level.";
-
-      if (data.skills.length < 20) return "Write your skills in at least 20 characters.";
-      if (data.whyJoin.length < 40) return "Write why you want to join in at least 40 characters.";
-
-      if (!isValidUrl(data.portfolioUrl)) return "Portfolio URL must start with http:// or https://.";
-      if (!isValidUrl(data.linkedinUrl)) return "LinkedIn URL must start with http:// or https://.";
-      if (!isValidUrl(data.githubUrl)) return "GitHub URL must start with http:// or https://.";
-      if (!isValidUrl(data.instagramUrl)) return "Instagram URL must start with http:// or https://.";
-
-      if (!data.consentAccuracy) return "Confirm that your information is accurate.";
-      if (!data.consentContact) return "Allow AcademeForge to contact you.";
-
-      return "";
-    }
-
-    /* =========================================================
-       DRAFT
-    ========================================================== */
-
-    function saveDraft() {
-      try {
-        localStorage.setItem(DRAFT_KEY, JSON.stringify(getFormData()));
-      } catch (error) {
-        console.warn("Draft save failed.", error);
-      }
-    }
-
-    function restoreDraft() {
-      try {
-        const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}");
-
-        Object.keys(draft).forEach(function (key) {
-          const element = byId(key);
-
-          if (!element) {
-            return;
-          }
-
-          if (element.type === "checkbox") {
-            element.checked = Boolean(draft[key]);
-          } else {
-            element.value = draft[key] || "";
-          }
-        });
-
-        byId("countrySearch").value = draft.country || "";
-        byId("stateSearch").value = draft.stateName || "";
-        byId("districtSearch").value = draft.district || "";
-
-        syncChoiceButtons();
-      } catch (error) {
-        console.warn("Draft restore failed.", error);
-      }
-    }
-
-    function clearDraft() {
-      try {
-        localStorage.removeItem(DRAFT_KEY);
-      } catch (error) {
-        console.warn("Draft clear failed.", error);
-      }
-    }
-
-    /* =========================================================
-       SUBMIT
-    ========================================================== */
-
-    async function submitApplication(data) {
-      const endpoint = SUPABASE_PROJECT_URL.replace(/\/$/, "") + "/functions/v1/" + EDGE_FUNCTION_NAME;
-
-      const response = await fetch(endpoint, {
+    try {
+      const response = await fetch(EDGE_FUNCTION_URL, {
         method: "POST",
+        mode: "cors",
+        cache: "no-store",
+        credentials: "omit",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
-          "apikey": SUPABASE_ANON_KEY
+          "Accept": "application/json"
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(payload),
+        signal: controller.signal
       });
 
-      const result = await response.json().catch(function () {
-        return {
-          ok: false,
-          error: "Invalid server response."
-        };
-      });
+      window.clearTimeout(timeoutId);
 
-      if (!response.ok || !result.ok) {
-        throw new Error(result.error || "Application submit failed.");
+      const contentType = response.headers.get("content-type") || "";
+      const result = contentType.includes("application/json")
+        ? await response.json().catch(function () {
+            return {
+              success: false,
+              ok: false,
+              error: "Invalid server JSON response."
+            };
+          })
+        : {
+            success: false,
+            ok: false,
+            error: "Server did not return JSON response."
+          };
+
+      const success = result.success === true || result.ok === true;
+
+      if (!response.ok || !success) {
+        throw new Error(
+          result.error ||
+          result.message ||
+          "Application submit failed. Server status: " + response.status
+        );
       }
 
-      return result;
+      return {
+        applicationId:
+          result.applicationId ||
+          result.application_id ||
+          (result.data && result.data.id) ||
+          result.id ||
+          "submitted",
+        raw: result
+      };
+    } catch (error) {
+      window.clearTimeout(timeoutId);
+
+      if (error instanceof DOMException && error.name === "AbortError") {
+        throw new Error("Request timeout. Please try again.");
+      }
+
+      if (!navigator.onLine) {
+        throw new Error("Internet disconnected. Please connect and try again.");
+      }
+
+      if (error instanceof TypeError && String(error.message || "").toLowerCase().includes("fetch")) {
+        throw new Error("Failed to fetch. Check Edge Function deploy, CORS headers, and --no-verify-jwt.");
+      }
+
+      throw new Error(error instanceof Error ? error.message : "Application could not be submitted.");
+    }
+  }
+
+  function initForm() {
+    const form = byId("joinTeamForm");
+    const submitBtn = byId("submitBtn");
+    const saveDraftBtn = byId("saveDraftBtn");
+
+    if (!form || !submitBtn) {
+      return;
     }
 
-    function initForm() {
-      const form = byId("joinTeamForm");
-      const submitBtn = byId("submitBtn");
-      const saveDraftBtn = byId("saveDraftBtn");
+    form.addEventListener("input", function () {
+      clearAlert();
+      saveDraft();
+    });
 
-      if (!form || !submitBtn) {
+    form.addEventListener("change", function () {
+      clearAlert();
+      saveDraft();
+    });
+
+    if (saveDraftBtn) {
+      saveDraftBtn.addEventListener("click", function () {
+        saveDraft();
+        showAlert("success", "Draft saved on this device.");
+      });
+    }
+
+    form.addEventListener("reset", function () {
+      setTimeout(function () {
+        clearDraft();
+        resetHiddenAndSearchFields();
+        clearAlert();
+      }, 0);
+    });
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const data = getFormData();
+      const error = validateForm(data);
+
+      if (error) {
+        showAlert("error", error);
         return;
       }
 
-      form.addEventListener("input", function () {
-        clearAlert();
-        saveDraft();
-      });
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Updating application, please wait...";
 
-      form.addEventListener("change", function () {
-        clearAlert();
-        saveDraft();
-      });
+      try {
+        const result = await submitApplication(data);
 
-      if (saveDraftBtn) {
-        saveDraftBtn.addEventListener("click", function () {
-          saveDraft();
-          showAlert("success", "Draft saved on this device.");
-        });
+        clearDraft();
+        form.reset();
+        resetHiddenAndSearchFields();
+
+        showAlert(
+          "success",
+          "Application submitted successfully. Application ID: " + result.applicationId
+        );
+      } catch (error) {
+        showAlert("error", error.message || "Application could not be submitted.");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit Application";
       }
+    });
+  }
 
-      form.addEventListener("reset", function () {
-        setTimeout(function () {
-          clearDraft();
-          byId("selectedRole").value = "";
-          byId("workType").value = "";
-          byId("workTimeType").value = "";
-          byId("country").value = "";
-          byId("stateName").value = "";
-          byId("district").value = "";
-          byId("countrySearch").value = "";
-          byId("stateSearch").value = "";
-          byId("districtSearch").value = "";
-          syncChoiceButtons();
-          clearAlert();
-        }, 0);
-      });
+  /* =========================================================
+     INIT
+  ========================================================== */
 
-      form.addEventListener("submit", async function (event) {
-        event.preventDefault();
+  document.addEventListener("DOMContentLoaded", function () {
+    const year = byId("year");
 
-        const data = getFormData();
-        const error = validateForm(data);
-
-        if (error) {
-          showAlert("error", error);
-          return;
-        }
-
-        if (SUPABASE_PROJECT_URL.includes("https://afooyyydhlwngzssgqih.supabase.co") || SUPABASE_ANON_KEY.includes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmb295eXlkaGx3bmd6c3NncWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NDQxMjgsImV4cCI6MjA5NDIyMDEyOH0.KG0XO0oP_2MpewHoIwTtbrKg5FkyOYRUtVzLH1MSJiE")) {
-          showAlert("error", "Supabase URL and anon key are not configured in this HTML file.");
-          return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Submitting...";
-
-        try {
-          const result = await submitApplication(data);
-
-          clearDraft();
-          form.reset();
-
-          byId("selectedRole").value = "";
-          byId("workType").value = "";
-          byId("workTimeType").value = "";
-          byId("country").value = "";
-          byId("stateName").value = "";
-          byId("district").value = "";
-          byId("countrySearch").value = "";
-          byId("stateSearch").value = "";
-          byId("districtSearch").value = "";
-          syncChoiceButtons();
-
-          showAlert(
-            "success",
-            "Application submitted successfully. Application ID: " + result.applicationId
-          );
-        } catch (error) {
-          showAlert("error", error.message || "Application could not be submitted.");
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Submit Application";
-        }
-      });
+    if (year) {
+      year.textContent = String(new Date().getFullYear());
     }
 
-    /* =========================================================
-       INIT
-    ========================================================== */
-
-    document.addEventListener("DOMContentLoaded", function () {
-      byId("year").textContent = String(new Date().getFullYear());
-
-      initTheme();
-      initCountryCodes();
-      initChoiceButtons();
-      initLocationSelectors();
-      restoreDraft();
-      initForm();
-    });
+    initTheme();
+    initCountryCodes();
+    initChoiceButtons();
+    initLocationSelectors();
+    restoreDraft();
+    initForm();
+  });
   </script>
 </body>
 </html>
