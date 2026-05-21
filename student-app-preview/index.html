@@ -1327,6 +1327,251 @@
         background: linear-gradient(135deg, var(--bg), var(--bg-2));
       }
     }
+    /* =========================================================
+   PHONE PREVIEW SIZE FIX - DESKTOP + LAPTOP + MOBILE
+   Paste at VERY END of CSS
+========================================================= */
+
+/* Hero ko viewport ke andar fit rakho */
+.main {
+  min-height: calc(100vh - 118px);
+  display: grid;
+  align-items: center;
+  padding: clamp(18px, 2.6vw, 38px) 0 clamp(24px, 3vw, 42px);
+  overflow: hidden;
+}
+
+.hero {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 520px);
+  align-items: center;
+  gap: clamp(28px, 4vw, 62px);
+}
+
+/* Right side ko cut hone se bachao */
+.hero-right {
+  min-height: 0;
+  height: min(760px, calc(100vh - 145px));
+  display: grid;
+  place-items: center;
+  align-self: center;
+  overflow: visible;
+}
+
+/* Main fix: height control karo, width auto aspect-ratio se */
+.phone-shell {
+  width: auto !important;
+  height: min(690px, calc(100vh - 165px)) !important;
+  max-height: 690px !important;
+  aspect-ratio: 390 / 844;
+  border-radius: 44px;
+  padding: 11px;
+  transform: none !important;
+  align-self: center;
+  justify-self: center;
+}
+
+/* mPokket jaisa compact laptop view */
+@media (min-width: 1280px) and (max-height: 850px) {
+  .phone-shell {
+    height: min(620px, calc(100vh - 150px)) !important;
+    max-height: 620px !important;
+  }
+
+  .hero-right {
+    height: min(650px, calc(100vh - 138px));
+  }
+
+  .hero h1 {
+    font-size: clamp(56px, 6.4vw, 92px);
+  }
+
+  .hero p {
+    font-size: clamp(17px, 1.55vw, 22px);
+    line-height: 1.62;
+  }
+
+  .badge {
+    margin-bottom: 22px;
+  }
+
+  .hero-actions {
+    margin-top: 28px;
+  }
+
+  .feature-grid {
+    margin-top: 28px;
+  }
+}
+
+/* Short laptop screens ke liye aur compact */
+@media (min-width: 1024px) and (max-height: 760px) {
+  .main {
+    padding-top: 14px;
+    padding-bottom: 20px;
+  }
+
+  .phone-shell {
+    height: min(560px, calc(100vh - 132px)) !important;
+    max-height: 560px !important;
+    border-radius: 38px;
+    padding: 10px;
+  }
+
+  .phone-screen {
+    border-radius: 30px;
+  }
+
+  .phone-shell::before {
+    top: 14px;
+    width: 104px;
+    height: 24px;
+  }
+
+  .hero-right {
+    height: min(590px, calc(100vh - 120px));
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 5.8vw, 78px);
+  }
+
+  .hero p {
+    max-width: 680px;
+    margin-top: 22px;
+    font-size: 18px;
+    line-height: 1.55;
+  }
+
+  .feature-grid {
+    display: none;
+  }
+}
+
+/* Floating cards ko phone ke upar cut/crowd nahi hone dena */
+.floating-card {
+  z-index: 14;
+  max-width: 260px;
+}
+
+.card-one {
+  top: 12%;
+  left: -7%;
+}
+
+.card-two {
+  right: -6%;
+  bottom: 16%;
+}
+
+/* Agar screen short hai to floating card hide, phone clean dikhega */
+@media (max-height: 760px) and (min-width: 1024px) {
+  .floating-card {
+    display: none;
+  }
+}
+
+/* Desktop par bottom note phone ke neeche zyada space na le */
+.bottom-note {
+  margin-top: 14px;
+  max-width: 420px;
+}
+
+/* Tablet */
+@media (max-width: 1240px) {
+  .main {
+    overflow: visible;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-right {
+    height: auto;
+    min-height: auto;
+  }
+
+  .phone-shell {
+    width: min(340px, 100%) !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  .card-one,
+  .card-two {
+    display: none;
+  }
+}
+
+/* Mobile screen par phone preview naturally fit */
+@media (max-width: 760px) {
+  .main {
+    overflow: visible;
+    padding-top: 28px;
+    padding-bottom: 44px;
+  }
+
+  .phone-shell {
+    width: min(300px, 100%) !important;
+    height: auto !important;
+    max-height: none !important;
+    border-radius: 38px;
+    padding: 9px;
+  }
+
+  .phone-screen {
+    border-radius: 30px;
+  }
+
+  .phone-shell::before {
+    top: 13px;
+    width: 96px;
+    height: 23px;
+  }
+
+  .phone-status {
+    height: 38px;
+    padding-inline: 18px;
+    font-size: 11px;
+  }
+
+  .iframe-mask-top {
+    height: 38px;
+  }
+
+  .start-card {
+    width: min(240px, 100%);
+  }
+
+  .start-logo {
+    width: 62px;
+    height: 62px;
+    border-radius: 21px;
+    font-size: 21px;
+  }
+
+  .start-card h2 {
+    font-size: 19px;
+  }
+
+  .start-card p {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .start-button {
+    min-height: 42px;
+    padding: 11px 15px;
+    font-size: 12px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 390px) {
+  .phone-shell {
+    width: min(278px, 100%) !important;
+  }
+}
   </style>
 </head>
 
