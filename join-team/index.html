@@ -995,16 +995,18 @@
               <h3>Personal Details</h3>
               <p>Name, email, phone, and basic profile information.</p>
 
-              <div class="form-grid">
-                <div class="field">
-                  <label for="fullName">Full Name <span class="required">*</span></label>
-                  <input id="fullName" name="fullName" type="text" maxlength="90" placeholder="Enter your full name" required />
-                </div>
-
-                <div class="field">
-                  <label for="email">Gmail / Email <span class="required">*</span></label>
-                  <input id="email" name="email" type="email" maxlength="140" placeholder="example@gmail.com" required />
-                </div>
+              <div class="field">
+  <label for="fullName">Full Name <span class="required">*</span></label>
+  <input
+    id="fullName"
+    name="fullName"
+    type="text"
+    maxlength="90"
+    placeholder="Enter your full name"
+    autocomplete="name"
+    required
+  />
+</div>
 
                 <div class="field">
                   <label>Contact Number <span class="required">*</span></label>
@@ -1691,138 +1693,55 @@
   }
 
   /* =========================================================
-     SEARCH SELECT
-  ========================================================== */
-
-  function setupSearchSelect(config) {
-    const input = byId(config.inputId);
-    const hidden = byId(config.hiddenId);
-    const list = byId(config.listId);
-
-    if (!input || !hidden || !list) {
-      return;
-    }
-
-    function render() {
-      const query = input.value.trim().toLowerCase();
-      const items = config.getItems();
-
-      list.innerHTML = "";
-
-      const filtered = items
-        .filter(function (item) {
-          return item.toLowerCase().includes(query);
-        })
-        .slice(0, 80);
-
-      filtered.forEach(function (item) {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "search-option";
-        button.textContent = item;
-
-        button.addEventListener("click", function () {
-          input.value = item;
-          hidden.value = item;
-          list.classList.remove("open");
-
-          if (typeof config.onSelect === "function") {
-            config.onSelect(item);
-          }
-
-          saveDraft();
-          clearAlert();
-        });
-
-        list.appendChild(button);
-      });
-
-      if (filtered.length === 0) {
-        const empty = document.createElement("button");
-        empty.type = "button";
-        empty.className = "search-option";
-        empty.textContent = "No result found";
-        empty.disabled = true;
-        list.appendChild(empty);
-      }
-
-      list.classList.add("open");
-    }
-
-    input.addEventListener("focus", render);
-
-    input.addEventListener("input", function () {
-      hidden.value = "";
-      render();
-    });
-
-    document.addEventListener("click", function (event) {
-      if (input.parentElement && !input.parentElement.contains(event.target)) {
-        list.classList.remove("open");
-      }
-    });
-  }
-
-  function getCountries() {
-    return Object.keys(locationData);
-  }
-
-  function getStates() {
-    const country = safeElementValue("country");
-    const states = locationData[country] || {};
-    return Object.keys(states);
-  }
-
-  function getDistricts() {
-    const country = safeElementValue("country");
-    const state = safeElementValue("stateName");
-    const states = locationData[country] || {};
-    return states[state] || [];
-  }
-
-  function initLocationSelectors() {
-    setupSearchSelect({
-      inputId: "countrySearch",
-      hiddenId: "country",
-      listId: "countryList",
-      getItems: getCountries,
-      onSelect: function () {
-        setSafeValue("stateSearch", "");
-        setSafeValue("stateName", "");
-        setSafeValue("districtSearch", "");
-        setSafeValue("district", "");
-      }
-    });
-
-    setupSearchSelect({
-      inputId: "stateSearch",
-      hiddenId: "stateName",
-      listId: "stateList",
-      getItems: getStates,
-      onSelect: function () {
-        setSafeValue("districtSearch", "");
-        setSafeValue("district", "");
-      }
-    });
-
-    setupSearchSelect({
-      inputId: "districtSearch",
-      hiddenId: "district",
-      listId: "districtList",
-      getItems: getDistricts
-    });
-  }
-
-  /* =========================================================
      FORM DATA
   ========================================================== */
 
+  function getFieldValueByPossibleIds(possibleIds) {
+    for (let index = 0; index < possibleIds.length; index += 1) {
+      const element = byId(possibleIds[index]);
+
+      if (element && typeof element.value !== "undefined") {
+        return element.value;
+      }
+    }
+
+    return "";
+  }
+
+  function getFullNameValue() {
+    const exactElement = byId("fullName");
+
+    if (exactElement && typeof exactElement.value !== "undefined") {
+      return exactElement.value;
+    }
+
+    const fallbackElement =
+      document.querySelector('input[name="fullName"]') ||
+      document.querySelector('input[name="full_name"]') ||
+      document.querySelector('input[name="name"]') ||
+      document.querySelector('input[id="fullname"]') ||
+      document.querySelector('input[id="full-name"]') ||
+      document.querySelector('input[id="name"]') ||
+      document.querySelector('input[placeholder*="full name" i]') ||
+      document.querySelector('input[placeholder*="name" i]');
+
+    if (fallbackElement && typeof fallbackElement.value !== "undefined") {
+      return fallbackElement.value;
+    }
+
+    return "";
+  }
+
   function getFormData() {
+    const fullNameValue = getFullNameValue();
+
     return {
-      fullName: cleanText(safeElementValue("fullName")),
+      fullName: cleanText(fullNameValue),
       email: cleanText(safeElementValue("email")).toLowerCase(),
+
       contactCountryCode: cleanText(safeElementValue("contactCountryCode")),
       contactNumber: digitsOnly(safeElementValue("contactNumber")),
+
       whatsappCountryCode: cleanText(safeElementValue("whatsappCountryCode")),
       whatsappNumber: digitsOnly(safeElementValue("whatsappNumber")),
 
@@ -1830,9 +1749,11 @@
       ageGroup: cleanText(safeElementValue("ageGroup")),
 
       gender: cleanText(safeElementValue("gender")),
+
       country: cleanText(safeElementValue("country")),
       stateName: cleanText(safeElementValue("stateName")),
       district: cleanText(safeElementValue("district")),
+
       pincode: digitsOnly(safeElementValue("pincode")),
       postOffice: cleanText(safeElementValue("postOffice")),
       fullAddress: cleanLongText(safeElementValue("fullAddress")),
@@ -1847,6 +1768,7 @@
       experienceLevel: cleanText(safeElementValue("experienceLevel")),
 
       skills: cleanLongText(safeElementValue("skills")),
+
       portfolioUrl: cleanText(safeElementValue("portfolioUrl")),
       linkedinUrl: cleanText(safeElementValue("linkedinUrl")),
       githubUrl: cleanText(safeElementValue("githubUrl")),
@@ -1854,6 +1776,7 @@
 
       whyJoin: cleanLongText(safeElementValue("whyJoin")),
       previousWork: cleanLongText(safeElementValue("previousWork")),
+
       certificateDeliveryRequired: safeElementChecked("certificateDeliveryRequired"),
       consentAccuracy: safeElementChecked("consentAccuracy"),
       consentContact: safeElementChecked("consentContact")
@@ -1861,41 +1784,117 @@
   }
 
   function validateForm(data) {
-    if (data.fullName.length < 2) return "Enter a valid full name.";
-    if (!isValidEmail(data.email)) return "Enter a valid Gmail/email address.";
-    if (!data.contactCountryCode) return "Select contact country code.";
-    if (data.contactNumber.length < 7 || data.contactNumber.length > 15) return "Enter a valid contact number.";
+    console.log("JOIN TEAM FORM DATA:", data);
 
-    if (data.whatsappNumber) {
-      if (!data.whatsappCountryCode) return "Select WhatsApp country code.";
-      if (data.whatsappNumber.length < 7 || data.whatsappNumber.length > 15) return "Enter a valid WhatsApp number.";
+    if (!data.fullName || data.fullName.length < 2) {
+      return "Enter a valid full name.";
     }
 
-    if (!data.ageGroup) return "Select age group.";
-    if (!data.country) return "Select country from search list.";
-    if (!data.stateName) return "Select state/province from search list.";
-    if (!data.district) return "Select district from search list.";
-    if (data.pincode.length < 4 || data.pincode.length > 10) return "Enter a valid pincode/postal code.";
+    if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' .-]{2,90}$/.test(data.fullName)) {
+      return "Full name can contain only letters, spaces, dots, hyphens, and apostrophes.";
+    }
 
-    if (!data.selectedRole) return "Select one role.";
-    if (!data.workType) return "Select work type.";
-    if (!data.workTimeType) return "Select work time type.";
-    if (!data.weeklyAvailability) return "Select weekly availability.";
+    if (!isValidEmail(data.email)) {
+      return "Enter a valid Gmail/email address.";
+    }
 
-    if (!data.educationLevel) return "Select education level.";
-    if (!data.currentStatus) return "Select current status.";
-    if (!data.experienceLevel) return "Select experience level.";
+    if (!data.contactCountryCode) {
+      return "Select contact country code.";
+    }
 
-    if (data.skills.length < 20) return "Write your skills in at least 20 characters.";
-    if (data.whyJoin.length < 40) return "Write why you want to join in at least 40 characters.";
+    if (data.contactNumber.length < 7 || data.contactNumber.length > 15) {
+      return "Enter a valid contact number.";
+    }
 
-    if (!isValidUrl(data.portfolioUrl)) return "Portfolio URL must start with http:// or https://.";
-    if (!isValidUrl(data.linkedinUrl)) return "LinkedIn URL must start with http:// or https://.";
-    if (!isValidUrl(data.githubUrl)) return "GitHub URL must start with http:// or https://.";
-    if (!isValidUrl(data.instagramUrl)) return "Instagram URL must start with http:// or https://.";
+    if (data.whatsappNumber) {
+      if (!data.whatsappCountryCode) {
+        return "Select WhatsApp country code.";
+      }
 
-    if (!data.consentAccuracy) return "Confirm that your information is accurate.";
-    if (!data.consentContact) return "Allow AcademeForge to contact you.";
+      if (data.whatsappNumber.length < 7 || data.whatsappNumber.length > 15) {
+        return "Enter a valid WhatsApp number.";
+      }
+    }
+
+    if (!data.ageGroup) {
+      return "Select age group.";
+    }
+
+    if (!data.country) {
+      return "Select country from search list.";
+    }
+
+    if (!data.stateName) {
+      return "Select state/province from search list.";
+    }
+
+    if (!data.district) {
+      return "Select district from search list.";
+    }
+
+    if (data.pincode.length < 4 || data.pincode.length > 10) {
+      return "Enter a valid pincode/postal code.";
+    }
+
+    if (!data.selectedRole) {
+      return "Select one role.";
+    }
+
+    if (!data.workType) {
+      return "Select work type.";
+    }
+
+    if (!data.workTimeType) {
+      return "Select work time type.";
+    }
+
+    if (!data.weeklyAvailability) {
+      return "Select weekly availability.";
+    }
+
+    if (!data.educationLevel) {
+      return "Select education level.";
+    }
+
+    if (!data.currentStatus) {
+      return "Select current status.";
+    }
+
+    if (!data.experienceLevel) {
+      return "Select experience level.";
+    }
+
+    if (data.skills.length < 20) {
+      return "Write your skills in at least 20 characters.";
+    }
+
+    if (data.whyJoin.length < 40) {
+      return "Write why you want to join in at least 40 characters.";
+    }
+
+    if (!isValidUrl(data.portfolioUrl)) {
+      return "Portfolio URL must start with http:// or https://.";
+    }
+
+    if (!isValidUrl(data.linkedinUrl)) {
+      return "LinkedIn URL must start with http:// or https://.";
+    }
+
+    if (!isValidUrl(data.githubUrl)) {
+      return "GitHub URL must start with http:// or https://.";
+    }
+
+    if (!isValidUrl(data.instagramUrl)) {
+      return "Instagram URL must start with http:// or https://.";
+    }
+
+    if (!data.consentAccuracy) {
+      return "Confirm that your information is accurate.";
+    }
+
+    if (!data.consentContact) {
+      return "Allow AcademeForge to contact you.";
+    }
 
     return "";
   }
