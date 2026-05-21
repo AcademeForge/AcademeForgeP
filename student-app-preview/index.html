@@ -1573,66 +1573,46 @@
   }
 }
     /* =========================================================
-   MOVING TEXT BANNER FIX - MOBILE + LAPTOP + DESKTOP
-   Paste at VERY END of CSS
+   ACTUAL TOP STRIP MOVING BANNER FIX
+   Works with: .top-strip > .strip-track
 ========================================================= */
 
-.top-banner,
-.text-banner,
-.marquee,
-.news-ticker,
-.update-strip {
+.top-strip {
   position: relative !important;
+  z-index: 50 !important;
   width: 100% !important;
   overflow: hidden !important;
   white-space: nowrap !important;
-  isolation: isolate;
+  border-bottom: 1px solid var(--line) !important;
 }
 
-/* Common inner/track selectors */
-.top-banner-track,
-.text-banner-track,
-.marquee-track,
-.news-ticker-track,
-.update-strip-track,
-.top-banner .track,
-.text-banner .track,
-.marquee .track,
-.news-ticker .track,
-.update-strip .track {
+.strip-track {
   display: flex !important;
   align-items: center !important;
   width: max-content !important;
   min-width: max-content !important;
+  gap: 48px !important;
   white-space: nowrap !important;
   will-change: transform !important;
-  animation-name: afMarqueeMove !important;
-  animation-duration: 22s !important;
-  animation-timing-function: linear !important;
-  animation-iteration-count: infinite !important;
-  animation-play-state: running !important;
   transform: translate3d(0, 0, 0);
+  animation: stripMoveFixed 26s linear infinite !important;
+  animation-play-state: running !important;
 }
 
-/* Text items */
-.top-banner span,
-.text-banner span,
-.marquee span,
-.news-ticker span,
-.update-strip span,
-.top-banner a,
-.text-banner a,
-.marquee a,
-.news-ticker a,
-.update-strip a {
+.strip-track span {
   flex: 0 0 auto !important;
   display: inline-flex !important;
   align-items: center !important;
+  gap: 10px !important;
   white-space: nowrap !important;
 }
 
-/* Main animation */
-@keyframes afMarqueeMove {
+/* Do not pause on laptop hover */
+.top-strip:hover .strip-track {
+  animation-play-state: running !important;
+}
+
+@keyframes stripMoveFixed {
   0% {
     transform: translate3d(0, 0, 0);
   }
@@ -1642,70 +1622,22 @@
   }
 }
 
-/* Desktop/laptop force animation ON */
 @media (min-width: 769px) {
-  .top-banner-track,
-  .text-banner-track,
-  .marquee-track,
-  .news-ticker-track,
-  .update-strip-track,
-  .top-banner .track,
-  .text-banner .track,
-  .marquee .track,
-  .news-ticker .track,
-  .update-strip .track {
-    animation-name: afMarqueeMove !important;
+  .strip-track {
     animation-duration: 26s !important;
-    animation-timing-function: linear !important;
-    animation-iteration-count: infinite !important;
-    animation-play-state: running !important;
   }
 }
 
-/* Mobile slightly faster */
 @media (max-width: 768px) {
-  .top-banner-track,
-  .text-banner-track,
-  .marquee-track,
-  .news-ticker-track,
-  .update-strip-track,
-  .top-banner .track,
-  .text-banner .track,
-  .marquee .track,
-  .news-ticker .track,
-  .update-strip .track {
-    animation-duration: 18s !important;
+  .strip-track {
+    gap: 34px !important;
+    animation-duration: 20s !important;
   }
 }
 
-/* Do not pause on hover */
-.top-banner:hover .top-banner-track,
-.text-banner:hover .text-banner-track,
-.marquee:hover .marquee-track,
-.news-ticker:hover .news-ticker-track,
-.update-strip:hover .update-strip-track,
-.top-banner:hover .track,
-.text-banner:hover .track,
-.marquee:hover .track,
-.news-ticker:hover .track,
-.update-strip:hover .track {
-  animation-play-state: running !important;
-}
-
-/* If browser has reduced-motion ON, still allow slow banner */
 @media (prefers-reduced-motion: reduce) {
-  .top-banner-track,
-  .text-banner-track,
-  .marquee-track,
-  .news-ticker-track,
-  .update-strip-track,
-  .top-banner .track,
-  .text-banner .track,
-  .marquee .track,
-  .news-ticker .track,
-  .update-strip .track {
-    animation-duration: 45s !important;
-    animation-play-state: running !important;
+  .strip-track {
+    animation: stripMoveFixed 42s linear infinite !important;
   }
 }
   </style>
@@ -1763,7 +1695,7 @@
       <div class="hero-left">
         <div class="badge">
           <span class="badge-dot"></span>
-          Fast student app preview
+          Fastest student app preview
         </div>
 
         <h1>
@@ -1814,8 +1746,8 @@
         <div class="phone-shell" aria-label="Student app mobile preview">
           <div class="phone-screen">
             <div class="phone-status">
-              <span id="phoneTime">09:41</span>
-              <span>5G ▰▰▰ 100%</span>
+              <span id="phoneTime">07:07</span>
+              <span>7G ▰▰▰ 80%</span>
             </div>
 
             <iframe
@@ -1858,7 +1790,7 @@
 
         <div class="bottom-note">
           <i></i>
-          <span>Next visit loads faster using browser cache. Offline shell also opens without network.</span>
+          <span>Fastest Student app preview.</span>
         </div>
       </div>
     </section>
@@ -1895,7 +1827,7 @@
 
         <div id="offlineNote" class="offline-note">
           <i>!</i>
-          <span>You are offline. Cached AcademeForge page content is available. Online-only features may not load.</span>
+          <span>You are offline. Some features may not work properly.</span>
         </div>
 
         <div class="platform-grid" aria-label="Download platform options">
