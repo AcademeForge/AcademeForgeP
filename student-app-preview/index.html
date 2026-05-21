@@ -1640,6 +1640,60 @@
     animation: stripMoveFixed 42s linear infinite !important;
   }
 }
+    /* =========================================================
+   PHONE PREVIEW WIDTH INCREASE FIX
+   Paste at VERY END of CSS
+========================================================= */
+
+.phone-shell {
+  width: min(390px, 30vw) !important;
+  height: min(760px, calc(100vh - 145px)) !important;
+  max-height: 760px !important;
+  aspect-ratio: 390 / 844 !important;
+}
+
+.phone-screen {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.app-frame {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Large laptop / desktop */
+@media (min-width: 1280px) {
+  .phone-shell {
+    width: min(420px, 31vw) !important;
+    height: min(790px, calc(100vh - 135px)) !important;
+  }
+}
+
+/* Short laptop screens */
+@media (min-width: 1024px) and (max-height: 780px) {
+  .phone-shell {
+    width: min(360px, 28vw) !important;
+    height: min(650px, calc(100vh - 125px)) !important;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .phone-shell {
+    width: min(360px, 88vw) !important;
+    height: auto !important;
+    aspect-ratio: 390 / 844 !important;
+  }
+}
+
+/* Mobile browser */
+@media (max-width: 640px) {
+  .phone-shell {
+    width: min(330px, 92vw) !important;
+    height: auto !important;
+  }
+}
   </style>
 </head>
 
@@ -1742,13 +1796,6 @@
             <span>Basic page opens again</span>
           </span>
         </div>
-
-        <div class="phone-shell" aria-label="Student app mobile preview">
-          <div class="phone-screen">
-            <div class="phone-status">
-              <span id="phoneTime">07:07</span>
-              <span>7G ▰▰▰ 80%</span>
-            </div>
 
             <iframe
               id="studentAppFrame"
