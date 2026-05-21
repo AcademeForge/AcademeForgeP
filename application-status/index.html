@@ -1862,125 +1862,182 @@ html[data-theme="dark"] .footer {
       }
     }
 
-    async function fetchApplicationStatus(applicationId, email, mobile) {
-      const params = new URLSearchParams();
+  async function fetchApplicationStatus(applicationId, email, mobile) {
+  const cleanApplicationId = clean(applicationId);
+  const cleanEmail = clean(email).toLowerCase();
+  const cleanMobile = digits(mobile);
 
-      if (applicationId) {
-        params.set("application_id", applicationId);
-      }
+  if (!cleanApplicationId && !cleanEmail && !cleanMobile) {
+    throw new Error("Enter Application ID, Email, or Mobile Number.");
+  }
 
-      if (email) {
-        params.set("email", clean(email).toLowerCase());
-      }
+  const params = new URLSearchParams();
 
-      if (mobile) {
-        params.set("mobile", digits(mobile));
-      }
+  if (cleanApplicationId) {
+    params.set("application_id", cleanApplicationId);
+    params.set("applicationId", cleanApplicationId);
+    params.set("id", cleanApplicationId);
+  }
 
-      if (!params.toString()) {
-        throw new Error("Application ID ya email + mobile number enter karo.");
-      }
+  if (cleanEmail) {
+    params.set("email", cleanEmail);
+    params.set("submitted_email", cleanEmail);
+  }
 
-      const response = await fetch(STATUS_FUNCTION_URL + "?" + params.toString(), {
-        method: "GET",
-        mode: "cors",
-        cache: "no-store",
-        credentials: "omit",
-        headers: {
-          "Accept": "application/json"
-        }
-      });
+  if (cleanMobile) {
+    params.set("mobile", cleanMobile);
+    params.set("phone", cleanMobile);
+    params.set("mobile_number", cleanMobile);
+    params.set("contact_number", cleanMobile);
+  }
 
-      const result = await response.json().catch(function () {
-        return {
-          success: false,
-          ok: false,
-          error: "Invalid status response."
-        };
-      });
+  const response = await fetch(STATUS_FUNCTION_URL + "?" + params.toString(), {
+    method: "GET",
+    mode: "cors",
+    cache: "no-store",
+    credentials: "omit",
+    headers: {
+      "Accept": "application/json"
+    }
+  });
 
-      if (!response.ok || !(result.success === true || result.ok === true)) {
-        throw new Error(result.error || result.details || "Could not load application status.");
-      }
+  const result = await response.json().catch(function () {
+    return {
+      success: false,
+      ok: false,
+      error: "Invalid status response."
+    };
+  });
 
-      return result.data || result.status || result;
+  if (!response.ok || !(result.success === true || result.ok === true)) {
+    throw new Error(
+      result.error ||
+      result.details ||
+      result.message ||
+      "Could not load application status."
+    );
+  }
+
+  const data = result.data || result.status || result.application || result.record || result;
+
+  if (!data || typeof data !== "object") {
+    throw new Error("Application status data not found in server response.");
+  }
+
+  return data;
+}
+
+function fillFromLocalStorage() {
+  const last = getLastApplication();
+
+  /*
+    Application ID auto-fill intentionally disabled.
+    Reason:
+    Agar old/wrong Application ID field me auto-fill ho gaya,
+    backend ID ko priority dega aur email/mobile lookup ignore ho sakta hai.
+  */
+
+  if (last.email) {
+    byId("statusEmail").value = last.email;
+  }
+
+  if (last.mobile) {
+    byId("statusMobile").value = last.mobile;
+  }
+}
+
+function initStatusForm() {
+  const form = byId("statusForm");
+  const button = byId("checkStatusBtn");
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    clearAlert();
+
+    const applicationId = clean(byId("applicationId").value);
+    const email = clean(byId("statusEmail").value).toLowerCase();
+    const mobile = digits(byId("statusMobile").value);
+
+    if (!applicationId && !email && !mobile) {
+      showAlert("error", "Enter Application ID, Email, or Mobile Number.");
+      return;
     }
 
-    function fillFromLocalStorage() {
-      const last = getLastApplication();
-
-      if (last.applicationId) {
-        byId("applicationId").value = last.applicationId;
-      }
-
-      if (last.email) {
-        byId("statusEmail").value = last.email;
-      }
-
-      if (last.mobile) {
-        byId("statusMobile").value = last.mobile;
-      }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      showAlert("error", "Enter a valid email address.");
+      return;
     }
 
-    function initStatusForm() {
-      const form = byId("statusForm");
-      const button = byId("checkStatusBtn");
-
-      form.addEventListener("submit", async function (event) {
-        event.preventDefault();
-        clearAlert();
-
-        const applicationId = clean(byId("applicationId").value);
-        const email = clean(byId("statusEmail").value).toLowerCase();
-        const mobile = digits(byId("statusMobile").value);
-
-        if (!applicationId && (!email || !mobile)) {
-          showAlert("error", "Enter only Application ID OR Enter Both Email + Mobile Number.");
-          return;
-        }
-
-        button.disabled = true;
-        button.textContent = "Checking...";
-
-        try {
-          const status = await fetchApplicationStatus(applicationId, email, mobile);
-          renderStatus(status);
-          showAlert("success", "Application status loaded successfully.");
-        } catch (error) {
-          showAlert("error", error.message || "Could not load status.");
-        } finally {
-          button.disabled = false;
-          button.textContent = "Check Status";
-        }
-      });
-
-      byId("clearBtn").addEventListener("click", function () {
-        byId("applicationId").value = "";
-        byId("statusEmail").value = "";
-        byId("statusMobile").value = "";
-        byId("emptyState").hidden = false;
-        byId("loadedState").hidden = true;
-        byId("statusPanel").classList.remove("celebrate");
-        clearAlert();
-      });
+    if (mobile && mobile.length < 5) {
+      showAlert("error", "Enter a valid mobile number.");
+      return;
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-      byId("year").textContent = new Date().getFullYear();
+    button.disabled = true;
+    button.textContent = "Checking...";
 
-      initTheme();
-      fillFromLocalStorage();
-      initStatusForm();
+    try {
+      const status = await fetchApplicationStatus(applicationId, email, mobile);
+      renderStatus(status);
+      showAlert("success", "Application status loaded successfully.");
+    } catch (error) {
+      showAlert("error", error.message || "Could not load status.");
+    } finally {
+      button.disabled = false;
+      button.textContent = "Check Status";
+    }
+  });
 
-      const params = new URLSearchParams(window.location.search);
-      const applicationId = clean(params.get("application_id"));
-      const email = clean(params.get("email")).toLowerCase();
-      const mobile = digits(params.get("mobile"));
+  byId("clearBtn").addEventListener("click", function () {
+    byId("applicationId").value = "";
+    byId("statusEmail").value = "";
+    byId("statusMobile").value = "";
+    byId("emptyState").hidden = false;
+    byId("loadedState").hidden = true;
+    byId("statusPanel").classList.remove("celebrate");
+    clearAlert();
+  });
+}
 
-      if (applicationId) byId("applicationId").value = applicationId;
-      if (email) byId("statusEmail").value = email;
-      if (mobile) byId("statusMobile").value = mobile;
-    });
+document.addEventListener("DOMContentLoaded", function () {
+  byId("year").textContent = new Date().getFullYear();
+
+  initTheme();
+  fillFromLocalStorage();
+  initStatusForm();
+
+  const params = new URLSearchParams(window.location.search);
+
+  const applicationId = clean(
+    params.get("application_id") ||
+    params.get("applicationId") ||
+    params.get("id")
+  );
+
+  const email = clean(
+    params.get("email") ||
+    params.get("submitted_email")
+  ).toLowerCase();
+
+  const mobile = digits(
+    params.get("mobile") ||
+    params.get("phone") ||
+    params.get("mobile_number") ||
+    params.get("contact_number")
+  );
+
+  if (applicationId) {
+    byId("applicationId").value = applicationId;
+  }
+
+  if (email) {
+    byId("statusEmail").value = email;
+  }
+
+  if (mobile) {
+    byId("statusMobile").value = mobile;
+  }
+});
   </script>
 </body>
 </html>
