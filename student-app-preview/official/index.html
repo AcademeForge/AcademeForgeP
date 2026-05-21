@@ -1770,6 +1770,127 @@
   visibility: hidden !important;
   pointer-events: none !important;
 }
+   /* =========================================================
+   FLOATING BACK TO HOME BUTTON
+   Fixed bottom button beside AI launcher
+========================================================= */
+
+.floating-home-btn {
+  position: fixed;
+  right: 92px;
+  bottom: 22px;
+  z-index: 9998;
+  min-height: 54px;
+  padding: 0 18px 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #111827;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.48), transparent 30%),
+    linear-gradient(135deg, #f97316, #facc15);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  box-shadow:
+    0 18px 52px rgba(249, 115, 22, 0.34),
+    0 10px 28px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  font-size: 0.94rem;
+  font-weight: 1000;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.floating-home-btn:hover {
+  transform: translateY(-3px);
+  filter: saturate(1.08);
+  box-shadow:
+    0 24px 70px rgba(249, 115, 22, 0.42),
+    0 12px 34px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.floating-home-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.floating-home-btn:focus-visible {
+  outline: 3px solid rgba(249, 115, 22, 0.35);
+  outline-offset: 4px;
+}
+
+.floating-home-icon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #111827;
+  background: rgba(255, 255, 255, 0.38);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  font-size: 1.05rem;
+  font-weight: 1000;
+}
+
+.floating-home-text {
+  display: inline-block;
+}
+
+/* Mobile: keep it bottom beside AI, compact */
+@media (max-width: 767px) {
+  .floating-home-btn {
+    right: 82px;
+    bottom: 18px;
+    min-height: 50px;
+    padding: 0 14px 0 9px;
+    gap: 8px;
+    font-size: 0.82rem;
+  }
+
+  .floating-home-icon {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+    font-size: 1rem;
+  }
+}
+
+/* Very small screens: icon-only to avoid overlap */
+@media (max-width: 390px) {
+  .floating-home-btn {
+    right: 78px;
+    bottom: 16px;
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .floating-home-text {
+    display: none;
+  }
+
+  .floating-home-icon {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+}
+    body:has(.ai-chat-panel.open) .floating-home-btn {
+  display: none !important;
+}
   </style>
 </head>
 
@@ -1917,8 +2038,9 @@
               code, design, communicate, use AI responsibly, and build real digital opportunities.
             </p>
 
-            <div class="hero-actions">
-              <button class="btn primary" type="button" onclick="info('Our Vision', TEXT.vision)">Explore Vision</button>
+          
+              <div class="hero-actions">
+        <button class="btn primary" type="button" onclick="info('Our Vision', TEXT.vision)">Explore Vision</button>
               <a class="btn secondary" href="#programs">View Programs</a>
               <button class="btn darkbtn" type="button" onclick="openAIChat('Which AcademeForge program is best for me?')">Ask AI Guide</button>
             </div>
@@ -2605,16 +2727,23 @@
           <button type="submit">Send</button>
         </form>
       </section>
-
       <button id="aiLauncher" class="ai-chat-launcher" type="button" onclick="toggleAIChat(true)">
         <span>Ask AcademeForge AI</span>
       </button>
     </div>
   </div>
 
+  <a
+    class="floating-home-btn"
+    href="https://academeforge.in/student-app-preview/student/"
+    aria-label="Back To Home"
+  >
+    <span class="floating-home-icon">⌂</span>
+    <span class="floating-home-text">Back To Home</span>
+  </a>
+
   <script>
     "use strict";
-
     /* =========================================================
        01. CONFIG
     ========================================================== */
