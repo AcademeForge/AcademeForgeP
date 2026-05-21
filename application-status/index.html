@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Job Application Status | AcademeForge</title>
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --panel: #ffffff;
+      --panel2: #f1f5f9;
+      --text: #0f172a;
+      --heading: #020617;
+      --muted: #64748b;
+      --soft: #475569;
+      --line: #dbe2ea;
+      --line2: #cbd5e1;
+      --brand: #f97316;
+      --gold: #f5c451;
+      --green: #16a34a;
+      --red: #dc2626;
+      --amber: #d97706;
+      --blue: #2563eb;
+      --shadow: 0 24px 80px rgba(15, 23, 42, 0.13);
+      --shadow2: 0 16px 44px rgba(15, 23, 42, 0.10);
+      --radius: 30px;
+    }
+
+    html[data-theme="dark"] {
+      --bg: #050816;
+      --panel: #0f172a;
+      --panel2: #111c31;
+      --text: #f8fafc;
+      --heading: #ffffff;
+      --muted: #cbd5e1;
+      --soft: #e2e8f0;
+      --line: rgba(255, 255, 255, 0.14);
+      --line2: rgba(255, 255, 255, 0.22);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+      --shadow2: 0 16px 44px rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(249, 115, 22, 0.14), transparent 32%),
+        radial-gradient(circle at 92% 8%, rgba(245, 196, 81, 0.16), transparent 30%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .cw {
+      width: 100%;
+      padding-inline: clamp(14px, 4vw, 72px);
+      margin-inline: auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    html[data-theme="dark"] .header {
+      background: rgba(5, 8, 22, 0.86);
+    }
+
+    .header-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      font-weight: 1000;
+      letter-spacing: -0.04em;
+      color: var(--heading);
+    }
+
+    .logo {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--brand), var(--gold));
+      color: #111827;
+      font-weight: 1000;
+      box-shadow: 0 16px 36px rgba(249, 115, 22, 0.25);
+      flex: 0 0 auto;
+    }
+
+    .brand-text {
+      display: grid;
+      line-height: 1.05;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .brand-sub {
+      margin-top: 4px;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 1000;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.62;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, var(--brand), var(--gold));
+      color: #111827;
+      box-shadow: 0 18px 42px rgba(249, 115, 22, 0.24);
+    }
+
+    .secondary {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .secondary:hover {
+      border-color: rgba(249, 115, 22, 0.55);
+      box-shadow: var(--shadow2);
+    }
+
+    .page {
+      padding-block: clamp(38px, 7vw, 82px);
+    }
+
+    .grid-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(360px, 1.22fr);
+      gap: 26px;
+      align-items: start;
+    }
+
+    .card {
+      background: color-mix(in srgb, var(--panel) 94%, transparent);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(18px, 4vw, 42px);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 1000;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.34);
+    }
+
+    html[data-theme="dark"] .eyebrow {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    h1 {
+      margin: 18px 0 14px;
+      color: var(--heading);
+      font-size: clamp(2.5rem, 6vw, 5.6rem);
+      line-height: 0.92;
+      letter-spacing: -0.075em;
+    }
+
+    h2 {
+      margin: 14px 0 8px;
+      color: var(--heading);
+      font-size: clamp(1.8rem, 3vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .muted {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .lookup-form {
+      display: grid;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 1000;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--soft);
+    }
+
+    input {
+      width: 100%;
+      min-height: 52px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 16px;
+      background: var(--panel);
+      color: var(--text);
+      outline: none;
+      transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+    }
+
+    html[data-theme="dark"] input {
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    input:focus {
+      border-color: rgba(249, 115, 22, 0.75);
+      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.13);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .alert {
+      display: none;
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 18px;
+      white-space: pre-wrap;
+      font-weight: 850;
+      line-height: 1.55;
+    }
+
+    .alert.show {
+      display: block;
+    }
+
+    .alert.success {
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--green);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+    }
+
+    .alert.error {
+      background: rgba(239, 68, 68, 0.14);
+      color: var(--red);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+
+    .status-id {
+      display: inline-flex;
+      max-width: 100%;
+      padding: 10px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      font-size: 12px;
+      font-weight: 1000;
+      color: var(--soft);
+      word-break: break-all;
+      margin-top: 12px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .summary-item {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel2);
+    }
+
+    .summary-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .summary-item strong {
+      display: block;
+      margin-top: 6px;
+      color: var(--heading);
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 25px;
+      top: 22px;
+      bottom: 22px;
+      width: 3px;
+      background: linear-gradient(var(--green), rgba(100, 116, 139, 0.25));
+      border-radius: 999px;
+    }
+
+    .step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--panel2);
+      overflow: hidden;
+    }
+
+    .step-icon {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 1px solid var(--line2);
+      background: var(--panel);
+      font-size: 24px;
+      font-weight: 1000;
+    }
+
+    .step.done .step-icon {
+      color: #ffffff;
+      background: var(--green);
+      border-color: rgba(22, 163, 74, 0.5);
+      animation: pop 0.55s ease both;
+    }
+
+    .step.fail .step-icon {
+      color: #ffffff;
+      background: var(--red);
+      border-color: rgba(220, 38, 38, 0.5);
+      animation: shake 0.45s ease both;
+    }
+
+    .step.pending .step-icon {
+      color: var(--amber);
+      background: rgba(217, 119, 6, 0.1);
+    }
+
+    .step h3 {
+      margin: 3px 0 5px;
+      color: var(--heading);
+      font-size: 1.05rem;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .celebrate {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .celebrate::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle, #facc15 0 2px, transparent 3px),
+        radial-gradient(circle, #22c55e 0 2px, transparent 3px),
+        radial-gradient(circle, #38bdf8 0 2px, transparent 3px),
+        radial-gradient(circle, #fb7185 0 2px, transparent 3px);
+      background-size: 70px 70px, 90px 90px, 110px 110px, 130px 130px;
+      animation: confetti 1.7s linear infinite;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .empty-state {
+      display: grid;
+      place-items: center;
+      min-height: 360px;
+      text-align: center;
+      border: 1px dashed var(--line2);
+      border-radius: 26px;
+      background: var(--panel2);
+      padding: 24px;
+    }
+
+    .empty-state h2 {
+      margin-top: 0;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 24px 0;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(0.65);
+        opacity: 0.2;
+      }
+
+      70% {
+        transform: scale(1.12);
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes shake {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-4px);
+      }
+
+      50% {
+        transform: translateX(4px);
+      }
+
+      75% {
+        transform: translateX(-2px);
+      }
+    }
+
+    @keyframes confetti {
+      0% {
+        transform: translateY(-20px) rotate(0);
+      }
+
+      100% {
+        transform: translateY(80px) rotate(16deg);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .grid-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .header-inner {
+        min-height: auto;
+        padding-block: 12px;
+        align-items: flex-start;
+      }
+
+      .actions {
+        display: grid;
+        gap: 8px;
+      }
+
+      .actions .btn {
+        width: 100%;
+        min-height: 42px;
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-actions {
+        display: grid;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="cw header-inner">
+      <a href="../index.html" class="brand" aria-label="AcademeForge Home">
+        <span class="logo">AF</span>
+        <span class="brand-text">
+          <span class="brand-name">AcademeForge</span>
+          <span class="brand-sub">Application Status</span>
+        </span>
+      </a>
+
+      <div class="actions">
+        <button id="themeToggle" class="btn secondary" type="button">Night</button>
+        <a class="btn secondary" href="../index.html">Back</a>
+        <a class="btn primary" href="../index.html#apply">Apply</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="cw grid-layout">
+      <section class="card">
+        <span class="eyebrow">Job Application Status</span>
+        <h1>Track your application.</h1>
+        <p class="muted">
+          Enter Application ID, or use the same email and mobile number that you used while submitting the form.
+        </p>
+
+        <form id="statusForm" class="lookup-form" novalidate>
+          <div class="field">
+            <label for="applicationId">Application ID Optional</label>
+            <input id="applicationId" type="text" placeholder="Paste application ID if available" autocomplete="off" />
+            <span class="hint">Fastest method. Application ID is saved automatically on the same device after submission.</span>
+          </div>
+
+          <div class="field">
+            <label for="statusEmail">Submitted Email</label>
+            <input id="statusEmail" type="email" placeholder="Enter submitted email" autocomplete="email" />
+          </div>
+
+          <div class="field">
+            <label for="statusMobile">Submitted Mobile Number</label>
+            <input id="statusMobile" type="tel" inputmode="numeric" placeholder="Enter submitted mobile number" autocomplete="tel" />
+            <span class="hint">Use only the mobile number you submitted. Country code is not required.</span>
+          </div>
+
+          <div class="form-actions">
+            <button id="checkStatusBtn" class="btn primary" type="submit">Check Status</button>
+            <button id="clearBtn" class="btn secondary" type="button">Clear</button>
+          </div>
+
+          <div id="statusAlert" class="alert"></div>
+        </form>
+      </section>
+
+      <section id="statusPanel" class="card">
+        <div id="emptyState" class="empty-state">
+          <div>
+            <span class="eyebrow">No Status Loaded</span>
+            <h2>Status will appear here.</h2>
+            <p class="muted">
+              Enter Application ID or email + mobile number, then click Check Status.
+            </p>
+          </div>
+        </div>
+
+        <div id="loadedState" hidden>
+          <span class="eyebrow">Current Progress</span>
+          <h2 id="statusTitle">Application Status</h2>
+          <p id="statusText" class="muted">Current application progress is shown below.</p>
+          <div id="statusId" class="status-id">No application loaded</div>
+
+          <div id="summaryGrid" class="summary-grid"></div>
+          <div id="timeline" class="timeline"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="cw">
+      © <span id="year"></span> AcademeForge. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    "use strict";
+
+    const STATUS_FUNCTION_URL = "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/join-team-application-status";
+    const LAST_APP_KEY = "academeforge_join_team_last_application_v4";
+    const THEME_KEY = "academeforge_theme";
+
+    function byId(id) {
+      return document.getElementById(id);
+    }
+
+    function clean(value) {
+      return String(value || "").trim().replace(/\s+/g, " ");
+    }
+
+    function digits(value) {
+      return String(value || "").replace(/\D/g, "");
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function safeJsonParse(value, fallback) {
+      try {
+        return JSON.parse(value);
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    function showAlert(type, message) {
+      const alert = byId("statusAlert");
+      alert.className = "alert show " + type;
+      alert.textContent = message;
+    }
+
+    function clearAlert() {
+      const alert = byId("statusAlert");
+      alert.className = "alert";
+      alert.textContent = "";
+    }
+
+    function getPreferredTheme() {
+      const saved = localStorage.getItem(THEME_KEY);
+      if (saved === "light" || saved === "dark") return saved;
+
+      if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+
+      return "light";
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      byId("themeToggle").textContent = theme === "dark" ? "Light" : "Night";
+      localStorage.setItem(THEME_KEY, theme);
+    }
+
+    function initTheme() {
+      applyTheme(getPreferredTheme());
+
+      byId("themeToggle").addEventListener("click", function () {
+        const current = document.documentElement.getAttribute("data-theme");
+        applyTheme(current === "dark" ? "light" : "dark");
+      });
+    }
+
+    function getLastApplication() {
+      return safeJsonParse(localStorage.getItem(LAST_APP_KEY) || "{}", {});
+    }
+
+    function saveLastApplication(applicationId, email, mobile) {
+      try {
+        localStorage.setItem(LAST_APP_KEY, JSON.stringify({
+          applicationId: applicationId || "",
+          email: email || "",
+          mobile: mobile || "",
+          savedAt: new Date().toISOString()
+        }));
+      } catch (error) {
+        console.warn("Could not save last application.", error);
+      }
+    }
+
+    function normalizeStatusFlag(value) {
+      if (value === true || value === "T" || value === "t" || value === "true" || value === 1 || value === "1") {
+        return true;
+      }
+
+      if (value === false || value === "F" || value === "f" || value === "false" || value === 0 || value === "0") {
+        return false;
+      }
+
+      return null;
+    }
+
+    function stepHtml(className, icon, title, message) {
+      return (
+        '<div class="step ' + className + '">' +
+          '<div class="step-icon">' + icon + '</div>' +
+          '<div>' +
+            '<h3>' + escapeHtml(title) + '</h3>' +
+            '<p>' + escapeHtml(message) + '</p>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+    function summaryItem(label, value) {
+      return (
+        '<div class="summary-item">' +
+          '<span>' + escapeHtml(label) + '</span>' +
+          '<strong>' + escapeHtml(value || "Not available") + '</strong>' +
+        '</div>'
+      );
+    }
+
+    function renderStatus(status) {
+      const panel = byId("statusPanel");
+      const emptyState = byId("emptyState");
+      const loadedState = byId("loadedState");
+      const timeline = byId("timeline");
+      const title = byId("statusTitle");
+      const text = byId("statusText");
+      const statusId = byId("statusId");
+      const summaryGrid = byId("summaryGrid");
+
+      panel.classList.remove("celebrate");
+      emptyState.hidden = true;
+      loadedState.hidden = false;
+
+      const applicationId = status.application_id || status.id || "";
+      statusId.textContent = applicationId ? "Application ID: " + applicationId : "Application ID unavailable";
+
+      summaryGrid.innerHTML =
+        summaryItem("Name", status.full_name) +
+        summaryItem("Email", status.email) +
+        summaryItem("Mobile", status.contact_number) +
+        summaryItem("Role", status.selected_role) +
+        summaryItem("Work Type", status.work_type) +
+        summaryItem("Status", status.status);
+
+      const hrRead = normalizeStatusFlag(status.hr_read);
+      const hrApproved = normalizeStatusFlag(status.hr_approved_resume);
+      const triedToContact = normalizeStatusFlag(status.tried_to_contact);
+      const jobSecured = normalizeStatusFlag(status.job_secured);
+      const finalRejected = normalizeStatusFlag(status.final_rejected);
+
+      const reason = status.hr_rejection_reason ||
+        status.final_rejection_reason ||
+        status.rejection_reason ||
+        "No reason added by HR yet.";
+
+      let html = "";
+
+      html += stepHtml(
+        "done",
+        "✓",
+        "Application submitted",
+        "Your application has been submitted successfully."
+      );
+
+      html += stepHtml(
+        hrRead === true ? "done" : "pending",
+        hrRead === true ? "✓" : "…",
+        "HR read",
+        hrRead === true ? "HR has read your application." : "Pending. HR has not marked this as read yet."
+      );
+
+      if (hrApproved === true) {
+        html += stepHtml(
+          "done",
+          "✓",
+          "HR approved resume",
+          "HR has approved your profile/resume for the next stage."
+        );
+      } else if (hrApproved === false) {
+        html += stepHtml(
+          "fail",
+          "×",
+          "Application rejected by HR",
+          "Application rejected by HR. Reason: " + reason
+        );
+      } else {
+        html += stepHtml(
+          "pending",
+          "…",
+          "HR approved resume",
+          "Pending. HR approval decision is not marked yet."
+        );
+      }
+
+      html += stepHtml(
+        triedToContact === true ? "done" : "pending",
+        triedToContact === true ? "✓" : "…",
+        "Tried to contact",
+        triedToContact === true ? "Hiring team has tried to contact you." : "Pending. Hiring team has not marked contact attempt yet."
+      );
+
+      if (jobSecured === true) {
+        html += stepHtml(
+          "done",
+          "✓",
+          "Job secured",
+          "Congratulations. Your job profile has been approved. You are now officially a member of AcademeForge. Hiring Department will contact you for further process."
+        );
+
+        title.textContent = "Congratulations — Job Profile Approved";
+        text.textContent = "Your job profile has been approved by AcademeForge.";
+        panel.classList.add("celebrate");
+      } else if (jobSecured === false || finalRejected === true) {
+        html += stepHtml(
+          "fail",
+          "×",
+          "Final result",
+          "Your application has been rejected. Reapply with good presentation."
+        );
+
+        title.textContent = "Application Rejected";
+        text.textContent = "Your application is not approved at this stage.";
+      } else {
+        html += stepHtml(
+          "pending",
+          "…",
+          "Job secured",
+          "Pending. Final job secured status is not marked yet."
+        );
+
+        title.textContent = "Job Application Status";
+        text.textContent = "Current application progress is shown below.";
+      }
+
+      timeline.innerHTML = html;
+
+      if (applicationId) {
+        saveLastApplication(applicationId, status.email || "", status.contact_number || "");
+      }
+    }
+
+    async function fetchApplicationStatus(applicationId, email, mobile) {
+      const params = new URLSearchParams();
+
+      if (applicationId) {
+        params.set("application_id", applicationId);
+      }
+
+      if (email) {
+        params.set("email", clean(email).toLowerCase());
+      }
+
+      if (mobile) {
+        params.set("mobile", digits(mobile));
+      }
+
+      if (!params.toString()) {
+        throw new Error("Application ID ya email + mobile number enter karo.");
+      }
+
+      const response = await fetch(STATUS_FUNCTION_URL + "?" + params.toString(), {
+        method: "GET",
+        mode: "cors",
+        cache: "no-store",
+        credentials: "omit",
+        headers: {
+          "Accept": "application/json"
+        }
+      });
+
+      const result = await response.json().catch(function () {
+        return {
+          success: false,
+          ok: false,
+          error: "Invalid status response."
+        };
+      });
+
+      if (!response.ok || !(result.success === true || result.ok === true)) {
+        throw new Error(result.error || result.details || "Could not load application status.");
+      }
+
+      return result.data || result.status || result;
+    }
+
+    function fillFromLocalStorage() {
+      const last = getLastApplication();
+
+      if (last.applicationId) {
+        byId("applicationId").value = last.applicationId;
+      }
+
+      if (last.email) {
+        byId("statusEmail").value = last.email;
+      }
+
+      if (last.mobile) {
+        byId("statusMobile").value = last.mobile;
+      }
+    }
+
+    function initStatusForm() {
+      const form = byId("statusForm");
+      const button = byId("checkStatusBtn");
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        clearAlert();
+
+        const applicationId = clean(byId("applicationId").value);
+        const email = clean(byId("statusEmail").value).toLowerCase();
+        const mobile = digits(byId("statusMobile").value);
+
+        if (!applicationId && (!email || !mobile)) {
+          showAlert("error", "Application ID enter karo ya email + mobile number dono enter karo.");
+          return;
+        }
+
+        button.disabled = true;
+        button.textContent = "Checking...";
+
+        try {
+          const status = await fetchApplicationStatus(applicationId, email, mobile);
+          renderStatus(status);
+          showAlert("success", "Application status loaded successfully.");
+        } catch (error) {
+          showAlert("error", error.message || "Could not load status.");
+        } finally {
+          button.disabled = false;
+          button.textContent = "Check Status";
+        }
+      });
+
+      byId("clearBtn").addEventListener("click", function () {
+        byId("applicationId").value = "";
+        byId("statusEmail").value = "";
+        byId("statusMobile").value = "";
+        byId("emptyState").hidden = false;
+        byId("loadedState").hidden = true;
+        byId("statusPanel").classList.remove("celebrate");
+        clearAlert();
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      byId("year").textContent = new Date().getFullYear();
+
+      initTheme();
+      fillFromLocalStorage();
+      initStatusForm();
+
+      const params = new URLSearchParams(window.location.search);
+      const applicationId = clean(params.get("application_id"));
+      const email = clean(params.get("email")).toLowerCase();
+      const mobile = digits(params.get("mobile"));
+
+      if (applicationId) byId("applicationId").value = applicationId;
+      if (email) byId("statusEmail").value = email;
+      if (mobile) byId("statusMobile").value = mobile;
+    });
+  </script>
+</body>
+</html>
