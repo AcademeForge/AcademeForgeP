@@ -3,117 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#f8fafc" />
-  <meta
-    name="description"
-    content="Join AcademeForge Team. Apply for remote work from home roles, internships, part-time roles, full-time roles, campus ambassador roles, support roles, content roles, design roles, and development roles."
-  />
-
   <title>Join AcademeForge Team</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@700;800;900&display=swap"
-    rel="stylesheet"
-  />
-
   <style>
+    /* =========================================================
+       ACADEMEFORGE JOIN TEAM PAGE
+       HTML + CSS + JS SINGLE FILE
+       ========================================================= */
+
     :root {
-      color-scheme: light;
       --bg: #f8fafc;
-      --bg2: #eef2ff;
-      --panel: rgba(255, 255, 255, 0.94);
-      --panel2: rgba(255, 255, 255, 0.76);
+      --panel: #ffffff;
+      --panel2: #f1f5f9;
       --text: #0f172a;
       --heading: #020617;
-      --muted: #475569;
-      --soft: #64748b;
-      --line: rgba(15, 23, 42, 0.13);
-      --line2: rgba(15, 23, 42, 0.22);
+      --muted: #64748b;
+      --soft: #475569;
+      --line: #dbe2ea;
+      --line2: #cbd5e1;
       --brand: #f97316;
       --gold: #f5c451;
       --green: #16a34a;
       --red: #dc2626;
+      --amber: #d97706;
       --blue: #2563eb;
       --shadow: 0 24px 80px rgba(15, 23, 42, 0.13);
-      --shadow2: 0 34px 110px rgba(15, 23, 42, 0.2);
-      --header: rgba(255, 255, 255, 0.86);
-      --pad: clamp(14px, 3.6vw, 72px);
+      --shadow2: 0 16px 44px rgba(15, 23, 42, 0.10);
+      --radius: 30px;
     }
 
     html[data-theme="dark"] {
-      color-scheme: dark;
       --bg: #050816;
-      --bg2: #080c18;
-      --panel: rgba(15, 23, 42, 0.82);
-      --panel2: rgba(255, 255, 255, 0.075);
-      --text: #e5e7eb;
-      --heading: #f8fafc;
+      --panel: #0f172a;
+      --panel2: #111c31;
+      --text: #f8fafc;
+      --heading: #ffffff;
       --muted: #cbd5e1;
-      --soft: #94a3b8;
-      --line: rgba(255, 255, 255, 0.13);
+      --soft: #e2e8f0;
+      --line: rgba(255, 255, 255, 0.14);
       --line2: rgba(255, 255, 255, 0.22);
-      --shadow: 0 26px 90px rgba(0, 0, 0, 0.38);
-      --shadow2: 0 34px 110px rgba(0, 0, 0, 0.5);
-      --header: rgba(5, 8, 22, 0.86);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+      --shadow2: 0 16px 44px rgba(0, 0, 0, 0.34);
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
       scroll-behavior: smooth;
-      -webkit-tap-highlight-color: transparent;
     }
 
-    html,
     body {
-      width: 100%;
-      min-height: 100%;
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(249, 115, 22, 0.14), transparent 32%),
+        radial-gradient(circle at 92% 8%, rgba(245, 196, 81, 0.16), transparent 30%),
+        var(--bg);
       color: var(--text);
-      background:
-        radial-gradient(circle at 10% -5%, rgba(249, 115, 22, 0.18), transparent 34rem),
-        radial-gradient(circle at 92% 10%, rgba(37, 99, 235, 0.12), transparent 34rem),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      overflow-x: hidden;
-    }
-
-    html[data-theme="dark"] body {
-      background:
-        radial-gradient(circle at 12% 0, rgba(249, 115, 22, 0.24), transparent 35rem),
-        radial-gradient(circle at 85% 12%, rgba(37, 99, 235, 0.18), transparent 34rem),
-        #050816;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(circle at 50% 8%, black, transparent 78%);
-    }
-
-    html[data-theme="dark"] body::before {
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-    }
-
-    button,
-    input,
-    textarea,
-    select {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
+      min-height: 100vh;
     }
 
     a {
@@ -121,158 +70,62 @@
       text-decoration: none;
     }
 
-    .site {
-      position: relative;
-      z-index: 1;
-      width: 100%;
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
     }
 
     .cw {
       width: 100%;
-      padding-inline: var(--pad);
-    }
-
-    .section {
-      padding-block: clamp(54px, 7vw, 100px);
-    }
-
-    .glass {
-      background: linear-gradient(180deg, var(--panel), var(--panel2));
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      min-height: 48px;
-      padding: 13px 18px;
-      border: 0;
-      border-radius: 999px;
-      font-weight: 900;
-      white-space: nowrap;
-      user-select: none;
-      transition: 0.22s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow2);
-    }
-
-    .btn:disabled {
-      cursor: not-allowed;
-      opacity: 0.68;
-      transform: none;
-      box-shadow: none;
-    }
-
-    .primary {
-      color: #111827;
-      background: linear-gradient(135deg, var(--brand), var(--gold));
-    }
-
-    .secondary {
-      color: var(--heading);
-      background: rgba(15, 23, 42, 0.055);
-      border: 1px solid var(--line);
-    }
-
-    html[data-theme="dark"] .secondary {
-      color: #ffffff;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .danger {
-      color: #ffffff;
-      background: var(--red);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.52);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    html[data-theme="dark"] .eyebrow {
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--brand);
-      box-shadow: 0 0 0 6px rgba(249, 115, 22, 0.15);
-    }
-
-    .section-title {
-      max-width: 1040px;
-      margin: 22px 0 0;
-      color: var(--heading);
-      font-family: Manrope, Inter, sans-serif;
-      font-size: clamp(2.55rem, 6vw, 6.6rem);
-      font-weight: 900;
-      line-height: 0.92;
-      letter-spacing: -0.065em;
-    }
-
-    .section-text {
-      max-width: 820px;
-      margin: 22px 0 0;
-      color: var(--muted);
-      font-size: clamp(1rem, 1.25vw, 1.18rem);
-      line-height: 1.75;
-    }
-
-    .center {
-      text-align: center;
+      padding-inline: clamp(14px, 4vw, 72px);
       margin-inline: auto;
     }
 
-    .center .section-title,
-    .center .section-text {
-      margin-inline: auto;
+    .site {
+      min-height: 100vh;
+      overflow-x: hidden;
     }
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
 
     .header {
       position: sticky;
       top: 0;
       z-index: 50;
       border-bottom: 1px solid var(--line);
-      background: var(--header);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    html[data-theme="dark"] .header {
+      background: rgba(5, 8, 22, 0.86);
     }
 
     .header-inner {
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      min-height: 78px;
-      padding-block: 12px;
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 12px;
-      flex-shrink: 0;
+      min-width: 0;
+      font-weight: 1000;
+      letter-spacing: -0.04em;
+      color: var(--heading);
     }
 
     .logo {
@@ -281,340 +134,355 @@
       width: 48px;
       height: 48px;
       border-radius: 18px;
-      color: #111827;
       background: linear-gradient(135deg, var(--brand), var(--gold));
-      box-shadow: 0 20px 70px rgba(249, 115, 22, 0.3);
+      color: #111827;
       font-weight: 1000;
+      box-shadow: 0 16px 36px rgba(249, 115, 22, 0.25);
+      flex: 0 0 auto;
     }
 
-    .brand-title {
-      display: block;
-      color: var(--heading);
-      font-family: Manrope, Inter, sans-serif;
-      font-size: 1.42rem;
-      font-weight: 900;
-      line-height: 1;
+    .brand-text {
+      display: grid;
+      line-height: 1.05;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 18px;
+      white-space: nowrap;
     }
 
     .brand-sub {
-      display: block;
       margin-top: 4px;
-      color: var(--soft);
       font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 0.2em;
+      color: var(--muted);
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .nav {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: clamp(14px, 1.4vw, 26px);
-      flex: 1;
+      gap: 20px;
+      font-weight: 900;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .nav a {
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 900;
+      transition: color 0.18s ease;
     }
 
     .nav a:hover {
-      color: var(--heading);
+      color: var(--brand);
     }
 
-    .header-actions {
+    .actions {
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-shrink: 0;
+      flex: 0 0 auto;
     }
 
-    .theme-toggle {
+    /* =========================================================
+       BUTTONS
+       ========================================================= */
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 1000;
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      min-height: 44px;
-      padding: 6px 10px 6px 13px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--heading);
-      background: rgba(255, 255, 255, 0.55);
-      font-weight: 900;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+      user-select: none;
+      white-space: nowrap;
     }
 
-    html[data-theme="dark"] .theme-toggle {
-      background: rgba(255, 255, 255, 0.08);
+    .btn:hover {
+      transform: translateY(-1px);
     }
 
-    .switch {
-      position: relative;
-      width: 42px;
-      height: 24px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.16);
+    .btn:disabled {
+      opacity: 0.62;
+      cursor: not-allowed;
+      transform: none;
     }
 
-    html[data-theme="dark"] .switch {
-      background: rgba(255, 255, 255, 0.18);
-    }
-
-    .knob {
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
+    .primary {
       background: linear-gradient(135deg, var(--brand), var(--gold));
-      transition: transform 0.22s ease;
+      color: #111827;
+      box-shadow: 0 18px 42px rgba(249, 115, 22, 0.24);
     }
 
-    html[data-theme="dark"] .knob {
-      transform: translateX(18px);
+    .secondary {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--text);
     }
+
+    .secondary:hover {
+      border-color: rgba(249, 115, 22, 0.55);
+      box-shadow: var(--shadow2);
+    }
+
+    .danger {
+      background: var(--red);
+      color: #ffffff;
+      box-shadow: 0 18px 42px rgba(220, 38, 38, 0.18);
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
 
     .hero {
-      min-height: calc(100svh - 78px);
-      display: grid;
-      align-items: center;
+      padding-block: clamp(46px, 8vw, 92px);
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 0.82fr;
-      gap: 42px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.8fr);
+      gap: 36px;
       align-items: center;
-      padding-block: 64px;
     }
 
-    .hero-title {
-      max-width: 1060px;
-      margin: 26px 0 0;
-      color: var(--heading);
-      font-family: Manrope, Inter, sans-serif;
-      font-size: clamp(3.7rem, 8vw, 9rem);
-      font-weight: 900;
-      line-height: 0.88;
-      letter-spacing: -0.078em;
-    }
-
-    .hero-text {
-      max-width: 820px;
-      margin-top: 28px;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
       color: var(--muted);
-      font-size: clamp(1.03rem, 1.4vw, 1.25rem);
+      font-size: 12px;
+      font-weight: 1000;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.34);
+    }
+
+    html[data-theme="dark"] .eyebrow {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .hero h1 {
+      font-size: clamp(3.1rem, 8vw, 8rem);
+      line-height: 0.88;
+      letter-spacing: -0.075em;
+      margin: 20px 0 20px;
+      color: var(--heading);
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: var(--muted);
       line-height: 1.75;
+      font-size: clamp(1rem, 1.5vw, 1.18rem);
+      margin: 0;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 34px;
-    }
-
-    .hero-card {
-      border-radius: 38px;
-      padding: clamp(22px, 3vw, 36px);
-    }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
       margin-top: 26px;
     }
 
-    .stat {
-      padding: 18px;
+    .card {
+      background: color-mix(in srgb, var(--panel) 94%, transparent);
       border: 1px solid var(--line);
-      border-radius: 24px;
-      background: var(--panel2);
+      border-radius: var(--radius);
+      padding: clamp(18px, 4vw, 42px);
+      box-shadow: var(--shadow);
     }
 
-    .stat b {
-      display: block;
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -90px -90px auto auto;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.24), transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-card h2 {
+      margin: 18px 0 12px;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      letter-spacing: -0.055em;
       color: var(--heading);
-      font-size: 1.5rem;
     }
 
-    .stat span {
-      display: block;
-      margin-top: 6px;
-      color: var(--soft);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+    .hero-list {
+      display: grid;
+      gap: 12px;
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
     }
 
-    .form-card {
-      border-radius: 42px;
-      padding: clamp(18px, 4vw, 48px);
+    .hero-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-weight: 750;
+    }
+
+    .tick {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(22, 163, 74, 0.12);
+      color: var(--green);
+      font-weight: 1000;
+    }
+
+    /* =========================================================
+       SECTIONS / FORM
+       ========================================================= */
+
+    .section {
+      padding-block: 50px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .center h2 {
+      margin: 18px auto 10px;
+      color: var(--heading);
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      max-width: 860px;
+    }
+
+    .muted {
+      color: var(--muted);
+      line-height: 1.7;
     }
 
     .form-section {
-      margin-top: 34px;
-      padding-top: 28px;
       border-top: 1px solid var(--line);
-    }
-
-    .form-section:first-of-type {
-      margin-top: 28px;
+      margin-top: 30px;
+      padding-top: 26px;
     }
 
     .form-section h3 {
-      margin: 0;
+      margin: 0 0 4px;
       color: var(--heading);
-      font-size: clamp(1.35rem, 2vw, 2rem);
-      letter-spacing: -0.03em;
+      font-size: clamp(1.3rem, 2vw, 2rem);
+      letter-spacing: -0.04em;
     }
 
-    .form-section p {
-      margin: 8px 0 0;
-      color: var(--soft);
+    .form-section > p {
+      margin: 6px 0 0;
+      color: var(--muted);
       line-height: 1.65;
     }
 
-    .form-grid {
+    .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
-      margin-top: 20px;
+      margin-top: 18px;
     }
 
     .field {
       display: grid;
       gap: 8px;
+      min-width: 0;
     }
 
-    .field.full {
+    .full {
       grid-column: 1 / -1;
     }
 
-    .field label {
-      color: var(--heading);
+    label {
       font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
+      font-weight: 1000;
       text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--soft);
     }
 
-    .field input,
-    .field select,
-    .field textarea {
+    .required {
+      color: var(--red);
+    }
+
+    input,
+    select,
+    textarea {
       width: 100%;
       min-height: 52px;
-      padding: 14px 16px;
       border: 1px solid var(--line);
       border-radius: 18px;
+      padding: 14px 16px;
+      background: var(--panel);
+      color: var(--text);
       outline: none;
-      color: var(--heading);
-      background: var(--panel2);
-      transition: 0.2s ease;
+      transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
     }
 
-    .field textarea {
-      min-height: 132px;
+    html[data-theme="dark"] input,
+    html[data-theme="dark"] select,
+    html[data-theme="dark"] textarea {
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(249, 115, 22, 0.75);
+      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.13);
+    }
+
+    textarea {
+      min-height: 130px;
       resize: vertical;
       line-height: 1.55;
     }
 
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      border-color: rgba(249, 115, 22, 0.72);
-      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.12);
-    }
-
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color: var(--soft);
-    }
-
-    .phone-row {
+    .phone {
       display: grid;
-      grid-template-columns: 140px 1fr;
+      grid-template-columns: 150px minmax(0, 1fr);
       gap: 10px;
     }
 
-    .choice-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .choice-btn {
-      position: relative;
-      min-height: 78px;
-      padding: 16px 16px 16px 48px;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      color: var(--heading);
-      background: var(--panel2);
-      text-align: left;
-      font-weight: 900;
-      transition: 0.22s ease;
-    }
-
-    .choice-btn small {
-      display: block;
-      margin-top: 6px;
-      color: var(--soft);
+    .hint {
+      color: var(--muted);
       font-size: 12px;
-      font-weight: 700;
       line-height: 1.45;
     }
 
-    .choice-btn::before {
-      content: "";
-      position: absolute;
-      top: 18px;
-      left: 16px;
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--line2);
-      border-radius: 999px;
-      background: transparent;
-    }
-
-    .choice-btn::after {
-      content: "✓";
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      display: none;
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      place-items: center;
-      color: #ffffff;
-      background: var(--green);
-      font-size: 14px;
-      font-weight: 1000;
-    }
-
-    .choice-btn.selected {
-      border-color: rgba(22, 163, 74, 0.7);
-      background: rgba(22, 163, 74, 0.12);
-      box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1);
-    }
-
-    .choice-btn.selected::after {
-      display: grid;
-    }
-
-    .choice-btn.selected::before {
-      display: none;
-    }
-
-    .choice-btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(249, 115, 22, 0.52);
-    }
+    /* =========================================================
+       SEARCH SELECT
+       ========================================================= */
 
     .search-select {
       position: relative;
@@ -627,62 +495,137 @@
       left: 0;
       right: 0;
       z-index: 30;
-      max-height: 260px;
-      overflow-y: auto;
+      background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 18px;
-      background: var(--bg);
-      box-shadow: var(--shadow2);
+      box-shadow: var(--shadow);
       padding: 8px;
-    }
-
-    html[data-theme="dark"] .search-list {
-      background: #0f172a;
+      max-height: 280px;
+      overflow: auto;
     }
 
     .search-list.open {
       display: grid;
-      gap: 6px;
     }
 
     .search-option {
-      width: 100%;
-      padding: 12px 13px;
       border: 0;
-      border-radius: 12px;
-      color: var(--heading);
       background: transparent;
+      color: var(--text);
       text-align: left;
-      font-weight: 800;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 850;
+      cursor: pointer;
     }
 
     .search-option:hover {
       background: rgba(249, 115, 22, 0.12);
     }
 
-    .check-row {
+    /* =========================================================
+       CHOICE BUTTONS
+       ========================================================= */
+
+    .choice-grid {
       display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
-      margin-top: 20px;
+      margin-top: 18px;
     }
+
+    .choice {
+      position: relative;
+      min-height: 82px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--panel);
+      color: var(--text);
+      text-align: left;
+      padding: 16px 16px 16px 48px;
+      font-weight: 1000;
+      cursor: pointer;
+      transition:
+        border-color 0.18s ease,
+        background 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+    }
+
+    html[data-theme="dark"] .choice {
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .choice:hover {
+      transform: translateY(-1px);
+      border-color: rgba(249, 115, 22, 0.55);
+      box-shadow: var(--shadow2);
+    }
+
+    .choice small {
+      display: block;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.35;
+      font-weight: 750;
+    }
+
+    .choice::before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 18px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--line2);
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+    }
+
+    .choice.selected {
+      border-color: rgba(22, 163, 74, 0.75);
+      background: rgba(22, 163, 74, 0.12);
+    }
+
+    .choice.selected::before {
+      content: "✓";
+      background: var(--green);
+      color: #ffffff;
+      border-color: var(--green);
+      font-weight: 1000;
+    }
+
+    /* =========================================================
+       CHECKBOXES / ALERTS
+       ========================================================= */
 
     .check {
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 12px;
-      align-items: start;
       padding: 16px;
       border: 1px solid var(--line);
       border-radius: 18px;
-      background: var(--panel2);
       color: var(--muted);
-      line-height: 1.55;
+      margin-top: 12px;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 14px;
+      font-weight: 750;
+      background: var(--panel);
+    }
+
+    html[data-theme="dark"] .check {
+      background: rgba(255, 255, 255, 0.035);
     }
 
     .check input {
       width: 20px;
       height: 20px;
-      margin-top: 2px;
+      min-height: 20px;
+      margin: 0;
       accent-color: var(--brand);
     }
 
@@ -690,18 +633,17 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 26px;
+      margin-top: 22px;
     }
 
     .alert {
       display: none;
-      margin-top: 20px;
-      padding: 16px 18px;
-      border-radius: 20px;
-      font-weight: 800;
-      line-height: 1.55;
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 18px;
       white-space: pre-wrap;
-      word-break: break-word;
+      font-weight: 850;
+      line-height: 1.55;
     }
 
     .alert.show {
@@ -709,66 +651,229 @@
     }
 
     .alert.success {
-      color: #14532d;
-      background: rgba(34, 197, 94, 0.16);
-      border: 1px solid rgba(34, 197, 94, 0.28);
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--green);
+      border: 1px solid rgba(34, 197, 94, 0.35);
     }
 
     .alert.error {
-      color: #7f1d1d;
       background: rgba(239, 68, 68, 0.14);
-      border: 1px solid rgba(239, 68, 68, 0.28);
-    }
-
-    html[data-theme="dark"] .alert.success {
-      color: #bbf7d0;
-    }
-
-    html[data-theme="dark"] .alert.error {
-      color: #fecaca;
-    }
-
-    .required {
       color: var(--red);
+      border: 1px solid rgba(239, 68, 68, 0.35);
     }
+
+    /* =========================================================
+       APPLICATION STATUS
+       ========================================================= */
+
+    .status-card {
+      display: none;
+      margin-top: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .status-card.show {
+      display: block;
+    }
+
+    .status-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .status-head h2 {
+      margin: 16px 0 8px;
+      color: var(--heading);
+      font-size: clamp(1.8rem, 3vw, 3.2rem);
+      letter-spacing: -0.055em;
+      line-height: 1;
+    }
+
+    .status-id {
+      padding: 10px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      font-size: 12px;
+      font-weight: 1000;
+      color: var(--soft);
+      word-break: break-all;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 25px;
+      top: 22px;
+      bottom: 22px;
+      width: 3px;
+      background: linear-gradient(var(--green), rgba(100, 116, 139, 0.25));
+      border-radius: 999px;
+    }
+
+    .step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--panel2);
+      overflow: hidden;
+    }
+
+    .step-icon {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 1px solid var(--line2);
+      background: var(--panel);
+      font-size: 24px;
+      font-weight: 1000;
+    }
+
+    .step.done .step-icon {
+      color: #ffffff;
+      background: var(--green);
+      border-color: rgba(22, 163, 74, 0.5);
+      animation: pop 0.55s ease both;
+    }
+
+    .step.fail .step-icon {
+      color: #ffffff;
+      background: var(--red);
+      border-color: rgba(220, 38, 38, 0.5);
+      animation: shake 0.45s ease both;
+    }
+
+    .step.pending .step-icon {
+      color: var(--amber);
+      background: rgba(217, 119, 6, 0.1);
+    }
+
+    .step h4 {
+      margin: 3px 0 5px;
+      color: var(--heading);
+      font-size: 1.05rem;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .celebrate {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .celebrate::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle, #facc15 0 2px, transparent 3px),
+        radial-gradient(circle, #22c55e 0 2px, transparent 3px),
+        radial-gradient(circle, #38bdf8 0 2px, transparent 3px),
+        radial-gradient(circle, #fb7185 0 2px, transparent 3px);
+      background-size: 70px 70px, 90px 90px, 110px 110px, 130px 130px;
+      animation: confetti 1.7s linear infinite;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .status-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(0.65);
+        opacity: 0.2;
+      }
+
+      70% {
+        transform: scale(1.12);
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes shake {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-4px);
+      }
+
+      50% {
+        transform: translateX(4px);
+      }
+
+      75% {
+        transform: translateX(-2px);
+      }
+    }
+
+    @keyframes confetti {
+      0% {
+        transform: translateY(-20px) rotate(0);
+      }
+
+      100% {
+        transform: translateY(80px) rotate(16deg);
+      }
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
 
     .footer {
       border-top: 1px solid var(--line);
-      background: var(--header);
+      padding: 24px 0;
+      color: var(--muted);
+      font-weight: 750;
     }
 
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      padding-block: 22px;
-      color: var(--soft);
-      font-size: 14px;
-    }
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
 
-    @media (max-width: 1180px) {
-      .choice-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
+    @media (max-width: 1050px) {
       .nav {
         display: none;
       }
-    }
 
-    @media (max-width: 980px) {
       .hero-grid {
         grid-template-columns: 1fr;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-title {
-        font-size: clamp(3.1rem, 14vw, 5.8rem);
       }
 
       .choice-grid {
@@ -777,62 +882,57 @@
     }
 
     @media (max-width: 720px) {
-      :root {
-        --pad: 14px;
-      }
-
       .header-inner {
-        min-height: 72px;
+        min-height: auto;
+        padding-block: 12px;
+        align-items: flex-start;
       }
 
-      .brand-title {
-        font-size: 1.12rem;
+      .brand-name {
+        font-size: 16px;
       }
 
-      .brand-sub {
-        font-size: 9px;
-      }
-
-      .header-actions .secondary {
-        display: none;
-      }
-
-      .theme-toggle .label {
-        display: none;
-      }
-
-      .hero-grid {
-        padding-block: 44px;
-      }
-
-      .hero-actions,
-      .form-actions {
+      .actions {
         display: grid;
+        gap: 8px;
+      }
+
+      .actions .btn {
+        width: 100%;
+        min-height: 42px;
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+
+      .hero {
+        padding-block: 38px;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 16vw, 4.8rem);
+      }
+
+      .grid,
+      .choice-grid {
         grid-template-columns: 1fr;
+      }
+
+      .phone {
+        grid-template-columns: 1fr;
+      }
+
+      .form-actions,
+      .hero-actions,
+      .status-actions {
+        display: grid;
       }
 
       .btn {
         width: 100%;
       }
 
-      .stat-grid,
-      .form-grid,
-      .choice-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .phone-row {
-        grid-template-columns: 112px 1fr;
-      }
-
-      .section-title {
-        font-size: clamp(2.25rem, 12vw, 3.7rem);
-      }
-    }
-
-    @media (max-width: 390px) {
-      .phone-row {
-        grid-template-columns: 1fr;
+      .status-head {
+        display: grid;
       }
     }
   </style>
@@ -840,125 +940,117 @@
 
 <body>
   <div class="site">
+    <!-- =======================================================
+         HEADER
+         ======================================================= -->
     <header class="header">
       <div class="cw header-inner">
-        <a href="./index.html" class="brand" aria-label="AcademeForge Home">
+        <a href="../index.html" class="brand" aria-label="AcademeForge Home">
           <span class="logo">AF</span>
-          <span>
-            <b class="brand-title">AcademeForge</b>
-            <small class="brand-sub">Join Team</small>
+          <span class="brand-text">
+            <span class="brand-name">AcademeForge</span>
+            <span class="brand-sub">Join Team</span>
           </span>
         </a>
 
         <nav class="nav" aria-label="Primary navigation">
-          <a href="./index.html">Home</a>
+          <a href="../index.html">Home</a>
           <a href="#apply">Apply</a>
           <a href="#roles">Roles</a>
-          <a href="#location">Location</a>
           <a href="#work">Work Type</a>
+          <a href="#applicationStatus">Status</a>
         </nav>
 
-        <div class="header-actions">
-          <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle night mode" aria-pressed="false">
-            <span class="label">Night</span>
-            <span class="switch" aria-hidden="true">
-              <span class="knob"></span>
-            </span>
-          </button>
-
-          <a class="btn secondary" href="./index.html">Back</a>
+        <div class="actions">
+          <button id="themeToggle" class="btn secondary" type="button">Night</button>
+          <a class="btn secondary" href="../index.html">Back</a>
           <a class="btn primary" href="#apply">Apply</a>
         </div>
       </div>
     </header>
 
     <main>
+      <!-- =====================================================
+           HERO
+           ===================================================== -->
       <section class="hero">
         <div class="cw hero-grid">
           <div>
             <span class="eyebrow">Work From Home Team Roles</span>
-            <h1 class="hero-title">Join AcademeForge Team.</h1>
-            <p class="hero-text">
-              Apply for one remote role only. Select your work type, time type, location details, contact details,
-              education, skills, and portfolio. Application will be submitted securely to AcademeForge.
+            <h1>Join AcademeForge Team.</h1>
+            <p>
+              Apply for one remote role only. Select your work type, time type,
+              location details, contact details, education, skills, and portfolio.
             </p>
 
             <div class="hero-actions">
               <a class="btn primary" href="#apply">Start Application</a>
               <a class="btn secondary" href="#roles">View 20 Roles</a>
+              <a class="btn secondary" href="#applicationStatus">Job Application Status</a>
             </div>
           </div>
 
-          <aside class="glass hero-card">
+          <aside class="card hero-card">
             <span class="eyebrow">Application Rules</span>
-            <p class="section-text">
-              You can apply for only one role. Post office is optional and mainly useful for certificate delivery.
+            <h2>Apply carefully.</h2>
+            <p class="muted">
+              You can apply for only one role. Post office is optional and mainly useful
+              for certificate delivery.
             </p>
 
-            <div class="stat-grid">
-              <div class="stat">
-                <b>20</b>
-                <span>Remote Roles</span>
-              </div>
-
-              <div class="stat">
-                <b>1</b>
-                <span>Role Limit</span>
-              </div>
-
-              <div class="stat">
-                <b>WFH</b>
-                <span>Work Mode</span>
-              </div>
-
-              <div class="stat">
-                <b>Secure</b>
-                <span>AF Nexus Submit</span>
-              </div>
-            </div>
+            <ul class="hero-list">
+              <li><span class="tick">✓</span><span>Remote and flexible work options.</span></li>
+              <li><span class="tick">✓</span><span>Internship, volunteer, freelance, and team roles.</span></li>
+              <li><span class="tick">✓</span><span>Status tracking after application submission.</span></li>
+            </ul>
           </aside>
         </div>
       </section>
 
+      <!-- =====================================================
+           APPLICATION FORM
+           ===================================================== -->
       <section id="apply" class="section">
         <div class="cw">
-          <form id="joinTeamForm" class="glass form-card" novalidate>
+          <form id="joinTeamForm" class="card" novalidate>
             <div class="center">
               <span class="eyebrow">Application Form</span>
-              <h2 class="section-title">Apply for one AcademeForge role.</h2>
-              <p class="section-text">
+              <h2>Apply for one AcademeForge role.</h2>
+              <p class="muted">
                 Fill all required fields carefully. Wrong or fake information can reject the application.
               </p>
             </div>
 
+            <!-- PERSONAL DETAILS -->
             <section class="form-section">
               <h3>Personal Details</h3>
-              <p>Name, email, phone, and basic profile information.</p>
+              <p>Enter your basic contact information.</p>
 
-              <div class="form-grid">
+              <div class="grid">
                 <div class="field">
                   <label for="fullName">Full Name <span class="required">*</span></label>
-                  <input id="fullName" name="fullName" type="text" maxlength="90" placeholder="Enter your full name" autocomplete="name" autocapitalize="words" required />
+                  <input id="fullName" name="fullName" autocomplete="name" required />
                 </div>
 
                 <div class="field">
-                  <label for="email">Gmail / Email <span class="required">*</span></label>
-                  <input id="email" name="email" type="email" maxlength="140" placeholder="example@gmail.com" required />
+                  <label for="email">Email <span class="required">*</span></label>
+                  <input id="email" name="email" type="email" autocomplete="email" required />
                 </div>
 
                 <div class="field">
-                  <label>Contact Number <span class="required">*</span></label>
-                  <div class="phone-row">
-                    <select id="contactCountryCode" name="contactCountryCode"></select>
-                    <input id="contactNumber" name="contactNumber" type="tel" inputmode="numeric" maxlength="15" placeholder="Phone number" required />
+                  <label for="contactNumber">Contact Number <span class="required">*</span></label>
+                  <div class="phone">
+                    <select id="contactCountryCode" name="contactCountryCode" aria-label="Contact country code"></select>
+                    <input id="contactNumber" name="contactNumber" inputmode="numeric" autocomplete="tel" required />
                   </div>
+                  <span class="hint">Country code is optional from backend side, but default India code is selected.</span>
                 </div>
 
                 <div class="field">
-                  <label>WhatsApp Number Optional</label>
-                  <div class="phone-row">
-                    <select id="whatsappCountryCode" name="whatsappCountryCode"></select>
-                    <input id="whatsappNumber" name="whatsappNumber" type="tel" inputmode="numeric" maxlength="15" placeholder="WhatsApp number" />
+                  <label for="whatsappNumber">WhatsApp Optional</label>
+                  <div class="phone">
+                    <select id="whatsappCountryCode" name="whatsappCountryCode" aria-label="WhatsApp country code"></select>
+                    <input id="whatsappNumber" name="whatsappNumber" inputmode="numeric" autocomplete="tel" />
                   </div>
                 </div>
 
@@ -971,11 +1063,11 @@
                   <label for="ageGroup">Age Group <span class="required">*</span></label>
                   <select id="ageGroup" name="ageGroup" required>
                     <option value="">Select age group</option>
-                    <option value="Below 16">Below 16</option>
-                    <option value="16-18">16-18</option>
-                    <option value="19-22">19-22</option>
-                    <option value="23-28">23-28</option>
-                    <option value="29+">29+</option>
+                    <option>Below 16</option>
+                    <option>16-18</option>
+                    <option>19-22</option>
+                    <option>23-28</option>
+                    <option>29+</option>
                   </select>
                 </div>
 
@@ -983,33 +1075,34 @@
                   <label for="gender">Gender Optional</label>
                   <select id="gender" name="gender">
                     <option value="">Prefer not to say</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
                   </select>
                 </div>
               </div>
             </section>
 
+            <!-- LOCATION DETAILS -->
             <section id="location" class="form-section">
               <h3>Location Details</h3>
-              <p>Country, state/province, district, pincode, and post office.</p>
+              <p>Search and select country, state, and district.</p>
 
-              <div class="form-grid">
+              <div class="grid">
                 <div class="field">
                   <label for="countrySearch">Country <span class="required">*</span></label>
                   <div class="search-select">
-                    <input id="countrySearch" type="text" autocomplete="off" placeholder="Search country" required />
-                    <input id="country" name="country" type="hidden" required />
+                    <input id="countrySearch" autocomplete="off" required />
+                    <input id="country" type="hidden" />
                     <div id="countryList" class="search-list"></div>
                   </div>
                 </div>
 
                 <div class="field">
-                  <label for="stateSearch">State / Province <span class="required">*</span></label>
+                  <label for="stateSearch">State <span class="required">*</span></label>
                   <div class="search-select">
-                    <input id="stateSearch" type="text" autocomplete="off" placeholder="Search state/province" required />
-                    <input id="stateName" name="stateName" type="hidden" required />
+                    <input id="stateSearch" autocomplete="off" required />
+                    <input id="stateName" type="hidden" />
                     <div id="stateList" class="search-list"></div>
                   </div>
                 </div>
@@ -1017,81 +1110,85 @@
                 <div class="field">
                   <label for="districtSearch">District <span class="required">*</span></label>
                   <div class="search-select">
-                    <input id="districtSearch" type="text" autocomplete="off" placeholder="Search district" required />
-                    <input id="district" name="district" type="hidden" required />
+                    <input id="districtSearch" autocomplete="off" required />
+                    <input id="district" type="hidden" />
                     <div id="districtList" class="search-list"></div>
                   </div>
                 </div>
 
                 <div class="field">
-                  <label for="pincode">Pincode / Postal Code <span class="required">*</span></label>
-                  <input id="pincode" name="pincode" type="text" inputmode="numeric" maxlength="10" placeholder="Enter pincode" required />
+                  <label for="pincode">Pincode <span class="required">*</span></label>
+                  <input id="pincode" name="pincode" inputmode="numeric" required />
                 </div>
 
                 <div class="field">
                   <label for="postOffice">Post Office Optional</label>
-                  <input id="postOffice" name="postOffice" type="text" maxlength="120" placeholder="Manual typing: post office name" />
+                  <input id="postOffice" name="postOffice" />
                 </div>
 
                 <div class="field full">
                   <label for="fullAddress">Full Address Optional</label>
-                  <textarea id="fullAddress" name="fullAddress" maxlength="700" placeholder="House/road/area details. Optional. Useful only if certificate delivery is needed."></textarea>
+                  <textarea id="fullAddress" name="fullAddress"></textarea>
                 </div>
               </div>
             </section>
 
+            <!-- ROLES -->
             <section id="roles" class="form-section">
               <h3>Select One Role <span class="required">*</span></h3>
-              <p>Only one role can be selected.</p>
-              <input id="selectedRole" name="selectedRole" type="hidden" required />
+              <p>Select only one role. This value will be saved in backend.</p>
+              <input id="selectedRole" type="hidden" />
               <div id="roleGrid" class="choice-grid"></div>
             </section>
 
+            <!-- WORK TYPE -->
             <section id="work" class="form-section">
               <h3>Select Work Type <span class="required">*</span></h3>
-              <p>Choose the type of joining you are applying for.</p>
-              <input id="workType" name="workType" type="hidden" required />
+              <p>Old and new work type options are included, including unpaid internship.</p>
+              <input id="workType" type="hidden" />
               <div id="workTypeGrid" class="choice-grid"></div>
             </section>
 
+            <!-- WORK TIME -->
             <section class="form-section">
               <h3>Select Work Time Type <span class="required">*</span></h3>
-              <p>Choose how you can work remotely.</p>
-              <input id="workTimeType" name="workTimeType" type="hidden" required />
+              <p>Select your available working time.</p>
+              <input id="workTimeType" type="hidden" />
               <div id="workTimeTypeGrid" class="choice-grid"></div>
 
-              <div class="form-grid">
+              <div class="grid">
                 <div class="field">
                   <label for="weeklyAvailability">Weekly Availability <span class="required">*</span></label>
                   <select id="weeklyAvailability" name="weeklyAvailability" required>
-                    <option value="">Select availability</option>
-                    <option value="2-4 hours/week">2-4 hours/week</option>
-                    <option value="5-8 hours/week">5-8 hours/week</option>
-                    <option value="9-12 hours/week">9-12 hours/week</option>
-                    <option value="13-20 hours/week">13-20 hours/week</option>
-                    <option value="20+ hours/week">20+ hours/week</option>
+                    <option value="">Select weekly availability</option>
+                    <option>2-4 hours/week</option>
+                    <option>5-8 hours/week</option>
+                    <option>9-12 hours/week</option>
+                    <option>13-20 hours/week</option>
+                    <option>20+ hours/week</option>
                   </select>
                 </div>
               </div>
             </section>
 
+            <!-- EDUCATION AND EXPERIENCE -->
             <section class="form-section">
               <h3>Education and Experience</h3>
-              <p>Tell us your current status and skill level.</p>
+              <p>Tell us about your education, current status, experience, and skills.</p>
 
-              <div class="form-grid">
+              <div class="grid">
                 <div class="field">
-                  <label for="educationLevel">Education Level <span class="required">*</span></label>
+                  <label for="educationLevel">Education <span class="required">*</span></label>
                   <select id="educationLevel" name="educationLevel" required>
                     <option value="">Select education</option>
-                    <option value="Class 8-10">Class 8-10</option>
-                    <option value="Class 11-12">Class 11-12</option>
-                    <option value="Diploma">Diploma</option>
-                    <option value="Undergraduate">Undergraduate</option>
-                    <option value="Graduate">Graduate</option>
-                    <option value="Postgraduate">Postgraduate</option>
-                    <option value="Working Professional">Working Professional</option>
-                    <option value="Other">Other</option>
+                    <option>Class 8-10</option>
+                    <option>Class 11-12</option>
+                    <option>Diploma</option>
+                    <option>Undergraduate</option>
+                    <option>Graduate</option>
+                    <option>Postgraduate</option>
+                    <option>Working Professional</option>
+                    <option>Other</option>
                   </select>
                 </div>
 
@@ -1099,103 +1196,128 @@
                   <label for="currentStatus">Current Status <span class="required">*</span></label>
                   <select id="currentStatus" name="currentStatus" required>
                     <option value="">Select current status</option>
-                    <option value="School Student">School Student</option>
-                    <option value="College Student">College Student</option>
-                    <option value="Intern">Intern</option>
-                    <option value="Freelancer">Freelancer</option>
-                    <option value="Job Seeker">Job Seeker</option>
-                    <option value="Working Professional">Working Professional</option>
-                    <option value="Founder / Builder">Founder / Builder</option>
-                    <option value="Other">Other</option>
+                    <option>School Student</option>
+                    <option>College Student</option>
+                    <option>Intern</option>
+                    <option>Freelancer</option>
+                    <option>Job Seeker</option>
+                    <option>Working Professional</option>
+                    <option>Founder / Builder</option>
+                    <option>Other</option>
                   </select>
                 </div>
 
                 <div class="field">
-                  <label for="experienceLevel">Experience Level <span class="required">*</span></label>
+                  <label for="experienceLevel">Experience <span class="required">*</span></label>
                   <select id="experienceLevel" name="experienceLevel" required>
                     <option value="">Select experience</option>
-                    <option value="Beginner">Beginner</option>
-                    <option value="Intermediate">Intermediate</option>
-                    <option value="Advanced">Advanced</option>
-                    <option value="Professional">Professional</option>
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                    <option>Professional</option>
                   </select>
                 </div>
 
                 <div class="field full">
                   <label for="skills">Skills <span class="required">*</span></label>
-                  <textarea id="skills" name="skills" maxlength="1500" placeholder="Write your skills. Example: Canva, video editing, content writing, teaching, community handling, frontend development, data entry." required></textarea>
+                  <textarea id="skills" name="skills" placeholder="Example: HTML, CSS, JavaScript, Video Editing, Content Writing" required></textarea>
                 </div>
 
                 <div class="field">
-                  <label for="portfolioUrl">Portfolio / Work Sample Optional</label>
-                  <input id="portfolioUrl" name="portfolioUrl" type="url" maxlength="400" placeholder="https://example.com" />
+                  <label for="portfolioUrl">Portfolio Optional</label>
+                  <input id="portfolioUrl" name="portfolioUrl" type="url" placeholder="https://..." />
                 </div>
 
                 <div class="field">
                   <label for="linkedinUrl">LinkedIn Optional</label>
-                  <input id="linkedinUrl" name="linkedinUrl" type="url" maxlength="400" placeholder="https://linkedin.com/in/username" />
+                  <input id="linkedinUrl" name="linkedinUrl" type="url" placeholder="https://linkedin.com/in/..." />
                 </div>
 
                 <div class="field">
                   <label for="githubUrl">GitHub Optional</label>
-                  <input id="githubUrl" name="githubUrl" type="url" maxlength="400" placeholder="https://github.com/username" />
+                  <input id="githubUrl" name="githubUrl" type="url" placeholder="https://github.com/..." />
                 </div>
 
                 <div class="field">
                   <label for="instagramUrl">Instagram Optional</label>
-                  <input id="instagramUrl" name="instagramUrl" type="url" maxlength="400" placeholder="https://instagram.com/username" />
+                  <input id="instagramUrl" name="instagramUrl" type="url" placeholder="https://instagram.com/..." />
                 </div>
 
                 <div class="field full">
-                  <label for="whyJoin">Why do you want to join AcademeForge? <span class="required">*</span></label>
-                  <textarea id="whyJoin" name="whyJoin" maxlength="1800" placeholder="Write a serious answer. Minimum 5 characters." required></textarea>
+                  <label for="whyJoin">Why Join <span class="required">*</span></label>
+                  <textarea id="whyJoin" name="whyJoin" placeholder="Write why you want to join AcademeForge." required></textarea>
                 </div>
 
                 <div class="field full">
-                  <label for="previousWork">Previous Work / Achievement Optional</label>
-                  <textarea id="previousWork" name="previousWork" maxlength="1800" placeholder="Mention previous projects, pages managed, videos edited, content created, support handled, coding projects, or achievements."></textarea>
+                  <label for="previousWork">Previous Work Optional</label>
+                  <textarea id="previousWork" name="previousWork" placeholder="Write about previous projects, work, or experience."></textarea>
                 </div>
               </div>
             </section>
 
+            <!-- FINAL CONFIRMATION -->
             <section class="form-section">
               <h3>Final Confirmation</h3>
-              <p>Required before submission.</p>
 
-              <div class="check-row">
-                <label class="check">
-                  <input id="certificateDeliveryRequired" name="certificateDeliveryRequired" type="checkbox" />
-                  <span>I may need certificate delivery in future. I understand post office/address details are optional but useful for delivery.</span>
-                </label>
+              <label class="check" for="certificateDeliveryRequired">
+                <input id="certificateDeliveryRequired" type="checkbox" />
+                <span>I may need certificate delivery in future.</span>
+              </label>
 
-                <label class="check">
-                  <input id="consentAccuracy" name="consentAccuracy" type="checkbox" required />
-                  <span>I confirm that all information submitted by me is accurate. <span class="required">*</span></span>
-                </label>
+              <label class="check" for="consentAccuracy">
+                <input id="consentAccuracy" type="checkbox" required />
+                <span>I confirm that all information is accurate. <span class="required">*</span></span>
+              </label>
 
-                <label class="check">
-                  <input id="consentContact" name="consentContact" type="checkbox" required />
-                  <span>I allow AcademeForge to contact me by email, phone, or WhatsApp for application review. <span class="required">*</span></span>
-                </label>
-              </div>
+              <label class="check" for="consentContact">
+                <input id="consentContact" type="checkbox" required />
+                <span>I allow AcademeForge to contact me. <span class="required">*</span></span>
+              </label>
 
               <div class="form-actions">
                 <button id="submitBtn" class="btn primary" type="submit">Submit Application</button>
                 <button class="btn secondary" type="button" id="saveDraftBtn">Save Draft</button>
+                <button class="btn secondary" type="button" id="statusBtn">Job Application Status</button>
                 <button class="btn danger" type="reset">Clear Form</button>
               </div>
 
-              <div id="formAlert" class="alert" role="status" aria-live="polite"></div>
+              <div id="formAlert" class="alert"></div>
             </section>
           </form>
+
+          <!-- =================================================
+               JOB APPLICATION STATUS
+               ================================================= -->
+          <section id="applicationStatus" class="card status-card" aria-live="polite">
+            <div class="status-head">
+              <div>
+                <span class="eyebrow">Job Application Status</span>
+                <h2 id="statusTitle">Application Status</h2>
+                <p id="statusText" class="muted">
+                  Submit your application first. After submission, click Job Application Status to refresh status.
+                </p>
+              </div>
+
+              <div id="statusId" class="status-id">No application loaded</div>
+            </div>
+
+            <div id="timeline" class="timeline"></div>
+
+            <div class="status-actions">
+              <button id="refreshStatusBtn" class="btn primary" type="button">Refresh Job Application Status</button>
+              <button id="hideStatusBtn" class="btn secondary" type="button">Hide Status</button>
+            </div>
+          </section>
         </div>
       </section>
     </main>
 
+    <!-- =======================================================
+         FOOTER
+         ======================================================= -->
     <footer class="footer">
-      <div class="cw footer-inner">
-        <span>© <span id="year"></span> AcademeForge. All rights reserved.</span>
-        <span>Join Team Application · Work From Home Roles</span>
+      <div class="cw">
+        © <span id="year"></span> AcademeForge. All rights reserved.
       </div>
     </footer>
   </div>
@@ -1203,283 +1325,364 @@
   <script>
     "use strict";
 
+    /* =========================================================
+       CONFIG
+       ========================================================= */
+
     const EDGE_FUNCTION_URL = "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/join-team-application";
-    const THEME_KEY = "academeforge_join_team_theme_v3";
-    const DRAFT_KEY = "academeforge_join_team_form_draft_v3";
+    const STATUS_FUNCTION_URL = "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/join-team-application-status";
+
+    const DRAFT_KEY = "academeforge_join_team_draft_v4";
+    const LAST_APP_KEY = "academeforge_join_team_last_application_v4";
+
+    /* =========================================================
+       DATA
+       ========================================================= */
 
     const countryCodes = [
-      { country: "No Code", code: "" },
-      { country: "India", code: "+91" },
-      { country: "Nepal", code: "+977" },
-      { country: "Bangladesh", code: "+880" },
-      { country: "Bhutan", code: "+975" },
-      { country: "Sri Lanka", code: "+94" },
-      { country: "Maldives", code: "+960" },
-      { country: "Pakistan", code: "+92" },
-      { country: "Afghanistan", code: "+93" },
-      { country: "Myanmar", code: "+95" },
-      { country: "United States", code: "+1" },
-      { country: "United Kingdom", code: "+44" },
-      { country: "United Arab Emirates", code: "+971" }
+      ["", "No Code"],
+      ["+91", "India"],
+      ["+977", "Nepal"],
+      ["+880", "Bangladesh"],
+      ["+975", "Bhutan"],
+      ["+94", "Sri Lanka"],
+      ["+960", "Maldives"],
+      ["+92", "Pakistan"],
+      ["+93", "Afghanistan"],
+      ["+95", "Myanmar"],
+      ["+1", "United States"],
+      ["+44", "United Kingdom"],
+      ["+971", "UAE"]
     ];
 
     const locationData = {
       India: {
-        "Andhra Pradesh": ["Alluri Sitharama Raju", "Anakapalli", "Anantapur", "Annamayya", "Bapatla", "Chittoor", "East Godavari", "Eluru", "Guntur", "Kakinada", "Krishna", "Kurnool", "Nandyal", "NTR", "Palnadu", "Prakasam", "Srikakulam", "Tirupati", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"],
-        "Arunachal Pradesh": ["Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Lohit", "Longding", "Namsai", "Papum Pare", "Tawang", "Tirap", "Upper Siang", "West Kameng", "West Siang"],
-        Assam: ["Baksa", "Barpeta", "Bongaigaon", "Cachar", "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Goalpara", "Golaghat", "Jorhat", "Kamrup", "Karimganj", "Kokrajhar", "Lakhimpur", "Nagaon", "Nalbari", "Sivasagar", "Sonitpur", "Tinsukia"],
-        Bihar: ["Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar", "Darbhanga", "East Champaran", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnea", "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan", "Supaul", "Vaishali", "West Champaran"],
-        Chhattisgarh: ["Balod", "Baloda Bazar", "Balrampur", "Bastar", "Bemetara", "Bilaspur", "Dantewada", "Dhamtari", "Durg", "Janjgir-Champa", "Korba", "Raigarh", "Raipur", "Rajnandgaon", "Surguja"],
-        Delhi: ["Central Delhi", "East Delhi", "New Delhi", "North Delhi", "North East Delhi", "North West Delhi", "Shahdara", "South Delhi", "South East Delhi", "South West Delhi", "West Delhi"],
-        Goa: ["North Goa", "South Goa"],
-        Gujarat: ["Ahmedabad", "Amreli", "Anand", "Banaskantha", "Bharuch", "Bhavnagar", "Gandhinagar", "Jamnagar", "Junagadh", "Kutch", "Mehsana", "Rajkot", "Surat", "Vadodara", "Valsad"],
-        Haryana: ["Ambala", "Bhiwani", "Faridabad", "Fatehabad", "Gurugram", "Hisar", "Jhajjar", "Jind", "Karnal", "Kurukshetra", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"],
-        "Himachal Pradesh": ["Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"],
-        Jharkhand: ["Bokaro", "Chatra", "Deoghar", "Dhanbad", "Dumka", "East Singhbhum", "Garhwa", "Giridih", "Godda", "Gumla", "Hazaribagh", "Jamtara", "Ranchi", "West Singhbhum"],
-        Karnataka: ["Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", "Bidar", "Dharwad", "Hassan", "Kalaburagi", "Mysuru", "Shivamogga", "Tumakuru", "Udupi", "Vijayapura"],
-        Kerala: ["Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Thiruvananthapuram", "Thrissur", "Wayanad"],
-        "Madhya Pradesh": ["Bhopal", "Gwalior", "Indore", "Jabalpur", "Rewa", "Sagar", "Satna", "Ujjain"],
-        Maharashtra: ["Ahmednagar", "Akola", "Amravati", "Aurangabad", "Beed", "Mumbai City", "Mumbai Suburban", "Nagpur", "Nashik", "Pune", "Raigad", "Satara", "Solapur", "Thane"],
-        Manipur: ["Bishnupur", "Chandel", "Churachandpur", "Imphal East", "Imphal West", "Senapati", "Thoubal", "Ukhrul"],
-        Meghalaya: ["East Khasi Hills", "West Khasi Hills", "Ri Bhoi", "West Garo Hills", "East Garo Hills", "South Garo Hills"],
-        Mizoram: ["Aizawl", "Champhai", "Kolasib", "Lawngtlai", "Lunglei", "Mamit", "Saiha", "Serchhip"],
-        Nagaland: ["Dimapur", "Kohima", "Mokokchung", "Mon", "Phek", "Tuensang", "Wokha", "Zunheboto"],
-        Odisha: ["Angul", "Balangir", "Balasore", "Bargarh", "Bhadrak", "Cuttack", "Ganjam", "Kalahandi", "Khordha", "Koraput", "Mayurbhanj", "Puri", "Sambalpur", "Sundargarh"],
-        Punjab: ["Amritsar", "Bathinda", "Firozpur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Ludhiana", "Patiala", "Sangrur"],
-        Rajasthan: ["Ajmer", "Alwar", "Bharatpur", "Bikaner", "Jaipur", "Jodhpur", "Kota", "Udaipur"],
-        Sikkim: ["East Sikkim", "North Sikkim", "South Sikkim", "West Sikkim"],
-        "Tamil Nadu": ["Chennai", "Coimbatore", "Cuddalore", "Dindigul", "Erode", "Madurai", "Salem", "Thanjavur", "Tiruchirappalli", "Tirunelveli", "Vellore"],
-        Telangana: ["Adilabad", "Hyderabad", "Karimnagar", "Khammam", "Mahabubnagar", "Medak", "Nalgonda", "Nizamabad", "Rangareddy", "Warangal"],
-        Tripura: ["Dhalai", "Gomati", "Khowai", "North Tripura", "Sepahijala", "South Tripura", "Unakoti", "West Tripura"],
-        "Uttar Pradesh": ["Agra", "Aligarh", "Allahabad", "Ambedkar Nagar", "Azamgarh", "Bareilly", "Gautam Buddha Nagar", "Ghaziabad", "Gorakhpur", "Kanpur Nagar", "Lucknow", "Meerut", "Moradabad", "Varanasi"],
-        Uttarakhand: ["Almora", "Chamoli", "Dehradun", "Haridwar", "Nainital", "Pauri Garhwal", "Pithoragarh", "Rudraprayag", "Tehri Garhwal", "Udham Singh Nagar", "Uttarkashi"],
-        "West Bengal": ["Alipurduar", "Bankura", "Birbhum", "Cooch Behar", "Darjeeling", "Hooghly", "Howrah", "Jalpaiguri", "Kolkata", "Malda", "Murshidabad", "Nadia", "North 24 Parganas", "Paschim Bardhaman", "Purba Bardhaman", "South 24 Parganas"]
+        Bihar: [
+          "Araria",
+          "Arwal",
+          "Aurangabad",
+          "Banka",
+          "Begusarai",
+          "Bhagalpur",
+          "Bhojpur",
+          "Buxar",
+          "Darbhanga",
+          "East Champaran",
+          "Gaya",
+          "Gopalganj",
+          "Jamui",
+          "Jehanabad",
+          "Kaimur",
+          "Katihar",
+          "Khagaria",
+          "Kishanganj",
+          "Lakhisarai",
+          "Madhepura",
+          "Madhubani",
+          "Munger",
+          "Muzaffarpur",
+          "Nalanda",
+          "Nawada",
+          "Patna",
+          "Purnea",
+          "Rohtas",
+          "Saharsa",
+          "Samastipur",
+          "Saran",
+          "Sheikhpura",
+          "Sheohar",
+          "Sitamarhi",
+          "Siwan",
+          "Supaul",
+          "Vaishali",
+          "West Champaran"
+        ],
+        Delhi: [
+          "Central Delhi",
+          "East Delhi",
+          "New Delhi",
+          "North Delhi",
+          "South Delhi",
+          "West Delhi"
+        ],
+        "Uttar Pradesh": [
+          "Agra",
+          "Aligarh",
+          "Bareilly",
+          "Ghaziabad",
+          "Gorakhpur",
+          "Kanpur Nagar",
+          "Lucknow",
+          "Meerut",
+          "Varanasi"
+        ],
+        "West Bengal": [
+          "Kolkata",
+          "Darjeeling",
+          "Howrah",
+          "Hooghly",
+          "Malda",
+          "Murshidabad",
+          "Nadia"
+        ],
+        Maharashtra: [
+          "Mumbai City",
+          "Mumbai Suburban",
+          "Nagpur",
+          "Nashik",
+          "Pune",
+          "Thane"
+        ],
+        Karnataka: [
+          "Bengaluru Urban",
+          "Bengaluru Rural",
+          "Mysuru"
+        ],
+        Gujarat: [
+          "Ahmedabad",
+          "Surat",
+          "Vadodara",
+          "Rajkot"
+        ],
+        Rajasthan: [
+          "Jaipur",
+          "Jodhpur",
+          "Kota",
+          "Udaipur"
+        ],
+        "Tamil Nadu": [
+          "Chennai",
+          "Coimbatore",
+          "Madurai",
+          "Salem"
+        ],
+        Telangana: [
+          "Hyderabad",
+          "Warangal"
+        ],
+        Kerala: [
+          "Ernakulam",
+          "Kozhikode",
+          "Thiruvananthapuram"
+        ],
+        Punjab: [
+          "Amritsar",
+          "Jalandhar",
+          "Ludhiana"
+        ],
+        Haryana: [
+          "Gurugram",
+          "Faridabad",
+          "Panipat"
+        ],
+        Jharkhand: [
+          "Ranchi",
+          "Dhanbad",
+          "Jamshedpur"
+        ],
+        Odisha: [
+          "Bhubaneswar",
+          "Cuttack",
+          "Puri"
+        ]
       },
       Nepal: {
-        Bagmati: ["Kathmandu", "Lalitpur", "Bhaktapur", "Chitwan", "Makwanpur"],
-        Gandaki: ["Kaski", "Gorkha", "Lamjung", "Tanahun"],
-        Lumbini: ["Rupandehi", "Kapilvastu", "Dang", "Banke"]
+        Bagmati: [
+          "Kathmandu",
+          "Lalitpur",
+          "Bhaktapur"
+        ]
       },
       Bangladesh: {
-        Dhaka: ["Dhaka", "Gazipur", "Narayanganj"],
-        Chattogram: ["Chattogram", "Cox's Bazar", "Cumilla"],
-        Khulna: ["Khulna", "Jessore", "Satkhira"]
+        Dhaka: [
+          "Dhaka",
+          "Gazipur"
+        ],
+        Chattogram: [
+          "Chattogram",
+          "Cox's Bazar"
+        ]
       },
       Bhutan: {
-        Thimphu: ["Thimphu"],
-        Paro: ["Paro"],
-        Punakha: ["Punakha"]
+        Thimphu: [
+          "Thimphu"
+        ],
+        Paro: [
+          "Paro"
+        ]
       },
       "Sri Lanka": {
-        Western: ["Colombo", "Gampaha", "Kalutara"],
-        Central: ["Kandy", "Matale", "Nuwara Eliya"],
-        Southern: ["Galle", "Matara", "Hambantota"]
+        Western: [
+          "Colombo",
+          "Gampaha"
+        ]
       },
       Maldives: {
-        Male: ["Male"],
-        Addu: ["Addu City"]
+        Male: [
+          "Male"
+        ]
       },
       Pakistan: {
-        Punjab: ["Lahore", "Faisalabad", "Rawalpindi"],
-        Sindh: ["Karachi", "Hyderabad", "Sukkur"],
-        KhyberPakhtunkhwa: ["Peshawar", "Abbottabad"]
+        Punjab: [
+          "Lahore",
+          "Faisalabad"
+        ],
+        Sindh: [
+          "Karachi",
+          "Hyderabad"
+        ]
       },
       Afghanistan: {
-        Kabul: ["Kabul"],
-        Herat: ["Herat"],
-        Kandahar: ["Kandahar"]
+        Kabul: [
+          "Kabul"
+        ],
+        Herat: [
+          "Herat"
+        ]
       },
       Myanmar: {
-        Yangon: ["Yangon"],
-        Mandalay: ["Mandalay"],
-        Naypyidaw: ["Naypyidaw"]
+        Yangon: [
+          "Yangon"
+        ],
+        Mandalay: [
+          "Mandalay"
+        ]
       }
     };
 
     const roles = [
-      ["Campus Ambassador", "Promote AcademeForge in school or college."],
-      ["Content Writer", "Write educational posts, blogs, captions, and guides."],
-      ["Video Editor", "Edit reels, shorts, lectures, and promotional videos."],
-      ["Graphic Designer", "Create posters, banners, carousels, and thumbnails."],
-      ["Frontend Developer", "Build UI pages, landing pages, and dashboards."],
-      ["Backend Developer", "Work on APIs, database, server logic, and automation."],
-      ["Full Stack Developer", "Build complete web features end to end."],
-      ["UI/UX Designer", "Design clean app screens, flows, and user experiences."],
-      ["Social Media Manager", "Manage posts, scheduling, and growth campaigns."],
-      ["Community Manager", "Handle students, groups, updates, and engagement."],
-      ["Doubt Support", "Help students with basic academic and platform doubts."],
-      ["Data Entry Operator", "Manage structured data, forms, and records."],
-      ["Research Assistant", "Collect educational, market, and content research."],
-      ["Marketing Intern", "Assist in outreach, campaigns, and partnerships."],
-      ["Sales Support", "Handle leads, follow-ups, and basic user communication."],
-      ["HR Intern", "Support hiring, screening, and team coordination."],
-      ["Teacher / Mentor", "Teach, guide, or mentor students remotely."],
-      ["AI Tools Operator", "Use AI tools for content, automation, and workflows."],
-      ["Quality Checker", "Review content, forms, and app data quality."],
-      ["Operations Assistant", "Support daily remote operations and coordination."]
+      ["Campus Ambassador", "Promote AcademeForge."],
+      ["Content Writer", "Write posts and guides."],
+      ["Video Editor", "Edit reels and videos."],
+      ["Graphic Designer", "Create posters and banners."],
+      ["Frontend Developer", "Build UI pages."],
+      ["Backend Developer", "Build APIs and DB logic."],
+      ["Full Stack Developer", "Build full features."],
+      ["UI/UX Designer", "Design app screens."],
+      ["Social Media Manager", "Manage growth campaigns."],
+      ["Community Manager", "Handle groups."],
+      ["Doubt Support", "Help students."],
+      ["Data Entry Operator", "Manage records."],
+      ["Research Assistant", "Collect research."],
+      ["Marketing Intern", "Outreach campaigns."],
+      ["Sales Support", "Handle leads."],
+      ["HR Intern", "Hiring support."],
+      ["Teacher / Mentor", "Teach remotely."],
+      ["AI Tools Operator", "AI workflows."],
+      ["Quality Checker", "Review quality."],
+      ["Operations Assistant", "Daily operations."]
     ];
 
     const workTypes = [
-      ["Internship", "Remote internship role."],
-      ["Part Time", "Limited hours weekly."],
-      ["Full Time", "Dedicated full-time remote role."],
+      ["Unpaid Internship", "Learning-focused unpaid internship."],
+      ["Paid Internship", "Paid internship after approval."],
+      ["Part Time", "Limited weekly hours."],
+      ["Full Time", "Dedicated remote role."],
       ["Volunteer", "Contribution-based role."],
-      ["Freelance", "Project or task-based work."],
-      ["Campus Role", "School or college representative role."]
+      ["Freelance", "Task/project work."],
+      ["Campus Role", "Representative role."],
+      ["Training + Internship", "Training then evaluation."],
+      ["Performance Based", "Reward by output."],
+      ["Trial Role", "Short evaluation role."]
     ];
 
     const workTimeTypes = [
-      ["Flexible", "Work anytime with deadlines."],
-      ["Morning", "Mostly morning availability."],
-      ["Afternoon", "Mostly afternoon availability."],
-      ["Evening", "Mostly evening availability."],
-      ["Weekend", "Mostly weekend availability."],
-      ["Fixed Schedule", "Specific fixed time availability."]
+      ["Flexible", "Anytime with deadlines."],
+      ["Morning", "Morning availability."],
+      ["Afternoon", "Afternoon availability."],
+      ["Evening", "Evening availability."],
+      ["Weekend", "Weekend availability."],
+      ["Fixed Schedule", "Fixed time."],
+      ["After School/College", "After classes."],
+      ["Night Shift", "Night availability."]
     ];
+
+    /* =========================================================
+       HELPERS
+       ========================================================= */
 
     function byId(id) {
       return document.getElementById(id);
     }
 
-    function cleanText(value) {
+    function clean(value) {
       return String(value || "").trim().replace(/\s+/g, " ");
     }
 
-    function cleanLongText(value) {
+    function cleanLong(value) {
       return String(value || "").trim().replace(/\r\n/g, "\n").replace(/\n{4,}/g, "\n\n\n");
     }
 
-    function digitsOnly(value) {
+    function digits(value) {
       return String(value || "").replace(/\D/g, "");
-    }
-
-    function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(String(email || "").trim());
-    }
-
-    function isValidUrl(value) {
-      const text = String(value || "").trim();
-
-      if (!text) {
-        return true;
-      }
-
-      try {
-        const url = new URL(text);
-        return url.protocol === "https:" || url.protocol === "http:";
-      } catch (error) {
-        return false;
-      }
-    }
-
-    function safeElementValue(id) {
-      const element = byId(id);
-      return element ? element.value : "";
-    }
-
-    function safeElementChecked(id) {
-      const element = byId(id);
-      return element ? Boolean(element.checked) : false;
-    }
-
-    function setSafeValue(id, value) {
-      const element = byId(id);
-
-      if (element) {
-        element.value = value;
-      }
     }
 
     function showAlert(type, message) {
       const alert = byId("formAlert");
-
-      if (!alert) {
-        return;
-      }
-
       alert.className = "alert show " + type;
       alert.textContent = message;
     }
 
     function clearAlert() {
       const alert = byId("formAlert");
-
-      if (!alert) {
-        return;
-      }
-
       alert.className = "alert";
       alert.textContent = "";
     }
 
-    function setTheme(theme) {
-      const nextTheme = theme === "dark" ? "dark" : "light";
-      document.documentElement.setAttribute("data-theme", nextTheme);
-
-      const metaTheme = document.querySelector('meta[name="theme-color"]');
-
-      if (metaTheme) {
-        metaTheme.setAttribute("content", nextTheme === "dark" ? "#050816" : "#f8fafc");
-      }
-
+    function safeJsonParse(value, fallback) {
       try {
-        localStorage.setItem(THEME_KEY, nextTheme);
+        return JSON.parse(value);
       } catch (error) {
-        console.warn("Theme save failed.", error);
+        return fallback;
+      }
+    }
+
+    /* =========================================================
+       THEME
+       ========================================================= */
+
+    function getPreferredTheme() {
+      const saved = localStorage.getItem("academeforge_theme");
+      if (saved === "light" || saved === "dark") return saved;
+
+      if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
       }
 
-      const toggle = byId("themeToggle");
+      return "light";
+    }
 
-      if (toggle) {
-        toggle.setAttribute("aria-pressed", nextTheme === "dark" ? "true" : "false");
-
-        const label = toggle.querySelector(".label");
-
-        if (label) {
-          label.textContent = nextTheme === "dark" ? "Night On" : "Night";
-        }
-      }
+    function applyTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      byId("themeToggle").textContent = theme === "dark" ? "Light" : "Night";
+      localStorage.setItem("academeforge_theme", theme);
     }
 
     function initTheme() {
-      let saved = "light";
+      applyTheme(getPreferredTheme());
 
-      try {
-        saved = localStorage.getItem(THEME_KEY) || "light";
-      } catch (error) {
-        saved = "light";
-      }
-
-      if (!localStorage.getItem(THEME_KEY) && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        saved = "dark";
-      }
-
-      setTheme(saved === "dark" ? "dark" : "light");
-
-      const toggle = byId("themeToggle");
-
-      if (toggle) {
-        toggle.addEventListener("click", function () {
-          const current = document.documentElement.getAttribute("data-theme");
-          setTheme(current === "dark" ? "light" : "dark");
-        });
-      }
+      byId("themeToggle").addEventListener("click", function () {
+        const current = document.documentElement.getAttribute("data-theme");
+        applyTheme(current === "dark" ? "light" : "dark");
+      });
     }
 
+    /* =========================================================
+       COUNTRY CODE
+       ========================================================= */
+
     function initCountryCodes() {
-      const selects = [byId("contactCountryCode"), byId("whatsappCountryCode")];
-
-      selects.forEach(function (select) {
-        if (!select) {
-          return;
-        }
-
+      ["contactCountryCode", "whatsappCountryCode"].forEach(function (id) {
+        const select = byId(id);
         select.innerHTML = "";
 
         countryCodes.forEach(function (item) {
+          const code = item[0];
+          const name = item[1];
+
           const option = document.createElement("option");
-          option.value = item.code;
-          option.textContent = item.code ? item.code + " " + item.country : "No country code";
+          option.value = code;
+          option.textContent = code ? code + " " + name : "No country code";
           select.appendChild(option);
         });
 
@@ -1487,30 +1690,37 @@
       });
     }
 
+    /* =========================================================
+       CHOICE GRIDS
+       ========================================================= */
+
     function createChoiceGrid(containerId, hiddenInputId, items) {
       const container = byId(containerId);
-      const hidden = byId(hiddenInputId);
-
-      if (!container || !hidden) {
-        return;
-      }
+      const hiddenInput = byId(hiddenInputId);
 
       container.innerHTML = "";
 
       items.forEach(function (item) {
         const title = item[0];
-        const desc = item[1];
+        const description = item[1];
 
         const button = document.createElement("button");
         button.type = "button";
-        button.className = "choice-btn";
+        button.className = "choice";
         button.dataset.value = title;
-        button.innerHTML = "<span>" + title + "</span><small>" + desc + "</small>";
+
+        const titleSpan = document.createElement("span");
+        titleSpan.textContent = title;
+
+        const small = document.createElement("small");
+        small.textContent = description;
+
+        button.appendChild(titleSpan);
+        button.appendChild(small);
 
         button.addEventListener("click", function () {
-          hidden.value = title;
-          syncChoiceButtons();
-          clearAlert();
+          hiddenInput.value = title;
+          syncChoices();
           saveDraft();
         });
 
@@ -1518,63 +1728,53 @@
       });
     }
 
-    function syncChoiceButtons() {
+    function syncChoices() {
       [
         ["roleGrid", "selectedRole"],
         ["workTypeGrid", "workType"],
         ["workTimeTypeGrid", "workTimeType"]
       ].forEach(function (pair) {
-        const container = byId(pair[0]);
-        const hidden = byId(pair[1]);
+        const containerId = pair[0];
+        const hiddenInputId = pair[1];
 
-        if (!container || !hidden) {
-          return;
-        }
+        const value = byId(hiddenInputId).value;
+        const buttons = byId(containerId).querySelectorAll(".choice");
 
-        Array.from(container.querySelectorAll(".choice-btn")).forEach(function (button) {
-          button.classList.toggle("selected", button.dataset.value === hidden.value);
+        buttons.forEach(function (button) {
+          button.classList.toggle("selected", button.dataset.value === value);
         });
       });
     }
 
-    function initChoiceButtons() {
-      createChoiceGrid("roleGrid", "selectedRole", roles);
-      createChoiceGrid("workTypeGrid", "workType", workTypes);
-      createChoiceGrid("workTimeTypeGrid", "workTimeType", workTimeTypes);
-      syncChoiceButtons();
+    /* =========================================================
+       LOCATION SEARCH
+       ========================================================= */
+
+    function getCountries() {
+      return Object.keys(locationData);
     }
 
-    function closeAllSearchLists() {
-      ["countryList", "stateList", "districtList"].forEach(function (id) {
-        const list = byId(id);
+    function getStates(country) {
+      return Object.keys(locationData[country] || {});
+    }
 
-        if (list) {
-          list.classList.remove("open");
-        }
+    function getDistricts(country, state) {
+      return (locationData[country] || {})[state] || [];
+    }
+
+    function filterList(options, query) {
+      const q = clean(query).toLowerCase();
+      if (!q) return options;
+      return options.filter(function (option) {
+        return option.toLowerCase().includes(q);
       });
     }
 
     function renderSearchList(listId, options, onSelect) {
       const list = byId(listId);
-
-      if (!list) {
-        return;
-      }
-
       list.innerHTML = "";
 
-      if (!options.length) {
-        const empty = document.createElement("button");
-        empty.type = "button";
-        empty.className = "search-option";
-        empty.textContent = "No result found";
-        empty.disabled = true;
-        list.appendChild(empty);
-        list.classList.add("open");
-        return;
-      }
-
-      options.forEach(function (optionText) {
+      options.slice(0, 90).forEach(function (optionText) {
         const button = document.createElement("button");
         button.type = "button";
         button.className = "search-option";
@@ -1582,7 +1782,7 @@
 
         button.addEventListener("click", function () {
           onSelect(optionText);
-          closeAllSearchLists();
+          list.classList.remove("open");
           saveDraft();
         });
 
@@ -1592,307 +1792,178 @@
       list.classList.add("open");
     }
 
-    function filterOptions(options, query) {
-      const text = cleanText(query).toLowerCase();
-
-      if (!text) {
-        return options.slice(0, 80);
-      }
-
-      return options.filter(function (item) {
-        return item.toLowerCase().includes(text);
-      }).slice(0, 80);
+    function closeSearchLists() {
+      document.querySelectorAll(".search-list").forEach(function (list) {
+        list.classList.remove("open");
+      });
     }
 
-    function getCountries() {
-      return Object.keys(locationData);
-    }
-
-    function getStates(country) {
-      const states = locationData[country] || {};
-      return Object.keys(states);
-    }
-
-    function getDistricts(country, state) {
-      const states = locationData[country] || {};
-      return states[state] || [];
-    }
-
-    function initLocationSelectors() {
+    function initLocationSearch() {
       const countrySearch = byId("countrySearch");
       const stateSearch = byId("stateSearch");
       const districtSearch = byId("districtSearch");
 
-      if (!countrySearch || !stateSearch || !districtSearch) {
-        return;
-      }
-
       countrySearch.addEventListener("focus", function () {
-        renderSearchList("countryList", getCountries(), function (country) {
-          setSafeValue("countrySearch", country);
-          setSafeValue("country", country);
-          setSafeValue("stateSearch", "");
-          setSafeValue("stateName", "");
-          setSafeValue("districtSearch", "");
-          setSafeValue("district", "");
+        renderSearchList("countryList", getCountries(), function (value) {
+          countrySearch.value = value;
+          byId("country").value = value;
+
+          stateSearch.value = "";
+          byId("stateName").value = "";
+
+          districtSearch.value = "";
+          byId("district").value = "";
         });
       });
 
       countrySearch.addEventListener("input", function () {
-        setSafeValue("country", "");
-        setSafeValue("stateSearch", "");
-        setSafeValue("stateName", "");
-        setSafeValue("districtSearch", "");
-        setSafeValue("district", "");
+        renderSearchList("countryList", filterList(getCountries(), countrySearch.value), function (value) {
+          countrySearch.value = value;
+          byId("country").value = value;
 
-        renderSearchList("countryList", filterOptions(getCountries(), countrySearch.value), function (country) {
-          setSafeValue("countrySearch", country);
-          setSafeValue("country", country);
-          setSafeValue("stateSearch", "");
-          setSafeValue("stateName", "");
-          setSafeValue("districtSearch", "");
-          setSafeValue("district", "");
+          stateSearch.value = "";
+          byId("stateName").value = "";
+
+          districtSearch.value = "";
+          byId("district").value = "";
         });
       });
 
       stateSearch.addEventListener("focus", function () {
-        const country = safeElementValue("country");
+        renderSearchList("stateList", getStates(byId("country").value), function (value) {
+          stateSearch.value = value;
+          byId("stateName").value = value;
 
-        if (!country) {
-          showAlert("error", "Select country first.");
-          return;
-        }
-
-        renderSearchList("stateList", getStates(country), function (state) {
-          setSafeValue("stateSearch", state);
-          setSafeValue("stateName", state);
-          setSafeValue("districtSearch", "");
-          setSafeValue("district", "");
+          districtSearch.value = "";
+          byId("district").value = "";
         });
       });
 
       stateSearch.addEventListener("input", function () {
-        const country = safeElementValue("country");
-        setSafeValue("stateName", "");
-        setSafeValue("districtSearch", "");
-        setSafeValue("district", "");
+        renderSearchList("stateList", filterList(getStates(byId("country").value), stateSearch.value), function (value) {
+          stateSearch.value = value;
+          byId("stateName").value = value;
 
-        renderSearchList("stateList", filterOptions(getStates(country), stateSearch.value), function (state) {
-          setSafeValue("stateSearch", state);
-          setSafeValue("stateName", state);
-          setSafeValue("districtSearch", "");
-          setSafeValue("district", "");
+          districtSearch.value = "";
+          byId("district").value = "";
         });
       });
 
       districtSearch.addEventListener("focus", function () {
-        const country = safeElementValue("country");
-        const state = safeElementValue("stateName");
-
-        if (!country) {
-          showAlert("error", "Select country first.");
-          return;
-        }
-
-        if (!state) {
-          showAlert("error", "Select state first.");
-          return;
-        }
-
-        renderSearchList("districtList", getDistricts(country, state), function (district) {
-          setSafeValue("districtSearch", district);
-          setSafeValue("district", district);
+        renderSearchList("districtList", getDistricts(byId("country").value, byId("stateName").value), function (value) {
+          districtSearch.value = value;
+          byId("district").value = value;
         });
       });
 
       districtSearch.addEventListener("input", function () {
-        const country = safeElementValue("country");
-        const state = safeElementValue("stateName");
-        setSafeValue("district", "");
-
-        renderSearchList("districtList", filterOptions(getDistricts(country, state), districtSearch.value), function (district) {
-          setSafeValue("districtSearch", district);
-          setSafeValue("district", district);
+        renderSearchList("districtList", filterList(getDistricts(byId("country").value, byId("stateName").value), districtSearch.value), function (value) {
+          districtSearch.value = value;
+          byId("district").value = value;
         });
       });
 
       document.addEventListener("click", function (event) {
         if (!event.target.closest(".search-select")) {
-          closeAllSearchLists();
+          closeSearchLists();
         }
       });
     }
 
-    function getFormData() {
+    /* =========================================================
+       FORM DATA
+       ========================================================= */
+
+    function collectFormData() {
       return {
-        fullName: cleanText(safeElementValue("fullName")),
-        email: cleanText(safeElementValue("email")).toLowerCase(),
+        fullName: clean(byId("fullName").value),
+        email: clean(byId("email").value).toLowerCase(),
 
-        contactCountryCode: cleanText(safeElementValue("contactCountryCode")),
-        contactNumber: digitsOnly(safeElementValue("contactNumber")),
+        contactCountryCode: byId("contactCountryCode").value,
+        contactNumber: digits(byId("contactNumber").value),
 
-        whatsappCountryCode: cleanText(safeElementValue("whatsappCountryCode")),
-        whatsappNumber: digitsOnly(safeElementValue("whatsappNumber")),
+        whatsappCountryCode: byId("whatsappCountryCode").value,
+        whatsappNumber: digits(byId("whatsappNumber").value),
 
-        dateOfBirth: cleanText(safeElementValue("dateOfBirth")),
-        ageGroup: cleanText(safeElementValue("ageGroup")),
-        gender: cleanText(safeElementValue("gender")),
+        dateOfBirth: byId("dateOfBirth").value,
+        ageGroup: byId("ageGroup").value,
+        gender: byId("gender").value,
 
-        country: cleanText(safeElementValue("country")),
-        stateName: cleanText(safeElementValue("stateName")),
-        district: cleanText(safeElementValue("district")),
-        pincode: cleanText(safeElementValue("pincode")),
-        postOffice: cleanText(safeElementValue("postOffice")),
-        fullAddress: cleanLongText(safeElementValue("fullAddress")),
+        country: byId("country").value,
+        stateName: byId("stateName").value,
+        district: byId("district").value,
+        pincode: clean(byId("pincode").value),
+        postOffice: clean(byId("postOffice").value),
+        fullAddress: cleanLong(byId("fullAddress").value),
 
-        selectedRole: cleanText(safeElementValue("selectedRole")),
-        workType: cleanText(safeElementValue("workType")),
-        workTimeType: cleanText(safeElementValue("workTimeType")),
-        weeklyAvailability: cleanText(safeElementValue("weeklyAvailability")),
+        selectedRole: byId("selectedRole").value,
+        workType: byId("workType").value,
+        workTimeType: byId("workTimeType").value,
+        weeklyAvailability: byId("weeklyAvailability").value,
 
-        educationLevel: cleanText(safeElementValue("educationLevel")),
-        currentStatus: cleanText(safeElementValue("currentStatus")),
-        experienceLevel: cleanText(safeElementValue("experienceLevel")),
+        educationLevel: byId("educationLevel").value,
+        currentStatus: byId("currentStatus").value,
+        experienceLevel: byId("experienceLevel").value,
 
-        skills: cleanLongText(safeElementValue("skills")),
-        portfolioUrl: cleanText(safeElementValue("portfolioUrl")),
-        linkedinUrl: cleanText(safeElementValue("linkedinUrl")),
-        githubUrl: cleanText(safeElementValue("githubUrl")),
-        instagramUrl: cleanText(safeElementValue("instagramUrl")),
-        whyJoin: cleanLongText(safeElementValue("whyJoin")),
-        previousWork: cleanLongText(safeElementValue("previousWork")),
+        skills: cleanLong(byId("skills").value),
+        portfolioUrl: clean(byId("portfolioUrl").value),
+        linkedinUrl: clean(byId("linkedinUrl").value),
+        githubUrl: clean(byId("githubUrl").value),
+        instagramUrl: clean(byId("instagramUrl").value),
 
-        certificateDeliveryRequired: safeElementChecked("certificateDeliveryRequired"),
-        consentAccuracy: safeElementChecked("consentAccuracy"),
-        consentContact: safeElementChecked("consentContact")
+        whyJoin: cleanLong(byId("whyJoin").value),
+        previousWork: cleanLong(byId("previousWork").value),
+
+        certificateDeliveryRequired: byId("certificateDeliveryRequired").checked,
+        consentAccuracy: byId("consentAccuracy").checked,
+        consentContact: byId("consentContact").checked
       };
     }
 
-    function validateForm(data) {
-      if (!data.fullName || data.fullName.length < 2) {
-        return "Enter your full name.";
-      }
-
-      if (!isValidEmail(data.email)) {
-        return "Enter a valid email.";
-      }
-
-      if (!data.contactNumber || data.contactNumber.length < 5) {
-        return "Enter your contact number.";
-      }
-
-      if (!data.ageGroup) {
-        return "Select age group.";
-      }
-
-      if (!data.country) {
-        return "Select country from the list.";
-      }
-
-      if (!data.stateName) {
-        return "Select state from the list.";
-      }
-
-      if (!data.district) {
-        return "Select district from the list.";
-      }
-
-      if (!data.pincode || data.pincode.length < 3) {
-        return "Enter pincode.";
-      }
-
-      if (!data.selectedRole) {
-        return "Select one role.";
-      }
-
-      if (!data.workType) {
-        return "Select work type.";
-      }
-
-      if (!data.workTimeType) {
-        return "Select work time type.";
-      }
-
-      if (!data.weeklyAvailability) {
-        return "Select weekly availability.";
-      }
-
-      if (!data.educationLevel) {
-        return "Select education level.";
-      }
-
-      if (!data.currentStatus) {
-        return "Select current status.";
-      }
-
-      if (!data.experienceLevel) {
-        return "Select experience level.";
-      }
-
-      if (!data.skills || data.skills.length < 2) {
-        return "Write your skills.";
-      }
-
-      if (!isValidUrl(data.portfolioUrl)) {
-        return "Enter a valid portfolio URL or leave it empty.";
-      }
-
-      if (!isValidUrl(data.linkedinUrl)) {
-        return "Enter a valid LinkedIn URL or leave it empty.";
-      }
-
-      if (!isValidUrl(data.githubUrl)) {
-        return "Enter a valid GitHub URL or leave it empty.";
-      }
-
-      if (!isValidUrl(data.instagramUrl)) {
-        return "Enter a valid Instagram URL or leave it empty.";
-      }
-
-      if (!data.whyJoin || data.whyJoin.length < 5) {
-        return "Write why you want to join.";
-      }
-
-      if (!data.consentAccuracy) {
-        return "Confirm that your information is accurate.";
-      }
-
-      if (!data.consentContact) {
-        return "Allow AcademeForge to contact you.";
-      }
-
+    function validateFormData(data) {
+      if (!data.fullName) return "Enter your full name.";
+      if (!data.email || !data.email.includes("@")) return "Enter a valid email.";
+      if (!data.contactNumber || data.contactNumber.length < 5) return "Enter your contact number.";
+      if (!data.ageGroup) return "Select age group.";
+      if (!data.country) return "Select country.";
+      if (!data.stateName) return "Select state.";
+      if (!data.district) return "Select district.";
+      if (!data.pincode) return "Enter pincode.";
+      if (!data.selectedRole) return "Select one role.";
+      if (!data.workType) return "Select work type.";
+      if (!data.workTimeType) return "Select work time type.";
+      if (!data.weeklyAvailability) return "Select weekly availability.";
+      if (!data.educationLevel) return "Select education level.";
+      if (!data.currentStatus) return "Select current status.";
+      if (!data.experienceLevel) return "Select experience level.";
+      if (!data.skills) return "Write your skills.";
+      if (!data.whyJoin) return "Write why you want to join.";
+      if (!data.consentAccuracy) return "Confirm that your information is accurate.";
+      if (!data.consentContact) return "Allow AcademeForge to contact you.";
       return "";
     }
 
-    function buildApiPayload(data) {
-      const skillsList = data.skills
-        .split(/[,;\n]/)
-        .map(function (item) {
-          return cleanText(item);
-        })
-        .filter(Boolean)
-        .slice(0, 100);
-
+    function buildPayload(data) {
       return {
         full_name: data.fullName,
         email: data.email,
 
-        contact_country_code: data.contactCountryCode || "",
+        contact_country_code: data.contactCountryCode,
         contact_number: data.contactNumber,
 
-        whatsapp_country_code: data.whatsappCountryCode || "",
-        whatsapp_number: data.whatsappNumber || "",
+        whatsapp_country_code: data.whatsappCountryCode,
+        whatsapp_number: data.whatsappNumber,
 
-        date_of_birth: data.dateOfBirth || "",
+        date_of_birth: data.dateOfBirth,
         age_group: data.ageGroup,
-        gender: data.gender || "",
+        gender: data.gender,
 
         country: data.country,
         state: data.stateName,
         district: data.district,
         pincode: data.pincode,
-        post_office: data.postOffice || "",
-        address_line: data.fullAddress || "",
+        post_office: data.postOffice,
+        address_line: data.fullAddress,
 
         selected_role: data.selectedRole,
         work_type: data.workType,
@@ -1903,20 +1974,20 @@
         current_status: data.currentStatus,
         experience_level: data.experienceLevel,
 
-        skills: skillsList,
+        skills: data.skills.split(/[,;\n]/).map(clean).filter(Boolean),
         skills_text: data.skills,
 
-        portfolio_url: data.portfolioUrl || "",
-        linkedin_url: data.linkedinUrl || "",
-        github_url: data.githubUrl || "",
-        instagram_url: data.instagramUrl || "",
+        portfolio_url: data.portfolioUrl,
+        linkedin_url: data.linkedinUrl,
+        github_url: data.githubUrl,
+        instagram_url: data.instagramUrl,
 
         why_join: data.whyJoin,
-        previous_work: data.previousWork || "",
+        previous_work: data.previousWork,
 
-        certificate_delivery_needed: Boolean(data.certificateDeliveryRequired),
-        accuracy_confirmed: Boolean(data.consentAccuracy),
-        contact_permission: Boolean(data.consentContact),
+        certificate_delivery_needed: data.certificateDeliveryRequired,
+        accuracy_confirmed: data.consentAccuracy,
+        contact_permission: data.consentContact,
 
         source_page: window.location.href,
         user_agent: navigator.userAgent,
@@ -1924,84 +1995,15 @@
       };
     }
 
+    /* =========================================================
+       DRAFT
+       ========================================================= */
+
     function saveDraft() {
       try {
-        localStorage.setItem(DRAFT_KEY, JSON.stringify(getFormData()));
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(collectFormData()));
       } catch (error) {
         console.warn("Draft save failed.", error);
-      }
-    }
-
-    function restoreDraft() {
-      try {
-        const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}");
-
-        Object.keys(draft).forEach(function (key) {
-          const element = byId(key);
-
-          if (!element) {
-            return;
-          }
-
-          if (element.type === "checkbox") {
-            element.checked = Boolean(draft[key]);
-          } else {
-            element.value = draft[key] || "";
-          }
-        });
-
-        setSafeValue("fullName", draft.fullName || "");
-        setSafeValue("email", draft.email || "");
-        setSafeValue("contactCountryCode", draft.contactCountryCode || "+91");
-        setSafeValue("contactNumber", draft.contactNumber || "");
-        setSafeValue("whatsappCountryCode", draft.whatsappCountryCode || "+91");
-        setSafeValue("whatsappNumber", draft.whatsappNumber || "");
-        setSafeValue("dateOfBirth", draft.dateOfBirth || "");
-        setSafeValue("ageGroup", draft.ageGroup || "");
-        setSafeValue("gender", draft.gender || "");
-        setSafeValue("country", draft.country || "");
-        setSafeValue("stateName", draft.stateName || "");
-        setSafeValue("district", draft.district || "");
-        setSafeValue("countrySearch", draft.country || "");
-        setSafeValue("stateSearch", draft.stateName || "");
-        setSafeValue("districtSearch", draft.district || "");
-        setSafeValue("pincode", draft.pincode || "");
-        setSafeValue("postOffice", draft.postOffice || "");
-        setSafeValue("fullAddress", draft.fullAddress || "");
-        setSafeValue("selectedRole", draft.selectedRole || "");
-        setSafeValue("workType", draft.workType || "");
-        setSafeValue("workTimeType", draft.workTimeType || "");
-        setSafeValue("weeklyAvailability", draft.weeklyAvailability || "");
-        setSafeValue("educationLevel", draft.educationLevel || "");
-        setSafeValue("currentStatus", draft.currentStatus || "");
-        setSafeValue("experienceLevel", draft.experienceLevel || "");
-        setSafeValue("skills", draft.skills || "");
-        setSafeValue("portfolioUrl", draft.portfolioUrl || "");
-        setSafeValue("linkedinUrl", draft.linkedinUrl || "");
-        setSafeValue("githubUrl", draft.githubUrl || "");
-        setSafeValue("instagramUrl", draft.instagramUrl || "");
-        setSafeValue("whyJoin", draft.whyJoin || "");
-        setSafeValue("previousWork", draft.previousWork || "");
-
-        const certificateDeliveryRequired = byId("certificateDeliveryRequired");
-        const consentAccuracy = byId("consentAccuracy");
-        const consentContact = byId("consentContact");
-
-        if (certificateDeliveryRequired) {
-          certificateDeliveryRequired.checked = Boolean(draft.certificateDeliveryRequired);
-        }
-
-        if (consentAccuracy) {
-          consentAccuracy.checked = Boolean(draft.consentAccuracy);
-        }
-
-        if (consentContact) {
-          consentContact.checked = Boolean(draft.consentContact);
-        }
-
-        syncChoiceButtons();
-      } catch (error) {
-        console.warn("Draft restore failed.", error);
       }
     }
 
@@ -2013,143 +2015,367 @@
       }
     }
 
-    function resetHiddenAndSearchFields() {
-      setSafeValue("selectedRole", "");
-      setSafeValue("workType", "");
-      setSafeValue("workTimeType", "");
-      setSafeValue("country", "");
-      setSafeValue("stateName", "");
-      setSafeValue("district", "");
-      setSafeValue("countrySearch", "");
-      setSafeValue("stateSearch", "");
-      setSafeValue("districtSearch", "");
-      syncChoiceButtons();
+    function restoreDraft() {
+      const draft = safeJsonParse(localStorage.getItem(DRAFT_KEY) || "{}", {});
+
+      Object.keys(draft).forEach(function (key) {
+        const element = byId(key);
+
+        if (!element) return;
+
+        if (element.type === "checkbox") {
+          element.checked = Boolean(draft[key]);
+        } else {
+          element.value = draft[key] || "";
+        }
+      });
+
+      byId("countrySearch").value = draft.country || "";
+      byId("stateSearch").value = draft.stateName || "";
+      byId("districtSearch").value = draft.district || "";
+
+      byId("country").value = draft.country || "";
+      byId("stateName").value = draft.stateName || "";
+      byId("district").value = draft.district || "";
+
+      syncChoices();
     }
+
+    function resetHiddenAndSearchFields() {
+      [
+        "selectedRole",
+        "workType",
+        "workTimeType",
+        "country",
+        "stateName",
+        "district"
+      ].forEach(function (id) {
+        byId(id).value = "";
+      });
+
+      byId("countrySearch").value = "";
+      byId("stateSearch").value = "";
+      byId("districtSearch").value = "";
+
+      syncChoices();
+    }
+
+    /* =========================================================
+       SUBMIT
+       ========================================================= */
 
     async function submitApplication(data) {
-      const payload = buildApiPayload(data);
+      const response = await fetch(EDGE_FUNCTION_URL, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-store",
+        credentials: "omit",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(buildPayload(data))
+      });
 
-      const controller = new AbortController();
-      const timeoutId = window.setTimeout(function () {
-        controller.abort();
-      }, 25000);
-
-      try {
-        const response = await fetch(EDGE_FUNCTION_URL, {
-          method: "POST",
-          mode: "cors",
-          cache: "no-store",
-          credentials: "omit",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify(payload),
-          signal: controller.signal
-        });
-
-        window.clearTimeout(timeoutId);
-
-        const contentType = response.headers.get("content-type") || "";
-        const result = contentType.includes("application/json")
-          ? await response.json().catch(function () {
-              return {
-                success: false,
-                ok: false,
-                error: "Invalid server JSON response."
-              };
-            })
-          : {
-              success: false,
-              ok: false,
-              error: "Server did not return JSON response."
-            };
-
-        const success = result.success === true || result.ok === true;
-
-        if (!response.ok || !success) {
-          const serverErrorParts = [];
-
-          if (result.error) {
-            serverErrorParts.push(String(result.error));
-          }
-
-          if (result.details) {
-            serverErrorParts.push("Details: " + String(result.details));
-          }
-
-          if (result.code) {
-            serverErrorParts.push("Code: " + String(result.code));
-          }
-
-          if (result.hint) {
-            serverErrorParts.push("Hint: " + String(result.hint));
-          }
-
-          if (result.debug_version) {
-            serverErrorParts.push("Debug: " + String(result.debug_version));
-          }
-
-          throw new Error(
-            serverErrorParts.length
-              ? serverErrorParts.join("\n")
-              : "Application submit failed. Server status: " + response.status
-          );
-        }
-
+      const result = await response.json().catch(function () {
         return {
-          applicationId:
-            result.applicationId ||
-            result.application_id ||
-            (result.data && result.data.id) ||
-            result.id ||
-            "submitted",
-          raw: result
+          success: false,
+          ok: false,
+          error: "Invalid server response."
         };
+      });
+
+      if (!response.ok || !(result.success === true || result.ok === true)) {
+        const message = [
+          result.error,
+          result.details,
+          result.code,
+          result.hint
+        ].filter(Boolean).join("\n");
+
+        throw new Error(message || "Application submit failed.");
+      }
+
+      return {
+        applicationId: result.applicationId || result.application_id || (result.data && result.data.id),
+        raw: result
+      };
+    }
+
+    function saveLastApplication(applicationId, email) {
+      try {
+        localStorage.setItem(LAST_APP_KEY, JSON.stringify({
+          applicationId: applicationId,
+          email: email || "",
+          savedAt: new Date().toISOString()
+        }));
       } catch (error) {
-        window.clearTimeout(timeoutId);
-
-        if (error instanceof DOMException && error.name === "AbortError") {
-          throw new Error("Request timeout. Please try again.");
-        }
-
-        if (!navigator.onLine) {
-          throw new Error("Internet disconnected. Please connect and try again.");
-        }
-
-        if (error instanceof TypeError && String(error.message || "").toLowerCase().includes("fetch")) {
-          throw new Error("Failed to fetch. Check Edge Function deploy, CORS headers, and --no-verify-jwt.");
-        }
-
-        throw new Error(error instanceof Error ? error.message : "Application could not be submitted.");
+        console.warn("Could not save last application.", error);
       }
     }
+
+    function getLastApplication() {
+      return safeJsonParse(localStorage.getItem(LAST_APP_KEY) || "{}", {});
+    }
+
+    /* =========================================================
+       STATUS UI
+       ========================================================= */
+
+    function normalizeStatusFlag(value) {
+      if (value === true || value === "T" || value === "t" || value === "true" || value === 1 || value === "1") {
+        return true;
+      }
+
+      if (value === false || value === "F" || value === "f" || value === "false" || value === 0 || value === "0") {
+        return false;
+      }
+
+      return null;
+    }
+
+    function stepHtml(className, icon, title, message) {
+      return (
+        '<div class="step ' + className + '">' +
+          '<div class="step-icon">' + icon + '</div>' +
+          '<div>' +
+            '<h4>' + escapeHtml(title) + '</h4>' +
+            '<p>' + escapeHtml(message) + '</p>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function renderStatus(status) {
+      const card = byId("applicationStatus");
+      const timeline = byId("timeline");
+      const title = byId("statusTitle");
+      const text = byId("statusText");
+      const statusId = byId("statusId");
+
+      card.classList.add("show");
+      card.classList.remove("celebrate");
+
+      const applicationId = status.application_id || status.applicationId || status.id || "";
+      statusId.textContent = applicationId ? "Application ID: " + applicationId : "Application ID unavailable";
+
+      const hrRead = normalizeStatusFlag(status.hr_read);
+      const hrApproved = normalizeStatusFlag(status.hr_approved_resume);
+      const triedToContact = normalizeStatusFlag(status.tried_to_contact);
+      const jobSecured = normalizeStatusFlag(status.job_secured);
+      const finalRejected = normalizeStatusFlag(status.final_rejected);
+
+      const reason = status.hr_rejection_reason ||
+        status.final_rejection_reason ||
+        status.rejection_reason ||
+        "No reason added by HR yet.";
+
+      let html = "";
+
+      html += stepHtml(
+        "done",
+        "✓",
+        "Application submitted",
+        "Your application has been submitted successfully."
+      );
+
+      html += stepHtml(
+        hrRead === true ? "done" : "pending",
+        hrRead === true ? "✓" : "…",
+        "HR read",
+        hrRead === true ? "HR has read your application." : "Pending. HR has not marked this as read yet."
+      );
+
+      if (hrApproved === true) {
+        html += stepHtml(
+          "done",
+          "✓",
+          "HR approved resume",
+          "HR has approved your profile/resume for the next stage."
+        );
+      } else if (hrApproved === false) {
+        html += stepHtml(
+          "fail",
+          "×",
+          "Application rejected by HR",
+          "Application rejected by HR. Reason: " + reason
+        );
+      } else {
+        html += stepHtml(
+          "pending",
+          "…",
+          "HR approved resume",
+          "Pending. HR approval decision is not marked yet."
+        );
+      }
+
+      html += stepHtml(
+        triedToContact === true ? "done" : "pending",
+        triedToContact === true ? "✓" : "…",
+        "Tried to contact",
+        triedToContact === true ? "Hiring team has tried to contact you." : "Pending. Hiring team has not marked contact attempt yet."
+      );
+
+      if (jobSecured === true) {
+        html += stepHtml(
+          "done",
+          "✓",
+          "Job secured",
+          "Congratulations. Your job profile has been approved. You are now officially a member of AcademeForge. Hiring Department will contact you for further process."
+        );
+
+        title.textContent = "Congratulations — Job Profile Approved";
+        text.textContent = "Your job profile has been approved by AcademeForge.";
+        card.classList.add("celebrate");
+      } else if (jobSecured === false || finalRejected === true) {
+        html += stepHtml(
+          "fail",
+          "×",
+          "Final result",
+          "Your application has been rejected. Reapply with good presentation."
+        );
+
+        title.textContent = "Application Rejected";
+        text.textContent = "Your application is not approved at this stage.";
+      } else {
+        html += stepHtml(
+          "pending",
+          "…",
+          "Job secured",
+          "Pending. Final job secured status is not marked yet."
+        );
+
+        title.textContent = "Job Application Status";
+        text.textContent = "Current application progress is shown below.";
+      }
+
+      timeline.innerHTML = html;
+      card.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    async function fetchApplicationStatus(applicationId) {
+      if (!applicationId) {
+        throw new Error("No application ID found. Submit application first.");
+      }
+
+      const response = await fetch(STATUS_FUNCTION_URL + "?application_id=" + encodeURIComponent(applicationId), {
+        method: "GET",
+        mode: "cors",
+        cache: "no-store",
+        credentials: "omit",
+        headers: {
+          "Accept": "application/json"
+        }
+      });
+
+      const result = await response.json().catch(function () {
+        return {
+          success: false,
+          ok: false,
+          error: "Invalid status response."
+        };
+      });
+
+      if (!response.ok || !(result.success === true || result.ok === true)) {
+        throw new Error(result.error || result.details || "Could not load application status.");
+      }
+
+      return result.data || result.status || result;
+    }
+
+    function initStatusButtons() {
+      async function loadStatus() {
+        clearAlert();
+
+        const lastApplication = getLastApplication();
+
+        if (!lastApplication.applicationId) {
+          byId("applicationStatus").classList.add("show");
+          showAlert("error", "No submitted application found on this device. Submit application first.");
+          return;
+        }
+
+        try {
+          const status = await fetchApplicationStatus(lastApplication.applicationId);
+          renderStatus(status);
+        } catch (error) {
+          showAlert("error", error.message || "Could not load status.");
+        }
+      }
+
+      byId("statusBtn").addEventListener("click", loadStatus);
+      byId("refreshStatusBtn").addEventListener("click", loadStatus);
+
+      byId("hideStatusBtn").addEventListener("click", function () {
+        byId("applicationStatus").classList.remove("show");
+      });
+    }
+
+    /* =========================================================
+       FORM INIT
+       ========================================================= */
 
     function initForm() {
       const form = byId("joinTeamForm");
-      const submitBtn = byId("submitBtn");
-      const saveDraftBtn = byId("saveDraftBtn");
 
-      if (!form || !submitBtn) {
-        return;
-      }
+      form.addEventListener("input", saveDraft);
+      form.addEventListener("change", saveDraft);
 
-      form.addEventListener("input", function () {
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
         clearAlert();
-        saveDraft();
-      });
 
-      form.addEventListener("change", function () {
-        clearAlert();
-        saveDraft();
-      });
+        const data = collectFormData();
+        const validationError = validateFormData(data);
 
-      if (saveDraftBtn) {
-        saveDraftBtn.addEventListener("click", function () {
-          saveDraft();
-          showAlert("success", "Draft saved on this device.");
-        });
-      }
+        if (validationError) {
+          showAlert("error", validationError);
+          return;
+        }
+
+        const submitButton = byId("submitBtn");
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+
+        try {
+          const result = await submitApplication(data);
+
+          if (!result.applicationId) {
+            throw new Error("Application submitted, but application ID was not returned by backend.");
+          }
+
+          saveLastApplication(result.applicationId, data.email);
+          clearDraft();
+
+          form.reset();
+          resetHiddenAndSearchFields();
+
+          showAlert("success", "Test submitted successfully. See status from Job Application Status.");
+
+          renderStatus({
+            application_id: result.applicationId,
+            hr_read: null,
+            hr_approved_resume: null,
+            tried_to_contact: null,
+            job_secured: null,
+            final_rejected: false
+          });
+        } catch (error) {
+          showAlert("error", error.message || "Application submit failed.");
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = "Submit Application";
+        }
+      });
 
       form.addEventListener("reset", function () {
         setTimeout(function () {
@@ -2159,53 +2385,31 @@
         }, 0);
       });
 
-      form.addEventListener("submit", async function (event) {
-        event.preventDefault();
-
-        const data = getFormData();
-        const error = validateForm(data);
-
-        if (error) {
-          showAlert("error", error);
-          return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Updating application, please wait.";
-
-        try {
-          const result = await submitApplication(data);
-
-          clearDraft();
-          form.reset();
-          resetHiddenAndSearchFields();
-
-          showAlert(
-            "success",
-            "Application submitted successfully. Application ID: " + result.applicationId
-          );
-        } catch (error) {
-          showAlert("error", error.message || "Application could not be submitted.");
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Submit Application";
-        }
+      byId("saveDraftBtn").addEventListener("click", function () {
+        saveDraft();
+        showAlert("success", "Draft saved on this device.");
       });
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const year = byId("year");
+    /* =========================================================
+       BOOT
+       ========================================================= */
 
-      if (year) {
-        year.textContent = String(new Date().getFullYear());
-      }
+    document.addEventListener("DOMContentLoaded", function () {
+      byId("year").textContent = new Date().getFullYear();
 
       initTheme();
       initCountryCodes();
-      initChoiceButtons();
-      initLocationSelectors();
-      restoreDraft();
+
+      createChoiceGrid("roleGrid", "selectedRole", roles);
+      createChoiceGrid("workTypeGrid", "workType", workTypes);
+      createChoiceGrid("workTimeTypeGrid", "workTimeType", workTimeTypes);
+
+      initLocationSearch();
       initForm();
+      initStatusButtons();
+
+      restoreDraft();
     });
   </script>
 </body>
