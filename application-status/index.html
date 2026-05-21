@@ -1930,9 +1930,7 @@ html[data-theme="dark"] .footer {
 
 function fillFromLocalStorage() {
   const last = getLastApplication();
-if (last.applicationId) {
-  byId("applicationId").value = last.applicationId;
-}
+
   /*
     Application ID auto-fill intentionally disabled.
     Reason:
