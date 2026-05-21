@@ -1,1292 +1,1217 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AcademeForge is a modern AI-powered learning ecosystem for students who want practical skills beyond traditional classrooms." />
-  <meta name="theme-color" content="#070A12" />
-  <title>AcademeForge — Learn Skills Schools Never Taught</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AcademeForge</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ["Inter", "system-ui", "sans-serif"],
-            display: ["Manrope", "Inter", "system-ui", "sans-serif"]
-          },
-          colors: {
-            ink: "#070A12",
-            coal: "#0B1020",
-            panel: "#10172A",
-            line: "rgba(255,255,255,.12)",
-            forge: {
-              50: "#FFF7ED",
-              100: "#FFEDD5",
-              300: "#FDBA74",
-              400: "#FB923C",
-              500: "#F97316",
-              600: "#EA580C",
-              700: "#C2410C"
-            },
-            gold: "#F5C451",
-            cyanx: "#67E8F9"
-          },
-          boxShadow: {
-            glow: "0 0 0 1px rgba(255,255,255,.08), 0 30px 90px rgba(0,0,0,.35)",
-            soft: "0 24px 70px rgba(15,23,42,.12)",
-            orange: "0 24px 80px rgba(249,115,22,.25)"
-          },
-          keyframes: {
-            float: {
-              "0%,100%": { transform: "translate3d(0,0,0) rotate(0deg)" },
-              "50%": { transform: "translate3d(0,-18px,0) rotate(1deg)" }
-            },
-            pulseRing: {
-              "0%": { transform: "scale(.92)", opacity: ".72" },
-              "70%": { transform: "scale(1.18)", opacity: "0" },
-              "100%": { transform: "scale(1.18)", opacity: "0" }
-            },
-            marquee: {
-              "0%": { transform: "translateX(0)" },
-              "100%": { transform: "translateX(-50%)" }
-            },
-            revealUp: {
-              "0%": { opacity: "0", transform: "translateY(28px)" },
-              "100%": { opacity: "1", transform: "translateY(0)" }
-            },
-            shimmer: {
-              "0%": { backgroundPosition: "-200% center" },
-              "100%": { backgroundPosition: "200% center" }
-            },
-            modalIn: {
-              "0%": { opacity: "0", transform: "translateY(24px) scale(.96)" },
-              "100%": { opacity: "1", transform: "translateY(0) scale(1)" }
-            }
-          },
-          animation: {
-            float: "float 7s ease-in-out infinite",
-            pulseRing: "pulseRing 2.4s ease-out infinite",
-            marquee: "marquee 28s linear infinite",
-            revealUp: "revealUp .75s ease both",
-            shimmer: "shimmer 3.2s linear infinite",
-            modalIn: "modalIn .28s ease both"
-          }
-        }
-      }
-    };
-  </script>
 
   <style>
-    :root {
-      color-scheme: dark;
-      --bg: #070A12;
-      --panel: rgba(16,23,42,.78);
-      --panel-2: rgba(255,255,255,.065);
-      --line: rgba(255,255,255,.12);
-      --muted: rgba(226,232,240,.72);
-      --text: #F8FAFC;
-      --brand: #F97316;
-      --gold: #F5C451;
-      --cyan: #67E8F9;
+
+    *{
+      font-family:'Poppins',sans-serif;
+      scroll-behavior:smooth;
     }
 
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
+    body{
+      overflow-x:hidden;
+      background:#fff;
     }
 
-    html, body {
-      margin: 0;
-      min-height: 100%;
-      overflow-x: hidden;
-      background:
-        radial-gradient(circle at 10% 5%, rgba(249,115,22,.22), transparent 32rem),
-        radial-gradient(circle at 88% 16%, rgba(103,232,249,.12), transparent 34rem),
-        radial-gradient(circle at 50% 95%, rgba(245,196,81,.11), transparent 40rem),
-        var(--bg);
-      color: var(--text);
-      font-family: Inter, system-ui, sans-serif;
+    .hero-overlay{
+      background:linear-gradient(to right, rgba(0,0,0,0.40), rgba(0,0,0,0.15));
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: radial-gradient(circle at 50% 0%, black, transparent 72%);
+    .glass{
+      backdrop-filter:blur(12px);
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.1);
     }
 
-    body.menu-open,
-    body.modal-open {
-      overflow: hidden;
+    .hover-up{
+      transition:all .4s ease;
     }
 
-    .site-shell {
-      position: relative;
-      z-index: 1;
+    .hover-up:hover{
+      transform:translateY(-10px);
     }
 
-    .container-x {
-      width: min(1180px, calc(100% - 32px));
-      margin-inline: auto;
+    
+    .faq-content{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .4s ease;
     }
 
-    .glass {
-      background: linear-gradient(180deg, rgba(255,255,255,.105), rgba(255,255,255,.045));
-      border: 1px solid var(--line);
-      box-shadow: 0 24px 70px rgba(0,0,0,.28);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+    .faq.active .faq-content{
+      max-height:200px;
     }
 
-    .glass-light {
-      background: rgba(255,255,255,.88);
-      color: #0F172A;
-      border: 1px solid rgba(15,23,42,.08);
-      box-shadow: 0 24px 70px rgba(15,23,42,.14);
+    .faq.active .faq-icon{
+      transform:rotate(45deg);
     }
 
-    .gradient-text {
-      background: linear-gradient(90deg, #FFF7ED, #FDBA74 28%, #F5C451 55%, #67E8F9 88%);
-      background-size: 220% auto;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: shimmer 5s linear infinite;
+    .faq-icon{
+      transition:.3s;
     }
 
-    .btn-primary,
-    .btn-secondary,
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: .65rem;
-      min-height: 48px;
-      border-radius: 999px;
-      padding: .9rem 1.25rem;
-      font-weight: 800;
-      letter-spacing: -.01em;
-      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #F97316, #F5C451);
-      color: #111827;
-      box-shadow: 0 18px 48px rgba(249,115,22,.28);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.16);
-      color: white;
-    }
-
-    .btn-ghost {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.12);
-      color: white;
-    }
-
-    .btn-primary:hover,
-    .btn-secondary:hover,
-    .btn-ghost:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 24px 70px rgba(0,0,0,.24);
-    }
-
-    .nav-link {
-      position: relative;
-      color: rgba(226,232,240,.78);
-      transition: color .2s ease;
-    }
-
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -9px;
-      width: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #F97316, #F5C451);
-      transition: width .22s ease;
-    }
-
-    .nav-link:hover,
-    .nav-link.active {
-      color: #fff;
-    }
-
-    .nav-link:hover::after,
-    .nav-link.active::after {
-      width: 100%;
-    }
-
-    .section-pad {
-      padding-block: clamp(72px, 8vw, 124px);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: .55rem;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      border-radius: 999px;
-      padding: .45rem .75rem;
-      color: rgba(255,255,255,.78);
-      font-size: .76rem;
-      font-weight: 800;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: .48rem;
-      height: .48rem;
-      border-radius: 999px;
-      background: #F97316;
-      box-shadow: 0 0 0 6px rgba(249,115,22,.16);
-    }
-
-    .card-hover {
-      transition: transform .26s ease, border-color .26s ease, background .26s ease, box-shadow .26s ease;
-    }
-
-    .card-hover:hover {
-      transform: translateY(-8px);
-      border-color: rgba(249,115,22,.45);
-      box-shadow: 0 30px 90px rgba(0,0,0,.32);
-    }
-
-    .orb {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(18px);
-      opacity: .75;
-      pointer-events: none;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .mobile-menu {
-      transform: translateX(105%);
-      transition: transform .28s ease;
-    }
-
-    .mobile-menu.open {
-      transform: translateX(0);
-    }
-
-    .faq-panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .32s ease;
-    }
-
-    .faq-item.open .faq-panel {
-      max-height: 260px;
-    }
-
-    .faq-item.open .faq-plus {
-      transform: rotate(45deg);
-    }
-
-    .timeline-line {
-      background: linear-gradient(180deg, rgba(249,115,22,.2), rgba(245,196,81,.9), rgba(103,232,249,.16));
-    }
-
-    .founder-frame::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: 2rem;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(249,115,22,.95), rgba(245,196,81,.65), rgba(103,232,249,.55));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    .quick-grid a {
-      min-height: 92px;
-    }
-
-    @media (max-width: 767px) {
-      .container-x {
-        width: min(100% - 24px, 1180px);
+    @keyframes popupAnim{
+      from{
+        opacity:0;
+        transform:translateY(40px) scale(.95);
       }
-
-      .hero-title {
-        font-size: clamp(2.7rem, 15vw, 4.5rem);
-        line-height: .95;
-      }
-
-      .floating-contact {
-        left: 12px;
-        right: 12px;
-        bottom: 14px;
-      }
-
-      .floating-contact-inner {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .quick-grid a {
-        min-height: 78px;
+      to{
+        opacity:1;
+        transform:translateY(0) scale(1);
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-      }
+    .animate-popup{
+      animation:popupAnim .35s ease;
     }
+
+    @media(max-width:768px){
+
+      .hero-title{
+        font-size:42px !important;
+        line-height:1.2;
+      }
+
+      
+      .section-title{
+        font-size:34px !important;
+      }
+
+      .top-header{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+      }
+
+      .navbar{
+        padding-top:14px;
+        padding-bottom:14px;
+      }
+
+    }
+
   </style>
+
 </head>
 
-<body>
-  <div class="site-shell">
-    <div class="bg-ink/80 border-b border-white/10 text-[12px] md:text-sm text-slate-300">
-      <div class="container-x py-3 flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
-        <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-          <span class="inline-flex items-center gap-2"><span class="text-forge-400">●</span> Patna, Bihar, India</span>
-          <a href="mailto:academeforge@gmail.com" class="hover:text-white transition">academeforge@gmail.com</a>
-          <a href="tel:+91XXXXXXXXXX" class="hover:text-white transition">+91 XXXXX XXXXX</a>
-        </div>
+<body class="bg-white text-gray-900">
 
-        <div class="flex flex-wrap gap-3 md:gap-5 font-semibold">
-          <a href="https://www.linkedin.com/company/academeforge/" target="_blank" rel="noopener noreferrer" class="hover:text-forge-300 transition">LinkedIn</a>
-          <a href="https://www.instagram.com/academeforge.in?igsh=MXc2eTlmenozNnN1Mg==" target="_blank" rel="noopener noreferrer" class="hover:text-forge-300 transition">Instagram</a>
-          <a href="https://youtube.com/@academeforgepro?si=3jOxYewYdb0NNXSG" target="_blank" rel="noopener noreferrer" class="hover:text-forge-300 transition">YouTube</a>
-          <a href="https://t.me/+46ubatq-EV0wNjY1" target="_blank" rel="noopener noreferrer" class="hover:text-forge-300 transition">Telegram</a>
-        </div>
-      </div>
-    </div>
+<!-- TOP HEADER -->
+<div class="bg-black text-white text-sm py-3 px-4 md:px-6 flex justify-between items-center top-header">
 
-    <header id="siteHeader" class="sticky top-0 z-50 border-b border-white/10 bg-ink/70 backdrop-blur-2xl">
-      <div class="container-x h-20 flex items-center justify-between">
-        <a href="#home" class="group flex items-center gap-3" aria-label="AcademeForge Home">
-          <span class="relative grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-forge-500 to-gold text-ink font-black shadow-orange">
-            AF
-            <span class="absolute inset-0 rounded-2xl animate-pulseRing border border-forge-300"></span>
-          </span>
-          <span>
-            <span class="block font-display text-xl md:text-2xl font-black tracking-tight">AcademeForge</span>
-            <span class="block text-[11px] md:text-xs text-slate-400 font-semibold tracking-[.18em] uppercase">Learning Beyond the Classroom</span>
-          </span>
-        </a>
-
-        <nav class="hidden lg:flex items-center gap-8 text-sm font-bold">
-          <a class="nav-link" href="#about">About</a>
-          <a class="nav-link" href="#programs">Programs</a>
-          <a class="nav-link" href="#founder">Founder</a>
-          <a class="nav-link" href="#roadmap">Roadmap</a>
-          <a class="nav-link" href="#fees">Fees</a>
-          <a class="nav-link" href="#faq">FAQ</a>
-          <a class="nav-link" href="#contact">Contact</a>
-        </nav>
-
-        <div class="hidden lg:flex items-center gap-3">
-          <button type="button" onclick="openModal('Admissions Update', ADMISSIONS_TEXT)" class="btn-secondary text-sm">Admissions</button>
-          <button type="button" onclick="downloadAcademeForgeApk()" class="btn-primary text-sm">Install App</button>
-        </div>
-
-        <button id="menuButton" type="button" class="lg:hidden grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/5" aria-label="Open menu">
-          <span class="menu-icon text-2xl leading-none">☰</span>
-        </button>
-      </div>
-    </header>
-
-    <aside id="mobileMenu" class="mobile-menu fixed inset-y-0 right-0 z-[80] w-[86%] max-w-sm bg-ink/95 backdrop-blur-2xl border-l border-white/10 p-5 lg:hidden">
-      <div class="flex items-center justify-between mb-8">
-        <div class="font-display text-xl font-black">AcademeForge</div>
-        <button id="closeMenuButton" type="button" class="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-2xl" aria-label="Close menu">×</button>
-      </div>
-
-      <nav class="grid gap-3 text-base font800">
-        <a class="mobile-link rounded-2xl bg-white/5 border border-white/10 px-4 py-4" href="#about">About</a>
-        <a class="mobile-link rounded-2xl bg-white/5 border border-white/10 px-4 py-4" href="#programs">Programs</a>
-        <a class="mobile-link rounded-2xl bg-white/5 border border-white/10 px-4 py-4" href="#founder">Founder Profile</a>
-        <a class="mobile-link rounded-2xl bg-white/5 border border-white/10 px-4 py-4" href="#roadmap">Roadmap</a>
-        <a class="mobile-link rounded-2xl bg-white/5 border border-white/10 px-4 py-4" href="#fees">Fees</a>
-        <a class="mobile-link rounded-2xl bg-white/5 border border-white/10 px-4 py-4" href="#faq">FAQ</a>
-        <a class="mobile-link rounded-2xl bg-white/5 border border-white/10 px-4 py-4" href="#contact">Contact</a>
-      </nav>
-
-      <div class="mt-6 grid gap-3">
-        <button type="button" onclick="openModal('Admissions Update', ADMISSIONS_TEXT)" class="btn-secondary w-full">Admissions Update</button>
-        <button type="button" onclick="downloadAcademeForgeApk()" class="btn-primary w-full">Install App</button>
-      </div>
-    </aside>
-
-    <main>
-      <section id="home" class="relative min-h-[calc(100vh-112px)] overflow-hidden">
-        <div class="absolute inset-0">
-          <img src="AFhome.jpg" alt="AcademeForge learning environment" class="h-full w-full object-cover opacity-32" />
-          <div class="absolute inset-0 bg-gradient-to-br from-ink via-ink/88 to-coal/82"></div>
-          <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(249,115,22,.25),transparent_32rem),radial-gradient(circle_at_80%_30%,rgba(103,232,249,.14),transparent_28rem)]"></div>
-        </div>
-
-        <div class="orb left-[8%] top-[20%] h-32 w-32 bg-forge-500/30 animate-float"></div>
-        <div class="orb right-[12%] top-[18%] h-40 w-40 bg-cyanx/20 animate-float" style="animation-delay: -2s;"></div>
-        <div class="orb right-[24%] bottom-[12%] h-28 w-28 bg-gold/20 animate-float" style="animation-delay: -4s;"></div>
-
-        <div class="container-x relative z-10 grid min-h-[calc(100vh-112px)] items-center gap-12 py-16 lg:grid-cols-[1.04fr_.96fr]">
-          <div class="reveal">
-            <span class="eyebrow">AI-powered student ecosystem</span>
-
-            <h1 class="hero-title mt-7 font-display text-6xl md:text-8xl font-black tracking-[-.07em]">
-              Learn skills schools never taught.
-            </h1>
-
-            <p class="mt-7 max-w-2xl text-lg md:text-xl leading-8 text-slate-300">
-              AcademeForge is being rebuilt as a premium practical-learning platform for students who want to create, code, design, communicate, use AI responsibly, and build real digital opportunities.
-            </p>
-
-            <div class="mt-9 flex flex-col sm:flex-row gap-3">
-              <button type="button" onclick="openModal('Our Vision', VISION_TEXT)" class="btn-primary">Explore Vision</button>
-              <a href="#programs" class="btn-secondary">View Programs</a>
-            </div>
-
-            <div class="mt-10 grid grid-cols-3 gap-3 max-w-xl">
-              <div class="glass rounded-3xl p-4">
-                <div class="text-2xl md:text-3xl font-black text-white">2024</div>
-                <div class="mt-1 text-xs text-slate-400 font-bold uppercase tracking-widest">Started</div>
-              </div>
-              <div class="glass rounded-3xl p-4">
-                <div class="text-2xl md:text-3xl font-black text-white">1000+</div>
-                <div class="mt-1 text-xs text-slate-400 font-bold uppercase tracking-widest">Reached</div>
-              </div>
-              <div class="glass rounded-3xl p-4">
-                <div id="apkDownloadCount" class="text-2xl md:text-3xl font-black text-white">0+</div>
-                <div class="mt-1 text-xs text-slate-400 font-bold uppercase tracking-widest">App Clicks</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="relative reveal" style="transition-delay:.12s">
-            <div class="absolute -inset-8 rounded-[3rem] bg-gradient-to-br from-forge-500/20 via-gold/10 to-cyanx/10 blur-2xl"></div>
-            <div class="relative glass rounded-[2.25rem] p-4 md:p-5">
-              <div class="rounded-[1.75rem] bg-ink/70 border border-white/10 p-5 md:p-7 overflow-hidden">
-                <div class="flex items-center justify-between gap-4">
-                  <div>
-                    <p class="text-xs uppercase tracking-[.2em] text-slate-400 font-black">Platform rebuild</p>
-                    <h2 class="mt-2 font-display text-2xl md:text-3xl font-black">From doubt community to future-skills campus.</h2>
-                  </div>
-                  <div class="hidden sm:grid h-14 w-14 place-items-center rounded-2xl bg-white text-ink font-black">AF</div>
-                </div>
-
-                <div class="mt-7 grid gap-4">
-                  <div class="rounded-3xl bg-white/[.06] border border-white/10 p-5">
-                    <div class="flex items-start gap-4">
-                      <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-forge-500/20 text-forge-300 font-black">01</span>
-                      <div>
-                        <h3 class="font-bold">Practical execution</h3>
-                        <p class="mt-1 text-sm leading-6 text-slate-400">Project-based learning instead of passive memorization.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="rounded-3xl bg-white/[.06] border border-white/10 p-5">
-                    <div class="flex items-start gap-4">
-                      <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gold/20 text-gold font-black">02</span>
-                      <div>
-                        <h3 class="font-bold">AI-native workflows</h3>
-                        <p class="mt-1 text-sm leading-6 text-slate-400">Students learn how to use AI for creation, productivity, and problem-solving.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="rounded-3xl bg-white/[.06] border border-white/10 p-5">
-                    <div class="flex items-start gap-4">
-                      <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-cyanx/20 text-cyanx font-black">03</span>
-                      <div>
-                        <h3 class="font-bold">Career-grade mindset</h3>
-                        <p class="mt-1 text-sm leading-6 text-slate-400">Consistency, portfolio thinking, communication, and digital independence.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mt-7 rounded-3xl bg-gradient-to-r from-forge-500 to-gold p-[1px]">
-                  <div class="rounded-3xl bg-ink px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                    <span class="font-bold">Admissions are currently under rebuild.</span>
-                    <button type="button" onclick="openModal('Admissions Update', ADMISSIONS_TEXT)" class="text-sm font-black text-gold">Read status →</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <section class="border-y border-white/10 bg-white/[.035] overflow-hidden">
-        <div class="flex w-[200%] animate-marquee py-4">
-          <div class="flex min-w-1/2 items-center gap-10 px-5 text-sm font-black uppercase tracking-[.22em] text-slate-400">
-            <span>AI Productivity</span><span>Creative Design</span><span>Video Editing</span><span>Logic Building</span><span>Freelancing</span><span>Portfolio Projects</span><span>Digital Confidence</span>
-          </div>
-          <div class="flex min-w-1/2 items-center gap-10 px-5 text-sm font-black uppercase tracking-[.22em] text-slate-400">
-            <span>AI Productivity</span><span>Creative Design</span><span>Video Editing</span><span>Logic Building</span><span>Freelancing</span><span>Portfolio Projects</span><span>Digital Confidence</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" class="section-pad">
-        <div class="container-x grid gap-12 lg:grid-cols-[.92fr_1.08fr] lg:items-center">
-          <div class="reveal">
-            <span class="eyebrow">About AcademeForge</span>
-            <h2 class="mt-6 font-display text-4xl md:text-6xl font-black tracking-[-.05em]">A modern learning brand for students from the real world.</h2>
-            <p class="mt-6 text-slate-300 leading-8">
-              AcademeForge started as a student-help initiative and is evolving into a structured learning ecosystem for future-ready skills. The focus is simple: help students become creators, builders, problem-solvers, and independent learners.
-            </p>
-            <p class="mt-4 text-slate-400 leading-8">
-              The platform is designed for practical execution: projects, creative workflows, AI-assisted learning, portfolio development, and digital confidence. It is not positioned as another generic course website; it is a student-first movement for learning beyond textbooks.
-            </p>
-
-            <div class="mt-8 flex flex-col sm:flex-row gap-3">
-              <button type="button" onclick="openModal('About AcademeForge', ABOUT_TEXT)" class="btn-primary">Read Full Story</button>
-              <a href="#founder" class="btn-ghost">Founder Profile</a>
-            </div>
-          </div>
-
-          <div class="reveal grid gap-4 sm:grid-cols-2" style="transition-delay:.1s">
-            <div class="glass rounded-[2rem] p-6 card-hover">
-              <div class="text-4xl font-black text-forge-300">01</div>
-              <h3 class="mt-5 text-xl font-black">Student-first design</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-400">Built around student struggles, beginner confusion, and practical growth.</p>
-            </div>
-            <div class="glass rounded-[2rem] p-6 card-hover sm:mt-10">
-              <div class="text-4xl font-black text-gold">02</div>
-              <h3 class="mt-5 text-xl font-black">AI-ready curriculum</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-400">AI is treated as a productivity layer, not a shortcut for shallow learning.</p>
-            </div>
-            <div class="glass rounded-[2rem] p-6 card-hover">
-              <div class="text-4xl font-black text-cyanx">03</div>
-              <h3 class="mt-5 text-xl font-black">Practical outcomes</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-400">Students learn by creating assets, projects, workflows, and portfolios.</p>
-            </div>
-            <div class="glass rounded-[2rem] p-6 card-hover sm:mt-10">
-              <div class="text-4xl font-black text-forge-300">04</div>
-              <h3 class="mt-5 text-xl font-black">Long-term ambition</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-400">The 10-year goal is to empower 100,000+ students through accessible skills.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="programs" class="section-pad bg-white/[.035] border-y border-white/10">
-        <div class="container-x">
-          <div class="mx-auto max-w-3xl text-center reveal">
-            <span class="eyebrow">Programs</span>
-            <h2 class="mt-6 font-display text-4xl md:text-6xl font-black tracking-[-.05em]">Skill tracks built for execution.</h2>
-            <p class="mt-5 text-slate-400 leading-8">Programs are being rebuilt with practical labs, beginner-friendly workflows, and AI-powered learning support.</p>
-          </div>
-
-          <div class="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            <article class="glass rounded-[2rem] p-6 card-hover reveal">
-              <div class="flex items-center justify-between">
-                <span class="grid h-12 w-12 place-items-center rounded-2xl bg-forge-500/20 text-forge-300 font-black">01</span>
-                <span class="text-xs font-black uppercase tracking-[.18em] text-slate-500">6 months</span>
-              </div>
-              <h3 class="mt-7 text-2xl font-black">Video & Media Editing</h3>
-              <p class="mt-4 text-sm leading-7 text-slate-400">Reels, captions, thumbnails, short-form storytelling, creator workflows, and AI-assisted editing.</p>
-              <button type="button" onclick="openCourse('Video & Media Editing','6 months','To be announced','Short-form video editing, storytelling, captions, thumbnails, workflow planning, AI-assisted media production.','Practical editing labs, creator assignments, portfolio-ready projects.')" class="mt-7 btn-secondary w-full">View Details</button>
-            </article>
-
-            <article class="glass rounded-[2rem] p-6 card-hover reveal" style="transition-delay:.06s">
-              <div class="flex items-center justify-between">
-                <span class="grid h-12 w-12 place-items-center rounded-2xl bg-gold/20 text-gold font-black">02</span>
-                <span class="text-xs font-black uppercase tracking-[.18em] text-slate-500">6 months</span>
-              </div>
-              <h3 class="mt-7 text-2xl font-black">Creative & Graphic Design</h3>
-              <p class="mt-4 text-sm leading-7 text-slate-400">Posters, social visuals, brand kits, design thinking, layout discipline, and AI design tools.</p>
-              <button type="button" onclick="openCourse('Creative & Graphic Design','6 months','To be announced','Visual hierarchy, posters, social media graphics, Canva workflows, AI design tools, branding basics.','Design labs, critique cycles, creative assignments, brand practice projects.')" class="mt-7 btn-secondary w-full">View Details</button>
-            </article>
-
-            <article class="glass rounded-[2rem] p-6 card-hover reveal" style="transition-delay:.12s">
-              <div class="flex items-center justify-between">
-                <span class="grid h-12 w-12 place-items-center rounded-2xl bg-cyanx/20 text-cyanx font-black">03</span>
-                <span class="text-xs font-black uppercase tracking-[.18em] text-slate-500">1 year</span>
-              </div>
-              <h3 class="mt-7 text-2xl font-black">AI Coding & Logic Foundation</h3>
-              <p class="mt-4 text-sm leading-7 text-slate-400">Beginner coding, web basics, logic building, debugging mindset, and AI-assisted development.</p>
-              <button type="button" onclick="openCourse('AI Coding & Logic Foundation','1 year','To be announced','HTML, CSS, JavaScript fundamentals, logic building, debugging, mini web projects, AI coding workflows.','Beginner coding environment, guided mini-projects, practical problem-solving tasks.')" class="mt-7 btn-secondary w-full">View Details</button>
-            </article>
-
-            <article class="glass rounded-[2rem] p-6 card-hover reveal" style="transition-delay:.18s">
-              <div class="flex items-center justify-between">
-                <span class="grid h-12 w-12 place-items-center rounded-2xl bg-forge-500/20 text-forge-300 font-black">04</span>
-                <span class="text-xs font-black uppercase tracking-[.18em] text-slate-500">1 year</span>
-              </div>
-              <h3 class="mt-7 text-2xl font-black">Freelancing & Monetization</h3>
-              <p class="mt-4 text-sm leading-7 text-slate-400">Portfolio building, client communication, digital services, online positioning, and earning strategy.</p>
-              <button type="button" onclick="openCourse('Freelancing & Monetization','1 year','To be announced','Portfolio creation, service packaging, client communication, digital monetization basics, responsible earning mindset.','Portfolio guidance, freelancing resources, practical positioning exercises.')" class="mt-7 btn-secondary w-full">View Details</button>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="founder" class="section-pad relative overflow-hidden">
-        <div class="absolute left-0 top-1/4 h-72 w-72 rounded-full bg-forge-500/10 blur-3xl"></div>
-        <div class="absolute right-0 bottom-1/4 h-72 w-72 rounded-full bg-cyanx/10 blur-3xl"></div>
-
-        <div class="container-x relative">
-          <div class="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
-            <div class="reveal">
-              <span class="eyebrow">Founder Profile</span>
-              <h2 class="mt-6 font-display text-4xl md:text-6xl font-black tracking-[-.05em]">Founder-led vision. Student-built movement.</h2>
-              <p class="mt-6 text-slate-300 leading-8">
-                AcademeForge is led by Devraj Kumar, who started the platform as a student with a direct understanding of how confusing traditional learning can feel for modern learners.
-              </p>
-              <p class="mt-4 text-slate-400 leading-8">
-                The founder profile replaces the old team section to give the website a sharper, more premium identity: one clear mission, one accountable vision, and a platform built for students who want practical skills, AI fluency, and digital confidence.
-              </p>
-
-              <div class="mt-8 grid gap-3 sm:grid-cols-2">
-                <div class="glass rounded-3xl p-5">
-                  <div class="text-sm text-slate-400 font-bold uppercase tracking-widest">Focus</div>
-                  <div class="mt-2 text-xl font-black">AI + Practical Skills</div>
-                </div>
-                <div class="glass rounded-3xl p-5">
-                  <div class="text-sm text-slate-400 font-bold uppercase tracking-widest">Mission</div>
-                  <div class="mt-2 text-xl font-black">100,000+ Students</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="relative reveal" style="transition-delay:.12s">
-              <div class="founder-frame relative rounded-[2rem] p-4">
-                <div class="glass rounded-[1.7rem] overflow-hidden">
-                  <div class="relative min-h-[520px] p-6 md:p-8 flex flex-col justify-between">
-                    <div class="absolute inset-0 opacity-80">
-                      <div class="absolute left-10 top-12 h-40 w-40 rounded-full bg-forge-500/20 blur-2xl animate-float"></div>
-                      <div class="absolute right-8 top-28 h-44 w-44 rounded-full bg-cyanx/15 blur-2xl animate-float" style="animation-delay:-2.4s"></div>
-                      <div class="absolute bottom-8 left-1/3 h-48 w-48 rounded-full bg-gold/12 blur-2xl animate-float" style="animation-delay:-4.2s"></div>
-                    </div>
-
-                    <div class="relative">
-                      <div class="flex items-start justify-between gap-4">
-                        <div>
-                          <div class="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-black uppercase tracking-[.18em] text-slate-300">Founder</div>
-                          <h3 class="mt-5 font-display text-4xl md:text-5xl font-black tracking-[-.04em]">Devraj Kumar</h3>
-                          <p class="mt-3 text-forge-300 font-black">Founder, AcademeForge</p>
-                        </div>
-                        <div class="grid h-20 w-20 place-items-center rounded-[1.5rem] bg-gradient-to-br from-forge-500 to-gold text-ink text-4xl font-black shadow-orange">D</div>
-                      </div>
-
-                      <div class="mt-8 rounded-[1.5rem] bg-ink/60 border border-white/10 p-5">
-                        <p class="text-lg leading-8 text-slate-200">
-                          “Students should not wait for opportunities. They should learn how to create them.”
-                        </p>
-                      </div>
-                    </div>
-
-                    <div class="relative mt-8 grid gap-4 md:grid-cols-3">
-                      <div class="rounded-3xl bg-white/[.06] border border-white/10 p-5">
-                        <div class="text-2xl font-black text-forge-300">01</div>
-                        <div class="mt-2 text-sm font-bold">Student empathy</div>
-                      </div>
-                      <div class="rounded-3xl bg-white/[.06] border border-white/10 p-5">
-                        <div class="text-2xl font-black text-gold">02</div>
-                        <div class="mt-2 text-sm font-bold">Builder mindset</div>
-                      </div>
-                      <div class="rounded-3xl bg-white/[.06] border border-white/10 p-5">
-                        <div class="text-2xl font-black text-cyanx">03</div>
-                        <div class="mt-2 text-sm font-bold">AI-first learning</div>
-                      </div>
-                    </div>
-
-                    <button type="button" onclick="openModal('Founder Profile', FOUNDER_TEXT)" class="relative mt-7 btn-primary w-full">Read Founder Profile</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="absolute -left-4 top-10 hidden md:block glass rounded-3xl px-5 py-4 animate-float">
-                <div class="text-xs font-black uppercase tracking-widest text-slate-400">Started from</div>
-                <div class="mt-1 text-lg font-black">Telegram Community</div>
-              </div>
-
-              <div class="absolute -right-4 bottom-16 hidden md:block glass rounded-3xl px-5 py-4 animate-float" style="animation-delay:-3s">
-                <div class="text-xs font-black uppercase tracking-widest text-slate-400">Built for</div>
-                <div class="mt-1 text-lg font-black">Future Creators</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="roadmap" class="section-pad bg-white/[.035] border-y border-white/10">
-        <div class="container-x">
-          <div class="mx-auto max-w-3xl text-center reveal">
-            <span class="eyebrow">Roadmap</span>
-            <h2 class="mt-6 font-display text-4xl md:text-6xl font-black tracking-[-.05em]">Built like a product, not a brochure.</h2>
-            <p class="mt-5 text-slate-400 leading-8">A clearer operating roadmap gives the brand the feel of a serious global learning company while staying honest about the current rebuild stage.</p>
-          </div>
-
-          <div class="relative mt-16 grid gap-6 lg:grid-cols-4">
-            <div class="hidden lg:block absolute left-[12.5%] right-[12.5%] top-10 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-
-            <div class="relative glass rounded-[2rem] p-6 card-hover reveal">
-              <div class="grid h-20 w-20 place-items-center rounded-[1.6rem] bg-forge-500/20 text-forge-300 text-2xl font-black">01</div>
-              <h3 class="mt-6 text-xl font-black">Rebuild Platform</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-400">Upgrade website, app flow, program pages, learning UX, and content structure.</p>
-            </div>
-
-            <div class="relative glass rounded-[2rem] p-6 card-hover reveal" style="transition-delay:.06s">
-              <div class="grid h-20 w-20 place-items-center rounded-[1.6rem] bg-gold/20 text-gold text-2xl font-black">02</div>
-              <h3 class="mt-6 text-xl font-black">Launch Skill Tracks</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-400">Start with practical courses across design, video, coding, AI, and freelancing.</p>
-            </div>
-
-            <div class="relative glass rounded-[2rem] p-6 card-hover reveal" style="transition-delay:.12s">
-              <div class="grid h-20 w-20 place-items-center rounded-[1.6rem] bg-cyanx/20 text-cyanx text-2xl font-black">03</div>
-              <h3 class="mt-6 text-xl font-black">Create Portfolio Labs</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-400">Students build visible work, assignments, and practical proof of skills.</p>
-            </div>
-
-            <div class="relative glass rounded-[2rem] p-6 card-hover reveal" style="transition-delay:.18s">
-              <div class="grid h-20 w-20 place-items-center rounded-[1.6rem] bg-forge-500/20 text-forge-300 text-2xl font-black">04</div>
-              <h3 class="mt-6 text-xl font-black">Scale Impact</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-400">Grow toward 100,000+ students through accessible, modern learning systems.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="fees" class="section-pad">
-        <div class="container-x">
-          <div class="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
-            <div class="reveal">
-              <span class="eyebrow">Fee Structure</span>
-              <h2 class="mt-6 font-display text-4xl md:text-6xl font-black tracking-[-.05em]">Transparent status. Pricing under rebuild.</h2>
-              <p class="mt-5 text-slate-400 leading-8">Fees are intentionally marked “To be announced” while the platform, programs, and admissions structure are being improved.</p>
-            </div>
-
-            <div class="glass rounded-[2rem] overflow-hidden reveal" style="transition-delay:.1s">
-              <div class="overflow-x-auto">
-                <table class="w-full min-w-[720px] text-left">
-                  <thead>
-                    <tr class="border-b border-white/10 bg-white/[.06] text-xs uppercase tracking-[.18em] text-slate-400">
-                      <th class="px-6 py-5">Program</th>
-                      <th class="px-6 py-5">Duration</th>
-                      <th class="px-6 py-5">Fees</th>
-                      <th class="px-6 py-5">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-white/10">
-                    <tr>
-                      <td class="px-6 py-5 font-bold">Video & Media Editing</td>
-                      <td class="px-6 py-5 text-slate-300">6 months</td>
-                      <td class="px-6 py-5 text-slate-300">To be announced</td>
-                      <td class="px-6 py-5"><span class="rounded-full bg-forge-500/15 px-3 py-1 text-xs font-black text-forge-300">Rebuilding</span></td>
-                    </tr>
-                    <tr>
-                      <td class="px-6 py-5 font-bold">Creative & Graphic Design</td>
-                      <td class="px-6 py-5 text-slate-300">6 months</td>
-                      <td class="px-6 py-5 text-slate-300">To be announced</td>
-                      <td class="px-6 py-5"><span class="rounded-full bg-forge-500/15 px-3 py-1 text-xs font-black text-forge-300">Rebuilding</span></td>
-                    </tr>
-                    <tr>
-                      <td class="px-6 py-5 font-bold">AI Coding & Logic Foundation</td>
-                      <td class="px-6 py-5 text-slate-300">1 year</td>
-                      <td class="px-6 py-5 text-slate-300">To be announced</td>
-                      <td class="px-6 py-5"><span class="rounded-full bg-forge-500/15 px-3 py-1 text-xs font-black text-forge-300">Rebuilding</span></td>
-                    </tr>
-                    <tr>
-                      <td class="px-6 py-5 font-bold">Freelancing & Monetization</td>
-                      <td class="px-6 py-5 text-slate-300">1 year</td>
-                      <td class="px-6 py-5 text-slate-300">To be announced</td>
-                      <td class="px-6 py-5"><span class="rounded-full bg-forge-500/15 px-3 py-1 text-xs font-black text-forge-300">Rebuilding</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="faq" class="section-pad bg-white/[.035] border-y border-white/10">
-        <div class="container-x max-w-5xl">
-          <div class="text-center reveal">
-            <span class="eyebrow">FAQ</span>
-            <h2 class="mt-6 font-display text-4xl md:text-6xl font-black tracking-[-.05em]">Common questions.</h2>
-          </div>
-
-          <div class="mt-12 grid gap-4">
-            <div class="faq-item glass rounded-3xl p-6 cursor-pointer reveal">
-              <div class="flex items-center justify-between gap-5">
-                <h3 class="text-lg font-black">Are admissions open right now?</h3>
-                <span class="faq-plus text-3xl text-forge-300 transition">+</span>
-              </div>
-              <div class="faq-panel">
-                <p class="pt-4 text-slate-400 leading-7">No. Admissions are currently paused while AcademeForge rebuilds the platform, program structure, and learning experience.</p>
-              </div>
-            </div>
-
-            <div class="faq-item glass rounded-3xl p-6 cursor-pointer reveal">
-              <div class="flex items-center justify-between gap-5">
-                <h3 class="text-lg font-black">What is AcademeForge?</h3>
-                <span class="faq-plus text-3xl text-forge-300 transition">+</span>
-              </div>
-              <div class="faq-panel">
-                <p class="pt-4 text-slate-400 leading-7">AcademeForge is a student-focused learning platform built around practical skills, creativity, AI-powered productivity, and real-world learning beyond traditional classrooms.</p>
-              </div>
-            </div>
-
-            <div class="faq-item glass rounded-3xl p-6 cursor-pointer reveal">
-              <div class="flex items-center justify-between gap-5">
-                <h3 class="text-lg font-black">Is this beginner friendly?</h3>
-                <span class="faq-plus text-3xl text-forge-300 transition">+</span>
-              </div>
-              <div class="faq-panel">
-                <p class="pt-4 text-slate-400 leading-7">Yes. Programs are planned for complete beginners as well as students who already have basic knowledge and want structured practical growth.</p>
-              </div>
-            </div>
-
-            <div class="faq-item glass rounded-3xl p-6 cursor-pointer reveal">
-              <div class="flex items-center justify-between gap-5">
-                <h3 class="text-lg font-black">Will students get certificates?</h3>
-                <span class="faq-plus text-3xl text-forge-300 transition">+</span>
-              </div>
-              <div class="faq-panel">
-                <p class="pt-4 text-slate-400 leading-7">Certificates may be provided for selected programs, activities, or tracks after successful completion. Final certificate policy will be announced with admissions.</p>
-              </div>
-            </div>
-
-            <div class="faq-item glass rounded-3xl p-6 cursor-pointer reveal">
-              <div class="flex items-center justify-between gap-5">
-                <h3 class="text-lg font-black">What makes it different?</h3>
-                <span class="faq-plus text-3xl text-forge-300 transition">+</span>
-              </div>
-              <div class="faq-panel">
-                <p class="pt-4 text-slate-400 leading-7">The focus is practical execution: projects, AI workflows, portfolio thinking, communication, and skill-building instead of only theory or memorization.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="section-pad relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-forge-500/10 via-transparent to-cyanx/10"></div>
-        <div class="container-x relative">
-          <div class="glass rounded-[2.5rem] p-6 md:p-10 lg:p-14 reveal">
-            <div class="grid gap-10 lg:grid-cols-[1fr_.9fr] lg:items-center">
-              <div>
-                <span class="eyebrow">Contact</span>
-                <h2 class="mt-6 font-display text-4xl md:text-6xl font-black tracking-[-.05em]">Build your future with a sharper learning system.</h2>
-                <p class="mt-5 max-w-2xl text-slate-400 leading-8">Use the contact links for admission updates, program details, collaborations, and platform announcements.</p>
-
-                <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                  <a href="mailto:academeforge@gmail.com" class="btn-primary">Email AcademeForge</a>
-                  <button type="button" onclick="downloadAcademeForgeApk()" class="btn-secondary">Install App</button>
-                </div>
-              </div>
-
-              <div class="grid gap-4">
-                <div class="rounded-3xl bg-white/[.06] border border-white/10 p-5">
-                  <div class="text-xs font-black uppercase tracking-[.18em] text-slate-500">Location</div>
-                  <div class="mt-2 text-lg font-black">Patna, Bihar, India</div>
-                </div>
-                <div class="rounded-3xl bg-white/[.06] border border-white/10 p-5">
-                  <div class="text-xs font-black uppercase tracking-[.18em] text-slate-500">Email</div>
-                  <a href="mailto:academeforge@gmail.com" class="mt-2 block text-lg font-black hover:text-forge-300 transition">academeforge@gmail.com</a>
-                </div>
-                <div class="rounded-3xl bg-white/[.06] border border-white/10 p-5">
-                  <div class="text-xs font-black uppercase tracking-[.18em] text-slate-500">Phone</div>
-                  <a href="tel:+91XXXXXXXXXX" class="mt-2 block text-lg font-black hover:text-forge-300 transition">+91 XXXXX XXXXX</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-10 reveal">
-            <div class="flex items-center justify-between gap-4 flex-wrap">
-              <div>
-                <span class="eyebrow">Quick Links</span>
-                <h3 class="mt-4 font-display text-3xl md:text-4xl font-black tracking-[-.04em]">Update these buttons later.</h3>
-              </div>
-            </div>
-
-            <div class="quick-grid mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <a href="javascript:void(0)" class="glass rounded-3xl p-5 card-hover flex items-center justify-between">
-                <span class="font-black">Student Portal</span><span class="text-forge-300 font-black">→</span>
-              </a>
-              <a href="javascript:void(0)" class="glass rounded-3xl p-5 card-hover flex items-center justify-between">
-                <span class="font-black">Admission Form</span><span class="text-forge-300 font-black">→</span>
-              </a>
-              <a href="javascript:void(0)" class="glass rounded-3xl p-5 card-hover flex items-center justify-between">
-                <span class="font-black">Download Brochure</span><span class="text-forge-300 font-black">→</span>
-              </a>
-              <a href="javascript:void(0)" class="glass rounded-3xl p-5 card-hover flex items-center justify-between">
-                <span class="font-black">Community</span><span class="text-forge-300 font-black">→</span>
-              </a>
-              <a href="javascript:void(0)" class="glass rounded-3xl p-5 card-hover flex items-center justify-between">
-                <span class="font-black">Courses</span><span class="text-forge-300 font-black">→</span>
-              </a>
-              <a href="javascript:void(0)" class="glass rounded-3xl p-5 card-hover flex items-center justify-between">
-                <span class="font-black">Certificates</span><span class="text-forge-300 font-black">→</span>
-              </a>
-              <a href="javascript:void(0)" class="glass rounded-3xl p-5 card-hover flex items-center justify-between">
-                <span class="font-black">Support</span><span class="text-forge-300 font-black">→</span>
-              </a>
-              <a href="javascript:void(0)" class="glass rounded-3xl p-5 card-hover flex items-center justify-between">
-                <span class="font-black">Announcements</span><span class="text-forge-300 font-black">→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="border-t border-white/10 bg-ink/90">
-      <div class="container-x py-8 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
-        <div>
-          <div class="font-display text-2xl font-black">AcademeForge</div>
-          <div class="mt-1 text-sm text-slate-500">© 2026 AcademeForge. All Rights Reserved.</div>
-        </div>
-        <div class="flex flex-wrap gap-4 text-sm font-bold text-slate-400">
-          <a href="#about" class="hover:text-white transition">About</a>
-          <a href="#programs" class="hover:text-white transition">Programs</a>
-          <a href="#founder" class="hover:text-white transition">Founder</a>
-          <a href="#contact" class="hover:text-white transition">Contact</a>
-        </div>
-      </div>
-    </footer>
-
-    <div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/72 p-4 backdrop-blur-md">
-      <div class="relative w-full max-w-2xl max-h-[88vh] overflow-y-auto rounded-[2rem] border border-white/10 bg-ink shadow-glow animate-modalIn">
-        <button type="button" onclick="closeModal()" class="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-2xl bg-white/8 border border-white/10 text-2xl hover:bg-white/12" aria-label="Close modal">×</button>
-        <div class="p-6 md:p-8">
-          <div class="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-black uppercase tracking-[.18em] text-slate-400">AcademeForge</div>
-          <h2 id="modalTitle" class="mt-5 font-display text-3xl md:text-4xl font-black tracking-[-.04em]"></h2>
-          <div id="modalText" class="mt-5 space-y-4 text-slate-300 leading-8"></div>
-          <button type="button" onclick="closeModal()" class="mt-7 btn-primary">Close</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="floating-contact fixed bottom-6 right-6 z-40">
-      <div class="floating-contact-inner glass rounded-full p-2 flex items-center gap-2">
-        <a href="https://wa.me/91XXXXXXXXXX?text=Hello%20AcademeForge%20Team,%20please%20guide%20me%20regarding%20admissions." target="_blank" rel="noopener noreferrer" class="grid h-13 w-13 place-items-center rounded-full bg-emerald-500 px-4 py-3 font-black text-white hover:scale-105 transition" aria-label="WhatsApp">WA</a>
-        <a href="tel:+91XXXXXXXXXX" class="grid h-13 w-13 place-items-center rounded-full bg-sky-500 px-4 py-3 font-black text-white hover:scale-105 transition" aria-label="Call">Call</a>
-        <button type="button" onclick="downloadAcademeForgeApk()" class="grid h-13 place-items-center rounded-full bg-gradient-to-r from-forge-500 to-gold px-4 py-3 font-black text-ink hover:scale-105 transition">App</button>
-      </div>
-    </div>
+  <div>
+    📞 +91 XXXXX XXXXX | academeforge@gmail.com
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <div class="flex gap-4 md:gap-5">
+   <a href="https://www.linkedin.com/company/academeforge/" class="hover:text-red-400">Linkedin</a>
+    <a href="https://www.instagram.com/academeforge.in?igsh=MXc2eTlmenozNnN1Mg==" class="hover:text-red-400">Instagram</a>
+    <a href="https://youtube.com/@academeforgepro?si=3jOxYewYdb0NNXSG" class="hover:text-red-400">Youtube</a>
+    <a href="https://t.me/+46ubatq-EV0wNjY1" class="hover:text-red-400">Telegram</a>
+  </div>
 
-  <script>
-    "use strict";
+</div>
 
-    const SUPABASE_URL = "https://afooyyydhlwngzssgqih.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJIUzI1NiIsInJlZiI6ImFmb295eXlkaGx3bmd6c3NncWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NDQxMjgsImV4cCI6MjA5NDIyMDEyOH0.KG0XO0oP_2MpewHoIwTtbrKg5FkyOYRUtVzLH1MSJiE";
-    const APK_DOWNLOAD_URL = "academeforge.apk";
+<!-- NAVBAR -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg shadow-lg border-b border-gray-100">
 
-    const db = window.supabase && typeof window.supabase.createClient === "function"
-      ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-      : null;
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-6 py-4 navbar">
 
-    const ADMISSIONS_TEXT = `Admissions are currently paused while AcademeForge rebuilds its platform, program structure, learning experience, and app flow. The goal is to launch with a stronger, cleaner, and more practical system instead of opening admissions with an unfinished experience. Official updates will be shared through the website and social channels.`;
+    <div>
 
-    const VISION_TEXT = `AcademeForge exists to help students learn beyond textbooks, marks, and memorization. The vision is to build a modern learning ecosystem where students develop practical skills, creativity, confidence, AI fluency, communication, and execution ability.
+      <h1 class="text-2xl md:text-3xl font-extrabold text-red-700">
+        AcademeForge
+      </h1>
 
-The platform is designed for students who want to become builders, creators, problem-solvers, and independent learners. Instead of treating education as passive content consumption, AcademeForge focuses on projects, practice, digital workflows, and real-world readiness.
+      <p class="text-xs text-gray-500">
+        Learning Beyond The Classroom
+      </p>
 
-Artificial Intelligence is changing how people learn, create, work, and compete. AcademeForge aims to help students use AI responsibly as a productivity and learning layer while still building strong thinking, discipline, and problem-solving ability.
+    </div>
 
-The long-term mission is to empower students from every background, especially learners from smaller cities and underserved communities, with skills that can help them create opportunities instead of waiting for them.`;
+    <nav class="hidden lg:flex items-center gap-8 font-medium text-sm">
+      <a href="#about" class="hover:text-red-700">About</a>
+      <a href="#courses" class="hover:text-red-700">Courses</a>
+      <a href="#team" class="hover:text-red-700">Management</a>
+      <a href="#fees" class="hover:text-red-700">Fees</a>
+      <a href="#faq" class="hover:text-red-700">FAQ</a>
+      <a href="#contact" class="hover:text-red-700">Contact</a>
+    </nav>
 
-    const ABOUT_TEXT = `AcademeForge is a modern student-focused learning platform founded in India with the idea of “Learning Beyond the Classroom.” It began in January 2024 as a Telegram community for Class 10 students where learners could solve doubts, participate in quizzes, and support each other academically.
+<a href="javascript:void(0)"
+   onclick="downloadAcademeForgeApk()"
+   class="bg-red-700 hover:bg-red-800 text-white px-5 py-3 rounded-xl font-semibold transition-all hover:scale-105 inline-block">
+  Install APP
+</a>
 
-That small initiative gradually evolved into a larger vision: a practical learning ecosystem where students can access future-ready skills, mentorship, creativity, AI-powered workflows, and digital opportunities beyond traditional exam-focused education.
+  </div>
 
-AcademeForge focuses on Video & Media Editing, Creative & Graphic Design, AI Coding & Logic Foundation, Freelancing & Monetization, AI Productivity, and practical digital skills. The learning approach is based on execution, projects, experimentation, and portfolio development.
+</header>
 
-The platform is currently being rebuilt to create a cleaner, more premium, more scalable experience for students.`;
+<!-- HERO -->
+<section class="relative min-h-screen overflow-hidden">
 
-    const FOUNDER_TEXT = `Devraj Kumar is the Founder of AcademeForge. He started the platform as a student with a direct understanding of how students struggle with outdated learning systems, lack of practical exposure, and confusion around modern digital skills.
+  <img
+    src="AFhome.jpg"
+    class="absolute inset-0 w-full h-full object-cover"
+    alt="Campus"
+  />
 
-His founder vision is to make AcademeForge a student-first platform where learners can build skills that schools often do not teach: creativity, AI productivity, coding logic, digital confidence, communication, freelancing mindset, and practical execution.
+  <div class="hero-overlay absolute inset-0"></div>
 
-The platform’s long-term goal is to impact 100,000+ students by making future-ready learning accessible, practical, and beginner-friendly.`;
+  <div class="relative z-10 min-h-screen flex items-center">
 
-    function safeText(value) {
-      return String(value == null ? "" : value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
-    }
+    <div class="max-w-7xl mx-auto px-4 md:px-6 text-white">
 
-    function paragraphs(text) {
-      return safeText(text)
-        .split(/\n\s*\n/g)
-        .filter(Boolean)
-        .map((item) => `<p>${item.replace(/\n/g, "<br>")}</p>`)
-        .join("");
-    }
+      <p class="uppercase tracking-[5px] text-red-400 mb-4 text-xs md:text-sm">
+        REBUILDING A BETTER LEARNING EXPERIENCE
+      </p>
 
-    function openModal(title, text) {
-      const modal = document.getElementById("modal");
-      const modalTitle = document.getElementById("modalTitle");
-      const modalText = document.getElementById("modalText");
+      <h1 class="hero-title text-5xl md:text-7xl font-extrabold leading-tight mb-8 max-w-4xl">
+        Welcome to
+        <span class="text-red-500">AcademeForge</span>
+      </h1>
 
-      if (!modal || !modalTitle || !modalText) return;
+      <p class="text-base md:text-lg text-gray-200 max-w-2xl leading-8 mb-10">
+        Empowering students through AI-Powered learning.
+      </p>
 
-      modalTitle.textContent = String(title || "AcademeForge");
-      modalText.innerHTML = paragraphs(text || "");
-      modal.classList.remove("hidden");
-      modal.classList.add("flex");
-      document.body.classList.add("modal-open");
-    }
+      <div class="flex flex-wrap gap-4">
 
-    function closeModal() {
-      const modal = document.getElementById("modal");
-      if (!modal) return;
+        <button onclick="openPopup('Admissions Opening Soon','Admissions for Programs Is Under Development.')" class="bg-red-700 hover:bg-red-800 px-7 py-4 rounded-2xl font-bold transition-all hover:scale-105">
+          Apply For Admission
+        </button>
 
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-      document.body.classList.remove("modal-open");
-    }
+        <button 
+onclick="openPopup(
+'Our Vision',
+`At AcademeForge, we believe that education should do more than prepare students for exams — it should prepare them for life, creativity, technology, and the rapidly changing digital world. In today’s generation, students are surrounded by endless information, yet very few are taught how to truly build skills, think independently, create opportunities, or use modern tools effectively. Traditional education often focuses only on memorization and marks, while real-world success increasingly depends on creativity, communication, adaptability, digital literacy, problem-solving, and practical execution..
 
-    function openCourse(title, duration, fees, syllabus, facilities) {
-      const safeTitle = safeText(title);
-      const content = `
-        <div class="grid gap-4">
-          <div class="rounded-3xl border border-white/10 bg-white/[.06] p-5">
-            <div class="text-xs font-black uppercase tracking-[.18em] text-slate-500">Duration</div>
-            <div class="mt-2 text-lg font-black">${safeText(duration)}</div>
-          </div>
-          <div class="rounded-3xl border border-white/10 bg-white/[.06] p-5">
-            <div class="text-xs font-black uppercase tracking-[.18em] text-slate-500">Fees</div>
-            <div class="mt-2 text-lg font-black">${safeText(fees)}</div>
-          </div>
-          <div class="rounded-3xl border border-white/10 bg-white/[.06] p-5">
-            <div class="text-xs font-black uppercase tracking-[.18em] text-slate-500">Learning Scope</div>
-            <div class="mt-2 leading-7 text-slate-300">${safeText(syllabus)}</div>
-          </div>
-          <div class="rounded-3xl border border-white/10 bg-white/[.06] p-5">
-            <div class="text-xs font-black uppercase tracking-[.18em] text-slate-500">Labs & Support</div>
-            <div class="mt-2 leading-7 text-slate-300">${safeText(facilities)}</div>
-          </div>
+AcademeForge was created with a vision to bridge this gap.
+
+Our mission is to build a modern learning ecosystem where students can discover practical skills, explore their creativity, develop confidence, and learn how to use technology and artificial intelligence in meaningful and productive ways. We want students to move beyond passive learning and become active creators, builders, thinkers, and innovators who are capable of shaping their own future.
+
+We envision AcademeForge as a platform where learning feels inspiring, modern, and connected to the real world. Instead of long theoretical lectures and outdated systems, we focus on practical learning experiences that help students apply their knowledge through projects, creativity, experimentation, and execution. We believe students learn best when they build, create, solve, and experience things themselves.
+
+Through courses in Video & Media Editing, Creative & Graphic Design, Coding & Logic Building, Freelancing & Digital Monetization, AI Productivity, and future digital skills, we aim to give students access to the kind of education that schools often fail to provide. Our goal is not simply to teach software or tools, but to help learners understand how to think creatively, solve problems, communicate ideas, and use technology intelligently in an AI-driven world.
+
+Artificial Intelligence is transforming the future of education, careers, businesses, and creativity. Rather than fearing this change, we want students to learn how to adapt to it, grow with it, and use it responsibly to unlock new opportunities. At AcademeForge, we believe AI should empower students to learn faster, create smarter, and explore possibilities that were previously inaccessible.
+
+But beyond digital skills, our vision is also deeply connected to personal growth. We want students to develop discipline, consistency, confidence, curiosity, and the courage to try new things. We want learners from every background — especially students from smaller cities and underserved communities — to feel that they too can build meaningful careers, create digital opportunities, and compete in the modern world regardless of where they come from.
+
+AcademeForge is not just an edtech platform or an online course website. It is a movement toward practical, modern, future-focused education. A platform designed for students who want to learn beyond textbooks, beyond limitations, and beyond the traditional classroom.
+
+We imagine a future where students do not wait for opportunities — they create them.
+
+A future where learning is driven by curiosity, creativity, technology, and execution.
+
+A future where every student has access to the skills, mindset, and confidence needed to thrive in the digital age.
+
+That is the future AcademeForge aims to build.`
+)" 
+class="border border-white hover:bg-white hover:text-black px-7 py-4 rounded-2xl font-bold transition-all hover:scale-105">
+    Our Vision
+</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- STATS -->
+<section class="py-16 md:py-20 bg-gray-100">
+
+  <div class="max-w-7xl mx-auto px-4 md:px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+    <div class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl text-center">
+      <h2 class="text-5xl font-extrabold text-red-700 mb-3">1000+</h2>
+      <p class="text-gray-600">Students Reached</p>
+    </div>
+
+    <div class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl text-center">
+      <h2 class="text-5xl font-extrabold text-red-700 mb-3">2024</h2>
+      <p class="text-gray-600">Founded</p>
+    </div>
+
+  <div class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl text-center">
+      <h2 class="text-5xl font-extrabold text-red-700 mb-3">4+</h2>
+      <p class="text-gray-600">Core Team Members</p>
+    </div>
+    
+<div class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl text-center">
+  <h2 id="apkDownloadCount" class="text-5xl font-extrabold text-red-700 mb-3">0+</h2>
+  <p class="text-gray-600">Install App Clicks</p>
+</div>
+
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-20 md:py-24">
+
+  <div class="max-w-7xl mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-14 md:gap-20 items-center">
+
+    <div>
+
+      <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
+        About Us
+      </p>
+
+      <h2 class="section-title text-4xl md:text-5xl font-bold leading-tight mb-8">
+        Building Future Creators & Innovators
+      </h2>
+
+      <p class="text-gray-600 leading-8 mb-6">
+        AcademeForge is a modern student-focused platform helping learners build practical skills, creativity, and AI-powered knowledge beyond traditional education.
+      </p>
+
+      <p class="text-gray-600 leading-8 mb-10">
+        Our mission is to transform students into industry-ready professionals.
+      </p>
+
+      <button 
+  onclick="openPopup(
+    'About AcademeForge',
+    `AcademeForge is a modern student-focused learning platform founded in India with a vision to transform the way students learn, grow, and prepare for the future. Built around the idea of “Learning Beyond the Classroom,” AcademeForge focuses on practical skills, digital creativity, AI-powered learning, and real-world knowledge that traditional education often fails to provide.
+
+The journey of AcademeForge began in January 2024, when it was initially started as a small Telegram community dedicated to helping Class 10 students solve doubts, participate in live quizzes, engage in discussions, and support each other academically. What started as a simple student-help initiative gradually evolved into a bigger vision — creating a modern learning ecosystem where students could access practical education, future-ready skills, mentorship, and opportunities beyond textbooks and exam-focused learning.
+
+AcademeForge was founded by Devraj Kumar, who started the platform at the age of just 17 while studying in Class 10. Devraj envisioned a platform that could help students explore creativity, technology, entrepreneurship, freelancing, digital skills, and artificial intelligence in a simple and beginner-friendly way. Later, Mandeep Harsh joined the initiative as Co-Founder, helping shape the vision and growth of the platform.
+
+Today, AcademeForge is powered by a small but passionate team of learners, creators, and young professionals:
+
+• Devraj Kumar — Founder 
+• Mandeep Harsh — Co-Founder 
+• Palak Kumari Jha — Moderator
+• Ayush Raj - Moderator
+
+As a youth-driven platform, AcademeForge strongly believes that students understand the struggles, pressure, and aspirations of other students better than anyone else. This understanding helps create learning experiences that feel relatable, modern, practical, and genuinely useful.
+
+At AcademeForge, we focus on teaching future-ready skills such as:
+
+• Video & Media Editing  
+• Creative & Graphic Design  
+• Coding Basics & Logic Building  
+• Freelancing & Digital Monetization  
+• AI-Powered Productivity & Digital Skills  
+
+Our learning approach is based on practical execution rather than memorization. Instead of long theoretical lectures, we encourage students to build projects, explore creativity, use AI tools intelligently, and develop confidence through hands-on learning experiences.
+
+What makes AcademeForge different is our belief that education should evolve with the modern world. While traditional systems often focus only on marks and rote learning, we focus on helping students become creators, problem-solvers, innovators, and independent thinkers prepared for the digital era.
+
+Although AcademeForge started from a small initiative in India, our vision is much larger. Over the next Ten years, we aim to impact and empower more than 100,000 students through accessible, practical, and AI-powered education.
+
+AcademeForge is not just a platform — it is a growing movement for students who want to learn beyond limitations and build a better future through skills, creativity, technology, and execution.
+
+Our Motto:
+“Learn Skills Schools Never Taught.”`
+  )" 
+  class="bg-red-700 text-white px-8 py-4 rounded-xl hover:bg-red-800 transition-all hover:scale-105">
+  Know More
+</button>
+
+    </div>
+
+    <div>
+
+      <img
+        src="stockIMG.jpg"
+        class="rounded-3xl shadow-2xl w-full"
+        alt="Students"
+      />
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- COURSES -->
+<section id="courses" class="bg-gray-50 py-20 md:py-24">
+
+  <div class="max-w-7xl mx-auto px-4 md:px-6">
+
+    <div class="text-center mb-16">
+
+      <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
+        Academic Programs
+      </p>
+
+      <h2 class="section-title text-4xl md:text-5xl font-bold">
+        Explore Our Courses
+      </h2>
+
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Video & Media Editing -->
+      <div onclick="openCourse(
+      'Video & Media Editing',
+      'Duration: 6 months',
+      'Annual Fees: To Be Announced',
+      'Create videos, reels, captions, thumbnails, and edits using Powerful AI tools.',
+      'AI editing tools, practical editing projects, creator workflows'
+      )"
+      class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl cursor-pointer">
+
+        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-700 text-2xl font-bold mb-6">
+          01
         </div>
-      `;
 
-      const modal = document.getElementById("modal");
-      const modalTitle = document.getElementById("modalTitle");
-      const modalText = document.getElementById("modalText");
+        <h3 class="text-2xl font-bold mb-4">Video & Media Editing</h3>
 
-      if (!modal || !modalTitle || !modalText) return;
+        <p class="text-gray-600 leading-7 mb-5">
+          Create content that captures attention and builds digital creativity.
+        </p>
 
-      modalTitle.innerHTML = safeTitle;
-      modalText.innerHTML = content;
-      modal.classList.remove("hidden");
-      modal.classList.add("flex");
-      document.body.classList.add("modal-open");
+        <p class="font-semibold text-red-700 mb-5">
+          Fees: To Be Announced
+        </p>
+
+        <button class="bg-red-700 text-white px-5 py-3 rounded-xl">
+          View Details
+        </button>
+
+      </div>
+
+      <!-- Creative & Graphic Design -->
+      <div onclick="openCourse(
+      'Creative & Graphic Design',
+      'Duration: 6 Months',
+      'Annual Fees: To Be Announced',
+      'Design posters, social media graphics, and professional visuals with AI',
+      'Design labs, Canva & AI tools, branding practice projects'
+      )"
+      class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl cursor-pointer">
+
+        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-700 text-2xl font-bold mb-6">
+          02
+        </div>
+
+        <h3 class="text-2xl font-bold mb-4">Creative & Graphic Design</h3>
+
+        <p class="text-gray-600 leading-7 mb-5">
+          Turn ideas into visually engaging and impactful designs.
+        </p>
+
+        <p class="font-semibold text-red-700 mb-5">
+          Fees: To Be Announced
+        </p>
+
+        <button class="bg-red-700 text-white px-5 py-3 rounded-xl">
+          View Details
+        </button>
+
+      </div>
+
+      <!-- AI Coding & Logic Foundation -->
+      <div onclick="openCourse(
+      'AI Coding & Logic Foundation',
+      'Duration: 1 Years',
+      'Annual Fees: To Be Announced',
+      'Learn coding, websites, and logic building with beginner-friendly AI tools',
+      'Beginner coding environment, logic-building tasks, mini projects'
+      )"
+      class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl cursor-pointer">
+
+        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-700 text-2xl font-bold mb-6">
+          03
+        </div>
+
+        <h3 class="text-2xl font-bold mb-4">AI Coding & Logic Foundation</h3>
+
+        <p class="text-gray-600 leading-7 mb-5">
+          Develop smart thinking with modern coding and AI fundamentals.
+        </p>
+
+        <p class="font-semibold text-red-700 mb-5">
+          Fees: To Be Announced
+        </p>
+
+        <button class="bg-red-700 text-white px-5 py-3 rounded-xl">
+          View Details
+        </button>
+
+      </div>
+
+      <!-- Freelancing & Monetization -->
+      <div onclick="openCourse(
+      'Freelancing & Monetization',
+      'Duration: 1 Years',
+      'Annual Fees: To Be Announced',
+      'Learn how to earn online using AI-powered freelance and digital skills.',
+        'Portfolio guidance, freelancing resources, earning strategies'
+      )"
+      class="bg-white p-8 rounded-3xl shadow-xl hover-up hover:shadow-2xl cursor-pointer">
+
+        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-700 text-2xl font-bold mb-6">
+          04
+        </div>
+
+        <h3 class="text-2xl font-bold mb-4">Freelancing & Monetization</h3>
+
+        <p class="text-gray-600 leading-7 mb-5">
+          Learn how digital skills can create real online opportunities.
+        </p>
+
+        <p class="font-semibold text-red-700 mb-5">
+          Fees: To Be Announced
+        </p>
+
+        <button class="bg-red-700 text-white px-5 py-3 rounded-xl">
+          View Details
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TEAM SECTION -->
+<section id="team" class="py-20 md:py-24 bg-gray-50">
+
+  <div class="max-w-7xl mx-auto px-4 md:px-6">
+
+    <!-- Heading -->
+    <div class="text-center mb-16">
+
+      <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
+        Our Team
+      </p>
+
+      <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">
+        Meet The People Behind AcademeForge
+      </h2>
+
+      <p class="text-gray-600 max-w-3xl mx-auto leading-8">
+        AcademeForge is powered by passionate young innovators, creators,
+        and learners dedicated to building a better future for students
+        through modern education and AI-powered learning.
+      </p>
+
+    </div>
+
+    <!-- Team Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Founder -->
+      
+          <div class="bg-white p-8 rounded-3xl shadow-xl text-center hover-up hover:shadow-2xl">
+
+        <div class="w-32 h-32 rounded-full bg-red-700 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-6 shadow-lg">
+  D
+</div>
+        <h3 class="text-2xl font-bold mb-2">
+          Devraj Kumar
+        </h3>
+
+        <p class="text-red-700 font-semibold mb-4">
+          Founder
+        </p>
+
+        <p class="text-gray-600 leading-7 text-sm">
+          Visionary behind AcademeForge focused on modern education,
+          AI-powered learning, creativity, and student empowerment.
+        </p>
+
+      </div>
+
+      <!-- Co-Founder -->
+      <div class="bg-white p-8 rounded-3xl shadow-xl text-center hover-up hover:shadow-2xl">
+
+       <div class="w-32 h-32 rounded-full bg-red-700 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-6 shadow-lg">
+  M
+</div>
+        <h3 class="text-2xl font-bold mb-2">
+          Mandeep Harsh
+        </h3>
+
+        <p class="text-red-700 font-semibold mb-4">
+          Co-Founder
+        </p>
+
+        <p class="text-gray-600 leading-7 text-sm">
+          Helping shape the growth, strategy, and vision of AcademeForge
+          while building impactful student learning experiences.
+        </p>
+
+      </div>
+
+      <!-- Moderator 1 -->
+      <div class="bg-white p-8 rounded-3xl shadow-xl text-center hover-up hover:shadow-2xl">
+
+      <div class="w-32 h-32 rounded-full bg-red-700 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-6 shadow-lg">
+  P
+</div>
+
+        <h3 class="text-2xl font-bold mb-2">
+          Palak Kumari Jha
+        </h3>
+
+        <p class="text-red-700 font-semibold mb-4">
+          Moderator
+        </p>
+
+        <p class="text-gray-600 leading-7 text-sm">
+          Supporting student engagement, community management,
+          and smooth learning experiences across the platform.
+        </p>
+
+      </div>
+
+      <!-- Moderator 2 -->
+      <div class="bg-white p-8 rounded-3xl shadow-xl text-center hover-up hover:shadow-2xl">
+
+       <div class="w-32 h-32 rounded-full bg-red-700 text-white flex items-center justify-center text-4xl font-bold mx-auto mb-6 shadow-lg">
+  A
+</div>
+        <h3 class="text-2xl font-bold mb-2">
+          Ayush Raj
+        </h3>
+
+        <p class="text-red-700 font-semibold mb-4">
+          Moderator
+        </p>
+
+        <p class="text-gray-600 leading-7 text-sm">
+          Assisting with student coordination, platform activities,
+          and creating a positive learning environment.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FEES -->
+<section id="fees" class="py-20 md:py-24 bg-white">
+
+  <div class="max-w-7xl mx-auto px-4 md:px-6">
+
+    <div class="text-center mb-16">
+
+      <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
+        Fee Structure
+      </p>
+
+      <h2 class="section-title text-4xl md:text-5xl font-bold">
+        Affordable Education
+      </h2>
+
+    </div>
+
+    <div class="overflow-x-auto rounded-3xl shadow-2xl">
+
+      <table class="w-full bg-white min-w-[700px]">
+
+        <thead class="bg-red-700 text-white">
+
+          <tr>
+            <th class="p-6 text-left">Program</th>
+            <th class="p-6 text-left">Duration</th>
+            <th class="p-6 text-left">Annual Fees</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr class="border-b">
+            <td class="p-6">Video & Media Editing</td>
+            <td class="p-6">6 Months</td>
+            <td class="p-6">To Be Announced</td>
+          </tr>
+
+          <tr class="border-b bg-gray-50">
+            <td class="p-6">Creative & Graphic Design</td>
+            <td class="p-6">6 Months</td>
+            <td class="p-6">To Be Announced</td>
+          </tr>
+
+          <tr class="border-b">
+            <td class="p-6">AI Coding & Logic Foundation</td>
+            <td class="p-6">1 Years</td>
+            <td class="p-6">To Be Announced</td>
+          </tr>
+
+          <tr class="bg-gray-50">
+            <td class="p-6">Freelancing & Monetization</td>
+            <td class="p-6">1 Years</td>
+            <td class="p-6">To Be Announced</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="bg-gray-50 py-20 md:py-24">
+
+  <div class="max-w-5xl mx-auto px-4 md:px-6">
+
+    <div class="text-center mb-16">
+
+      <p class="uppercase tracking-[4px] text-red-700 text-sm mb-4">
+        Frequently Asked Questions
+      </p>
+
+      <h2 class="section-title text-4xl md:text-5xl font-bold">
+        Have Questions?
+      </h2>
+
+    </div>
+
+    <div class="space-y-5">
+
+      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
+
+        <div class="flex justify-between items-center">
+
+          <h3 class="font-semibold text-lg">
+            Are scholarships available?
+          </h3>
+
+          <span class="faq-icon text-3xl text-red-700">+</span>
+
+        </div>
+
+        <div class="faq-content mt-4 text-gray-600 leading-7">
+          Merit-based and need-based scholarships are available.
+        </div>
+
+      </div>
+
+      <div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
+
+        <div class="flex justify-between items-center">
+
+    <h3 class="font-semibold text-lg">
+      What is AcademeForge?
+    </h3>
+
+    <span class="faq-icon text-3xl text-red-700">+</span>
+  </div>
+
+  <div class="faq-content mt-4 text-gray-600 leading-7">
+    AcademeForge is a student-focused learning platform built around practical skills, creativity, and real-world learning beyond traditional classrooms.
+  </div>
+</div>
+
+<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
+  <div class="flex justify-between items-center">
+    <h3 class="font-semibold text-lg">
+      Are admissions open right now?
+    </h3>
+
+    <span class="faq-icon text-3xl text-red-700">+</span>
+  </div>
+
+  <div class="faq-content mt-4 text-gray-600 leading-7">
+    No. Admissions in 2026 are currently paused while we rebuild and improve the platform, programs, and learning experience.
+  </div>
+</div>
+
+<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
+  <div class="flex justify-between items-center">
+    <h3 class="font-semibold text-lg">
+      When will admissions start again?
+    </h3>
+
+    <span class="faq-icon text-3xl text-red-700">+</span>
+  </div>
+
+  <div class="faq-content mt-4 text-gray-600 leading-7">
+    Admissions are expected to open in upcoming academic sessions. Updates will be shared officially through the website and social platforms.
+  </div>
+</div>
+
+<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
+  <div class="flex justify-between items-center">
+    <h3 class="font-semibold text-lg">
+      Is this beginner friendly?
+    </h3>
+
+    <span class="faq-icon text-3xl text-red-700">+</span>
+  </div>
+
+  <div class="faq-content mt-4 text-gray-600 leading-7">
+    Yes. Programs are being designed for both complete beginners and students who already have some basic knowledge.
+  </div>
+</div>
+
+<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
+  <div class="flex justify-between items-center">
+    <h3 class="font-semibold text-lg">
+      What kind of skills will students learn?
+    </h3>
+
+    <span class="faq-icon text-3xl text-red-700">+</span>
+  </div>
+
+  <div class="faq-content mt-4 text-gray-600 leading-7">
+    Students will work on practical skills like digital tools, communication, creative thinking, technology basics, problem-solving, and project-based learning.
+  </div>
+</div>
+
+<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
+  <div class="flex justify-between items-center">
+    <h3 class="font-semibold text-lg">
+      Will there be live classes or recorded content?
+    </h3>
+
+    <span class="faq-icon text-3xl text-red-700">+</span>
+  </div>
+
+  <div class="faq-content mt-4 text-gray-600 leading-7">
+    Learning may include a mix of live sessions, recorded lessons, workshops, and practical activities for flexible learning.
+  </div>
+</div>
+
+<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
+  <div class="flex justify-between items-center">
+    <h3 class="font-semibold text-lg">
+      Do I need an expensive laptop or setup?
+    </h3>
+
+    <span class="faq-icon text-3xl text-red-700">+</span>
+  </div>
+
+  <div class="faq-content mt-4 text-gray-600 leading-7">
+    No. A normal laptop or mobile device with a stable internet connection is enough for most beginner-level learning activities.
+  </div>
+</div>
+
+<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
+  <div class="flex justify-between items-center">
+    <h3 class="font-semibold text-lg">
+      Will students get mentorship and support?
+    </h3>
+
+    <span class="faq-icon text-3xl text-red-700">+</span>
+  </div>
+
+  <div class="faq-content mt-4 text-gray-600 leading-7">
+    Yes. Students will be able to interact with mentors, ask doubts, and receive guidance throughout the learning journey.
+  </div>
+</div>
+
+<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
+  <div class="flex justify-between items-center">
+    <h3 class="font-semibold text-lg">
+      Will certificates be provided?
+    </h3>
+
+    <span class="faq-icon text-3xl text-red-700">+</span>
+  </div>
+
+  <div class="faq-content mt-4 text-gray-600 leading-7">
+    Yes. Certificates may be provided for selected programs, activities, or learning tracks after successful completion.
+  </div>
+</div>
+
+<div class="faq bg-white rounded-2xl shadow-md p-6 cursor-pointer">
+  <div class="flex justify-between items-center">
+    <h3 class="font-semibold text-lg">
+      What makes AcademeForge different?
+    </h3>
+
+    <span class="faq-icon text-3xl text-red-700">+</span>
+  </div>
+
+  <div class="faq-content mt-4 text-gray-600 leading-7">
+    AcademeForge focuses more on practical learning, consistency, execution, and real growth instead of only theory, memorization, or marks.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-20 md:py-24 bg-black text-white relative overflow-hidden">
+
+  <div class="absolute top-0 left-0 w-full h-full opacity-10">
+    <div class="w-[500px] h-[500px] bg-red-700 rounded-full blur-3xl absolute -top-40 -left-40"></div>
+    <div class="w-[500px] h-[500px] bg-red-500 rounded-full blur-3xl absolute bottom-0 right-0"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 text-center">
+
+    <p class="uppercase tracking-[4px] text-red-400 text-sm mb-4">
+      Contact Us
+    </p>
+
+    <h2 class="section-title text-4xl md:text-5xl font-bold mb-8">
+      Let’s Build Your Future
+    </h2>
+
+    <p class="text-gray-300 text-lg leading-8 max-w-3xl mx-auto mb-10">
+      Connect with AcademeForge for admissions and Program Details.
+    </p>
+
+    <div class="flex flex-col md:flex-row justify-center gap-8 text-lg">
+
+      <div class="glass px-8 py-6 rounded-3xl">
+        📍 Patna, Bihar, India
+      </div>
+
+      <div class="glass px-8 py-6 rounded-3xl">
+        📞 +91 XXXXX XXXXX
+      </div>
+
+      <div class="glass px-8 py-6 rounded-3xl">
+        ✉ academeforge@gmail.com
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- POPUP -->
+<div id="popup"
+class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-[999] p-4 overflow-y-auto">
+
+  <div class="bg-white max-w-lg w-full rounded-3xl p-8 relative animate-popup shadow-2xl max-h-[90vh] overflow-y-auto">
+
+    <button onclick="closePopup()"
+    class="absolute top-4 right-4 text-2xl font-bold text-gray-500 hover:text-red-700">
+      ×
+    </button>
+
+    <h2 id="popupTitle"
+    class="text-3xl font-extrabold mb-4 text-red-700"></h2>
+
+    <div id="popupText"
+    class="text-gray-600 leading-8 text-lg"></div>
+
+    <button onclick="closePopup()"
+    class="mt-8 bg-red-700 hover:bg-red-800 text-white px-7 py-3 rounded-xl font-semibold transition-all">
+      Close
+    </button>
+
+  </div>
+
+</div>
+
+<!-- FLOATING CONTACT BAR -->
+<div class="fixed bottom-6 right-6 z-50">
+
+  <div class="bg-black px-4 py-3 rounded-full flex items-center gap-4 shadow-2xl">
+
+    <!-- WhatsApp -->
+    <a
+      href="https://wa.me/+91 XXXXX XXXXX?text=Hello%20AcademeForge%20Team,%20please%20guide%20me%20regarding%20admissions."
+      target="_blank"
+      class="w-16 h-16 bg-green-500 hover:scale-110 transition-all duration-300 rounded-full flex items-center justify-center"
+    >
+
+      <svg xmlns="http://www.w3.org/2000/svg"
+           width="30"
+           height="30"
+           fill="white"
+           viewBox="0 0 24 24">
+        <path d="M20.52 3.48A11.79 11.79 0 0012.06 0C5.52 0 .19 5.33.19 11.87c0 2.09.55 4.14 1.6 5.95L0 24l6.37-1.67a11.79 11.79 0 005.69 1.45h.01c6.54 0 11.87-5.33 11.87-11.87a11.8 11.8 0 00-3.42-8.43z"/>
+      </svg>
+
+    </a>
+
+    <!-- Call Button -->
+    <a
+      href="tel:+91 XXXXX XXXXX"
+      class="w-16 h-16 bg-sky-500 hover:scale-110 transition-all duration-300 rounded-full flex items-center justify-center"
+    >
+
+      <svg xmlns="http://www.w3.org/2000/svg"
+           width="30"
+           height="30"
+           fill="none"
+           stroke="white"
+           stroke-width="2"
+           viewBox="0 0 24 24">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+        19.79 19.79 0 0 1-8.63-3.07
+        19.5 19.5 0 0 1-6-6
+        19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72
+        12.84 12.84 0 0 0 .7 2.81
+        2 2 0 0 1-.45 2.11L8.09 9.91
+        a16 16 0 0 0 6 6l1.27-1.27
+        a2 2 0 0 1 2.11-.45
+        12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </svg>
+
+    </a>
+
+   
+  </div>
+
+</div>
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 24 24">
+    <path d="M20.52 3.48A11.79 11.79 0 0012.06 0C5.52 0 .19 5.33.19 11.87c0 2.09.55 4.14 1.6 5.95L0 24l6.37-1.67a11.79 11.79 0 005.69 1.45h.01c6.54 0 11.87-5.33 11.87-11.87a11.8 11.8 0 00-3.42-8.43z"/>
+  </svg>
+
+</a>
+
+<!-- FOOTER -->
+<footer class="bg-black border-t border-gray-800 text-center py-6 text-gray-400 text-sm">
+  © 2026 AcademeForge. All Rights Reserved.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  const SUPABASE_URL = "https://afooyyydhlwngzssgqih.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmb295eXlkaGx3bmd6c3NncWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NDQxMjgsImV4cCI6MjA5NDIyMDEyOH0.KG0XO0oP_2MpewHoIwTtbrKg5FkyOYRUtVzLH1MSJiE";
+
+  const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const APK_DOWNLOAD_URL = "academeforge.apk";
+
+  function getWebsiteDeviceId() {
+    let deviceId = localStorage.getItem("websiteDeviceId");
+
+    if (!deviceId) {
+      deviceId =
+        "web_" +
+        Date.now() +
+        "_" +
+        Math.random().toString(36).slice(2, 12);
+
+      localStorage.setItem("websiteDeviceId", deviceId);
     }
 
-    function getWebsiteDeviceId() {
-      try {
-        let deviceId = localStorage.getItem("websiteDeviceId");
+    return deviceId;
+  }
 
-        if (!deviceId) {
-          const randomPart = crypto && crypto.getRandomValues
-            ? Array.from(crypto.getRandomValues(new Uint32Array(2))).map((n) => n.toString(36)).join("")
-            : Math.random().toString(36).slice(2, 14);
+  async function downloadAcademeForgeApk() {
+    const deviceId = getWebsiteDeviceId();
 
-          deviceId = `web_${Date.now()}_${randomPart}`;
-          localStorage.setItem("websiteDeviceId", deviceId);
-        }
+    try {
+      await db
+        .from("apk_downloads")
+        .insert([{
+          device_id: deviceId,
+          user_agent: navigator.userAgent || "",
+          page_url: window.location.href,
+          download_source: "main_website"
+        }]);
 
-        return deviceId;
-      } catch (error) {
-        return `web_fallback_${Date.now()}_${Math.random().toString(36).slice(2, 12)}`;
-      }
+      await loadApkDownloadCount();
+
+    } catch (err) {
+      console.log("APK download tracking error:", err);
     }
 
-    async function insertRow(table, payload) {
-      if (!db) return { error: new Error("Supabase client unavailable") };
+    const link = document.createElement("a");
+    link.href = APK_DOWNLOAD_URL;
+    link.download = "academeforge.apk";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 
-      try {
-        const { error } = await db.from(table).insert([payload]);
-        return { error: error || null };
-      } catch (error) {
-        return { error };
-      }
+  async function loadApkDownloadCount() {
+    const countBox = document.getElementById("apkDownloadCount");
+    if (!countBox) return;
+
+    const { count, error } = await db
+      .from("apk_downloads")
+      .select("*", { count: "exact", head: true });
+
+    if (error) {
+      console.log("Download count error:", error);
+      countBox.textContent = "0+";
+      return;
     }
 
-    async function loadExactCount(table, elementId) {
-      const countBox = document.getElementById(elementId);
-      if (!countBox || !db) return;
+    countBox.textContent = (count || 0) + "+";
+  }
 
-      try {
-        const { count, error } = await db.from(table).select("*", { count: "exact", head: true });
-        if (error) throw error;
-        countBox.textContent = `${count || 0}+`;
-      } catch (error) {
-        countBox.textContent = "0+";
-        console.warn(`${table} count error:`, error);
-      }
+  async function trackWebsiteVisit() {
+    const deviceId = getWebsiteDeviceId();
+
+    try {
+      await db
+        .from("website_visits")
+        .insert([{
+          device_id: deviceId,
+          page_url: window.location.href,
+          user_agent: navigator.userAgent || ""
+        }]);
+    } catch (err) {
+      console.log("Website visit tracking error:", err);
+    }
+  }
+
+  async function loadWebsiteVisitCount() {
+    const countBox = document.getElementById("websiteVisitCount");
+    if (!countBox) return;
+
+    const { count, error } = await db
+      .from("website_visits")
+      .select("*", { count: "exact", head: true });
+
+    if (error) {
+      console.log("Website visit count error:", error);
+      countBox.textContent = "0+";
+      return;
     }
 
-    async function downloadAcademeForgeApk() {
-      const deviceId = getWebsiteDeviceId();
+    countBox.textContent = (count || 0) + "+";
+  }
 
-      await insertRow("apk_downloads", {
-        device_id: deviceId,
-        user_agent: navigator.userAgent || "",
-        page_url: window.location.href,
-        download_source: "main_website"
-      });
+  async function loadUniqueVisitorCount() {
+    const countBox = document.getElementById("uniqueVisitorCount");
+    if (!countBox) return;
 
-      await loadExactCount("apk_downloads", "apkDownloadCount");
+    const { data, error } = await db
+      .from("website_visits")
+      .select("device_id");
 
-      const link = document.createElement("a");
-      link.href = APK_DOWNLOAD_URL;
-      link.download = "academeforge.apk";
-      link.rel = "noopener";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    if (error) {
+      console.log("Unique visitor count error:", error);
+      countBox.textContent = "0+";
+      return;
     }
 
-    async function trackWebsiteVisit() {
-      const deviceId = getWebsiteDeviceId();
+    const uniqueDevices = new Set((data || []).map(row => row.device_id)).size;
+    countBox.textContent = uniqueDevices + "+";
+  }
 
-      await insertRow("website_visits", {
-        device_id: deviceId,
-        page_url: window.location.href,
-        user_agent: navigator.userAgent || ""
-      });
-    }
+  document.addEventListener("DOMContentLoaded", async function() {
+    await trackWebsiteVisit();
 
-    function initMenu() {
-      const menu = document.getElementById("mobileMenu");
-      const openButton = document.getElementById("menuButton");
-      const closeButton = document.getElementById("closeMenuButton");
-      const links = document.querySelectorAll(".mobile-link");
+    await loadApkDownloadCount();
+    await loadUniqueVisitorCount();
+    await loadWebsiteVisitCount();
+  });
 
-      function openMenu() {
-        if (!menu) return;
-        menu.classList.add("open");
-        document.body.classList.add("menu-open");
-      }
-
-      function closeMenu() {
-        if (!menu) return;
-        menu.classList.remove("open");
-        document.body.classList.remove("menu-open");
-      }
-
-      openButton && openButton.addEventListener("click", openMenu);
-      closeButton && closeButton.addEventListener("click", closeMenu);
-      links.forEach((link) => link.addEventListener("click", closeMenu));
-    }
-
-    function initFaq() {
-      document.querySelectorAll(".faq-item").forEach((item) => {
-        item.addEventListener("click", () => {
-          const wasOpen = item.classList.contains("open");
-          document.querySelectorAll(".faq-item.open").forEach((openItem) => openItem.classList.remove("open"));
-          if (!wasOpen) item.classList.add("open");
-        });
-      });
-    }
-
-    function initReveal() {
-      const items = document.querySelectorAll(".reveal");
-
-      if (!("IntersectionObserver" in window)) {
-        items.forEach((item) => item.classList.add("is-visible"));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-
-      items.forEach((item) => observer.observe(item));
-    }
-
-    function initActiveNav() {
-      const sections = Array.from(document.querySelectorAll("main section[id]"));
-      const navLinks = Array.from(document.querySelectorAll(".nav-link"));
-
-      if (!sections.length || !navLinks.length || !("IntersectionObserver" in window)) return;
-
-      const map = new Map(navLinks.map((link) => [link.getAttribute("href")?.replace("#", ""), link]));
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          navLinks.forEach((link) => link.classList.remove("active"));
-          const active = map.get(entry.target.id);
-          active && active.classList.add("active");
-        });
-      }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
-
-      sections.forEach((section) => observer.observe(section));
-    }
-
-    function initModalClose() {
-      const modal = document.getElementById("modal");
-
-      modal && modal.addEventListener("click", (event) => {
-        if (event.target === modal) closeModal();
-      });
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          closeModal();
-        }
-      });
-    }
-
-    document.addEventListener("DOMContentLoaded", async () => {
-      initMenu();
-      initFaq();
-      initReveal();
-      initActiveNav();
-      initModalClose();
-
-      await trackWebsiteVisit();
-      await loadExactCount("apk_downloads", "apkDownloadCount");
+  // FAQ
+  document.querySelectorAll(".faq").forEach((faq) => {
+    faq.addEventListener("click", () => {
+      faq.classList.toggle("active");
     });
-  </script>
+  });
+
+  // NORMAL POPUP
+  function openPopup(title,text){
+
+    document.getElementById("popup").classList.remove("hidden");
+    document.getElementById("popup").classList.add("flex");
+
+    document.getElementById("popupTitle").innerText = title;
+
+    document.getElementById("popupText").innerHTML = `
+      <p>${text}</p>
+    `;
+
+  }
+
+  // COURSE POPUP
+  function openCourse(title,duration,fees,syllabus,faculty){
+
+    document.getElementById("popup").classList.remove("hidden");
+    document.getElementById("popup").classList.add("flex");
+
+    document.getElementById("popupTitle").innerText = title;
+
+    document.getElementById("popupText").innerHTML = `
+
+      <div class="space-y-5">
+
+        <div class="bg-gray-100 p-5 rounded-2xl">
+          <h3 class="font-bold text-red-700 mb-2">Duration</h3>
+          <p>${duration}</p>
+        </div>
+
+        <div class="bg-gray-100 p-5 rounded-2xl">
+          <h3 class="font-bold text-red-700 mb-2">Fees</h3>
+          <p>${fees}</p>
+        </div>
+
+        <div class="bg-gray-100 p-5 rounded-2xl">
+          <h3 class="font-bold text-red-700 mb-2">Syllabus</h3>
+          <p>${syllabus}</p>
+        </div>
+
+        <div class="bg-gray-100 p-5 rounded-2xl">
+          <h3 class="font-bold text-red-700 mb-2">Faculty & Facilities</h3>
+          <p>${faculty}</p>
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+  // CLOSE POPUP
+  function closePopup(){
+
+    document.getElementById("popup").classList.add("hidden");
+    document.getElementById("popup").classList.remove("flex");
+
+  }
+
+function openPopup(title,text){
+  document.getElementById('popup').classList.remove('hidden');
+  document.getElementById('popup').classList.add('flex');
+
+  document.getElementById('popupTitle').innerText = title;
+  document.getElementById('popupText').innerText = text;
+
+  document.body.style.overflow = 'hidden';
+}
+
+function closePopup(){
+  document.getElementById('popup').classList.add('hidden');
+  document.getElementById('popup').classList.remove('flex');
+
+  document.body.style.overflow = 'auto';
+}
+
+</script>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+document.onkeydown = function(e) {
+  if (
+    e.keyCode == 123 ||
+    (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) ||
+    (e.ctrlKey && e.key.toUpperCase() == 'U')
+  ) {
+    return false;
+  }
+};
+</script>
+
 </body>
 </html>
