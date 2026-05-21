@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <!-- =========================================================
-       BASIC META
-  ========================================================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#f8fafc" />
@@ -14,9 +11,6 @@
 
   <title>Join AcademeForge Team</title>
 
-  <!-- =========================================================
-       FONTS
-  ========================================================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -25,60 +19,45 @@
   />
 
   <style>
-    /* =========================================================
-       THEME VARIABLES
-    ========================================================== */
-
     :root {
       color-scheme: light;
-
       --bg: #f8fafc;
       --bg2: #eef2ff;
-      --panel: rgba(255, 255, 255, 0.92);
-      --panel2: rgba(255, 255, 255, 0.74);
+      --panel: rgba(255, 255, 255, 0.94);
+      --panel2: rgba(255, 255, 255, 0.76);
       --text: #0f172a;
       --heading: #020617;
       --muted: #475569;
       --soft: #64748b;
       --line: rgba(15, 23, 42, 0.13);
-      --line2: rgba(15, 23, 42, 0.2);
-
+      --line2: rgba(15, 23, 42, 0.22);
       --brand: #f97316;
       --gold: #f5c451;
       --green: #16a34a;
       --red: #dc2626;
       --blue: #2563eb;
-
       --shadow: 0 24px 80px rgba(15, 23, 42, 0.13);
       --shadow2: 0 34px 110px rgba(15, 23, 42, 0.2);
-
       --header: rgba(255, 255, 255, 0.86);
       --pad: clamp(14px, 3.6vw, 72px);
     }
 
     html[data-theme="dark"] {
       color-scheme: dark;
-
       --bg: #050816;
       --bg2: #080c18;
-      --panel: rgba(15, 23, 42, 0.78);
+      --panel: rgba(15, 23, 42, 0.82);
       --panel2: rgba(255, 255, 255, 0.075);
       --text: #e5e7eb;
       --heading: #f8fafc;
       --muted: #cbd5e1;
       --soft: #94a3b8;
       --line: rgba(255, 255, 255, 0.13);
-      --line2: rgba(255, 255, 255, 0.2);
-
+      --line2: rgba(255, 255, 255, 0.22);
       --shadow: 0 26px 90px rgba(0, 0, 0, 0.38);
       --shadow2: 0 34px 110px rgba(0, 0, 0, 0.5);
-
       --header: rgba(5, 8, 22, 0.86);
     }
-
-    /* =========================================================
-       BASE RESET
-    ========================================================== */
 
     * {
       box-sizing: border-box;
@@ -105,10 +84,6 @@
         radial-gradient(circle at 12% 0, rgba(249, 115, 22, 0.24), transparent 35rem),
         radial-gradient(circle at 85% 12%, rgba(37, 99, 235, 0.18), transparent 34rem),
         #050816;
-    }
-
-    body.lock {
-      overflow: hidden;
     }
 
     body::before {
@@ -145,10 +120,6 @@
       color: inherit;
       text-decoration: none;
     }
-
-    /* =========================================================
-       LAYOUT
-    ========================================================== */
 
     .site {
       position: relative;
@@ -278,10 +249,6 @@
       margin-inline: auto;
     }
 
-    /* =========================================================
-       HEADER
-    ========================================================== */
-
     .header {
       position: sticky;
       top: 0;
@@ -408,10 +375,6 @@
       transform: translateX(18px);
     }
 
-    /* =========================================================
-       HERO
-    ========================================================== */
-
     .hero {
       min-height: calc(100svh - 78px);
       display: grid;
@@ -486,10 +449,6 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
-
-    /* =========================================================
-       FORM
-    ========================================================== */
 
     .form-card {
       border-radius: 42px;
@@ -741,6 +700,8 @@
       border-radius: 20px;
       font-weight: 800;
       line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
 
     .alert.show {
@@ -771,10 +732,6 @@
       color: var(--red);
     }
 
-    /* =========================================================
-       FOOTER
-    ========================================================== */
-
     .footer {
       border-top: 1px solid var(--line);
       background: var(--header);
@@ -790,10 +747,6 @@
       color: var(--soft);
       font-size: 14px;
     }
-
-    /* =========================================================
-       RESPONSIVE
-    ========================================================== */
 
     @media (max-width: 1180px) {
       .choice-grid {
@@ -887,12 +840,9 @@
 
 <body>
   <div class="site">
-    <!-- =========================================================
-         HEADER
-    ========================================================== -->
     <header class="header">
       <div class="cw header-inner">
-        <a href="../index.html" class="brand" aria-label="AcademeForge Home">
+        <a href="./index.html" class="brand" aria-label="AcademeForge Home">
           <span class="logo">AF</span>
           <span>
             <b class="brand-title">AcademeForge</b>
@@ -901,7 +851,7 @@
         </a>
 
         <nav class="nav" aria-label="Primary navigation">
-          <a href="../index.html">Home</a>
+          <a href="./index.html">Home</a>
           <a href="#apply">Apply</a>
           <a href="#roles">Roles</a>
           <a href="#location">Location</a>
@@ -916,15 +866,12 @@
             </span>
           </button>
 
-          <a class="btn secondary" href="../index.html">Back</a>
+          <a class="btn secondary" href="./index.html">Back</a>
           <a class="btn primary" href="#apply">Apply</a>
         </div>
       </div>
     </header>
 
-    <!-- =========================================================
-         HERO
-    ========================================================== -->
     <main>
       <section class="hero">
         <div class="cw hero-grid">
@@ -945,8 +892,7 @@
           <aside class="glass hero-card">
             <span class="eyebrow">Application Rules</span>
             <p class="section-text">
-              You can apply for only one role. Post office is optional and mainly useful for
-              certificate delivery.
+              You can apply for only one role. Post office is optional and mainly useful for certificate delivery.
             </p>
 
             <div class="stat-grid">
@@ -974,9 +920,6 @@
         </div>
       </section>
 
-      <!-- =========================================================
-           APPLICATION FORM
-      ========================================================== -->
       <section id="apply" class="section">
         <div class="cw">
           <form id="joinTeamForm" class="glass form-card" novalidate>
@@ -988,9 +931,6 @@
               </p>
             </div>
 
-            <!-- =================================================
-                 PERSONAL DETAILS
-            ================================================== -->
             <section class="form-section">
               <h3>Personal Details</h3>
               <p>Name, email, phone, and basic profile information.</p>
@@ -1009,7 +949,7 @@
                 <div class="field">
                   <label>Contact Number <span class="required">*</span></label>
                   <div class="phone-row">
-                    <select id="contactCountryCode" name="contactCountryCode" required></select>
+                    <select id="contactCountryCode" name="contactCountryCode"></select>
                     <input id="contactNumber" name="contactNumber" type="tel" inputmode="numeric" maxlength="15" placeholder="Phone number" required />
                   </div>
                 </div>
@@ -1051,9 +991,6 @@
               </div>
             </section>
 
-            <!-- =================================================
-                 LOCATION DETAILS
-            ================================================== -->
             <section id="location" class="form-section">
               <h3>Location Details</h3>
               <p>Country, state/province, district, pincode, and post office.</p>
@@ -1103,39 +1040,24 @@
               </div>
             </section>
 
-            <!-- =================================================
-                 ROLE SELECTION
-            ================================================== -->
             <section id="roles" class="form-section">
               <h3>Select One Role <span class="required">*</span></h3>
-              <p>Only one role can be selected. If you click another role after selecting one, the form will show a warning.</p>
-
+              <p>Only one role can be selected.</p>
               <input id="selectedRole" name="selectedRole" type="hidden" required />
-
               <div id="roleGrid" class="choice-grid"></div>
             </section>
 
-            <!-- =================================================
-                 WORK TYPE
-            ================================================== -->
             <section id="work" class="form-section">
               <h3>Select Work Type <span class="required">*</span></h3>
               <p>Choose the type of joining you are applying for.</p>
-
               <input id="workType" name="workType" type="hidden" required />
-
               <div id="workTypeGrid" class="choice-grid"></div>
             </section>
 
-            <!-- =================================================
-                 WORK TIME TYPE
-            ================================================== -->
             <section class="form-section">
               <h3>Select Work Time Type <span class="required">*</span></h3>
               <p>Choose how you can work remotely.</p>
-
               <input id="workTimeType" name="workTimeType" type="hidden" required />
-
               <div id="workTimeTypeGrid" class="choice-grid"></div>
 
               <div class="form-grid">
@@ -1153,9 +1075,6 @@
               </div>
             </section>
 
-            <!-- =================================================
-                 EDUCATION + EXPERIENCE
-            ================================================== -->
             <section class="form-section">
               <h3>Education and Experience</h3>
               <p>Tell us your current status and skill level.</p>
@@ -1204,32 +1123,32 @@
 
                 <div class="field full">
                   <label for="skills">Skills <span class="required">*</span></label>
-                  <textarea id="skills" name="skills" maxlength="1500" placeholder="Write your skills. Example: Canva, video editing, content writing, teaching, community handling, frontend development, data entry..." required></textarea>
+                  <textarea id="skills" name="skills" maxlength="1500" placeholder="Write your skills. Example: Canva, video editing, content writing, teaching, community handling, frontend development, data entry." required></textarea>
                 </div>
 
                 <div class="field">
                   <label for="portfolioUrl">Portfolio / Work Sample Optional</label>
-                  <input id="portfolioUrl" name="portfolioUrl" type="url" maxlength="400" placeholder="https://..." />
+                  <input id="portfolioUrl" name="portfolioUrl" type="url" maxlength="400" placeholder="https://example.com" />
                 </div>
 
                 <div class="field">
                   <label for="linkedinUrl">LinkedIn Optional</label>
-                  <input id="linkedinUrl" name="linkedinUrl" type="url" maxlength="400" placeholder="https://linkedin.com/in/..." />
+                  <input id="linkedinUrl" name="linkedinUrl" type="url" maxlength="400" placeholder="https://linkedin.com/in/username" />
                 </div>
 
                 <div class="field">
                   <label for="githubUrl">GitHub Optional</label>
-                  <input id="githubUrl" name="githubUrl" type="url" maxlength="400" placeholder="https://github.com/..." />
+                  <input id="githubUrl" name="githubUrl" type="url" maxlength="400" placeholder="https://github.com/username" />
                 </div>
 
                 <div class="field">
                   <label for="instagramUrl">Instagram Optional</label>
-                  <input id="instagramUrl" name="instagramUrl" type="url" maxlength="400" placeholder="https://instagram.com/..." />
+                  <input id="instagramUrl" name="instagramUrl" type="url" maxlength="400" placeholder="https://instagram.com/username" />
                 </div>
 
                 <div class="field full">
                   <label for="whyJoin">Why do you want to join AcademeForge? <span class="required">*</span></label>
-                  <textarea id="whyJoin" name="whyJoin" maxlength="1800" placeholder="Write a serious answer. Minimum 40 characters." required></textarea>
+                  <textarea id="whyJoin" name="whyJoin" maxlength="1800" placeholder="Write a serious answer. Minimum 5 characters." required></textarea>
                 </div>
 
                 <div class="field full">
@@ -1239,9 +1158,6 @@
               </div>
             </section>
 
-            <!-- =================================================
-                 CONSENT
-            ================================================== -->
             <section class="form-section">
               <h3>Final Confirmation</h3>
               <p>Required before submission.</p>
@@ -1276,9 +1192,6 @@
       </section>
     </main>
 
-    <!-- =========================================================
-         FOOTER
-    ========================================================== -->
     <footer class="footer">
       <div class="cw footer-inner">
         <span>© <span id="year"></span> AcademeForge. All rights reserved.</span>
@@ -1287,943 +1200,1013 @@
     </footer>
   </div>
 
-
   <script>
-  "use strict";
+    "use strict";
 
-  /* =========================================================
-     SUPABASE CONFIG
-  ========================================================== */
+    const EDGE_FUNCTION_URL = "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/join-team-application";
+    const THEME_KEY = "academeforge_join_team_theme_v3";
+    const DRAFT_KEY = "academeforge_join_team_form_draft_v3";
 
-  const EDGE_FUNCTION_URL = "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/join-team-application";
+    const countryCodes = [
+      { country: "No Code", code: "" },
+      { country: "India", code: "+91" },
+      { country: "Nepal", code: "+977" },
+      { country: "Bangladesh", code: "+880" },
+      { country: "Bhutan", code: "+975" },
+      { country: "Sri Lanka", code: "+94" },
+      { country: "Maldives", code: "+960" },
+      { country: "Pakistan", code: "+92" },
+      { country: "Afghanistan", code: "+93" },
+      { country: "Myanmar", code: "+95" },
+      { country: "United States", code: "+1" },
+      { country: "United Kingdom", code: "+44" },
+      { country: "United Arab Emirates", code: "+971" }
+    ];
 
-  /* =========================================================
-     STORAGE KEYS
-  ========================================================== */
+    const locationData = {
+      India: {
+        "Andhra Pradesh": ["Alluri Sitharama Raju", "Anakapalli", "Anantapur", "Annamayya", "Bapatla", "Chittoor", "East Godavari", "Eluru", "Guntur", "Kakinada", "Krishna", "Kurnool", "Nandyal", "NTR", "Palnadu", "Prakasam", "Srikakulam", "Tirupati", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"],
+        "Arunachal Pradesh": ["Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Lohit", "Longding", "Namsai", "Papum Pare", "Tawang", "Tirap", "Upper Siang", "West Kameng", "West Siang"],
+        Assam: ["Baksa", "Barpeta", "Bongaigaon", "Cachar", "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Goalpara", "Golaghat", "Jorhat", "Kamrup", "Karimganj", "Kokrajhar", "Lakhimpur", "Nagaon", "Nalbari", "Sivasagar", "Sonitpur", "Tinsukia"],
+        Bihar: ["Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar", "Darbhanga", "East Champaran", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnea", "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan", "Supaul", "Vaishali", "West Champaran"],
+        Chhattisgarh: ["Balod", "Baloda Bazar", "Balrampur", "Bastar", "Bemetara", "Bilaspur", "Dantewada", "Dhamtari", "Durg", "Janjgir-Champa", "Korba", "Raigarh", "Raipur", "Rajnandgaon", "Surguja"],
+        Delhi: ["Central Delhi", "East Delhi", "New Delhi", "North Delhi", "North East Delhi", "North West Delhi", "Shahdara", "South Delhi", "South East Delhi", "South West Delhi", "West Delhi"],
+        Goa: ["North Goa", "South Goa"],
+        Gujarat: ["Ahmedabad", "Amreli", "Anand", "Banaskantha", "Bharuch", "Bhavnagar", "Gandhinagar", "Jamnagar", "Junagadh", "Kutch", "Mehsana", "Rajkot", "Surat", "Vadodara", "Valsad"],
+        Haryana: ["Ambala", "Bhiwani", "Faridabad", "Fatehabad", "Gurugram", "Hisar", "Jhajjar", "Jind", "Karnal", "Kurukshetra", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"],
+        "Himachal Pradesh": ["Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"],
+        Jharkhand: ["Bokaro", "Chatra", "Deoghar", "Dhanbad", "Dumka", "East Singhbhum", "Garhwa", "Giridih", "Godda", "Gumla", "Hazaribagh", "Jamtara", "Ranchi", "West Singhbhum"],
+        Karnataka: ["Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", "Bidar", "Dharwad", "Hassan", "Kalaburagi", "Mysuru", "Shivamogga", "Tumakuru", "Udupi", "Vijayapura"],
+        Kerala: ["Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Thiruvananthapuram", "Thrissur", "Wayanad"],
+        "Madhya Pradesh": ["Bhopal", "Gwalior", "Indore", "Jabalpur", "Rewa", "Sagar", "Satna", "Ujjain"],
+        Maharashtra: ["Ahmednagar", "Akola", "Amravati", "Aurangabad", "Beed", "Mumbai City", "Mumbai Suburban", "Nagpur", "Nashik", "Pune", "Raigad", "Satara", "Solapur", "Thane"],
+        Manipur: ["Bishnupur", "Chandel", "Churachandpur", "Imphal East", "Imphal West", "Senapati", "Thoubal", "Ukhrul"],
+        Meghalaya: ["East Khasi Hills", "West Khasi Hills", "Ri Bhoi", "West Garo Hills", "East Garo Hills", "South Garo Hills"],
+        Mizoram: ["Aizawl", "Champhai", "Kolasib", "Lawngtlai", "Lunglei", "Mamit", "Saiha", "Serchhip"],
+        Nagaland: ["Dimapur", "Kohima", "Mokokchung", "Mon", "Phek", "Tuensang", "Wokha", "Zunheboto"],
+        Odisha: ["Angul", "Balangir", "Balasore", "Bargarh", "Bhadrak", "Cuttack", "Ganjam", "Kalahandi", "Khordha", "Koraput", "Mayurbhanj", "Puri", "Sambalpur", "Sundargarh"],
+        Punjab: ["Amritsar", "Bathinda", "Firozpur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Ludhiana", "Patiala", "Sangrur"],
+        Rajasthan: ["Ajmer", "Alwar", "Bharatpur", "Bikaner", "Jaipur", "Jodhpur", "Kota", "Udaipur"],
+        Sikkim: ["East Sikkim", "North Sikkim", "South Sikkim", "West Sikkim"],
+        "Tamil Nadu": ["Chennai", "Coimbatore", "Cuddalore", "Dindigul", "Erode", "Madurai", "Salem", "Thanjavur", "Tiruchirappalli", "Tirunelveli", "Vellore"],
+        Telangana: ["Adilabad", "Hyderabad", "Karimnagar", "Khammam", "Mahabubnagar", "Medak", "Nalgonda", "Nizamabad", "Rangareddy", "Warangal"],
+        Tripura: ["Dhalai", "Gomati", "Khowai", "North Tripura", "Sepahijala", "South Tripura", "Unakoti", "West Tripura"],
+        "Uttar Pradesh": ["Agra", "Aligarh", "Allahabad", "Ambedkar Nagar", "Azamgarh", "Bareilly", "Gautam Buddha Nagar", "Ghaziabad", "Gorakhpur", "Kanpur Nagar", "Lucknow", "Meerut", "Moradabad", "Varanasi"],
+        Uttarakhand: ["Almora", "Chamoli", "Dehradun", "Haridwar", "Nainital", "Pauri Garhwal", "Pithoragarh", "Rudraprayag", "Tehri Garhwal", "Udham Singh Nagar", "Uttarkashi"],
+        "West Bengal": ["Alipurduar", "Bankura", "Birbhum", "Cooch Behar", "Darjeeling", "Hooghly", "Howrah", "Jalpaiguri", "Kolkata", "Malda", "Murshidabad", "Nadia", "North 24 Parganas", "Paschim Bardhaman", "Purba Bardhaman", "South 24 Parganas"]
+      },
+      Nepal: {
+        Bagmati: ["Kathmandu", "Lalitpur", "Bhaktapur", "Chitwan", "Makwanpur"],
+        Gandaki: ["Kaski", "Gorkha", "Lamjung", "Tanahun"],
+        Lumbini: ["Rupandehi", "Kapilvastu", "Dang", "Banke"]
+      },
+      Bangladesh: {
+        Dhaka: ["Dhaka", "Gazipur", "Narayanganj"],
+        Chattogram: ["Chattogram", "Cox's Bazar", "Cumilla"],
+        Khulna: ["Khulna", "Jessore", "Satkhira"]
+      },
+      Bhutan: {
+        Thimphu: ["Thimphu"],
+        Paro: ["Paro"],
+        Punakha: ["Punakha"]
+      },
+      "Sri Lanka": {
+        Western: ["Colombo", "Gampaha", "Kalutara"],
+        Central: ["Kandy", "Matale", "Nuwara Eliya"],
+        Southern: ["Galle", "Matara", "Hambantota"]
+      },
+      Maldives: {
+        Male: ["Male"],
+        Addu: ["Addu City"]
+      },
+      Pakistan: {
+        Punjab: ["Lahore", "Faisalabad", "Rawalpindi"],
+        Sindh: ["Karachi", "Hyderabad", "Sukkur"],
+        KhyberPakhtunkhwa: ["Peshawar", "Abbottabad"]
+      },
+      Afghanistan: {
+        Kabul: ["Kabul"],
+        Herat: ["Herat"],
+        Kandahar: ["Kandahar"]
+      },
+      Myanmar: {
+        Yangon: ["Yangon"],
+        Mandalay: ["Mandalay"],
+        Naypyidaw: ["Naypyidaw"]
+      }
+    };
 
-  const THEME_KEY = "academeforge_join_team_theme_v1";
-  const DRAFT_KEY = "academeforge_join_team_form_draft_v2";
+    const roles = [
+      ["Campus Ambassador", "Promote AcademeForge in school or college."],
+      ["Content Writer", "Write educational posts, blogs, captions, and guides."],
+      ["Video Editor", "Edit reels, shorts, lectures, and promotional videos."],
+      ["Graphic Designer", "Create posters, banners, carousels, and thumbnails."],
+      ["Frontend Developer", "Build UI pages, landing pages, and dashboards."],
+      ["Backend Developer", "Work on APIs, database, server logic, and automation."],
+      ["Full Stack Developer", "Build complete web features end to end."],
+      ["UI/UX Designer", "Design clean app screens, flows, and user experiences."],
+      ["Social Media Manager", "Manage posts, scheduling, and growth campaigns."],
+      ["Community Manager", "Handle students, groups, updates, and engagement."],
+      ["Doubt Support", "Help students with basic academic and platform doubts."],
+      ["Data Entry Operator", "Manage structured data, forms, and records."],
+      ["Research Assistant", "Collect educational, market, and content research."],
+      ["Marketing Intern", "Assist in outreach, campaigns, and partnerships."],
+      ["Sales Support", "Handle leads, follow-ups, and basic user communication."],
+      ["HR Intern", "Support hiring, screening, and team coordination."],
+      ["Teacher / Mentor", "Teach, guide, or mentor students remotely."],
+      ["AI Tools Operator", "Use AI tools for content, automation, and workflows."],
+      ["Quality Checker", "Review content, forms, and app data quality."],
+      ["Operations Assistant", "Support daily remote operations and coordination."]
+    ];
 
-  /* =========================================================
-     DATA
-  ========================================================== */
+    const workTypes = [
+      ["Internship", "Remote internship role."],
+      ["Part Time", "Limited hours weekly."],
+      ["Full Time", "Dedicated full-time remote role."],
+      ["Volunteer", "Contribution-based role."],
+      ["Freelance", "Project or task-based work."],
+      ["Campus Role", "School or college representative role."]
+    ];
 
-  const countryCodes = [
-    { country: "India", code: "+91" },
-    { country: "Nepal", code: "+977" },
-    { country: "Bangladesh", code: "+880" },
-    { country: "Bhutan", code: "+975" },
-    { country: "Sri Lanka", code: "+94" },
-    { country: "Maldives", code: "+960" },
-    { country: "Pakistan", code: "+92" },
-    { country: "Afghanistan", code: "+93" },
-    { country: "Myanmar", code: "+95" }
-  ];
+    const workTimeTypes = [
+      ["Flexible", "Work anytime with deadlines."],
+      ["Morning", "Mostly morning availability."],
+      ["Afternoon", "Mostly afternoon availability."],
+      ["Evening", "Mostly evening availability."],
+      ["Weekend", "Mostly weekend availability."],
+      ["Fixed Schedule", "Specific fixed time availability."]
+    ];
 
-  const locationData = {
-    "India": {
-      "Andhra Pradesh": ["Alluri Sitharama Raju", "Anakapalli", "Anantapur", "Annamayya", "Bapatla", "Chittoor", "Dr. B.R. Ambedkar Konaseema", "East Godavari", "Eluru", "Guntur", "Kakinada", "Krishna", "Kurnool", "Nandyal", "NTR", "Palnadu", "Parvathipuram Manyam", "Prakasam", "Sri Potti Sriramulu Nellore", "Sri Sathya Sai", "Srikakulam", "Tirupati", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"],
-      "Arunachal Pradesh": ["Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Kamle", "Kra Daadi", "Kurung Kumey", "Lepa Rada", "Lohit", "Longding", "Lower Dibang Valley", "Lower Siang", "Lower Subansiri", "Namsai", "Pakke-Kessang", "Papum Pare", "Shi Yomi", "Siang", "Tawang", "Tirap", "Upper Siang", "Upper Subansiri", "West Kameng", "West Siang"],
-      "Assam": ["Baksa", "Barpeta", "Biswanath", "Bongaigaon", "Cachar", "Charaideo", "Chirang", "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Dima Hasao", "Goalpara", "Golaghat", "Hailakandi", "Hojai", "Jorhat", "Kamrup", "Kamrup Metropolitan", "Karbi Anglong", "Karimganj", "Kokrajhar", "Lakhimpur", "Majuli", "Morigaon", "Nagaon", "Nalbari", "Sivasagar", "Sonitpur", "South Salmara-Mankachar", "Tamulpur", "Tinsukia", "Udalguri", "West Karbi Anglong"],
-      "Bihar": ["Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar", "Darbhanga", "East Champaran", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnea", "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan", "Supaul", "Vaishali", "West Champaran"],
-      "Chhattisgarh": ["Balod", "Baloda Bazar", "Balrampur", "Bastar", "Bemetara", "Bijapur", "Bilaspur", "Dantewada", "Dhamtari", "Durg", "Gariaband", "Gaurela-Pendra-Marwahi", "Janjgir-Champa", "Jashpur", "Kabirdham", "Kanker", "Kondagaon", "Korba", "Korea", "Mahasamund", "Mungeli", "Narayanpur", "Raigarh", "Raipur", "Rajnandgaon", "Sukma", "Surajpur", "Surguja"],
-      "Delhi": ["Central Delhi", "East Delhi", "New Delhi", "North Delhi", "North East Delhi", "North West Delhi", "Shahdara", "South Delhi", "South East Delhi", "South West Delhi", "West Delhi"],
-      "Goa": ["North Goa", "South Goa"],
-      "Gujarat": ["Ahmedabad", "Amreli", "Anand", "Aravalli", "Banaskantha", "Bharuch", "Bhavnagar", "Botad", "Chhota Udaipur", "Dahod", "Dang", "Devbhoomi Dwarka", "Gandhinagar", "Gir Somnath", "Jamnagar", "Junagadh", "Kheda", "Kutch", "Mahisagar", "Mehsana", "Morbi", "Narmada", "Navsari", "Panchmahal", "Patan", "Porbandar", "Rajkot", "Sabarkantha", "Surat", "Surendranagar", "Tapi", "Vadodara", "Valsad"],
-      "Haryana": ["Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram", "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"],
-      "Himachal Pradesh": ["Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Lahaul and Spiti", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"],
-      "Jharkhand": ["Bokaro", "Chatra", "Deoghar", "Dhanbad", "Dumka", "East Singhbhum", "Garhwa", "Giridih", "Godda", "Gumla", "Hazaribagh", "Jamtara", "Khunti", "Koderma", "Latehar", "Lohardaga", "Pakur", "Palamu", "Ramgarh", "Ranchi", "Sahibganj", "Seraikela Kharsawan", "Simdega", "West Singhbhum"],
-      "Karnataka": ["Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", "Bidar", "Chamarajanagar", "Chikkaballapur", "Chikkamagaluru", "Chitradurga", "Dakshina Kannada", "Davanagere", "Dharwad", "Gadag", "Hassan", "Haveri", "Kalaburagi", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysuru", "Raichur", "Ramanagara", "Shivamogga", "Tumakuru", "Udupi", "Uttara Kannada", "Vijayapura", "Yadgir"],
-      "Kerala": ["Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", "Thiruvananthapuram", "Thrissur", "Wayanad"],
-      "Madhya Pradesh": ["Agar Malwa", "Alirajpur", "Anuppur", "Ashoknagar", "Balaghat", "Barwani", "Betul", "Bhind", "Bhopal", "Burhanpur", "Chhatarpur", "Chhindwara", "Damoh", "Datia", "Dewas", "Dhar", "Dindori", "Guna", "Gwalior", "Harda", "Indore", "Jabalpur", "Jhabua", "Katni", "Khandwa", "Khargone", "Mandla", "Mandsaur", "Morena", "Narmadapuram", "Narsinghpur", "Neemuch", "Niwari", "Panna", "Raisen", "Rajgarh", "Ratlam", "Rewa", "Sagar", "Satna", "Sehore", "Seoni", "Shahdol", "Shajapur", "Sheopur", "Shivpuri", "Sidhi", "Singrauli", "Tikamgarh", "Ujjain", "Umaria", "Vidisha"],
-      "Maharashtra": ["Ahmednagar", "Akola", "Amravati", "Aurangabad", "Beed", "Bhandara", "Buldhana", "Chandrapur", "Dhule", "Gadchiroli", "Gondia", "Hingoli", "Jalgaon", "Jalna", "Kolhapur", "Latur", "Mumbai City", "Mumbai Suburban", "Nagpur", "Nanded", "Nandurbar", "Nashik", "Osmanabad", "Palghar", "Parbhani", "Pune", "Raigad", "Ratnagiri", "Sangli", "Satara", "Sindhudurg", "Solapur", "Thane", "Wardha", "Washim", "Yavatmal"],
-      "Manipur": ["Bishnupur", "Chandel", "Churachandpur", "Imphal East", "Imphal West", "Jiribam", "Kakching", "Kamjong", "Kangpokpi", "Noney", "Pherzawl", "Senapati", "Tamenglong", "Tengnoupal", "Thoubal", "Ukhrul"],
-      "Meghalaya": ["East Garo Hills", "East Jaintia Hills", "East Khasi Hills", "Eastern West Khasi Hills", "North Garo Hills", "Ri Bhoi", "South Garo Hills", "South West Garo Hills", "South West Khasi Hills", "West Garo Hills", "West Jaintia Hills", "West Khasi Hills"],
-      "Mizoram": ["Aizawl", "Champhai", "Hnahthial", "Khawzawl", "Kolasib", "Lawngtlai", "Lunglei", "Mamit", "Saitual", "Serchhip", "Siaha"],
-      "Nagaland": ["Chumoukedima", "Dimapur", "Kiphire", "Kohima", "Longleng", "Mokokchung", "Mon", "Niuland", "Noklak", "Peren", "Phek", "Shamator", "Tseminyu", "Tuensang", "Wokha", "Zunheboto"],
-      "Odisha": ["Angul", "Balangir", "Balasore", "Bargarh", "Bhadrak", "Boudh", "Cuttack", "Deogarh", "Dhenkanal", "Gajapati", "Ganjam", "Jagatsinghpur", "Jajpur", "Jharsuguda", "Kalahandi", "Kandhamal", "Kendrapara", "Kendujhar", "Khordha", "Koraput", "Malkangiri", "Mayurbhanj", "Nabarangpur", "Nayagarh", "Nuapada", "Puri", "Rayagada", "Sambalpur", "Subarnapur", "Sundargarh"],
-      "Punjab": ["Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Ferozepur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Malerkotla", "Mansa", "Moga", "Pathankot", "Patiala", "Rupnagar", "Sangrur", "SAS Nagar", "Shaheed Bhagat Singh Nagar", "Sri Muktsar Sahib", "Tarn Taran"],
-      "Rajasthan": ["Ajmer", "Alwar", "Anupgarh", "Balotra", "Banswara", "Baran", "Barmer", "Beawar", "Bharatpur", "Bhilwara", "Bikaner", "Bundi", "Chittorgarh", "Churu", "Dausa", "Deeg", "Didwana-Kuchamana", "Dholpur", "Dudu", "Dungarpur", "Gangapur City", "Hanumangarh", "Jaipur", "Jaipur Rural", "Jaisalmer", "Jalore", "Jhalawar", "Jhunjhunu", "Jodhpur", "Jodhpur Rural", "Karauli", "Kekri", "Khairthal-Tijara", "Kota", "Kotputli-Behror", "Nagaur", "Neem Ka Thana", "Pali", "Phalodi", "Pratapgarh", "Rajsamand", "Salumbar", "Sanchore", "Sawai Madhopur", "Shahpura", "Sikar", "Sirohi", "Sri Ganganagar", "Tonk", "Udaipur"],
-      "Sikkim": ["Gangtok", "Gyalshing", "Mangan", "Namchi", "Pakyong", "Soreng"],
-      "Tamil Nadu": ["Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kancheepuram", "Kanniyakumari", "Karur", "Krishnagiri", "Madurai", "Mayiladuthurai", "Nagapattinam", "Namakkal", "Nilgiris", "Perambalur", "Pudukkottai", "Ramanathapuram", "Ranipet", "Salem", "Sivaganga", "Tenkasi", "Thanjavur", "Theni", "Thoothukudi", "Tiruchirappalli", "Tirunelveli", "Tirupathur", "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore", "Viluppuram", "Virudhunagar"],
-      "Telangana": ["Adilabad", "Bhadradri Kothagudem", "Hanamkonda", "Hyderabad", "Jagtial", "Jangaon", "Jayashankar Bhupalpally", "Jogulamba Gadwal", "Kamareddy", "Karimnagar", "Khammam", "Komaram Bheem Asifabad", "Mahabubabad", "Mahabubnagar", "Mancherial", "Medak", "Medchal-Malkajgiri", "Mulugu", "Nagarkurnool", "Nalgonda", "Narayanpet", "Nirmal", "Nizamabad", "Peddapalli", "Rajanna Sircilla", "Rangareddy", "Sangareddy", "Siddipet", "Suryapet", "Vikarabad", "Wanaparthy", "Warangal", "Yadadri Bhuvanagiri"],
-      "Tripura": ["Dhalai", "Gomati", "Khowai", "North Tripura", "Sepahijala", "South Tripura", "Unakoti", "West Tripura"],
-      "Uttar Pradesh": ["Agra", "Aligarh", "Ambedkar Nagar", "Amethi", "Amroha", "Auraiya", "Ayodhya", "Azamgarh", "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Barabanki", "Bareilly", "Basti", "Bhadohi", "Bijnor", "Budaun", "Bulandshahr", "Chandauli", "Chitrakoot", "Deoria", "Etah", "Etawah", "Farrukhabad", "Fatehpur", "Firozabad", "Gautam Buddha Nagar", "Ghaziabad", "Ghazipur", "Gonda", "Gorakhpur", "Hamirpur", "Hapur", "Hardoi", "Hathras", "Jalaun", "Jaunpur", "Jhansi", "Kannauj", "Kanpur Dehat", "Kanpur Nagar", "Kasganj", "Kaushambi", "Kheri", "Kushinagar", "Lalitpur", "Lucknow", "Maharajganj", "Mahoba", "Mainpuri", "Mathura", "Mau", "Meerut", "Mirzapur", "Moradabad", "Muzaffarnagar", "Pilibhit", "Pratapgarh", "Prayagraj", "Raebareli", "Rampur", "Saharanpur", "Sambhal", "Sant Kabir Nagar", "Shahjahanpur", "Shamli", "Shravasti", "Siddharthnagar", "Sitapur", "Sonbhadra", "Sultanpur", "Unnao", "Varanasi"],
-      "Uttarakhand": ["Almora", "Bageshwar", "Chamoli", "Champawat", "Dehradun", "Haridwar", "Nainital", "Pauri Garhwal", "Pithoragarh", "Rudraprayag", "Tehri Garhwal", "Udham Singh Nagar", "Uttarkashi"],
-      "West Bengal": ["Alipurduar", "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Darjeeling", "Hooghly", "Howrah", "Jalpaiguri", "Jhargram", "Kalimpong", "Kolkata", "Malda", "Murshidabad", "Nadia", "North 24 Parganas", "Paschim Bardhaman", "Paschim Medinipur", "Purba Bardhaman", "Purba Medinipur", "Purulia", "South 24 Parganas", "Uttar Dinajpur"]
-    },
-    "Nepal": {
-      "Nepal": ["Bagmati", "Gandaki", "Karnali", "Koshi", "Lumbini", "Madhesh", "Sudurpashchim"]
-    },
-    "Bangladesh": {
-      "Bangladesh": ["Barisal", "Chittagong", "Dhaka", "Khulna", "Mymensingh", "Rajshahi", "Rangpur", "Sylhet"]
-    },
-    "Bhutan": {
-      "Bhutan": ["Bumthang", "Chukha", "Dagana", "Gasa", "Haa", "Lhuntse", "Mongar", "Paro", "Pemagatshel", "Punakha", "Samdrup Jongkhar", "Samtse", "Sarpang", "Thimphu", "Trashigang", "Trashiyangtse", "Trongsa", "Tsirang", "Wangdue Phodrang", "Zhemgang"]
-    },
-    "Sri Lanka": {
-      "Sri Lanka": ["Ampara", "Anuradhapura", "Badulla", "Batticaloa", "Colombo", "Galle", "Gampaha", "Hambantota", "Jaffna", "Kalutara", "Kandy", "Kegalle", "Kilinochchi", "Kurunegala", "Mannar", "Matale", "Matara", "Monaragala", "Mullaitivu", "Nuwara Eliya", "Polonnaruwa", "Puttalam", "Ratnapura", "Trincomalee", "Vavuniya"]
-    },
-    "Maldives": {
-      "Maldives": ["Addu City", "Faadhippolhu", "Felidhu Atoll", "Fuvahmulah", "Hadhdhunmathi", "Kolhumadulu", "Male", "Mulaku Atoll", "North Ari Atoll", "North Huvadhu Atoll", "North Maalhosmadulu", "South Ari Atoll", "South Huvadhu Atoll", "South Maalhosmadulu"]
-    },
-    "Pakistan": {
-      "Pakistan": ["Abbottabad", "Attock", "Bahawalpur", "Bannu", "Chakwal", "Dera Ghazi Khan", "Dera Ismail Khan", "Faisalabad", "Gujranwala", "Gujrat", "Hyderabad", "Islamabad", "Jacobabad", "Jhang", "Karachi", "Kasur", "Kohat", "Lahore", "Larkana", "Mardan", "Multan", "Muzaffarabad", "Nawabshah", "Okara", "Peshawar", "Quetta", "Rahim Yar Khan", "Rawalpindi", "Sahiwal", "Sargodha", "Sheikhupura", "Sialkot", "Sukkur", "Swat", "Thatta"]
-    },
-    "Afghanistan": {
-      "Afghanistan": ["Badakhshan", "Badghis", "Baghlan", "Balkh", "Bamyan", "Daykundi", "Farah", "Faryab", "Ghazni", "Ghor", "Helmand", "Herat", "Jowzjan", "Kabul", "Kandahar", "Kapisa", "Khost", "Kunar", "Kunduz", "Laghman", "Logar", "Nangarhar", "Nimruz", "Nuristan", "Paktia", "Paktika", "Panjshir", "Parwan", "Samangan", "Sar-e Pol", "Takhar", "Urozgan", "Wardak", "Zabul"]
-    },
-    "Myanmar": {
-      "Myanmar": ["Ayeyarwady", "Bago", "Chin", "Kachin", "Kayah", "Kayin", "Magway", "Mandalay", "Mon", "Naypyidaw", "Rakhine", "Sagaing", "Shan", "Tanintharyi", "Yangon"]
-    }
-  };
-
-  const roles = [
-    ["Content Creator", "Educational posts, scripts, carousel content"],
-    ["Graphic Designer", "Posters, thumbnails, social creatives"],
-    ["Video Editor", "Reels, shorts, captions, course clips"],
-    ["Teaching Assistant", "Student doubts and lesson support"],
-    ["Community Moderator", "Group safety, spam control, rules"],
-    ["Student Support Executive", "Student help, batch access, queries"],
-    ["Operations Assistant", "Sheets, forms, schedules, task tracking"],
-    ["Campus Ambassador", "Student outreach and community growth"],
-    ["Social Media Manager", "Posting, planning, engagement"],
-    ["SEO Assistant", "Keywords, blogs, ranking support"],
-    ["Blog Writer", "Articles, explainers, student guides"],
-    ["Course Research Assistant", "Research lessons, topics, references"],
-    ["Doubt Support Assistant", "Help students with basic doubts"],
-    ["Sales Outreach Assistant", "Ethical outreach and follow-up"],
-    ["Partnership Coordinator", "School/college/community coordination"],
-    ["HR Intern", "Applicant tracking and onboarding help"],
-    ["Data Entry Assistant", "Clean data entry and verification"],
-    ["Quality Analyst", "Check content, forms, and app issues"],
-    ["Frontend Web Intern", "HTML, CSS, JS UI support"],
-    ["Backend Support Intern", "Supabase, data, API support"]
-  ];
-
-  const workTypes = [
-    ["Unpaid Internship - Certificate Included", "For learning and verified contribution"],
-    ["Paid Internship - Certificate Included", "For shortlisted skilled applicants"],
-    ["Full Time Joinee", "Long-term full-time joining"],
-    ["Part Time Join", "Part-time remote contribution"],
-    ["Volunteer Contributor", "Contribution-based support"],
-    ["Remote Freelancer", "Task/project based freelance work"],
-    ["Project Based Contributor", "Specific project delivery"],
-    ["Campus Ambassador Program", "Student/community promotion"],
-    ["Training + Internship", "Training followed by practical tasks"],
-    ["Probation Based Joining", "Trial period before final role"]
-  ];
-
-  const workTimeTypes = [
-    ["Task Based", "Work assigned task by task"],
-    ["Part Time Daily", "Daily limited work hours"],
-    ["Weekly Internship", "Weekly goals and reporting"],
-    ["Monthly Internship", "Monthly structured internship"],
-    ["Weekend Only", "Saturday/Sunday availability"],
-    ["Flexible Remote", "Flexible timing with deadlines"],
-    ["Fixed Shift Remote", "Fixed online work shift"],
-    ["Project Deadline Based", "Delivery by deadline"],
-    ["2 Hours Per Day", "Light daily availability"],
-    ["4 Hours Per Day", "Medium daily availability"]
-  ];
-
-  /* =========================================================
-     DOM HELPERS
-  ========================================================== */
-
-  function byId(id) {
-    return document.getElementById(id);
-  }
-
-  function qsa(selector) {
-    return Array.from(document.querySelectorAll(selector));
-  }
-
-  function cleanText(value) {
-    return String(value || "").trim().replace(/\s+/g, " ");
-  }
-
-  function cleanLongText(value) {
-    return String(value || "").trim().replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n");
-  }
-
-  function digitsOnly(value) {
-    return String(value || "").replace(/\D/g, "");
-  }
-
-  function showAlert(type, message) {
-    const alert = byId("formAlert");
-
-    if (!alert) {
-      return;
+    function byId(id) {
+      return document.getElementById(id);
     }
 
-    alert.className = "alert show " + type;
-    alert.textContent = message;
-
-    alert.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
-  }
-
-  function clearAlert() {
-    const alert = byId("formAlert");
-
-    if (!alert) {
-      return;
+    function cleanText(value) {
+      return String(value || "").trim().replace(/\s+/g, " ");
     }
 
-    alert.className = "alert";
-    alert.textContent = "";
-  }
-
-  function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(String(email || "").trim());
-  }
-
-  function isValidUrl(value) {
-    const text = String(value || "").trim();
-
-    if (!text) {
-      return true;
+    function cleanLongText(value) {
+      return String(value || "").trim().replace(/\r\n/g, "\n").replace(/\n{4,}/g, "\n\n\n");
     }
 
-    try {
-      const url = new URL(text);
-      return url.protocol === "https:" || url.protocol === "http:";
-    } catch (error) {
-      return false;
-    }
-  }
-
-  function safeElementValue(id) {
-    const element = byId(id);
-    return element ? element.value : "";
-  }
-
-  function safeElementChecked(id) {
-    const element = byId(id);
-    return element ? Boolean(element.checked) : false;
-  }
-
-  function setSafeValue(id, value) {
-    const element = byId(id);
-
-    if (element) {
-      element.value = value;
-    }
-  }
-
-  /* =========================================================
-     THEME
-  ========================================================== */
-
-  function setTheme(theme) {
-    const nextTheme = theme === "dark" ? "dark" : "light";
-    document.documentElement.setAttribute("data-theme", nextTheme);
-
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-
-    if (metaTheme) {
-      metaTheme.setAttribute("content", nextTheme === "dark" ? "#050816" : "#f8fafc");
+    function digitsOnly(value) {
+      return String(value || "").replace(/\D/g, "");
     }
 
-    try {
-      localStorage.setItem(THEME_KEY, nextTheme);
-    } catch (error) {
-      console.warn("Theme save failed.", error);
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(String(email || "").trim());
     }
 
-    const toggle = byId("themeToggle");
+    function isValidUrl(value) {
+      const text = String(value || "").trim();
 
-    if (toggle) {
-      toggle.setAttribute("aria-pressed", nextTheme === "dark" ? "true" : "false");
+      if (!text) {
+        return true;
+      }
 
-      const label = toggle.querySelector(".label");
-
-      if (label) {
-        label.textContent = nextTheme === "dark" ? "Night On" : "Night";
+      try {
+        const url = new URL(text);
+        return url.protocol === "https:" || url.protocol === "http:";
+      } catch (error) {
+        return false;
       }
     }
-  }
 
-  function initTheme() {
-    let saved = "light";
-
-    try {
-      saved = localStorage.getItem(THEME_KEY) || "light";
-    } catch (error) {
-      saved = "light";
+    function safeElementValue(id) {
+      const element = byId(id);
+      return element ? element.value : "";
     }
 
-    setTheme(saved === "dark" ? "dark" : "light");
-
-    const toggle = byId("themeToggle");
-
-    if (toggle) {
-      toggle.addEventListener("click", function () {
-        const current = document.documentElement.getAttribute("data-theme");
-        setTheme(current === "dark" ? "light" : "dark");
-      });
+    function safeElementChecked(id) {
+      const element = byId(id);
+      return element ? Boolean(element.checked) : false;
     }
-  }
 
-  /* =========================================================
-     PHONE CODES
-  ========================================================== */
+    function setSafeValue(id, value) {
+      const element = byId(id);
 
-  function initCountryCodes() {
-    const selects = [byId("contactCountryCode"), byId("whatsappCountryCode")];
+      if (element) {
+        element.value = value;
+      }
+    }
 
-    selects.forEach(function (select) {
-      if (!select) {
+    function showAlert(type, message) {
+      const alert = byId("formAlert");
+
+      if (!alert) {
         return;
       }
 
-      select.innerHTML = "";
-
-      countryCodes.forEach(function (item) {
-        const option = document.createElement("option");
-        option.value = item.code;
-        option.textContent = item.code + " " + item.country;
-        select.appendChild(option);
-      });
-
-      select.value = "+91";
-    });
-  }
-
-  /* =========================================================
-     CHOICE BUTTONS
-  ========================================================== */
-
-  function createChoiceGrid(containerId, hiddenInputId, items, limitMessage) {
-    const container = byId(containerId);
-    const hidden = byId(hiddenInputId);
-
-    if (!container || !hidden) {
-      return;
+      alert.className = "alert show " + type;
+      alert.textContent = message;
     }
 
-    container.innerHTML = "";
+    function clearAlert() {
+      const alert = byId("formAlert");
 
-    items.forEach(function (item) {
-      const title = item[0];
-      const desc = item[1];
+      if (!alert) {
+        return;
+      }
 
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "choice-btn";
-      button.dataset.value = title;
-      button.innerHTML = title + "<small>" + desc + "</small>";
+      alert.className = "alert";
+      alert.textContent = "";
+    }
 
-      button.addEventListener("click", function () {
-        const alreadySelected = hidden.value;
+    function setTheme(theme) {
+      const nextTheme = theme === "dark" ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", nextTheme);
 
-        if (alreadySelected && alreadySelected !== title) {
-          showAlert("error", limitMessage);
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+
+      if (metaTheme) {
+        metaTheme.setAttribute("content", nextTheme === "dark" ? "#050816" : "#f8fafc");
+      }
+
+      try {
+        localStorage.setItem(THEME_KEY, nextTheme);
+      } catch (error) {
+        console.warn("Theme save failed.", error);
+      }
+
+      const toggle = byId("themeToggle");
+
+      if (toggle) {
+        toggle.setAttribute("aria-pressed", nextTheme === "dark" ? "true" : "false");
+
+        const label = toggle.querySelector(".label");
+
+        if (label) {
+          label.textContent = nextTheme === "dark" ? "Night On" : "Night";
+        }
+      }
+    }
+
+    function initTheme() {
+      let saved = "light";
+
+      try {
+        saved = localStorage.getItem(THEME_KEY) || "light";
+      } catch (error) {
+        saved = "light";
+      }
+
+      if (!localStorage.getItem(THEME_KEY) && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        saved = "dark";
+      }
+
+      setTheme(saved === "dark" ? "dark" : "light");
+
+      const toggle = byId("themeToggle");
+
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          const current = document.documentElement.getAttribute("data-theme");
+          setTheme(current === "dark" ? "light" : "dark");
+        });
+      }
+    }
+
+    function initCountryCodes() {
+      const selects = [byId("contactCountryCode"), byId("whatsappCountryCode")];
+
+      selects.forEach(function (select) {
+        if (!select) {
           return;
         }
 
-        if (alreadySelected === title) {
-          hidden.value = "";
-          button.classList.remove("selected");
-          clearAlert();
-          saveDraft();
-          return;
-        }
+        select.innerHTML = "";
 
-        hidden.value = title;
-
-        Array.from(container.querySelectorAll(".choice-btn")).forEach(function (btn) {
-          btn.classList.toggle("selected", btn.dataset.value === title);
+        countryCodes.forEach(function (item) {
+          const option = document.createElement("option");
+          option.value = item.code;
+          option.textContent = item.code ? item.code + " " + item.country : "No country code";
+          select.appendChild(option);
         });
 
-        clearAlert();
-        saveDraft();
+        select.value = "+91";
       });
+    }
 
-      container.appendChild(button);
-    });
-  }
-
-  function initChoiceButtons() {
-    createChoiceGrid(
-      "roleGrid",
-      "selectedRole",
-      roles,
-      "You can apply for only 1 role. Clear the form if you want to change the selected role."
-    );
-
-    createChoiceGrid(
-      "workTypeGrid",
-      "workType",
-      workTypes,
-      "Select only one work type."
-    );
-
-    createChoiceGrid(
-      "workTimeTypeGrid",
-      "workTimeType",
-      workTimeTypes,
-      "Select only one work time type."
-    );
-  }
-
-  function syncChoiceButtons() {
-    [
-      ["roleGrid", "selectedRole"],
-      ["workTypeGrid", "workType"],
-      ["workTimeTypeGrid", "workTimeType"]
-    ].forEach(function (pair) {
-      const container = byId(pair[0]);
-      const hidden = byId(pair[1]);
+    function createChoiceGrid(containerId, hiddenInputId, items) {
+      const container = byId(containerId);
+      const hidden = byId(hiddenInputId);
 
       if (!container || !hidden) {
         return;
       }
 
-      Array.from(container.querySelectorAll(".choice-btn")).forEach(function (btn) {
-        btn.classList.toggle("selected", btn.dataset.value === hidden.value);
+      container.innerHTML = "";
+
+      items.forEach(function (item) {
+        const title = item[0];
+        const desc = item[1];
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "choice-btn";
+        button.dataset.value = title;
+        button.innerHTML = "<span>" + title + "</span><small>" + desc + "</small>";
+
+        button.addEventListener("click", function () {
+          hidden.value = title;
+          syncChoiceButtons();
+          clearAlert();
+          saveDraft();
+        });
+
+        container.appendChild(button);
       });
-    });
-  }
-
-  /* =========================================================
-     SEARCH SELECT
-  ========================================================== */
-
-  function setupSearchSelect(config) {
-    const input = byId(config.inputId);
-    const hidden = byId(config.hiddenId);
-    const list = byId(config.listId);
-
-    if (!input || !hidden || !list) {
-      return;
     }
 
-    function render() {
-      const query = input.value.trim().toLowerCase();
-      const items = config.getItems();
+    function syncChoiceButtons() {
+      [
+        ["roleGrid", "selectedRole"],
+        ["workTypeGrid", "workType"],
+        ["workTimeTypeGrid", "workTimeType"]
+      ].forEach(function (pair) {
+        const container = byId(pair[0]);
+        const hidden = byId(pair[1]);
+
+        if (!container || !hidden) {
+          return;
+        }
+
+        Array.from(container.querySelectorAll(".choice-btn")).forEach(function (button) {
+          button.classList.toggle("selected", button.dataset.value === hidden.value);
+        });
+      });
+    }
+
+    function initChoiceButtons() {
+      createChoiceGrid("roleGrid", "selectedRole", roles);
+      createChoiceGrid("workTypeGrid", "workType", workTypes);
+      createChoiceGrid("workTimeTypeGrid", "workTimeType", workTimeTypes);
+      syncChoiceButtons();
+    }
+
+    function closeAllSearchLists() {
+      ["countryList", "stateList", "districtList"].forEach(function (id) {
+        const list = byId(id);
+
+        if (list) {
+          list.classList.remove("open");
+        }
+      });
+    }
+
+    function renderSearchList(listId, options, onSelect) {
+      const list = byId(listId);
+
+      if (!list) {
+        return;
+      }
 
       list.innerHTML = "";
 
-      const filtered = items
-        .filter(function (item) {
-          return item.toLowerCase().includes(query);
-        })
-        .slice(0, 80);
-
-      filtered.forEach(function (item) {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "search-option";
-        button.textContent = item;
-
-        button.addEventListener("click", function () {
-          input.value = item;
-          hidden.value = item;
-          list.classList.remove("open");
-
-          if (typeof config.onSelect === "function") {
-            config.onSelect(item);
-          }
-
-          saveDraft();
-          clearAlert();
-        });
-
-        list.appendChild(button);
-      });
-
-      if (filtered.length === 0) {
+      if (!options.length) {
         const empty = document.createElement("button");
         empty.type = "button";
         empty.className = "search-option";
         empty.textContent = "No result found";
         empty.disabled = true;
         list.appendChild(empty);
+        list.classList.add("open");
+        return;
       }
+
+      options.forEach(function (optionText) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "search-option";
+        button.textContent = optionText;
+
+        button.addEventListener("click", function () {
+          onSelect(optionText);
+          closeAllSearchLists();
+          saveDraft();
+        });
+
+        list.appendChild(button);
+      });
 
       list.classList.add("open");
     }
 
-    input.addEventListener("focus", render);
+    function filterOptions(options, query) {
+      const text = cleanText(query).toLowerCase();
 
-    input.addEventListener("input", function () {
-      hidden.value = "";
-      render();
-    });
-
-    document.addEventListener("click", function (event) {
-      if (input.parentElement && !input.parentElement.contains(event.target)) {
-        list.classList.remove("open");
+      if (!text) {
+        return options.slice(0, 80);
       }
-    });
-  }
 
-  function getCountries() {
-    return Object.keys(locationData);
-  }
+      return options.filter(function (item) {
+        return item.toLowerCase().includes(text);
+      }).slice(0, 80);
+    }
 
-  function getStates() {
-    const country = safeElementValue("country");
-    const states = locationData[country] || {};
-    return Object.keys(states);
-  }
+    function getCountries() {
+      return Object.keys(locationData);
+    }
 
-  function getDistricts() {
-    const country = safeElementValue("country");
-    const state = safeElementValue("stateName");
-    const states = locationData[country] || {};
-    return states[state] || [];
-  }
+    function getStates(country) {
+      const states = locationData[country] || {};
+      return Object.keys(states);
+    }
 
-  function initLocationSelectors() {
-    setupSearchSelect({
-      inputId: "countrySearch",
-      hiddenId: "country",
-      listId: "countryList",
-      getItems: getCountries,
-      onSelect: function () {
+    function getDistricts(country, state) {
+      const states = locationData[country] || {};
+      return states[state] || [];
+    }
+
+    function initLocationSelectors() {
+      const countrySearch = byId("countrySearch");
+      const stateSearch = byId("stateSearch");
+      const districtSearch = byId("districtSearch");
+
+      if (!countrySearch || !stateSearch || !districtSearch) {
+        return;
+      }
+
+      countrySearch.addEventListener("focus", function () {
+        renderSearchList("countryList", getCountries(), function (country) {
+          setSafeValue("countrySearch", country);
+          setSafeValue("country", country);
+          setSafeValue("stateSearch", "");
+          setSafeValue("stateName", "");
+          setSafeValue("districtSearch", "");
+          setSafeValue("district", "");
+        });
+      });
+
+      countrySearch.addEventListener("input", function () {
+        setSafeValue("country", "");
         setSafeValue("stateSearch", "");
         setSafeValue("stateName", "");
         setSafeValue("districtSearch", "");
         setSafeValue("district", "");
-      }
-    });
 
-    setupSearchSelect({
-      inputId: "stateSearch",
-      hiddenId: "stateName",
-      listId: "stateList",
-      getItems: getStates,
-      onSelect: function () {
-        setSafeValue("districtSearch", "");
-        setSafeValue("district", "");
-      }
-    });
+        renderSearchList("countryList", filterOptions(getCountries(), countrySearch.value), function (country) {
+          setSafeValue("countrySearch", country);
+          setSafeValue("country", country);
+          setSafeValue("stateSearch", "");
+          setSafeValue("stateName", "");
+          setSafeValue("districtSearch", "");
+          setSafeValue("district", "");
+        });
+      });
 
-    setupSearchSelect({
-      inputId: "districtSearch",
-      hiddenId: "district",
-      listId: "districtList",
-      getItems: getDistricts
-    });
-  }
+      stateSearch.addEventListener("focus", function () {
+        const country = safeElementValue("country");
 
-  /* =========================================================
-     FORM DATA
-  ========================================================== */
-
-  function getValueByIdNameOrPlaceholder(ids, names, placeholderTexts) {
-    for (let index = 0; index < ids.length; index += 1) {
-      const element = byId(ids[index]);
-
-      if (element && typeof element.value !== "undefined" && cleanText(element.value)) {
-        return element.value;
-      }
-    }
-
-    for (let index = 0; index < names.length; index += 1) {
-      const element = document.querySelector('[name="' + names[index] + '"]');
-
-      if (element && typeof element.value !== "undefined" && cleanText(element.value)) {
-        return element.value;
-      }
-    }
-
-    const inputs = Array.from(document.querySelectorAll("input, textarea, select"));
-
-    for (let index = 0; index < inputs.length; index += 1) {
-      const element = inputs[index];
-      const placeholder = String(element.getAttribute("placeholder") || "").toLowerCase();
-      const labelText = String(element.getAttribute("aria-label") || "").toLowerCase();
-
-      for (let innerIndex = 0; innerIndex < placeholderTexts.length; innerIndex += 1) {
-        const token = placeholderTexts[innerIndex].toLowerCase();
-
-        if ((placeholder.includes(token) || labelText.includes(token)) && cleanText(element.value)) {
-          return element.value;
-        }
-      }
-    }
-
-    return "";
-  }
-
-  function getFormData() {
-    return {
-      fullName: cleanText(getValueByIdNameOrPlaceholder(["fullName", "fullname", "full-name", "name", "applicantName"], ["fullName", "full_name", "fullname", "name", "applicantName", "applicant_name"], ["full name", "name"])),
-      email: cleanText(safeElementValue("email")).toLowerCase(),
-      contactCountryCode: cleanText(safeElementValue("contactCountryCode")),
-      contactNumber: digitsOnly(safeElementValue("contactNumber")),
-      whatsappCountryCode: cleanText(safeElementValue("whatsappCountryCode")),
-      whatsappNumber: digitsOnly(safeElementValue("whatsappNumber")),
-
-      dateOfBirth: cleanText(safeElementValue("dateOfBirth")),
-      ageGroup: cleanText(safeElementValue("ageGroup")),
-
-      gender: cleanText(safeElementValue("gender")),
-      country: cleanText(safeElementValue("country")),
-      stateName: cleanText(safeElementValue("stateName")),
-      district: cleanText(safeElementValue("district")),
-      pincode: digitsOnly(safeElementValue("pincode")),
-      postOffice: cleanText(safeElementValue("postOffice")),
-      fullAddress: cleanLongText(safeElementValue("fullAddress")),
-
-      selectedRole: cleanText(safeElementValue("selectedRole")),
-      workType: cleanText(safeElementValue("workType")),
-      workTimeType: cleanText(safeElementValue("workTimeType")),
-      weeklyAvailability: cleanText(safeElementValue("weeklyAvailability")),
-
-      educationLevel: cleanText(safeElementValue("educationLevel")),
-      currentStatus: cleanText(safeElementValue("currentStatus")),
-      experienceLevel: cleanText(safeElementValue("experienceLevel")),
-
-      skills: cleanLongText(safeElementValue("skills")),
-      portfolioUrl: cleanText(safeElementValue("portfolioUrl")),
-      linkedinUrl: cleanText(safeElementValue("linkedinUrl")),
-      githubUrl: cleanText(safeElementValue("githubUrl")),
-      instagramUrl: cleanText(safeElementValue("instagramUrl")),
-
-      whyJoin: cleanLongText(safeElementValue("whyJoin")),
-      previousWork: cleanLongText(safeElementValue("previousWork")),
-      certificateDeliveryRequired: safeElementChecked("certificateDeliveryRequired"),
-      consentAccuracy: safeElementChecked("consentAccuracy"),
-      consentContact: safeElementChecked("consentContact")
-    };
-  }
-
-  function validateForm(data) {
-    if (!data.fullName || data.fullName.length < 2 || data.fullName.length > 90) return "Enter a valid full name.";
-    if (!/^[A-Za-zÀ-ÖØ-öø-ÿĀ-žḀ-ỿ\s.'-]{2,90}$/.test(data.fullName)) return "Full name can contain only letters, spaces, dots, hyphens, and apostrophes.";
-    if (!isValidEmail(data.email)) return "Enter a valid Gmail/email address.";
-    if (!data.contactCountryCode) return "Select contact country code.";
-    if (data.contactNumber.length < 7 || data.contactNumber.length > 15) return "Enter a valid contact number.";
-
-    if (data.whatsappNumber) {
-      if (!data.whatsappCountryCode) return "Select WhatsApp country code.";
-      if (data.whatsappNumber.length < 7 || data.whatsappNumber.length > 15) return "Enter a valid WhatsApp number.";
-    }
-
-    if (!data.ageGroup) return "Select age group.";
-    if (!data.country) return "Select country from search list.";
-    if (!data.stateName) return "Select state/province from search list.";
-    if (!data.district) return "Select district from search list.";
-    if (data.pincode.length < 4 || data.pincode.length > 10) return "Enter a valid pincode/postal code.";
-
-    if (!data.selectedRole) return "Select one role.";
-    if (!data.workType) return "Select work type.";
-    if (!data.workTimeType) return "Select work time type.";
-    if (!data.weeklyAvailability) return "Select weekly availability.";
-
-    if (!data.educationLevel) return "Select education level.";
-    if (!data.currentStatus) return "Select current status.";
-    if (!data.experienceLevel) return "Select experience level.";
-
-    if (data.skills.length < 20) return "Write your skills in at least 20 characters.";
-    if (data.whyJoin.length < 40) return "Write why you want to join in at least 40 characters.";
-
-    if (!isValidUrl(data.portfolioUrl)) return "Portfolio URL must start with http:// or https://.";
-    if (!isValidUrl(data.linkedinUrl)) return "LinkedIn URL must start with http:// or https://.";
-    if (!isValidUrl(data.githubUrl)) return "GitHub URL must start with http:// or https://.";
-    if (!isValidUrl(data.instagramUrl)) return "Instagram URL must start with http:// or https://.";
-
-    if (!data.consentAccuracy) return "Confirm that your information is accurate.";
-    if (!data.consentContact) return "Allow AcademeForge to contact you.";
-
-    return "";
-  }
-
-  function buildApiPayload(data) {
-    const skillsList = data.skills
-      .split(/,|\n/)
-      .map(function (skill) {
-        return cleanText(skill);
-      })
-      .filter(Boolean);
-
-    return {
-      full_name: data.fullName,
-      email: data.email,
-
-      phone_country_code: data.contactCountryCode,
-      contact_number: data.contactNumber,
-
-      whatsapp_country_code: data.whatsappCountryCode || "",
-      whatsapp_number: data.whatsappNumber || "",
-
-      date_of_birth: data.dateOfBirth || "",
-      age_group: data.ageGroup,
-      gender: data.gender || "",
-
-      country: data.country,
-      state: data.stateName,
-      district: data.district,
-      pincode: data.pincode,
-      post_office: data.postOffice || "",
-      address_line: data.fullAddress || "",
-
-      selected_role: data.selectedRole,
-      work_type: data.workType,
-      work_time_type: data.workTimeType,
-      weekly_availability: data.weeklyAvailability,
-
-      education_level: data.educationLevel,
-      current_status: data.currentStatus,
-      experience_level: data.experienceLevel,
-
-      skills: skillsList,
-      skills_text: data.skills,
-
-      portfolio_url: data.portfolioUrl || "",
-      linkedin_url: data.linkedinUrl || "",
-      github_url: data.githubUrl || "",
-      instagram_url: data.instagramUrl || "",
-
-      why_join: data.whyJoin,
-      previous_work: data.previousWork || "",
-
-      certificate_delivery_needed: Boolean(data.certificateDeliveryRequired),
-      accuracy_confirmed: Boolean(data.consentAccuracy),
-      contact_permission: Boolean(data.consentContact),
-
-      source_page: window.location.href,
-      user_agent: navigator.userAgent,
-      submitted_at_client: new Date().toISOString()
-    };
-  }
-
-  /* =========================================================
-     DRAFT
-  ========================================================== */
-
-  function saveDraft() {
-    try {
-      localStorage.setItem(DRAFT_KEY, JSON.stringify(getFormData()));
-    } catch (error) {
-      console.warn("Draft save failed.", error);
-    }
-  }
-
-  function restoreDraft() {
-    try {
-      const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}");
-
-      Object.keys(draft).forEach(function (key) {
-        const element = byId(key);
-
-        if (!element) {
+        if (!country) {
+          showAlert("error", "Select country first.");
           return;
         }
 
-        if (element.type === "checkbox") {
-          element.checked = Boolean(draft[key]);
-        } else {
-          element.value = draft[key] || "";
+        renderSearchList("stateList", getStates(country), function (state) {
+          setSafeValue("stateSearch", state);
+          setSafeValue("stateName", state);
+          setSafeValue("districtSearch", "");
+          setSafeValue("district", "");
+        });
+      });
+
+      stateSearch.addEventListener("input", function () {
+        const country = safeElementValue("country");
+        setSafeValue("stateName", "");
+        setSafeValue("districtSearch", "");
+        setSafeValue("district", "");
+
+        renderSearchList("stateList", filterOptions(getStates(country), stateSearch.value), function (state) {
+          setSafeValue("stateSearch", state);
+          setSafeValue("stateName", state);
+          setSafeValue("districtSearch", "");
+          setSafeValue("district", "");
+        });
+      });
+
+      districtSearch.addEventListener("focus", function () {
+        const country = safeElementValue("country");
+        const state = safeElementValue("stateName");
+
+        if (!country) {
+          showAlert("error", "Select country first.");
+          return;
+        }
+
+        if (!state) {
+          showAlert("error", "Select state first.");
+          return;
+        }
+
+        renderSearchList("districtList", getDistricts(country, state), function (district) {
+          setSafeValue("districtSearch", district);
+          setSafeValue("district", district);
+        });
+      });
+
+      districtSearch.addEventListener("input", function () {
+        const country = safeElementValue("country");
+        const state = safeElementValue("stateName");
+        setSafeValue("district", "");
+
+        renderSearchList("districtList", filterOptions(getDistricts(country, state), districtSearch.value), function (district) {
+          setSafeValue("districtSearch", district);
+          setSafeValue("district", district);
+        });
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!event.target.closest(".search-select")) {
+          closeAllSearchLists();
         }
       });
-
-      setSafeValue("countrySearch", draft.country || "");
-      setSafeValue("stateSearch", draft.stateName || "");
-      setSafeValue("districtSearch", draft.district || "");
-
-      syncChoiceButtons();
-    } catch (error) {
-      console.warn("Draft restore failed.", error);
     }
-  }
 
-  function clearDraft() {
-    try {
-      localStorage.removeItem(DRAFT_KEY);
-    } catch (error) {
-      console.warn("Draft clear failed.", error);
+    function getFormData() {
+      return {
+        fullName: cleanText(safeElementValue("fullName")),
+        email: cleanText(safeElementValue("email")).toLowerCase(),
+
+        contactCountryCode: cleanText(safeElementValue("contactCountryCode")),
+        contactNumber: digitsOnly(safeElementValue("contactNumber")),
+
+        whatsappCountryCode: cleanText(safeElementValue("whatsappCountryCode")),
+        whatsappNumber: digitsOnly(safeElementValue("whatsappNumber")),
+
+        dateOfBirth: cleanText(safeElementValue("dateOfBirth")),
+        ageGroup: cleanText(safeElementValue("ageGroup")),
+        gender: cleanText(safeElementValue("gender")),
+
+        country: cleanText(safeElementValue("country")),
+        stateName: cleanText(safeElementValue("stateName")),
+        district: cleanText(safeElementValue("district")),
+        pincode: cleanText(safeElementValue("pincode")),
+        postOffice: cleanText(safeElementValue("postOffice")),
+        fullAddress: cleanLongText(safeElementValue("fullAddress")),
+
+        selectedRole: cleanText(safeElementValue("selectedRole")),
+        workType: cleanText(safeElementValue("workType")),
+        workTimeType: cleanText(safeElementValue("workTimeType")),
+        weeklyAvailability: cleanText(safeElementValue("weeklyAvailability")),
+
+        educationLevel: cleanText(safeElementValue("educationLevel")),
+        currentStatus: cleanText(safeElementValue("currentStatus")),
+        experienceLevel: cleanText(safeElementValue("experienceLevel")),
+
+        skills: cleanLongText(safeElementValue("skills")),
+        portfolioUrl: cleanText(safeElementValue("portfolioUrl")),
+        linkedinUrl: cleanText(safeElementValue("linkedinUrl")),
+        githubUrl: cleanText(safeElementValue("githubUrl")),
+        instagramUrl: cleanText(safeElementValue("instagramUrl")),
+        whyJoin: cleanLongText(safeElementValue("whyJoin")),
+        previousWork: cleanLongText(safeElementValue("previousWork")),
+
+        certificateDeliveryRequired: safeElementChecked("certificateDeliveryRequired"),
+        consentAccuracy: safeElementChecked("consentAccuracy"),
+        consentContact: safeElementChecked("consentContact")
+      };
     }
-  }
 
-  function resetHiddenAndSearchFields() {
-    setSafeValue("selectedRole", "");
-    setSafeValue("workType", "");
-    setSafeValue("workTimeType", "");
-    setSafeValue("country", "");
-    setSafeValue("stateName", "");
-    setSafeValue("district", "");
-    setSafeValue("countrySearch", "");
-    setSafeValue("stateSearch", "");
-    setSafeValue("districtSearch", "");
-    syncChoiceButtons();
-  }
-
-  /* =========================================================
-     SUBMIT
-  ========================================================== */
-
-  async function submitApplication(data) {
-    const payload = buildApiPayload(data);
-
-    const controller = new AbortController();
-    const timeoutId = window.setTimeout(function () {
-      controller.abort();
-    }, 25000);
-
-    try {
-      const response = await fetch(EDGE_FUNCTION_URL, {
-        method: "POST",
-        mode: "cors",
-        cache: "no-store",
-        credentials: "omit",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(payload),
-        signal: controller.signal
-      });
-
-      window.clearTimeout(timeoutId);
-
-      const contentType = response.headers.get("content-type") || "";
-      const result = contentType.includes("application/json")
-        ? await response.json().catch(function () {
-            return {
-              success: false,
-              ok: false,
-              error: "Invalid server JSON response."
-            };
-          })
-        : {
-            success: false,
-            ok: false,
-            error: "Server did not return JSON response."
-          };
-
-      const success = result.success === true || result.ok === true;
-
-      if (!response.ok || !success) {
-        throw new Error(
-          result.error ||
-          result.message ||
-          "Application submit failed. Server status: " + response.status
-        );
+    function validateForm(data) {
+      if (!data.fullName || data.fullName.length < 2) {
+        return "Enter your full name.";
       }
+
+      if (!isValidEmail(data.email)) {
+        return "Enter a valid email.";
+      }
+
+      if (!data.contactNumber || data.contactNumber.length < 5) {
+        return "Enter your contact number.";
+      }
+
+      if (!data.ageGroup) {
+        return "Select age group.";
+      }
+
+      if (!data.country) {
+        return "Select country from the list.";
+      }
+
+      if (!data.stateName) {
+        return "Select state from the list.";
+      }
+
+      if (!data.district) {
+        return "Select district from the list.";
+      }
+
+      if (!data.pincode || data.pincode.length < 3) {
+        return "Enter pincode.";
+      }
+
+      if (!data.selectedRole) {
+        return "Select one role.";
+      }
+
+      if (!data.workType) {
+        return "Select work type.";
+      }
+
+      if (!data.workTimeType) {
+        return "Select work time type.";
+      }
+
+      if (!data.weeklyAvailability) {
+        return "Select weekly availability.";
+      }
+
+      if (!data.educationLevel) {
+        return "Select education level.";
+      }
+
+      if (!data.currentStatus) {
+        return "Select current status.";
+      }
+
+      if (!data.experienceLevel) {
+        return "Select experience level.";
+      }
+
+      if (!data.skills || data.skills.length < 2) {
+        return "Write your skills.";
+      }
+
+      if (!isValidUrl(data.portfolioUrl)) {
+        return "Enter a valid portfolio URL or leave it empty.";
+      }
+
+      if (!isValidUrl(data.linkedinUrl)) {
+        return "Enter a valid LinkedIn URL or leave it empty.";
+      }
+
+      if (!isValidUrl(data.githubUrl)) {
+        return "Enter a valid GitHub URL or leave it empty.";
+      }
+
+      if (!isValidUrl(data.instagramUrl)) {
+        return "Enter a valid Instagram URL or leave it empty.";
+      }
+
+      if (!data.whyJoin || data.whyJoin.length < 5) {
+        return "Write why you want to join.";
+      }
+
+      if (!data.consentAccuracy) {
+        return "Confirm that your information is accurate.";
+      }
+
+      if (!data.consentContact) {
+        return "Allow AcademeForge to contact you.";
+      }
+
+      return "";
+    }
+
+    function buildApiPayload(data) {
+      const skillsList = data.skills
+        .split(/[,;\n]/)
+        .map(function (item) {
+          return cleanText(item);
+        })
+        .filter(Boolean)
+        .slice(0, 100);
 
       return {
-        applicationId:
-          result.applicationId ||
-          result.application_id ||
-          (result.data && result.data.id) ||
-          result.id ||
-          "submitted",
-        raw: result
+        full_name: data.fullName,
+        email: data.email,
+
+        contact_country_code: data.contactCountryCode || "",
+        contact_number: data.contactNumber,
+
+        whatsapp_country_code: data.whatsappCountryCode || "",
+        whatsapp_number: data.whatsappNumber || "",
+
+        date_of_birth: data.dateOfBirth || "",
+        age_group: data.ageGroup,
+        gender: data.gender || "",
+
+        country: data.country,
+        state: data.stateName,
+        district: data.district,
+        pincode: data.pincode,
+        post_office: data.postOffice || "",
+        address_line: data.fullAddress || "",
+
+        selected_role: data.selectedRole,
+        work_type: data.workType,
+        work_time_type: data.workTimeType,
+        weekly_availability: data.weeklyAvailability,
+
+        education_level: data.educationLevel,
+        current_status: data.currentStatus,
+        experience_level: data.experienceLevel,
+
+        skills: skillsList,
+        skills_text: data.skills,
+
+        portfolio_url: data.portfolioUrl || "",
+        linkedin_url: data.linkedinUrl || "",
+        github_url: data.githubUrl || "",
+        instagram_url: data.instagramUrl || "",
+
+        why_join: data.whyJoin,
+        previous_work: data.previousWork || "",
+
+        certificate_delivery_needed: Boolean(data.certificateDeliveryRequired),
+        accuracy_confirmed: Boolean(data.consentAccuracy),
+        contact_permission: Boolean(data.consentContact),
+
+        source_page: window.location.href,
+        user_agent: navigator.userAgent,
+        submitted_at_client: new Date().toISOString()
       };
-    } catch (error) {
-      window.clearTimeout(timeoutId);
-
-      if (error instanceof DOMException && error.name === "AbortError") {
-        throw new Error("Request timeout. Please try again.");
-      }
-
-      if (!navigator.onLine) {
-        throw new Error("Internet disconnected. Please connect and try again.");
-      }
-
-      if (error instanceof TypeError && String(error.message || "").toLowerCase().includes("fetch")) {
-        throw new Error("Failed to fetch. Check Edge Function deploy, CORS headers, and --no-verify-jwt.");
-      }
-
-      throw new Error(error instanceof Error ? error.message : "Application could not be submitted.");
-    }
-  }
-
-  function initForm() {
-    const form = byId("joinTeamForm");
-    const submitBtn = byId("submitBtn");
-    const saveDraftBtn = byId("saveDraftBtn");
-
-    if (!form || !submitBtn) {
-      return;
     }
 
-    form.addEventListener("input", function () {
-      clearAlert();
-      saveDraft();
-    });
-
-    form.addEventListener("change", function () {
-      clearAlert();
-      saveDraft();
-    });
-
-    if (saveDraftBtn) {
-      saveDraftBtn.addEventListener("click", function () {
-        saveDraft();
-        showAlert("success", "Draft saved on this device.");
-      });
+    function saveDraft() {
+      try {
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(getFormData()));
+      } catch (error) {
+        console.warn("Draft save failed.", error);
+      }
     }
 
-    form.addEventListener("reset", function () {
-      setTimeout(function () {
-        clearDraft();
-        resetHiddenAndSearchFields();
-        clearAlert();
-      }, 0);
-    });
+    function restoreDraft() {
+      try {
+        const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}");
 
-    form.addEventListener("submit", async function (event) {
-      event.preventDefault();
+        Object.keys(draft).forEach(function (key) {
+          const element = byId(key);
 
-      const data = getFormData();
-      const error = validateForm(data);
+          if (!element) {
+            return;
+          }
 
-      if (error) {
-        showAlert("error", error);
+          if (element.type === "checkbox") {
+            element.checked = Boolean(draft[key]);
+          } else {
+            element.value = draft[key] || "";
+          }
+        });
+
+        setSafeValue("fullName", draft.fullName || "");
+        setSafeValue("email", draft.email || "");
+        setSafeValue("contactCountryCode", draft.contactCountryCode || "+91");
+        setSafeValue("contactNumber", draft.contactNumber || "");
+        setSafeValue("whatsappCountryCode", draft.whatsappCountryCode || "+91");
+        setSafeValue("whatsappNumber", draft.whatsappNumber || "");
+        setSafeValue("dateOfBirth", draft.dateOfBirth || "");
+        setSafeValue("ageGroup", draft.ageGroup || "");
+        setSafeValue("gender", draft.gender || "");
+        setSafeValue("country", draft.country || "");
+        setSafeValue("stateName", draft.stateName || "");
+        setSafeValue("district", draft.district || "");
+        setSafeValue("countrySearch", draft.country || "");
+        setSafeValue("stateSearch", draft.stateName || "");
+        setSafeValue("districtSearch", draft.district || "");
+        setSafeValue("pincode", draft.pincode || "");
+        setSafeValue("postOffice", draft.postOffice || "");
+        setSafeValue("fullAddress", draft.fullAddress || "");
+        setSafeValue("selectedRole", draft.selectedRole || "");
+        setSafeValue("workType", draft.workType || "");
+        setSafeValue("workTimeType", draft.workTimeType || "");
+        setSafeValue("weeklyAvailability", draft.weeklyAvailability || "");
+        setSafeValue("educationLevel", draft.educationLevel || "");
+        setSafeValue("currentStatus", draft.currentStatus || "");
+        setSafeValue("experienceLevel", draft.experienceLevel || "");
+        setSafeValue("skills", draft.skills || "");
+        setSafeValue("portfolioUrl", draft.portfolioUrl || "");
+        setSafeValue("linkedinUrl", draft.linkedinUrl || "");
+        setSafeValue("githubUrl", draft.githubUrl || "");
+        setSafeValue("instagramUrl", draft.instagramUrl || "");
+        setSafeValue("whyJoin", draft.whyJoin || "");
+        setSafeValue("previousWork", draft.previousWork || "");
+
+        const certificateDeliveryRequired = byId("certificateDeliveryRequired");
+        const consentAccuracy = byId("consentAccuracy");
+        const consentContact = byId("consentContact");
+
+        if (certificateDeliveryRequired) {
+          certificateDeliveryRequired.checked = Boolean(draft.certificateDeliveryRequired);
+        }
+
+        if (consentAccuracy) {
+          consentAccuracy.checked = Boolean(draft.consentAccuracy);
+        }
+
+        if (consentContact) {
+          consentContact.checked = Boolean(draft.consentContact);
+        }
+
+        syncChoiceButtons();
+      } catch (error) {
+        console.warn("Draft restore failed.", error);
+      }
+    }
+
+    function clearDraft() {
+      try {
+        localStorage.removeItem(DRAFT_KEY);
+      } catch (error) {
+        console.warn("Draft clear failed.", error);
+      }
+    }
+
+    function resetHiddenAndSearchFields() {
+      setSafeValue("selectedRole", "");
+      setSafeValue("workType", "");
+      setSafeValue("workTimeType", "");
+      setSafeValue("country", "");
+      setSafeValue("stateName", "");
+      setSafeValue("district", "");
+      setSafeValue("countrySearch", "");
+      setSafeValue("stateSearch", "");
+      setSafeValue("districtSearch", "");
+      syncChoiceButtons();
+    }
+
+    async function submitApplication(data) {
+      const payload = buildApiPayload(data);
+
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(function () {
+        controller.abort();
+      }, 25000);
+
+      try {
+        const response = await fetch(EDGE_FUNCTION_URL, {
+          method: "POST",
+          mode: "cors",
+          cache: "no-store",
+          credentials: "omit",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(payload),
+          signal: controller.signal
+        });
+
+        window.clearTimeout(timeoutId);
+
+        const contentType = response.headers.get("content-type") || "";
+        const result = contentType.includes("application/json")
+          ? await response.json().catch(function () {
+              return {
+                success: false,
+                ok: false,
+                error: "Invalid server JSON response."
+              };
+            })
+          : {
+              success: false,
+              ok: false,
+              error: "Server did not return JSON response."
+            };
+
+        const success = result.success === true || result.ok === true;
+
+        if (!response.ok || !success) {
+          const serverErrorParts = [];
+
+          if (result.error) {
+            serverErrorParts.push(String(result.error));
+          }
+
+          if (result.details) {
+            serverErrorParts.push("Details: " + String(result.details));
+          }
+
+          if (result.code) {
+            serverErrorParts.push("Code: " + String(result.code));
+          }
+
+          if (result.hint) {
+            serverErrorParts.push("Hint: " + String(result.hint));
+          }
+
+          if (result.debug_version) {
+            serverErrorParts.push("Debug: " + String(result.debug_version));
+          }
+
+          throw new Error(
+            serverErrorParts.length
+              ? serverErrorParts.join("\n")
+              : "Application submit failed. Server status: " + response.status
+          );
+        }
+
+        return {
+          applicationId:
+            result.applicationId ||
+            result.application_id ||
+            (result.data && result.data.id) ||
+            result.id ||
+            "submitted",
+          raw: result
+        };
+      } catch (error) {
+        window.clearTimeout(timeoutId);
+
+        if (error instanceof DOMException && error.name === "AbortError") {
+          throw new Error("Request timeout. Please try again.");
+        }
+
+        if (!navigator.onLine) {
+          throw new Error("Internet disconnected. Please connect and try again.");
+        }
+
+        if (error instanceof TypeError && String(error.message || "").toLowerCase().includes("fetch")) {
+          throw new Error("Failed to fetch. Check Edge Function deploy, CORS headers, and --no-verify-jwt.");
+        }
+
+        throw new Error(error instanceof Error ? error.message : "Application could not be submitted.");
+      }
+    }
+
+    function initForm() {
+      const form = byId("joinTeamForm");
+      const submitBtn = byId("submitBtn");
+      const saveDraftBtn = byId("saveDraftBtn");
+
+      if (!form || !submitBtn) {
         return;
       }
 
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Updating application, please wait...";
+      form.addEventListener("input", function () {
+        clearAlert();
+        saveDraft();
+      });
 
-      try {
-        const result = await submitApplication(data);
+      form.addEventListener("change", function () {
+        clearAlert();
+        saveDraft();
+      });
 
-        clearDraft();
-        form.reset();
-        resetHiddenAndSearchFields();
-
-        showAlert(
-          "success",
-          "Application submitted successfully. Application ID: " + result.applicationId
-        );
-      } catch (error) {
-        showAlert("error", error.message || "Application could not be submitted.");
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit Application";
+      if (saveDraftBtn) {
+        saveDraftBtn.addEventListener("click", function () {
+          saveDraft();
+          showAlert("success", "Draft saved on this device.");
+        });
       }
-    });
-  }
 
-  /* =========================================================
-     INIT
-  ========================================================== */
+      form.addEventListener("reset", function () {
+        setTimeout(function () {
+          clearDraft();
+          resetHiddenAndSearchFields();
+          clearAlert();
+        }, 0);
+      });
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const year = byId("year");
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-    if (year) {
-      year.textContent = String(new Date().getFullYear());
+        const data = getFormData();
+        const error = validateForm(data);
+
+        if (error) {
+          showAlert("error", error);
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Updating application, please wait.";
+
+        try {
+          const result = await submitApplication(data);
+
+          clearDraft();
+          form.reset();
+          resetHiddenAndSearchFields();
+
+          showAlert(
+            "success",
+            "Application submitted successfully. Application ID: " + result.applicationId
+          );
+        } catch (error) {
+          showAlert("error", error.message || "Application could not be submitted.");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Submit Application";
+        }
+      });
     }
 
-    initTheme();
-    initCountryCodes();
-    initChoiceButtons();
-    initLocationSelectors();
-    restoreDraft();
-    initForm();
-  });
+    document.addEventListener("DOMContentLoaded", function () {
+      const year = byId("year");
+
+      if (year) {
+        year.textContent = String(new Date().getFullYear());
+      }
+
+      initTheme();
+      initCountryCodes();
+      initChoiceButtons();
+      initLocationSelectors();
+      restoreDraft();
+      initForm();
+    });
   </script>
 </body>
 </html>
