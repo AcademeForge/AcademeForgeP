@@ -1780,60 +1780,63 @@
         </div>
       </div>
 
-      <div class="hero-right">
-        <div class="floating-card card-one" aria-hidden="true">
-          <span class="floating-icon">AI</span>
-          <span>
-            <strong>Ask AcademeForge AI</strong>
-            <span>Smart learning support</span>
-          </span>
+ <div class="hero-right">
+  <div class="floating-card card-one" aria-hidden="true">
+    <span class="floating-icon">AI</span>
+    <span>
+      <strong>Ask AcademeForge AI</strong>
+      <span>Smart learning support</span>
+    </span>
+  </div>
+
+  <div class="floating-card card-two" aria-hidden="true">
+    <span class="floating-icon">✓</span>
+    <span>
+      <strong>Offline Ready</strong>
+      <span>Basic page opens again</span>
+    </span>
+  </div>
+
+  <div class="phone-shell" aria-label="Student app mobile preview">
+    <div class="phone-screen">
+      <iframe
+        id="studentAppFrame"
+        class="app-frame"
+        name="studentAppFrame"
+        src="about:blank"
+        title="AcademeForge Student App"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-downloads"
+      ></iframe>
+
+      <div id="startOverlay" class="start-overlay">
+        <div class="start-card">
+          <div class="start-logo">AF</div>
+          <h2>Start your mobile experience on desktop</h2>
+          <p>
+            Click below to open the AcademeForge Student App inside a clean phone-style preview.
+          </p>
+          <button id="startExperienceBtn" class="start-button" type="button">
+            Click to Start Experience
+          </button>
         </div>
+      </div>
 
-        <div class="floating-card card-two" aria-hidden="true">
-          <span class="floating-icon">✓</span>
-          <span>
-            <strong>Offline Ready</strong>
-            <span>Basic page opens again</span>
-          </span>
+      <div id="frameLoader" class="frame-loader">
+        <div class="loader-card">
+          <div class="loader-logo">AF</div>
+          <strong>Loading Student App</strong>
+          <span>Opening mobile experience</span>
+          <div class="loader-bar"><i></i></div>
         </div>
+      </div>
 
-            <iframe
-              id="studentAppFrame"
-              class="app-frame"
-              name="studentAppFrame"
-              src="about:blank"
-              title="AcademeForge Student App"
-              loading="lazy"
-              referrerpolicy="strict-origin-when-cross-origin"
-              sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-downloads"
-            ></iframe>
-
-            <div id="startOverlay" class="start-overlay">
-              <div class="start-card">
-                <div class="start-logo">AF</div>
-                <h2>Start your mobile experience on desktop</h2>
-                <p>
-                  Click below to open the AcademeForge Student App inside a clean phone-style preview.
-                </p>
-                <button id="startExperienceBtn" class="start-button" type="button">
-                  Click to Start Experience
-                </button>
-              </div>
-            </div>
-
-            <div id="frameLoader" class="frame-loader">
-              <div class="loader-card">
-                <div class="loader-logo">AF</div>
-                <strong>Loading Student App</strong>
-                <span>Opening mobile experience</span>
-                <div class="loader-bar"><i></i></div>
-              </div>
-            </div>
-
-            <div class="iframe-mask-top" aria-hidden="true"></div>
-            <div class="phone-home" aria-hidden="true"></div>
-          </div>
-        </div>
+      <div class="iframe-mask-top" aria-hidden="true"></div>
+      <div class="phone-home" aria-hidden="true"></div>
+    </div>
+  </div>
+</div>
 
         <div class="bottom-note">
           <i></i>
