@@ -986,7 +986,7 @@
             <div class="hero-actions">
               <a class="btn primary" href="#apply">Start Application</a>
               <a class="btn secondary" href="#roles">View 20 Roles</a>
-              <a class="btn secondary" href="#applicationStatus">Job Application Status</a>
+             <a class="btn secondary" id="statusBtn" href="./application-status/index.html">Job Application Status</a>
             </div>
           </div>
 
@@ -1277,7 +1277,7 @@
               <div class="form-actions">
                 <button id="submitBtn" class="btn primary" type="submit">Submit Application</button>
                 <button class="btn secondary" type="button" id="saveDraftBtn">Save Draft</button>
-                <button class="btn secondary" type="button" id="statusBtn">Job Application Status</button>
+               <a class="btn secondary" id="statusBtn" href="./application-status/index.html">Job Application Status</a>
                 <button class="btn danger" type="reset">Clear Form</button>
               </div>
 
@@ -2358,17 +2358,9 @@
 
           form.reset();
           resetHiddenAndSearchFields();
+          
+     showAlert("success", "Test submitted successfully. Check status from Job Application Status page.");
 
-          showAlert("success", "Test submitted successfully. See status from Job Application Status.");
-
-          renderStatus({
-            application_id: result.applicationId,
-            hr_read: null,
-            hr_approved_resume: null,
-            tried_to_contact: null,
-            job_secured: null,
-            final_rejected: false
-          });
         } catch (error) {
           showAlert("error", error.message || "Application submit failed.");
         } finally {
