@@ -1556,7 +1556,7 @@ html[data-theme="dark"] .footer {
         <span class="eyebrow">Job Application Status</span>
         <h1>Track your application.</h1>
         <p class="muted">
-          Enter Application ID that was given while submitting the form.
+          Enter any one ( Application ID or Email or Phone Number ) which was used while submitting the form.
         </p>
 
         <form id="statusForm" class="lookup-form" novalidate>
@@ -1567,14 +1567,15 @@ html[data-theme="dark"] .footer {
           </div>
 
           <div class="field">
-            <label for="statusEmail">Submitted Email OPTIONAL</label>
+            <label for="statusEmail">Submitted Email</label>
             <input id="statusEmail" type="email" placeholder="Enter submitted email" autocomplete="email" />
+            <span class="hint">Track your application status with Email ID used while filling the form.</span>
           </div>
 
           <div class="field">
-            <label for="statusMobile">Submitted Mobile Number OPTIONAL</label>
+            <label for="statusMobile">Submitted Mobile Number</label>
             <input id="statusMobile" type="tel" inputmode="numeric" placeholder="Enter submitted mobile number" autocomplete="tel" />
-            <span class="hint">Use only the mobile number you submitted. Country code is not required.</span>
+            <span class="hint">Track status by Using only mobile number you submitted. Country code is not required.</span>
           </div>
 
           <div class="form-actions">
@@ -1929,7 +1930,9 @@ html[data-theme="dark"] .footer {
 
 function fillFromLocalStorage() {
   const last = getLastApplication();
-
+if (last.applicationId) {
+  byId("applicationId").value = last.applicationId;
+}
   /*
     Application ID auto-fill intentionally disabled.
     Reason:
