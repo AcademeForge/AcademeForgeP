@@ -364,44 +364,39 @@
       background: rgba(255, 255, 255, 0.035);
     }
 
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      min-width: 200%;
-      animation: afMarquee 26s linear infinite;
-      will-change: transform;
-    }
+   .marquee-track {
+  display: flex;
+  width: max-content;
+  min-width: max-content;
+  animation: afMarquee 26s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
 
-    .marquee-group {
-      display: flex;
-      flex: 0 0 auto;
-      align-items: center;
-      gap: 2.5rem;
-      min-width: 50vw;
-      padding: 0.72rem 1.25rem;
-      color: var(--muted);
-      white-space: nowrap;
-      font-size: 0.76rem;
-      font-weight: 900;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-    }
+.marquee-group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 0.72rem 1.25rem;
+  color: var(--muted);
+  white-space: nowrap;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
 
-    .marquee-group span::before {
-      content: "•";
-      margin-right: 1.1rem;
-      color: var(--brand);
-    }
+@keyframes afMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
 
-    @keyframes afMarquee {
-      from {
-        transform: translate3d(0, 0, 0);
-      }
-
-      to {
-        transform: translate3d(-50%, 0, 0);
-      }
-    }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
 
     /* =========================================================
        06. HEADER / NAVIGATION
@@ -1626,22 +1621,32 @@
         font-size: 3rem;
       }
     }
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.001ms !important;
-      }
+  .reveal,
+  .card,
+  .btn,
+  .modal-card,
+  .ai-chat-panel,
+  .ai-typing i,
+  .ai-chat-launcher,
+  .founder-card::before {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 
-      .marquee-track {
-        animation: none !important;
-        transform: none !important;
-      }
-    }
+  .marquee-track {
+    animation: afMarquee 34s linear infinite !important;
+    transform: translate3d(0, 0, 0);
+  }
+}
   </style>
 </head>
 
@@ -1711,7 +1716,7 @@
           <span class="logo">AF</span>
           <span>
             <b class="brand-title">AcademeForge</b>
-            <small class="brand-sub">Learning Beyond The Classroom</small>
+            <small class="brand-sub">Learning Beyond Classroom</small>
           </span>
         </a>
 
