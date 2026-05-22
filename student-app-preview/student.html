@@ -23724,7 +23724,35 @@ html.dark .af-name-only-cancel,
         <p>Access your course dashboard.</p>
       </div>
     </button>
+    
+<button class="action-card glass student-profile-card" type="button" onclick="openStudentDashboardCardAf(event)">
+  <div class="icon student-profile-card-icon">👤</div>
+  <div>
+    <h3 id="studentDashboardCardNameAf">Hi, Student</h3>
+    <p id="studentDashboardCardSubAf">Login to view profile</p>
+  </div>
+</button>
   
+  </div>
+
+  <!-- EXPLORE + TEAM -->
+<div class="actions home-extra-actions">
+  <button class="action-card glass wide" onclick="showSection('explore'); loadAFTestPageV1();">
+    <div class="icon">✨</div>
+    <div>
+      <h3>AF Test Arena</h3>
+      <p>Attempt quizzes and see your ranking.</p>
+    </div>
+  </button>
+</div>
+
+    <button class="action-card glass wide" onclick="showSection('management')">
+      <div class="icon">🔥</div>
+      <div>
+        <h3>About Us</h3>
+        <p>Know the story behind AcademeForge.</p>
+      </div>
+    </button>
   </div>
      
 <div class="developer-credit-line">
@@ -25022,13 +25050,30 @@ html.dark .af-name-only-cancel,
     </div>
 
     <a
-      href="https://academeforge.in/student-app-preview/official/"
+      href="https://academeforge.github.io/SUPER/official/"
       class="settings-beta-card"
       aria-label="Open AcademeForge official website"
     >
       <span>Official Website ✨</span>
       <span class="settings-arrow" aria-hidden="true">›</span>
     </a>
+
+    <div class="settings-list">
+      <div class="settings-row settings-row-static">
+        <div class="settings-row-left">
+          <span class="settings-row-icon" aria-hidden="true">🌙</span>
+          <span>Night Mode</span>
+        </div>
+
+        <label class="settings-switch" for="settingsDarkToggle" aria-label="Toggle dark mode">
+          <input
+            id="settingsDarkToggle"
+            type="checkbox"
+            onchange="toggleSettingsDarkMode(this.checked)"
+          />
+          <span class="settings-slider" aria-hidden="true"></span>
+        </label>
+      </div>
 
       <button
         type="button"
