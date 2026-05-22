@@ -24057,7 +24057,80 @@ body[data-theme="dark"] .settings-app-version-box span,
     opacity: 0.95 !important;
   }
 }
-    
+    /* =========================================================
+   STUDENT LOGIN PAGE — TEXT WHITE HARD FIX
+   Paste at VERY END of CSS
+   Only fixes visible text color. Inputs remain readable.
+========================================================= */
+
+/* Main student card text */
+#studentaf #studentAuthCardaf,
+#studentaf #studentAuthCardaf.student-cardaf {
+  color: #ffffff !important;
+}
+
+/* All normal visible text inside student login/create/forgot card */
+#studentaf #studentAuthCardaf .student-titleaf,
+#studentaf #studentAuthCardaf .student-subtitleaf,
+#studentaf #studentAuthCardaf .student-labelaf,
+#studentaf #studentAuthCardaf .student-helpaf,
+#studentaf #studentAuthCardaf .student-noteaf,
+#studentaf #studentAuthCardaf .student-messageaf,
+#studentaf #studentAuthCardaf h1,
+#studentaf #studentAuthCardaf h2,
+#studentaf #studentAuthCardaf h3,
+#studentaf #studentAuthCardaf h4,
+#studentaf #studentAuthCardaf h5,
+#studentaf #studentAuthCardaf h6,
+#studentaf #studentAuthCardaf p,
+#studentaf #studentAuthCardaf label,
+#studentaf #studentAuthCardaf span,
+#studentaf #studentAuthCardaf small,
+#studentaf #studentAuthCardaf b,
+#studentaf #studentAuthCardaf strong {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Tabs text white */
+#studentaf #studentAuthCardaf .student-tabsaf,
+#studentaf #studentAuthCardaf .student-tabaf,
+#studentaf #studentAuthCardaf .student-tabaf.active {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Forgot password / link button text white */
+#studentaf #studentAuthCardaf .student-link-btnaf,
+#studentaf #studentAuthCardaf button.student-link-btnaf {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Login / Create / OTP buttons text white */
+#studentaf #studentAuthCardaf .student-main-btnaf,
+#studentaf #studentAuthCardaf .student-main-btnaf *,
+#studentaf #studentAuthCardaf button.student-main-btnaf,
+#studentaf #studentAuthCardaf button.student-main-btnaf.secondary {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Inputs: keep typed text dark because input background is white */
+#studentaf #studentAuthCardaf .student-inputaf,
+#studentaf #studentAuthCardaf input.student-inputaf {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  caret-color: #111827 !important;
+}
+
+/* Input placeholders readable */
+#studentaf #studentAuthCardaf .student-inputaf::placeholder,
+#studentaf #studentAuthCardaf input.student-inputaf::placeholder {
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+  opacity: 0.95 !important;
+}
 </style>
 </head>
 
