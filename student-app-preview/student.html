@@ -23978,98 +23978,13 @@ body[data-theme="dark"] .settings-app-version-box span,
 [data-theme="dark"] .settings-app-version-box span {
   color: var(--af-muted, #94a3b8) !important;
 }
-    /* =========================================================
-   STUDENT LOGIN PAGE — LAPTOP HARD TEXT OVERRIDE ONLY
+  /* =========================================================
+   STUDENT LOGIN PAGE — ONLY TEXT WHITE FIX
+   Background ko touch nahi karega
    Paste at VERY END of CSS
-   Mobile untouched. Laptop/tablet only.
 ========================================================= */
 
-@media screen and (min-width: 768px) {
-  html body #studentaf.section #studentAuthCardaf.student-cardaf,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf * {
-    text-shadow: none !important;
-  }
-
-  html body #studentaf.section #studentAuthCardaf.student-cardaf {
-    color: #ffffff !important;
-  }
-
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-titleaf,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf h1,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf h2,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf h3,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-labelaf,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf label,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf b,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf strong {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-  }
-
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-subtitleaf,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-helpaf,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-noteaf,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-messageaf,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf p,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf small,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf span {
-    color: rgba(255, 255, 255, 0.84) !important;
-    -webkit-text-fill-color: rgba(255, 255, 255, 0.84) !important;
-  }
-
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-tabsaf {
-    color: #ffffff !important;
-  }
-
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-tabaf {
-    color: rgba(255, 255, 255, 0.72) !important;
-    -webkit-text-fill-color: rgba(255, 255, 255, 0.72) !important;
-  }
-
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-tabaf.active {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-  }
-
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-link-btnaf {
-    color: rgba(255, 255, 255, 0.88) !important;
-    -webkit-text-fill-color: rgba(255, 255, 255, 0.88) !important;
-  }
-
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-main-btnaf,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-main-btnaf *,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf button.student-main-btnaf {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-  }
-
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-inputaf,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf input.student-inputaf {
-    color: #111827 !important;
-    -webkit-text-fill-color: #111827 !important;
-    caret-color: #111827 !important;
-  }
-
-  html body #studentaf.section #studentAuthCardaf.student-cardaf .student-inputaf::placeholder,
-  html body #studentaf.section #studentAuthCardaf.student-cardaf input.student-inputaf::placeholder {
-    color: #374151 !important;
-    -webkit-text-fill-color: #374151 !important;
-    opacity: 0.95 !important;
-  }
-}
-    /* =========================================================
-   STUDENT LOGIN PAGE — TEXT WHITE HARD FIX
-   Paste at VERY END of CSS
-   Only fixes visible text color. Inputs remain readable.
-========================================================= */
-
-/* Main student card text */
-#studentaf #studentAuthCardaf,
-#studentaf #studentAuthCardaf.student-cardaf {
-  color: #ffffff !important;
-}
-
-/* All normal visible text inside student login/create/forgot card */
+/* Card ke normal texts white */
 #studentaf #studentAuthCardaf .student-titleaf,
 #studentaf #studentAuthCardaf .student-subtitleaf,
 #studentaf #studentAuthCardaf .student-labelaf,
@@ -24084,23 +23999,20 @@ body[data-theme="dark"] .settings-app-version-box span,
 #studentaf #studentAuthCardaf h6,
 #studentaf #studentAuthCardaf p,
 #studentaf #studentAuthCardaf label,
-#studentaf #studentAuthCardaf span,
-#studentaf #studentAuthCardaf small,
 #studentaf #studentAuthCardaf b,
 #studentaf #studentAuthCardaf strong {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
 
-/* Tabs text white */
-#studentaf #studentAuthCardaf .student-tabsaf,
+/* Tabs ke button text white */
 #studentaf #studentAuthCardaf .student-tabaf,
 #studentaf #studentAuthCardaf .student-tabaf.active {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
 
-/* Forgot password / link button text white */
+/* Forgot Password / Back to Login text white */
 #studentaf #studentAuthCardaf .student-link-btnaf,
 #studentaf #studentAuthCardaf button.student-link-btnaf {
   color: #ffffff !important;
@@ -24116,7 +24028,7 @@ body[data-theme="dark"] .settings-app-version-box span,
   -webkit-text-fill-color: #ffffff !important;
 }
 
-/* Inputs: keep typed text dark because input background is white */
+/* Inputs ko dark hi rakho because input background white hai */
 #studentaf #studentAuthCardaf .student-inputaf,
 #studentaf #studentAuthCardaf input.student-inputaf {
   color: #111827 !important;
@@ -24124,7 +24036,7 @@ body[data-theme="dark"] .settings-app-version-box span,
   caret-color: #111827 !important;
 }
 
-/* Input placeholders readable */
+/* Input placeholder bhi readable dark */
 #studentaf #studentAuthCardaf .student-inputaf::placeholder,
 #studentaf #studentAuthCardaf input.student-inputaf::placeholder {
   color: #374151 !important;
