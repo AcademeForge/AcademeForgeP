@@ -24057,71 +24057,7 @@ body[data-theme="dark"] .settings-app-version-box span,
     opacity: 0.95 !important;
   }
 }
-    /* =========================================================
-   STUDENT PAGE BACKGROUND LAYER FIX
-   Fixes white outer background behind dark student login card
-   Paste at VERY END of CSS
-========================================================= */
-
-/* When student section is visible, make the app shell dark too */
-body:has(#studentaf.section.active),
-body:has(#studentaf.active) {
-  background: #08111f !important;
-}
-
-/* Main app wrapper should not show white/light background around student page */
-body:has(#studentaf.section.active) .app,
-body:has(#studentaf.active) .app {
-  background: #08111f !important;
-}
-
-/* Student section full dark surface */
-#studentaf.section,
-#studentaf {
-  background: #08111f !important;
-}
-
-/* Remove white/light panel effect around the auth card */
-#studentaf .student-wrapaf {
-  background: #08111f !important;
-}
-
-/* Make student auth card blend with page background */
-#studentaf #studentAuthCardaf.student-cardaf {
-  background:
-    radial-gradient(circle at 92% 6%, rgba(20, 184, 166, 0.12), transparent 28%),
-    radial-gradient(circle at 18% 14%, rgba(37, 99, 235, 0.10), transparent 26%),
-    #0b1222 !important;
-  border: 1px solid rgba(148, 163, 184, 0.16) !important;
-  box-shadow: none !important;
-}
-
-/* Topbar should visually match student page */
-body:has(#studentaf.section.active) .topbar,
-body:has(#studentaf.active) .topbar {
-  background: #111827 !important;
-  border-bottom-color: rgba(148, 163, 184, 0.18) !important;
-}
-
-/* Bottom nav should match dark student page */
-body:has(#studentaf.section.active) .bottom-nav,
-body:has(#studentaf.active) .bottom-nav {
-  background: rgba(15, 23, 42, 0.94) !important;
-  border-color: rgba(148, 163, 184, 0.20) !important;
-}
-
-/* Desktop/laptop also keep same mobile-app dark shell */
-@media (min-width: 768px) {
-  body:has(#studentaf.section.active),
-  body:has(#studentaf.active),
-  body:has(#studentaf.section.active) .app,
-  body:has(#studentaf.active) .app,
-  #studentaf.section,
-  #studentaf,
-  #studentaf .student-wrapaf {
-    background: #08111f !important;
-  }
-}
+    
 </style>
 </head>
 
