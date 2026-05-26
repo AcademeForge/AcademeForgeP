@@ -1637,7 +1637,7 @@
     "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/get-af-team-members";
 
   /* =========================================================
-     STATE
+     GLOBAL STATE
   ========================================================== */
 
   let afMembers = [];
@@ -1659,27 +1659,33 @@
     document.getElementById("searchInput");
 
   /* =========================================================
+     SAFE ELEMENT CHECK
+  ========================================================== */
+
+  function safeElement(id) {
+    return document.getElementById(id);
+  }
+
+  /* =========================================================
      MOBILE MENU
   ========================================================== */
 
   const mobileMenu =
-    document.getElementById("mobileMenu");
+    safeElement("mobileMenu");
 
-  document
-    .getElementById("openMenu")
+  safeElement("openMenu")
     ?.addEventListener(
       "click",
       () => {
-        mobileMenu.classList.add("open");
+        mobileMenu?.classList.add("open");
       }
     );
 
-  document
-    .getElementById("closeMenu")
+  safeElement("closeMenu")
     ?.addEventListener(
       "click",
       () => {
-        mobileMenu.classList.remove("open");
+        mobileMenu?.classList.remove("open");
       }
     );
 
@@ -1688,7 +1694,7 @@
   ========================================================== */
 
   const themeToggle =
-    document.getElementById("themeToggle");
+    safeElement("themeToggle");
 
   const savedTheme =
     localStorage.getItem("af-theme");
@@ -1759,18 +1765,23 @@
 
     } catch {
 
-      return dateString;
+      return "Present";
     }
+  }
+
+  function normalizeStatus(status) {
+
+    return String(status || "active")
+      .trim()
+      .toLowerCase();
   }
 
   function getStatusClass(status) {
 
-    const safeStatus =
-      String(status || "")
-        .trim()
-        .toLowerCase();
+    const normalized =
+      normalizeStatus(status);
 
-    switch (safeStatus) {
+    switch (normalized) {
 
       case "active":
         return "status-active";
@@ -1789,26 +1800,107 @@
   function avatarTemplate(member) {
 
     const avatar =
-      member.avatar_url ||
-      member.avatar ||
-      "";
+      member.avatar_url || "";
 
-    if (avatar) {
+    if (
+      avatar &&
+      avatar.startsWith("http")
+    ) {
 
       return `
         <img
           src="${escapeHtml(avatar)}"
           alt="${escapeHtml(member.full_name)}"
           loading="lazy"
+          onerror="this.remove()"
         />
       `;
     }
 
     return escapeHtml(
-      String(member.full_name || "A")
+      String(
+        member.full_name || "A"
+      )
         .charAt(0)
         .toUpperCase()
     );
+  }
+
+  /* =========================================================
+     NORMALIZE MEMBER
+  ========================================================== */
+
+  function normalizeMember(member) {
+
+    return {
+
+      id:
+        member.id || "",
+
+      member_id:
+        member.member_id || "",
+
+      full_name:
+        member.full_name ||
+        member.name ||
+        "Unknown Member",
+
+      username:
+        member.username || "",
+
+      email:
+        member.email || "",
+
+      mobile:
+        member.mobile ||
+        member.phone ||
+        "",
+
+      avatar_url:
+        member.avatar_url ||
+        member.avatar ||
+        member.profile_image ||
+        "",
+
+      role_title:
+        member.role_title ||
+        member.current_role ||
+        member.role ||
+        "AcademeForge Member",
+
+      department:
+        member.department ||
+        member.team ||
+        "",
+
+      bio:
+        member.bio ||
+        member.description ||
+        "Verified AcademeForge workforce member.",
+
+      status:
+        normalizeStatus(
+          member.status ||
+          member.work_status
+        ),
+
+      joined_at:
+        member.joined_at ||
+        member.joined_date ||
+        member.created_at ||
+        null,
+
+      ended_at:
+        member.ended_at ||
+        member.end_date ||
+        null,
+
+      is_verified:
+        member.is_verified !== false,
+
+      location:
+        member.location || ""
+    };
   }
 
   /* =========================================================
@@ -1816,37 +1908,6 @@
   ========================================================== */
 
   function memberCard(member) {
-
-    const role =
-      member.role_title ||
-      member.current_role ||
-      member.role ||
-      "AcademeForge Team Member";
-
-    const department =
-      member.department ||
-      member.team ||
-      "";
-
-    const status =
-      member.status ||
-      member.work_status ||
-      "active";
-
-    const bio =
-      member.bio ||
-      member.description ||
-      "Verified AcademeForge workforce member.";
-
-    const joinedDate =
-      member.joined_at ||
-      member.joined_date ||
-      member.created_at;
-
-    const endedDate =
-      member.ended_at ||
-      member.end_date ||
-      "";
 
     return `
 
@@ -1866,37 +1927,43 @@
 
               <div class="member-name">
 
-                ${escapeHtml(member.full_name || "Unknown")}
+                ${escapeHtml(member.full_name)}
 
               </div>
 
-              <div class="verified">
-                ✓
-              </div>
+              ${
+                member.is_verified
+                  ? `
+                    <div class="verified">
+                      ✓
+                    </div>
+                  `
+                  : ""
+              }
 
             </div>
 
             <div class="member-role">
 
-              ${escapeHtml(role)}
+              ${escapeHtml(member.role_title)}
 
             </div>
 
             <div class="chips">
 
               ${
-                department
+                member.department
                   ? `
                     <div class="chip department-chip">
-                      ${escapeHtml(department)}
+                      ${escapeHtml(member.department)}
                     </div>
                   `
                   : ""
               }
 
-              <div class="chip ${getStatusClass(status)}">
+              <div class="chip ${getStatusClass(member.status)}">
 
-                ${escapeHtml(status)}
+                ${escapeHtml(member.status)}
 
               </div>
 
@@ -1908,7 +1975,7 @@
 
         <div class="member-bio">
 
-          ${escapeHtml(bio)}
+          ${escapeHtml(member.bio)}
 
         </div>
 
@@ -1917,15 +1984,15 @@
           <div class="member-duration">
 
             Joined:
-            ${formatDate(joinedDate)}
+            ${formatDate(member.joined_at)}
 
             <br />
 
             ${
-              endedDate
+              member.ended_at
                 ? `
                   Ended:
-                  ${formatDate(endedDate)}
+                  ${formatDate(member.ended_at)}
                 `
                 : `
                   Currently Active
@@ -1953,16 +2020,24 @@
 
   function renderMembers(members) {
 
+    if (!membersGrid) {
+      return;
+    }
+
     membersGrid.innerHTML = "";
 
-    if (!members.length) {
+    if (!Array.isArray(members) || !members.length) {
 
-      emptyEl.style.display = "block";
+      if (emptyEl) {
+        emptyEl.style.display = "block";
+      }
 
       return;
     }
 
-    emptyEl.style.display = "none";
+    if (emptyEl) {
+      emptyEl.style.display = "none";
+    }
 
     membersGrid.innerHTML =
       members
@@ -1977,7 +2052,9 @@
   function filterMembers() {
 
     const query =
-      String(searchInput.value || "")
+      String(
+        searchInput?.value || ""
+      )
         .trim()
         .toLowerCase();
 
@@ -1993,23 +2070,19 @@
 
         return (
 
-          String(member.full_name || "")
+          String(member.full_name)
             .toLowerCase()
             .includes(query)
 
           ||
 
-          String(
-            member.role_title ||
-            member.current_role ||
-            ""
-          )
+          String(member.role_title)
             .toLowerCase()
             .includes(query)
 
           ||
 
-          String(member.department || "")
+          String(member.department)
             .toLowerCase()
             .includes(query)
         );
@@ -2026,7 +2099,17 @@
 
     try {
 
-      loadingEl.style.display = "flex";
+      if (loadingEl) {
+        loadingEl.style.display = "flex";
+      }
+
+      if (membersGrid) {
+        membersGrid.innerHTML = "";
+      }
+
+      console.log(
+        "Fetching AF workforce registry..."
+      );
 
       const response =
         await fetch(AF_API, {
@@ -2049,47 +2132,39 @@
         await response.json();
 
       console.log(
-        "AF Registry API Response:",
+        "Raw API Response:",
         data
       );
 
-      afMembers =
+      const rawMembers =
         Array.isArray(data.members)
           ? data.members
-          : Array.isArray(data.data)
-            ? data.data
-            : Array.isArray(data)
-              ? data
-              : [];
+          : [];
 
-      document.getElementById(
-        "totalMembers"
-      ).textContent =
+      afMembers =
+        rawMembers.map(normalizeMember);
+
+      console.log(
+        "Normalized Members:",
+        afMembers
+      );
+
+      safeElement("totalMembers").textContent =
         String(afMembers.length);
 
-      document.getElementById(
-        "activeMembers"
-      ).textContent =
+      safeElement("activeMembers").textContent =
         String(
           afMembers.filter(
-            (m) =>
-              (
-                m.status ||
-                m.work_status
-              ) === "active"
+            (member) =>
+              member.status === "active"
           ).length
         );
 
-      document.getElementById(
-        "alumniMembers"
-      ).textContent =
+      safeElement("alumniMembers").textContent =
         String(
           afMembers.filter(
-            (m) =>
-              (
-                m.status ||
-                m.work_status
-              ) === "alumni"
+            (member) =>
+              member.status === "alumni"
           ).length
         );
 
@@ -2098,34 +2173,39 @@
     } catch (error) {
 
       console.error(
-        "Registry fetch failed:",
+        "AF Registry Fetch Failed:",
         error
       );
 
-      membersGrid.innerHTML = `
+      if (membersGrid) {
 
-        <div class="empty glass">
+        membersGrid.innerHTML = `
 
-          <h3>
-            Failed To Load Registry
-          </h3>
+          <div class="empty glass">
 
-          <p>
+            <h3>
+              Failed To Load Registry
+            </h3>
 
-            ${
-              error instanceof Error
-                ? escapeHtml(error.message)
-                : "Unexpected error occurred."
-            }
+            <p>
 
-          </p>
+              ${
+                error instanceof Error
+                  ? escapeHtml(error.message)
+                  : "Unexpected error occurred."
+              }
 
-        </div>
-      `;
+            </p>
+
+          </div>
+        `;
+      }
 
     } finally {
 
-      loadingEl.style.display = "none";
+      if (loadingEl) {
+        loadingEl.style.display = "none";
+      }
     }
   }
 
@@ -2142,7 +2222,12 @@
      INIT
   ========================================================== */
 
-  loadMembers();
+  window.addEventListener(
+    "DOMContentLoaded",
+    () => {
+      loadMembers();
+    }
+  );
 
 </script>
 </body>
