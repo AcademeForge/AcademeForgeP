@@ -557,6 +557,9 @@ MEMBERS
 .members-section{
   padding:20px 0 100px;
 }
+/* =========================================================
+MODERN PREMIUM MEMBER CARDS
+========================================================= */
 
 .members-grid{
 
@@ -568,7 +571,9 @@ MEMBERS
       minmax(320px,1fr)
     );
 
-  gap:24px;
+  gap:28px;
+
+  align-items:stretch;
 }
 
 .member-card{
@@ -576,9 +581,9 @@ MEMBERS
   position:relative;
 
   width:100%;
-  height:460px;
+  height:520px;
 
-  perspective:2000px;
+  perspective:2400px;
 }
 
 .member-inner{
@@ -591,7 +596,7 @@ MEMBERS
   transform-style:preserve-3d;
 
   transition:
-    transform .8s cubic-bezier(.2,.8,.2,1);
+    transform .9s cubic-bezier(.22,.61,.36,1);
 }
 
 .member-card.flipped .member-inner{
@@ -603,55 +608,154 @@ MEMBERS
   position:absolute;
   inset:0;
 
-  border-radius:30px;
+  overflow:hidden;
 
-  padding:22px;
+  border-radius:34px;
+
+  padding:24px;
 
   display:flex;
   flex-direction:column;
 
-  overflow:hidden;
-
   backface-visibility:hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8,15,35,.92),
+      rgba(3,8,24,.98)
+    );
+
+  border:
+    1px solid rgba(255,255,255,.06);
+
+  box-shadow:
+    0 20px 80px rgba(0,0,0,.45);
 }
+
+/* =========================================================
+ANIMATED BORDER
+========================================================= */
+
+.member-face::before{
+
+  content:"";
+
+  position:absolute;
+  inset:-2px;
+
+  border-radius:36px;
+
+  padding:1px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(249,115,22,.7),
+      rgba(59,130,246,.6),
+      rgba(168,85,247,.7)
+    );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite:xor;
+
+  opacity:.45;
+
+  pointer-events:none;
+}
+
+/* =========================================================
+BACKGROUND GLOW
+========================================================= */
+
+.member-face::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:220px;
+  height:220px;
+
+  top:-100px;
+  right:-80px;
+
+  border-radius:999px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(249,115,22,.18),
+      transparent 70%
+    );
+
+  pointer-events:none;
+}
+
+/* =========================================================
+BACK CARD
+========================================================= */
 
 .member-back{
+
   transform:rotateY(180deg);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(12,20,42,.96),
+      rgba(5,10,25,.98)
+    );
 }
+
+/* =========================================================
+TOP
+========================================================= */
 
 .member-top{
 
   display:flex;
   align-items:flex-start;
+
   gap:16px;
+
+  position:relative;
+
+  z-index:2;
 }
 
 .member-avatar{
 
-  width:82px;
-  height:82px;
+  width:88px;
+  height:88px;
 
-  border-radius:24px;
+  border-radius:28px;
 
   overflow:hidden;
 
   flex-shrink:0;
 
-  background:
-    linear-gradient(
-      135deg,
-      #7c3aed,
-      #06b6d4
-    );
-
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-size:32px;
-  font-weight:1000;
+  background:
+    linear-gradient(
+      135deg,
+      #ec4899,
+      #7c3aed
+    );
 
   color:white;
+
+  font-size:40px;
+  font-weight:1000;
+
+  box-shadow:
+    0 12px 34px rgba(236,72,153,.35);
 }
 
 .member-avatar img{
@@ -669,8 +773,8 @@ MEMBERS
   top:18px;
   right:18px;
 
-  width:40px;
-  height:40px;
+  width:52px;
+  height:52px;
 
   border-radius:999px;
 
@@ -678,45 +782,80 @@ MEMBERS
   align-items:center;
   justify-content:center;
 
+  font-size:18px;
+  font-weight:1000;
+
   color:white;
 
-  font-size:15px;
-  font-weight:1000;
+  backdrop-filter:blur(14px);
 }
 
 .member-status.active{
-  background:linear-gradient(135deg,#22c55e,#16a34a);
+
+  background:
+    linear-gradient(
+      135deg,
+      #22c55e,
+      #16a34a
+    );
+
+  box-shadow:
+    0 10px 30px rgba(34,197,94,.35);
 }
 
 .member-status.alumni{
-  background:linear-gradient(135deg,#64748b,#475569);
+
+  background:
+    linear-gradient(
+      135deg,
+      #64748b,
+      #475569
+    );
 }
 
 .member-status.on_leave{
-  background:linear-gradient(135deg,#f59e0b,#d97706);
+
+  background:
+    linear-gradient(
+      135deg,
+      #f59e0b,
+      #d97706
+    );
 }
 
 .member-status.inactive{
-  background:linear-gradient(135deg,#ef4444,#dc2626);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ef4444,
+      #dc2626
+    );
 }
+
+/* =========================================================
+TEXT
+========================================================= */
 
 .member-name{
 
-  color:var(--heading);
+  color:white;
 
-  font-size:1.35rem;
+  font-size:2rem;
   font-weight:1000;
 
-  line-height:1.1;
+  line-height:1;
+
+  letter-spacing:-.05em;
 }
 
 .member-role{
 
-  margin-top:8px;
+  margin-top:10px;
 
-  color:var(--muted);
+  color:#cbd5e1;
 
-  font-size:.92rem;
+  font-size:1.02rem;
   font-weight:800;
 
   line-height:1.5;
@@ -724,63 +863,84 @@ MEMBERS
 
 .member-id{
 
-  margin-top:8px;
+  margin-top:12px;
 
-  color:var(--orange);
+  color:#fb923c;
 
-  font-size:10px;
+  font-size:12px;
   font-weight:1000;
 
-  letter-spacing:.18em;
+  letter-spacing:.22em;
 }
+
+/* =========================================================
+CHIPS
+========================================================= */
 
 .chips{
 
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
+  gap:10px;
 
-  margin-top:14px;
+  margin-top:18px;
 }
 
 .chip{
 
-  height:32px;
+  height:38px;
 
   padding:
-    0 14px;
+    0 18px;
 
   border-radius:999px;
 
   display:flex;
   align-items:center;
+  justify-content:center;
 
-  font-size:10px;
+  font-size:11px;
   font-weight:900;
 
-  letter-spacing:.12em;
+  letter-spacing:.14em;
   text-transform:uppercase;
 }
 
 .department-chip{
-  background:rgba(99,102,241,.14);
-  color:#6366f1;
+
+  background:
+    rgba(99,102,241,.16);
+
+  color:#818cf8;
+
+  border:
+    1px solid rgba(129,140,248,.16);
 }
 
 .status-chip{
-  background:rgba(34,197,94,.14);
+
+  background:
+    rgba(34,197,94,.14);
+
   color:#22c55e;
+
+  border:
+    1px solid rgba(34,197,94,.16);
 }
+
+/* =========================================================
+BIO
+========================================================= */
 
 .member-bio{
 
-  margin-top:18px;
+  margin-top:26px;
 
-  color:var(--muted);
+  color:#94a3b8;
 
-  font-size:14px;
+  font-size:15px;
 
-  line-height:1.75;
+  line-height:1.95;
 
   flex:1;
 
@@ -788,9 +948,13 @@ MEMBERS
 
   display:-webkit-box;
 
-  -webkit-line-clamp:5;
+  -webkit-line-clamp:4;
   -webkit-box-orient:vertical;
 }
+
+/* =========================================================
+BOTTOM
+========================================================= */
 
 .member-bottom{
 
@@ -798,16 +962,16 @@ MEMBERS
   align-items:flex-end;
   justify-content:space-between;
 
-  gap:14px;
+  gap:16px;
 
-  margin-top:18px;
+  margin-top:24px;
 }
 
 .member-duration{
 
-  color:var(--muted);
+  color:#94a3b8;
 
-  font-size:12px;
+  font-size:13px;
   font-weight:800;
 
   line-height:1.8;
@@ -815,12 +979,14 @@ MEMBERS
 
 .verify-btn{
 
-  height:46px;
+  height:54px;
 
   padding:
-    0 18px;
+    0 22px;
 
-  border-radius:14px;
+  border-radius:18px;
+
+  border:none;
 
   background:
     linear-gradient(
@@ -831,88 +997,237 @@ MEMBERS
 
   color:white;
 
-  font-size:12px;
-  font-weight:900;
+  font-size:14px;
+  font-weight:1000;
+
+  box-shadow:
+    0 14px 36px rgba(34,197,94,.28);
 }
+
+/* =========================================================
+FLIP BUTTON
+========================================================= */
 
 .flip-btn{
 
-  margin-top:18px;
+  margin-top:24px;
 
   width:100%;
+  height:58px;
 
-  height:48px;
+  border:none;
 
-  border-radius:16px;
+  border-radius:20px;
 
   background:
     linear-gradient(
       135deg,
-      var(--orange),
+      #f97316,
       #fb923c
     );
 
   color:white;
 
-  font-size:13px;
-  font-weight:900;
+  font-size:15px;
+  font-weight:1000;
+
+  letter-spacing:.02em;
+
+  transition:.25s ease;
+
+  box-shadow:
+    0 18px 50px rgba(249,115,22,.35);
 }
+
+.flip-btn:hover{
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 24px 60px rgba(249,115,22,.42);
+}
+
+/* =========================================================
+LINKS
+========================================================= */
 
 .member-links{
 
   display:flex;
   flex-direction:column;
-  gap:12px;
 
-  margin-top:18px;
+  gap:14px;
+
+  margin-top:26px;
 }
 
 .member-link{
 
-  min-height:54px;
+  min-height:60px;
 
   padding:
-    0 16px;
+    0 18px;
 
-  border-radius:16px;
+  border-radius:18px;
 
   background:
-    rgba(255,255,255,.05);
+    rgba(255,255,255,.04);
 
-  border:1px solid var(--line);
+  border:
+    1px solid rgba(255,255,255,.06);
 
   display:flex;
   align-items:center;
   justify-content:space-between;
 
-  color:var(--heading);
+  color:white;
 
   font-size:14px;
-  font-weight:800;
+  font-weight:900;
 
-  transition:.2s ease;
+  transition:.24s ease;
 }
 
 .member-link:hover{
 
-  transform:translateX(4px);
+  transform:
+    translateX(6px);
+
+  background:
+    rgba(249,115,22,.1);
 
   border-color:
-    rgba(249,115,22,.5);
+    rgba(249,115,22,.3);
 }
+
+/* =========================================================
+BACK INFO
+========================================================= */
 
 .back-info{
 
   margin-top:auto;
 
-  color:var(--muted);
+  color:#94a3b8;
 
-  font-size:13px;
+  font-size:14px;
   font-weight:700;
 
-  line-height:1.8;
+  line-height:1.9;
 }
 
+/* =========================================================
+LIGHT MODE
+========================================================= */
+
+html[data-theme="light"] .member-face{
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.96),
+      rgba(245,247,255,.94)
+    );
+}
+
+html[data-theme="light"] .member-name{
+  color:#020617;
+}
+
+html[data-theme="light"] .member-role{
+  color:#475569;
+}
+
+html[data-theme="light"] .member-bio{
+  color:#475569;
+}
+
+html[data-theme="light"] .member-duration{
+  color:#64748b;
+}
+
+html[data-theme="light"] .member-link{
+  color:#020617;
+  background:rgba(15,23,42,.03);
+}
+
+html[data-theme="light"] .back-info{
+  color:#475569;
+}
+
+/* =========================================================
+TABLET
+========================================================= */
+
+@media (max-width:1024px){
+
+  .members-grid{
+
+    grid-template-columns:
+      repeat(
+        auto-fit,
+        minmax(300px,1fr)
+      );
+  }
+
+  .member-card{
+    height:500px;
+  }
+}
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media (max-width:768px){
+
+  .members-grid{
+    grid-template-columns:1fr;
+  }
+
+  .member-card{
+    height:540px;
+  }
+
+  .member-face{
+    padding:20px;
+  }
+
+  .member-top{
+    flex-direction:column;
+  }
+
+  .member-avatar{
+
+    width:74px;
+    height:74px;
+
+    font-size:32px;
+  }
+
+  .member-name{
+    font-size:1.55rem;
+  }
+
+  .member-role{
+    font-size:.95rem;
+  }
+
+  .member-bottom{
+
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .verify-btn{
+    width:100%;
+  }
+
+  .flip-btn{
+    height:54px;
+  }
+}
 /* =========================================================
 LOADING
 ========================================================= */
