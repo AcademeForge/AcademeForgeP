@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  />
+
+  <title>AcademeForge Workforce Registry</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Inter", sans-serif;
+
+      background:
+        radial-gradient(circle at top left, rgba(99, 102, 241, 0.16), transparent 26%),
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.12), transparent 24%),
+        linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%);
+
+      color: #0f172a;
+
+      overflow-x: hidden;
+    }
+
+    button,
+    input,
+    select {
+      font-family: inherit;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.72);
+
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+
+      border: 1px solid rgba(255, 255, 255, 0.6);
+
+      box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    /* =========================================================
+       PAGE
+    ========================================================= */
+
+    .af-workforce-page {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 18px 16px 120px;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .af-workforce-hero {
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 34px;
+
+      padding: 22px;
+
+      margin-bottom: 22px;
+    }
+
+    .af-workforce-hero::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        radial-gradient(circle at top left, rgba(99, 102, 241, 0.22), transparent 36%),
+        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.16), transparent 28%);
+
+      pointer-events: none;
+    }
+
+    .af-workforce-top {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 18px;
+    }
+
+    .af-back-btn {
+      border: none;
+
+      height: 42px;
+      padding: 0 18px;
+
+      border-radius: 999px;
+
+      background: rgba(255, 255, 255, 0.82);
+
+      font-size: 14px;
+      font-weight: 800;
+
+      color: #334155;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 8px 20px rgba(15, 23, 42, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+      transition:
+        transform 160ms ease,
+        box-shadow 160ms ease;
+    }
+
+    .af-back-btn:hover {
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 12px 24px rgba(15, 23, 42, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .af-registry-badge {
+      height: 40px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 16px;
+
+      border-radius: 999px;
+
+      background:
+        linear-gradient(135deg, #2563eb, #4f46e5);
+
+      color: white;
+
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .af-workforce-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .af-workforce-content h1 {
+      font-size: 34px;
+      line-height: 1.04;
+      letter-spacing: -0.06em;
+
+      font-weight: 900;
+
+      margin-bottom: 14px;
+    }
+
+    .af-workforce-content p {
+      color: #475569;
+
+      line-height: 1.6;
+
+      font-size: 14px;
+      font-weight: 500;
+
+      margin-bottom: 22px;
+    }
+
+    /* =========================================================
+       STATS
+    ========================================================= */
+
+    .af-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .af-stat-card {
+      border-radius: 24px;
+
+      padding: 18px 14px;
+
+      background: rgba(255, 255, 255, 0.75);
+
+      text-align: center;
+    }
+
+    .af-stat-card strong {
+      display: block;
+
+      font-size: 26px;
+      font-weight: 900;
+
+      margin-bottom: 6px;
+    }
+
+    .af-stat-card span {
+      color: #64748b;
+
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* =========================================================
+       SEARCH
+    ========================================================= */
+
+    .af-search-wrap {
+      margin-bottom: 20px;
+    }
+
+    .af-search-box {
+      border-radius: 24px;
+
+      padding: 14px 18px;
+    }
+
+    .af-search-box input {
+      width: 100%;
+
+      border: none;
+      outline: none;
+      background: transparent;
+
+      color: #0f172a;
+
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .af-search-box input::placeholder {
+      color: #94a3b8;
+    }
+
+    /* =========================================================
+       GRID
+    ========================================================= */
+
+    .af-members-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    /* =========================================================
+       CARD
+    ========================================================= */
+
+    .af-member-card {
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 30px;
+
+      padding: 20px;
+
+      transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .af-member-card:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 18px 34px rgba(15, 23, 42, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .af-member-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+
+      margin-bottom: 18px;
+    }
+
+    .af-member-avatar {
+      width: 72px;
+      height: 72px;
+
+      border-radius: 24px;
+
+      overflow: hidden;
+
+      flex-shrink: 0;
+
+      background:
+        linear-gradient(135deg, #2563eb, #4f46e5);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: white;
+
+      font-size: 26px;
+      font-weight: 900;
+    }
+
+    .af-member-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .af-member-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .af-member-name-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      margin-bottom: 6px;
+    }
+
+    .af-member-name {
+      font-size: 22px;
+      line-height: 1.1;
+
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .af-verified {
+      width: 22px;
+      height: 22px;
+
+      border-radius: 999px;
+
+      background:
+        linear-gradient(135deg, #22c55e, #10b981);
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      color: white;
+
+      font-size: 12px;
+      font-weight: 900;
+
+      box-shadow:
+        0 0 18px rgba(16, 185, 129, 0.36);
+    }
+
+    .af-member-role {
+      color: #334155;
+
+      font-size: 14px;
+      font-weight: 800;
+
+      margin-bottom: 10px;
+    }
+
+    .af-member-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .af-chip {
+      height: 32px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 14px;
+
+      border-radius: 999px;
+
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    .af-chip.department {
+      background: rgba(99, 102, 241, 0.12);
+      color: #4f46e5;
+    }
+
+    .af-chip.active {
+      background: rgba(34, 197, 94, 0.14);
+      color: #15803d;
+    }
+
+    .af-chip.alumni {
+      background: rgba(100, 116, 139, 0.14);
+      color: #475569;
+    }
+
+    .af-chip.on_leave {
+      background: rgba(245, 158, 11, 0.16);
+      color: #b45309;
+    }
+
+    .af-member-bio {
+      color: #475569;
+
+      font-size: 14px;
+      line-height: 1.65;
+
+      margin-bottom: 18px;
+    }
+
+    .af-member-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .af-member-duration {
+      color: #64748b;
+
+      font-size: 12px;
+      font-weight: 800;
+
+      line-height: 1.6;
+    }
+
+    .af-view-btn {
+      border: none;
+
+      height: 42px;
+
+      padding: 0 18px;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(135deg, #2563eb, #4f46e5);
+
+      color: white;
+
+      font-size: 13px;
+      font-weight: 900;
+
+      cursor: pointer;
+
+      transition:
+        transform 160ms ease,
+        box-shadow 160ms ease;
+
+      box-shadow:
+        0 10px 24px rgba(37, 99, 235, 0.22);
+    }
+
+    .af-view-btn:hover {
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 14px 28px rgba(37, 99, 235, 0.3);
+    }
+
+    /* =========================================================
+       LOADING
+    ========================================================= */
+
+    .af-loading {
+      padding: 40px 20px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      gap: 16px;
+    }
+
+    .af-loader {
+      width: 46px;
+      height: 46px;
+
+      border-radius: 999px;
+
+      border: 4px solid rgba(99, 102, 241, 0.14);
+      border-top-color: #4f46e5;
+
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .af-loading p {
+      color: #64748b;
+
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* =========================================================
+       EMPTY
+    ========================================================= */
+
+    .af-empty {
+      border-radius: 30px;
+
+      padding: 44px 24px;
+
+      text-align: center;
+    }
+
+    .af-empty h3 {
+      font-size: 24px;
+      font-weight: 900;
+
+      margin-bottom: 10px;
+    }
+
+    .af-empty p {
+      color: #64748b;
+
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 480px) {
+      .af-workforce-content h1 {
+        font-size: 28px;
+      }
+
+      .af-stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .af-member-top {
+        flex-direction: column;
+      }
+
+      .af-member-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .af-view-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="af-workforce-page">
+
+    <!-- HERO -->
+
+    <div class="af-workforce-hero glass">
+
+      <div class="af-workforce-top">
+
+        <button
+          class="af-back-btn"
+          type="button"
+        >
+          ← Back
+        </button>
+
+        <div class="af-registry-badge">
+          VERIFIED REGISTRY
+        </div>
+
+      </div>
+
+      <div class="af-workforce-content">
+
+        <h1>
+          AcademeForge Workforce Registry
+        </h1>
+
+        <p>
+          Verified contributors, engineers, designers and operational members of the AcademeForge ecosystem.
+        </p>
+
+        <div class="af-stats-grid">
+
+          <div class="af-stat-card glass">
+            <strong id="afTotalMembers">
+              0
+            </strong>
+
+            <span>
+              Total Members
+            </span>
+          </div>
+
+          <div class="af-stat-card glass">
+            <strong id="afActiveMembers">
+              0
+            </strong>
+
+            <span>
+              Active
+            </span>
+          </div>
+
+          <div class="af-stat-card glass">
+            <strong id="afAlumniMembers">
+              0
+            </strong>
+
+            <span>
+              Alumni
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SEARCH -->
+
+    <div class="af-search-wrap">
+
+      <div class="af-search-box glass">
+
+        <input
+          id="afSearchInput"
+          type="text"
+          placeholder="Search members, roles or departments..."
+          autocomplete="off"
+        />
+
+      </div>
+
+    </div>
+
+    <!-- LOADING -->
+
+    <div
+      id="afLoading"
+      class="af-loading"
+    >
+
+      <div class="af-loader"></div>
+
+      <p>
+        Loading workforce registry...
+      </p>
+
+    </div>
+
+    <!-- EMPTY -->
+
+    <div
+      id="afEmpty"
+      class="af-empty glass"
+      style="display:none;"
+    >
+
+      <h3>
+        No Members Found
+      </h3>
+
+      <p>
+        Try adjusting your search query.
+      </p>
+
+    </div>
+
+    <!-- GRID -->
+
+    <div
+      id="afMembersGrid"
+      class="af-members-grid"
+    ></div>
+
+  </div>
+
+  <script>
+    /* =========================================================
+       CONFIG
+    ========================================================= */
+
+    const AF_WORKFORCE_API =
+      "https://YOUR_PROJECT.supabase.co/functions/v1/get-af-team-members";
+
+    /* =========================================================
+       STATE
+    ========================================================= */
+
+    let afAllMembers = [];
+
+    /* =========================================================
+       ELEMENTS
+    ========================================================= */
+
+    const afGrid = document.getElementById("afMembersGrid");
+    const afLoading = document.getElementById("afLoading");
+    const afEmpty = document.getElementById("afEmpty");
+
+    const afSearchInput =
+      document.getElementById("afSearchInput");
+
+    /* =========================================================
+       UTILITIES
+    ========================================================= */
+
+    function afEscapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function afFormatDate(dateString) {
+      if (!dateString) return "Present";
+
+      try {
+        return new Date(dateString).toLocaleDateString(
+          "en-IN",
+          {
+            year: "numeric",
+            month: "short"
+          }
+        );
+      } catch (_error) {
+        return dateString;
+      }
+    }
+
+    function afGetStatusLabel(status) {
+      switch (status) {
+        case "active":
+          return "Active";
+
+        case "alumni":
+          return "Alumni";
+
+        case "on_leave":
+          return "On Leave";
+
+        case "suspended":
+          return "Suspended";
+
+        case "contract_ended":
+          return "Contract Ended";
+
+        default:
+          return "Unknown";
+      }
+    }
+
+    function afGetAvatar(member) {
+      if (member.avatar_url) {
+        return `
+          <img
+            src="${afEscapeHtml(member.avatar_url)}"
+            alt="${afEscapeHtml(member.full_name)}"
+          />
+        `;
+      }
+
+      return afEscapeHtml(
+        member.full_name.charAt(0).toUpperCase()
+      );
+    }
+
+    /* =========================================================
+       CARD
+    ========================================================= */
+
+    function afMemberCard(member) {
+      return `
+        <div class="af-member-card glass">
+
+          <div class="af-member-top">
+
+            <div class="af-member-avatar">
+              ${afGetAvatar(member)}
+            </div>
+
+            <div class="af-member-main">
+
+              <div class="af-member-name-row">
+
+                <div class="af-member-name">
+                  ${afEscapeHtml(member.full_name)}
+                </div>
+
+                ${
+                  member.is_verified
+                    ? `
+                      <div class="af-verified">
+                        ✓
+                      </div>
+                    `
+                    : ""
+                }
+
+              </div>
+
+              <div class="af-member-role">
+                ${afEscapeHtml(member.role_title)}
+              </div>
+
+              <div class="af-member-meta">
+
+                ${
+                  member.department
+                    ? `
+                      <div class="af-chip department">
+                        ${afEscapeHtml(member.department)}
+                      </div>
+                    `
+                    : ""
+                }
+
+                <div class="af-chip ${afEscapeHtml(member.status)}">
+                  ${afEscapeHtml(
+                    afGetStatusLabel(member.status)
+                  )}
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="af-member-bio">
+            ${afEscapeHtml(member.bio || "No bio available.")}
+          </div>
+
+          <div class="af-member-bottom">
+
+            <div class="af-member-duration">
+
+              Joined:
+              ${afFormatDate(member.joined_at)}
+
+              <br />
+
+              ${
+                member.ended_at
+                  ? `
+                    Ended:
+                    ${afFormatDate(member.ended_at)}
+                  `
+                  : `
+                    Currently Active
+                  `
+              }
+
+            </div>
+
+            <button
+              class="af-view-btn"
+              type="button"
+            >
+              View Profile
+            </button>
+
+          </div>
+
+        </div>
+      `;
+    }
+
+    /* =========================================================
+       RENDER
+    ========================================================= */
+
+    function afRenderMembers(members) {
+      afGrid.innerHTML = "";
+
+      if (!Array.isArray(members) || !members.length) {
+        afEmpty.style.display = "block";
+        return;
+      }
+
+      afEmpty.style.display = "none";
+
+      afGrid.innerHTML =
+        members.map(afMemberCard).join("");
+    }
+
+    /* =========================================================
+       FILTER
+    ========================================================= */
+
+    function afFilterMembers() {
+      const query =
+        String(afSearchInput.value || "")
+          .toLowerCase()
+          .trim();
+
+      if (!query) {
+        afRenderMembers(afAllMembers);
+        return;
+      }
+
+      const filtered =
+        afAllMembers.filter((member) => {
+          return (
+            String(member.full_name || "")
+              .toLowerCase()
+              .includes(query)
+
+            ||
+
+            String(member.role_title || "")
+              .toLowerCase()
+              .includes(query)
+
+            ||
+
+            String(member.department || "")
+              .toLowerCase()
+              .includes(query)
+          );
+        });
+
+      afRenderMembers(filtered);
+    }
+
+    /* =========================================================
+       FETCH
+    ========================================================= */
+
+    async function afLoadWorkforceMembers() {
+      try {
+        afLoading.style.display = "flex";
+
+        const response =
+          await fetch(AF_WORKFORCE_API);
+
+        const data =
+          await response.json();
+
+        if (!response.ok || !data.ok) {
+          throw new Error(
+            data.message ||
+            "Failed to fetch workforce members."
+          );
+        }
+
+        afAllMembers =
+          Array.isArray(data.members)
+            ? data.members
+            : [];
+
+        document.getElementById(
+          "afTotalMembers"
+        ).textContent =
+          String(data.total_members || 0);
+
+        document.getElementById(
+          "afActiveMembers"
+        ).textContent =
+          String(data.active_members || 0);
+
+        document.getElementById(
+          "afAlumniMembers"
+        ).textContent =
+          String(data.alumni_members || 0);
+
+        afRenderMembers(afAllMembers);
+      } catch (error) {
+        console.error(
+          "Failed to load workforce registry:",
+          error
+        );
+
+        afGrid.innerHTML = `
+          <div class="af-empty glass">
+            <h3>
+              Failed to Load Registry
+            </h3>
+
+            <p>
+              ${
+                error instanceof Error
+                  ? afEscapeHtml(error.message)
+                  : "Unexpected error occurred."
+              }
+            </p>
+          </div>
+        `;
+      } finally {
+        afLoading.style.display = "none";
+      }
+    }
+
+    /* =========================================================
+       EVENTS
+    ========================================================= */
+
+    afSearchInput.addEventListener(
+      "input",
+      afFilterMembers
+    );
+
+    /* =========================================================
+       INIT
+    ========================================================= */
+
+    afLoadWorkforceMembers();
+  </script>
+
+</body>
+</html>
