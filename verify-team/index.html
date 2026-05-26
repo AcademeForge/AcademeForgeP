@@ -1,13 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
+
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   />
 
-  <title>AcademeForge Workforce Registry</title>
+  <meta
+    name="theme-color"
+    content="#f8fafc"
+  />
+
+  <title>
+    AcademeForge Workforce Registry
+  </title>
+
+  <!-- =========================================================
+       FONTS
+  ========================================================== -->
 
   <link
     rel="preconnect"
@@ -21,488 +33,1125 @@
   />
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@600;700;800&display=swap"
     rel="stylesheet"
   />
 
   <style>
+
+    /* =========================================================
+       ROOT
+    ========================================================== */
+
+    :root {
+
+      --bg: #f8fafc;
+      --bg2: #eef2ff;
+
+      --surface: rgba(255,255,255,.82);
+      --surface2: rgba(255,255,255,.64);
+
+      --text: #0f172a;
+      --heading: #020617;
+      --muted: #475569;
+      --soft: #64748b;
+
+      --line: rgba(15,23,42,.12);
+
+      --brand: #f97316;
+      --gold: #facc15;
+      --cyan: #0891b2;
+
+      --shadow:
+        0 24px 80px rgba(15,23,42,.12);
+
+      --shadow2:
+        0 34px 110px rgba(15,23,42,.18);
+
+      --header:
+        rgba(255,255,255,.82);
+
+      --panel:
+        rgba(255,255,255,.96);
+
+      --safe:
+        env(safe-area-inset-bottom,0px);
+
+      --pad:
+        clamp(14px,3.6vw,76px);
+    }
+
+    html[data-theme="dark"] {
+
+      --bg: #050816;
+      --bg2: #080c18;
+
+      --surface: rgba(15,23,42,.72);
+      --surface2: rgba(255,255,255,.06);
+
+      --text: #e5e7eb;
+      --heading: #f8fafc;
+      --muted: #cbd5e1;
+      --soft: #94a3b8;
+
+      --line: rgba(255,255,255,.12);
+
+      --header:
+        rgba(5,8,22,.82);
+
+      --panel:
+        rgba(5,8,22,.96);
+
+      --shadow:
+        0 24px 90px rgba(0,0,0,.42);
+
+      --shadow2:
+        0 34px 110px rgba(0,0,0,.5);
+    }
+
     /* =========================================================
        RESET
-    ========================================================= */
+    ========================================================== */
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    html {
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
       scroll-behavior: smooth;
     }
 
     body {
-      min-height: 100vh;
-      font-family: "Inter", sans-serif;
+
+      color: var(--text);
+
+      font-family:
+        Inter,
+        system-ui,
+        sans-serif;
 
       background:
-        radial-gradient(circle at top left, rgba(99, 102, 241, 0.16), transparent 26%),
-        radial-gradient(circle at top right, rgba(14, 165, 233, 0.12), transparent 24%),
-        linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%);
+        radial-gradient(
+          circle at 10% -5%,
+          rgba(249,115,22,.14),
+          transparent 34rem
+        ),
 
-      color: #0f172a;
+        radial-gradient(
+          circle at 92% 10%,
+          rgba(8,145,178,.10),
+          transparent 34rem
+        ),
 
-      overflow-x: hidden;
+        linear-gradient(
+          180deg,
+          var(--bg),
+          var(--bg2)
+        );
+    }
+
+    html[data-theme="dark"] body {
+
+      background:
+        radial-gradient(
+          circle at 12% 0,
+          rgba(249,115,22,.22),
+          transparent 35rem
+        ),
+
+        radial-gradient(
+          circle at 85% 12%,
+          rgba(103,232,249,.12),
+          transparent 34rem
+        ),
+
+        #050816;
+    }
+
+    body::before {
+
+      content: "";
+
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+
+      background-image:
+        linear-gradient(
+          rgba(15,23,42,.04) 1px,
+          transparent 1px
+        ),
+
+        linear-gradient(
+          90deg,
+          rgba(15,23,42,.04) 1px,
+          transparent 1px
+        );
+
+      background-size: 64px 64px;
+
+      mask-image:
+        radial-gradient(
+          circle at 50% 8%,
+          black,
+          transparent 78%
+        );
+
+      z-index: 0;
+    }
+
+    html[data-theme="dark"] body::before {
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.03) 1px,
+          transparent 1px
+        ),
+
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.03) 1px,
+          transparent 1px
+        );
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     button,
-    input,
-    select {
-      font-family: inherit;
+    input {
+      font: inherit;
     }
+
+    button {
+      cursor: pointer;
+      border: none;
+    }
+
+    /* =========================================================
+       UTILITIES
+    ========================================================== */
 
     .glass {
-      background: rgba(255, 255, 255, 0.72);
 
-      backdrop-filter: blur(18px) saturate(180%);
-      -webkit-backdrop-filter: blur(18px) saturate(180%);
-
-      border: 1px solid rgba(255, 255, 255, 0.6);
-
-      box-shadow:
-        0 10px 30px rgba(15, 23, 42, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 0.7);
-    }
-
-    /* =========================================================
-       PAGE
-    ========================================================= */
-
-    .af-workforce-page {
-      width: 100%;
-      max-width: 520px;
-      margin: 0 auto;
-      padding: 18px 16px 120px;
-    }
-
-    /* =========================================================
-       HERO
-    ========================================================= */
-
-    .af-workforce-hero {
-      position: relative;
-
-      overflow: hidden;
-
-      border-radius: 34px;
-
-      padding: 22px;
-
-      margin-bottom: 22px;
-    }
-
-    .af-workforce-hero::before {
-      content: "";
-
-      position: absolute;
-      inset: 0;
+      border: 1px solid var(--line);
 
       background:
-        radial-gradient(circle at top left, rgba(99, 102, 241, 0.22), transparent 36%),
-        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.16), transparent 28%);
+        linear-gradient(
+          180deg,
+          var(--surface),
+          var(--surface2)
+        );
 
-      pointer-events: none;
+      backdrop-filter: blur(18px);
+
+      -webkit-backdrop-filter: blur(18px);
+
+      box-shadow: var(--shadow);
     }
 
-    .af-workforce-top {
-      position: relative;
-      z-index: 2;
+    .cw {
+
+      width: 100%;
+
+      padding-inline: var(--pad);
+    }
+
+    .btn {
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+
+      min-height: 48px;
+
+      padding:
+        .9rem
+        1.2rem;
+
+      border-radius: 999px;
+
+      font-weight: 900;
+
+      transition: .24s ease;
+    }
+
+    .btn:hover {
+
+      transform: translateY(-2px);
+
+      box-shadow: var(--shadow2);
+    }
+
+    .primary {
+
+      color: #111827;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--brand),
+          var(--gold)
+        );
+    }
+
+    .secondary {
+
+      color: var(--heading);
+
+      border: 1px solid var(--line);
+
+      background:
+        rgba(255,255,255,.45);
+    }
+
+    html[data-theme="dark"] .secondary {
+
+      background:
+        rgba(255,255,255,.06);
+    }
+
+    .eyebrow {
+
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+
+      padding:
+        .48rem
+        .78rem;
+
+      border-radius: 999px;
+
+      border: 1px solid var(--line);
+
+      background:
+        rgba(255,255,255,.46);
+
+      color: var(--muted);
+
+      font-size: .72rem;
+      font-weight: 900;
+
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+
+      content: "";
+
+      width: .5rem;
+      height: .5rem;
+
+      border-radius: 999px;
+
+      background: var(--brand);
+
+      box-shadow:
+        0 0 0 6px rgba(249,115,22,.14);
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================== */
+
+    .header {
+
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      border-bottom: 1px solid var(--line);
+
+      background: var(--header);
+
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .header-inner {
 
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      margin-bottom: 18px;
+      gap: 18px;
+
+      min-height: 78px;
     }
 
-    .af-back-btn {
-      border: none;
+    .brand {
 
-      height: 42px;
-      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-      border-radius: 999px;
+    .logo {
 
-      background: rgba(255, 255, 255, 0.82);
+      display: grid;
+      place-items: center;
 
-      font-size: 14px;
-      font-weight: 800;
+      width: 48px;
+      height: 48px;
 
-      color: #334155;
+      border-radius: 18px;
 
-      cursor: pointer;
+      background:
+        linear-gradient(
+          135deg,
+          var(--brand),
+          var(--gold)
+        );
+
+      color: #111827;
+
+      font-size: 18px;
+      font-weight: 1000;
 
       box-shadow:
-        0 8px 20px rgba(15, 23, 42, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 0.7);
-
-      transition:
-        transform 160ms ease,
-        box-shadow 160ms ease;
+        0 20px 70px rgba(249,115,22,.3);
     }
 
-    .af-back-btn:hover {
-      transform: translateY(-1px);
+    .brand-title {
 
-      box-shadow:
-        0 12px 24px rgba(15, 23, 42, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      display: block;
+
+      color: var(--heading);
+
+      font-family:
+        Manrope,
+        Inter,
+        sans-serif;
+
+      font-size: 1.42rem;
+      font-weight: 900;
+
+      line-height: 1;
     }
 
-    .af-registry-badge {
-      height: 40px;
+    .brand-sub {
+
+      display: block;
+
+      margin-top: 4px;
+
+      color: var(--soft);
+
+      font-size: 10px;
+      font-weight: 900;
+
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav a {
+
+      position: relative;
+
+      color: var(--muted);
+
+      font-size: .92rem;
+      font-weight: 900;
+    }
+
+    .nav a:hover {
+      color: var(--heading);
+    }
+
+    .nav a::after {
+
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      bottom: -10px;
+
+      width: 0;
+      height: 2px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--brand),
+          var(--gold)
+        );
+
+      transition: width .22s ease;
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .header-actions {
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .theme-toggle {
 
       display: inline-flex;
       align-items: center;
-      justify-content: center;
+      gap: 10px;
 
-      padding: 0 16px;
+      min-height: 44px;
+
+      padding:
+        6px
+        10px
+        6px
+        13px;
+
+      border-radius: 999px;
+
+      border: 1px solid var(--line);
+
+      background:
+        rgba(255,255,255,.45);
+
+      color: var(--heading);
+
+      font-weight: 900;
+    }
+
+    html[data-theme="dark"] .theme-toggle {
+
+      background:
+        rgba(255,255,255,.06);
+    }
+
+    .switch {
+
+      position: relative;
+
+      width: 42px;
+      height: 24px;
 
       border-radius: 999px;
 
       background:
-        linear-gradient(135deg, #2563eb, #4f46e5);
-
-      color: white;
-
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
+        rgba(15,23,42,.15);
     }
 
-    .af-workforce-content {
+    .knob {
+
+      position: absolute;
+
+      top: 3px;
+      left: 3px;
+
+      width: 18px;
+      height: 18px;
+
+      border-radius: 999px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--brand),
+          var(--gold)
+        );
+
+      transition: .22s ease;
+    }
+
+    html[data-theme="dark"] .knob {
+      transform: translateX(18px);
+    }
+
+    .menu-btn {
+
+      display: none;
+
+      width: 46px;
+      height: 46px;
+
+      border-radius: 16px;
+
+      border: 1px solid var(--line);
+
+      background:
+        rgba(255,255,255,.45);
+
+      color: var(--heading);
+
+      font-size: 24px;
+    }
+
+    /* =========================================================
+       MOBILE MENU
+    ========================================================== */
+
+    .mobile-menu {
+
+      position: fixed;
+
+      inset: 0 0 0 auto;
+
+      z-index: 200;
+
+      width:
+        min(88vw,390px);
+
+      padding: 20px;
+
+      border-left: 1px solid var(--line);
+
+      background: var(--panel);
+
+      transform: translateX(105%);
+
+      transition: transform .28s ease;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    .mobile-head {
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .close-btn {
+
+      width: 44px;
+      height: 44px;
+
+      border-radius: 16px;
+
+      border: 1px solid var(--line);
+
+      background:
+        rgba(255,255,255,.06);
+
+      color: var(--heading);
+
+      font-size: 28px;
+    }
+
+    .mobile-nav {
+
+      display: grid;
+      gap: 12px;
+
+      margin-top: 26px;
+    }
+
+    .mobile-nav a {
+
+      padding: 16px;
+
+      border-radius: 18px;
+
+      border: 1px solid var(--line);
+
+      background: var(--surface2);
+
+      color: var(--heading);
+
+      font-weight: 900;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================== */
+
+    .hero {
+
       position: relative;
-      z-index: 2;
+
+      padding:
+        84px
+        0
+        42px;
+
+      overflow: hidden;
     }
 
-    .af-workforce-content h1 {
-      font-size: 34px;
-      line-height: 1.04;
-      letter-spacing: -0.06em;
+    .hero::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: -180px;
+      right: -180px;
+
+      width: 420px;
+      height: 420px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(249,115,22,.14);
+
+      filter: blur(70px);
+    }
+
+    .hero-wrap {
+
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card {
+
+      overflow: hidden;
+
+      padding:
+        clamp(26px,4vw,42px);
+
+      border-radius: 40px;
+    }
+
+    .hero-grid {
+
+      display: grid;
+      grid-template-columns: 1fr auto;
+
+      gap: 24px;
+
+      align-items: center;
+    }
+
+    .hero-title {
+
+      margin-top: 24px;
+
+      color: var(--heading);
+
+      font-family:
+        Manrope,
+        Inter,
+        sans-serif;
+
+      font-size:
+        clamp(3rem,7vw,6rem);
+
+      line-height: .92;
 
       font-weight: 900;
 
-      margin-bottom: 14px;
+      letter-spacing: -.07em;
     }
 
-    .af-workforce-content p {
-      color: #475569;
+    .hero-text {
 
-      line-height: 1.6;
+      max-width: 720px;
 
-      font-size: 14px;
-      font-weight: 500;
+      margin-top: 22px;
 
-      margin-bottom: 22px;
+      color: var(--muted);
+
+      line-height: 1.8;
+
+      font-size:
+        clamp(1rem,1.2vw,1.15rem);
+    }
+
+    .hero-actions {
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+
+      margin-top: 30px;
     }
 
     /* =========================================================
        STATS
-    ========================================================= */
+    ========================================================== */
 
-    .af-stats-grid {
+    .stats-grid {
+
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(3,1fr);
+
+      gap: 14px;
+
+      margin-top: 34px;
     }
 
-    .af-stat-card {
-      border-radius: 24px;
+    .stat-card {
 
-      padding: 18px 14px;
+      padding: 24px;
 
-      background: rgba(255, 255, 255, 0.75);
+      border-radius: 28px;
 
       text-align: center;
     }
 
-    .af-stat-card strong {
+    .stat-card strong {
+
       display: block;
 
-      font-size: 26px;
-      font-weight: 900;
+      color: var(--heading);
 
-      margin-bottom: 6px;
+      font-size: 2rem;
+      font-weight: 1000;
     }
 
-    .af-stat-card span {
-      color: #64748b;
+    .stat-card span {
+
+      display: block;
+
+      margin-top: 8px;
+
+      color: var(--soft);
 
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 900;
+
+      letter-spacing: .12em;
+      text-transform: uppercase;
     }
 
     /* =========================================================
        SEARCH
-    ========================================================= */
+    ========================================================== */
 
-    .af-search-wrap {
-      margin-bottom: 20px;
+    .search-wrap {
+
+      margin-top: 24px;
     }
 
-    .af-search-box {
+    .search-box {
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      padding:
+        16px
+        18px;
+
       border-radius: 24px;
-
-      padding: 14px 18px;
     }
 
-    .af-search-box input {
+    .search-box input {
+
       width: 100%;
 
       border: none;
       outline: none;
+
       background: transparent;
 
-      color: #0f172a;
+      color: var(--heading);
 
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
     }
 
-    .af-search-box input::placeholder {
-      color: #94a3b8;
+    .search-box input::placeholder {
+      color: var(--soft);
     }
 
     /* =========================================================
-       GRID
-    ========================================================= */
+       MEMBERS
+    ========================================================== */
 
-    .af-members-grid {
+    .members-section {
+
+      padding:
+        36px
+        0
+        110px;
+    }
+
+    .members-grid {
+
       display: grid;
-      gap: 16px;
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(320px,1fr)
+        );
+
+      gap: 20px;
     }
 
-    /* =========================================================
-       CARD
-    ========================================================= */
+    .member-card {
 
-    .af-member-card {
       position: relative;
 
       overflow: hidden;
 
-      border-radius: 30px;
+      padding: 24px;
 
-      padding: 20px;
+      border-radius: 34px;
 
-      transition:
-        transform 180ms ease,
-        box-shadow 180ms ease;
+      transition: .24s ease;
     }
 
-    .af-member-card:hover {
-      transform: translateY(-3px);
+    .member-card:hover {
+
+      transform:
+        translateY(-6px);
 
       box-shadow:
-        0 18px 34px rgba(15, 23, 42, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        var(--shadow2);
     }
 
-    .af-member-top {
+    .member-top {
+
       display: flex;
       align-items: flex-start;
-      gap: 14px;
 
-      margin-bottom: 18px;
+      gap: 16px;
     }
 
-    .af-member-avatar {
-      width: 72px;
-      height: 72px;
+    .member-avatar {
 
-      border-radius: 24px;
-
-      overflow: hidden;
+      width: 82px;
+      height: 82px;
 
       flex-shrink: 0;
 
+      overflow: hidden;
+
+      border-radius: 28px;
+
       background:
-        linear-gradient(135deg, #2563eb, #4f46e5);
+        linear-gradient(
+          135deg,
+          var(--brand),
+          var(--gold)
+        );
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      color: white;
+      color: #111827;
 
-      font-size: 26px;
-      font-weight: 900;
+      font-size: 30px;
+      font-weight: 1000;
     }
 
-    .af-member-avatar img {
+    .member-avatar img {
+
       width: 100%;
       height: 100%;
+
       object-fit: cover;
     }
 
-    .af-member-main {
-      flex: 1;
-      min-width: 0;
-    }
+    .member-name-row {
 
-    .af-member-name-row {
       display: flex;
       align-items: center;
       gap: 8px;
-
-      margin-bottom: 6px;
     }
 
-    .af-member-name {
-      font-size: 22px;
-      line-height: 1.1;
+    .member-name {
 
+      color: var(--heading);
+
+      font-size: 1.5rem;
       font-weight: 900;
-      letter-spacing: -0.04em;
+
+      letter-spacing: -.04em;
     }
 
-    .af-verified {
+    .verified {
+
       width: 22px;
       height: 22px;
 
       border-radius: 999px;
 
       background:
-        linear-gradient(135deg, #22c55e, #10b981);
+        linear-gradient(
+          135deg,
+          #22c55e,
+          #10b981
+        );
 
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
 
       color: white;
 
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 1000;
 
       box-shadow:
-        0 0 18px rgba(16, 185, 129, 0.36);
+        0 0 18px rgba(16,185,129,.4);
     }
 
-    .af-member-role {
-      color: #334155;
+    .member-role {
 
-      font-size: 14px;
+      margin-top: 8px;
+
+      color: var(--muted);
+
+      font-size: 15px;
       font-weight: 800;
-
-      margin-bottom: 10px;
     }
 
-    .af-member-meta {
+    .chips {
+
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+
+      margin-top: 14px;
     }
 
-    .af-chip {
+    .chip {
+
       height: 32px;
+
+      padding:
+        0
+        14px;
+
+      border-radius: 999px;
 
       display: inline-flex;
       align-items: center;
       justify-content: center;
 
-      padding: 0 14px;
-
-      border-radius: 999px;
-
       font-size: 11px;
       font-weight: 900;
-      letter-spacing: 0.04em;
+
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
 
-    .af-chip.department {
-      background: rgba(99, 102, 241, 0.12);
-      color: #4f46e5;
+    .department-chip {
+
+      background:
+        rgba(99,102,241,.12);
+
+      color:
+        #4f46e5;
     }
 
-    .af-chip.active {
-      background: rgba(34, 197, 94, 0.14);
-      color: #15803d;
+    .status-active {
+
+      background:
+        rgba(34,197,94,.14);
+
+      color:
+        #15803d;
     }
 
-    .af-chip.alumni {
-      background: rgba(100, 116, 139, 0.14);
-      color: #475569;
+    .status-alumni {
+
+      background:
+        rgba(100,116,139,.16);
+
+      color:
+        #475569;
     }
 
-    .af-chip.on_leave {
-      background: rgba(245, 158, 11, 0.16);
-      color: #b45309;
+    .status-on_leave {
+
+      background:
+        rgba(245,158,11,.16);
+
+      color:
+        #b45309;
     }
 
-    .af-member-bio {
-      color: #475569;
+    .member-bio {
+
+      margin-top: 18px;
+
+      color: var(--muted);
+
+      line-height: 1.75;
 
       font-size: 14px;
-      line-height: 1.65;
-
-      margin-bottom: 18px;
     }
 
-    .af-member-bottom {
+    .member-bottom {
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+
+      gap: 16px;
+
+      margin-top: 22px;
     }
 
-    .af-member-duration {
-      color: #64748b;
+    .member-duration {
+
+      color: var(--soft);
 
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 900;
 
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
-    .af-view-btn {
-      border: none;
+    .view-btn {
 
-      height: 42px;
+      height: 44px;
 
-      padding: 0 18px;
+      padding:
+        0
+        18px;
 
       border-radius: 16px;
 
       background:
-        linear-gradient(135deg, #2563eb, #4f46e5);
+        linear-gradient(
+          135deg,
+          var(--brand),
+          var(--gold)
+        );
 
-      color: white;
+      color: #111827;
 
       font-size: 13px;
-      font-weight: 900;
+      font-weight: 1000;
 
-      cursor: pointer;
-
-      transition:
-        transform 160ms ease,
-        box-shadow 160ms ease;
-
-      box-shadow:
-        0 10px 24px rgba(37, 99, 235, 0.22);
+      transition: .22s ease;
     }
 
-    .af-view-btn:hover {
-      transform: translateY(-1px);
+    .view-btn:hover {
 
-      box-shadow:
-        0 14px 28px rgba(37, 99, 235, 0.3);
+      transform:
+        translateY(-2px);
     }
 
     /* =========================================================
        LOADING
-    ========================================================= */
+    ========================================================== */
 
-    .af-loading {
-      padding: 40px 20px;
+    .loading {
 
       display: flex;
       flex-direction: column;
@@ -510,18 +1159,25 @@
       justify-content: center;
 
       gap: 16px;
+
+      padding: 60px 20px;
     }
 
-    .af-loader {
-      width: 46px;
-      height: 46px;
+    .loader {
+
+      width: 50px;
+      height: 50px;
 
       border-radius: 999px;
 
-      border: 4px solid rgba(99, 102, 241, 0.14);
-      border-top-color: #4f46e5;
+      border:
+        4px solid rgba(99,102,241,.14);
 
-      animation: spin 0.8s linear infinite;
+      border-top-color:
+        var(--brand);
+
+      animation:
+        spin .8s linear infinite;
     }
 
     @keyframes spin {
@@ -530,132 +1186,386 @@
       }
     }
 
-    .af-loading p {
-      color: #64748b;
-
-      font-size: 14px;
-      font-weight: 700;
-    }
-
     /* =========================================================
        EMPTY
-    ========================================================= */
+    ========================================================== */
 
-    .af-empty {
-      border-radius: 30px;
+    .empty {
 
-      padding: 44px 24px;
+      padding: 50px 24px;
+
+      border-radius: 34px;
 
       text-align: center;
     }
 
-    .af-empty h3 {
-      font-size: 24px;
-      font-weight: 900;
+    .empty h3 {
 
-      margin-bottom: 10px;
+      color: var(--heading);
+
+      font-size: 2rem;
+      font-weight: 900;
     }
 
-    .af-empty p {
-      color: #64748b;
+    .empty p {
 
-      font-size: 14px;
-      line-height: 1.6;
+      margin-top: 12px;
+
+      color: var(--muted);
+
+      line-height: 1.7;
     }
 
     /* =========================================================
-       MOBILE
-    ========================================================= */
+       RESPONSIVE
+    ========================================================== */
 
-    @media (max-width: 480px) {
-      .af-workforce-content h1 {
-        font-size: 28px;
+    @media (max-width: 1023px) {
+
+      .nav,
+      .header-actions .btn {
+        display: none;
       }
 
-      .af-stats-grid {
+      .menu-btn {
+        display: block;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      :root {
+        --pad: 14px;
+      }
+
+      .header-inner {
+        min-height: 72px;
+      }
+
+      .brand-title {
+        font-size: 1.2rem;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .hero-title {
+
+        font-size:
+          clamp(2.7rem,15vw,4rem);
+      }
+
+      .stats-grid {
         grid-template-columns: 1fr;
       }
 
-      .af-member-top {
+      .members-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .member-top {
         flex-direction: column;
       }
 
-      .af-member-bottom {
+      .member-bottom {
         flex-direction: column;
         align-items: flex-start;
       }
 
-      .af-view-btn {
+      .view-btn {
         width: 100%;
       }
+
+      .mobile-menu {
+        width: 100vw;
+      }
     }
+
   </style>
 </head>
 
 <body>
 
-  <div class="af-workforce-page">
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
 
-    <!-- HERO -->
+  <header class="header">
 
-    <div class="af-workforce-hero glass">
+    <div class="cw header-inner">
 
-      <div class="af-workforce-top">
+      <a
+        href="https://academeforge.in"
+        class="brand"
+      >
+
+        <span class="logo">
+          AF
+        </span>
+
+        <span>
+
+          <b class="brand-title">
+            AcademeForge
+          </b>
+
+          <small class="brand-sub">
+            Workforce Registry
+          </small>
+
+        </span>
+
+      </a>
+
+      <!-- NAV -->
+
+      <nav class="nav">
+
+        <a href="https://academeforge.in">
+          Home
+        </a>
+
+        <a href="https://academeforge.in/#programs">
+          Programs
+        </a>
+
+        <a href="https://academeforge.in/student-app-preview/">
+          Student Portal
+        </a>
+
+        <a href="https://academeforge.in/join-team/">
+          Join Team
+        </a>
+
+        <a href="https://academeforge.in/verify-team/">
+          Verify Team
+        </a>
+
+        <a href="https://academeforge.in/#contact">
+          Contact
+        </a>
+
+      </nav>
+
+      <!-- ACTIONS -->
+
+      <div class="header-actions">
 
         <button
-          class="af-back-btn"
+          id="themeToggle"
+          class="theme-toggle"
           type="button"
         >
-          ← Back
+
+          <span>
+            Night
+          </span>
+
+          <span class="switch">
+
+            <span class="knob"></span>
+
+          </span>
+
         </button>
 
-        <div class="af-registry-badge">
-          VERIFIED REGISTRY
-        </div>
+        <a
+          href="https://academeforge.in"
+          class="btn secondary"
+        >
+          ← Back
+        </a>
+
+        <button
+          id="openMenu"
+          class="menu-btn"
+          type="button"
+        >
+          ☰
+        </button>
 
       </div>
 
-      <div class="af-workforce-content">
+    </div>
 
-        <h1>
-          AcademeForge Workforce Registry
-        </h1>
+  </header>
 
-        <p>
-          Verified contributors, engineers, designers and operational members of the AcademeForge ecosystem.
-        </p>
+  <!-- =========================================================
+       MOBILE MENU
+  ========================================================== -->
 
-        <div class="af-stats-grid">
+  <aside
+    id="mobileMenu"
+    class="mobile-menu"
+  >
 
-          <div class="af-stat-card glass">
-            <strong id="afTotalMembers">
+    <div class="mobile-head">
+
+      <div>
+
+        <b class="brand-title">
+          AcademeForge
+        </b>
+
+        <small class="brand-sub">
+          Mobile Navigation
+        </small>
+
+      </div>
+
+      <button
+        id="closeMenu"
+        class="close-btn"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <nav class="mobile-nav">
+
+      <a href="https://academeforge.in">
+        Home
+      </a>
+
+      <a href="https://academeforge.in/#programs">
+        Programs
+      </a>
+
+      <a href="https://academeforge.in/student-app-preview/">
+        Student Portal
+      </a>
+
+      <a href="https://academeforge.in/join-team/">
+        Join Team
+      </a>
+
+      <a href="https://academeforge.in/verify-team/">
+        Verify Team
+      </a>
+
+      <a href="https://academeforge.in/#contact">
+        Contact
+      </a>
+
+    </nav>
+
+  </aside>
+
+  <!-- =========================================================
+       HERO
+  ========================================================== -->
+
+  <section class="hero">
+
+    <div class="cw hero-wrap">
+
+      <div class="hero-card glass">
+
+        <div class="hero-grid">
+
+          <div>
+
+            <span class="eyebrow">
+              Verified Workforce Registry
+            </span>
+
+            <h1 class="hero-title">
+              AcademeForge Workforce Registry
+            </h1>
+
+            <p class="hero-text">
+
+              Verified contributors, developers, designers,
+              operators and active ecosystem members
+              officially associated with AcademeForge.
+
+            </p>
+
+            <div class="hero-actions">
+
+              <a
+                href="https://academeforge.in"
+                class="btn primary"
+              >
+                Visit AcademeForge
+              </a>
+
+              <a
+                href="https://academeforge.in/join-team/"
+                class="btn secondary"
+              >
+                Join Team
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- STATS -->
+
+        <div class="stats-grid">
+
+          <div class="stat-card glass">
+
+            <strong id="totalMembers">
               0
             </strong>
 
             <span>
               Total Members
             </span>
+
           </div>
 
-          <div class="af-stat-card glass">
-            <strong id="afActiveMembers">
+          <div class="stat-card glass">
+
+            <strong id="activeMembers">
               0
             </strong>
 
             <span>
-              Active
+              Active Members
             </span>
+
           </div>
 
-          <div class="af-stat-card glass">
-            <strong id="afAlumniMembers">
+          <div class="stat-card glass">
+
+            <strong id="alumniMembers">
               0
             </strong>
 
             <span>
-              Alumni
+              Alumni Members
             </span>
+
           </div>
+
+        </div>
+
+      </div>
+
+      <!-- SEARCH -->
+
+      <div class="search-wrap">
+
+        <div class="search-box glass">
+
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search members, roles or departments..."
+            autocomplete="off"
+          />
 
         </div>
 
@@ -663,95 +1573,165 @@
 
     </div>
 
-    <!-- SEARCH -->
+  </section>
 
-    <div class="af-search-wrap">
+  <!-- =========================================================
+       MEMBERS
+  ========================================================== -->
 
-      <div class="af-search-box glass">
+  <section class="members-section">
 
-        <input
-          id="afSearchInput"
-          type="text"
-          placeholder="Search members, roles or departments..."
-          autocomplete="off"
-        />
+    <div class="cw">
+
+      <!-- LOADING -->
+
+      <div
+        id="loading"
+        class="loading"
+      >
+
+        <div class="loader"></div>
+
+        <p>
+          Loading workforce registry...
+        </p>
 
       </div>
 
-    </div>
+      <!-- EMPTY -->
 
-    <!-- LOADING -->
+      <div
+        id="empty"
+        class="empty glass"
+        style="display:none;"
+      >
 
-    <div
-      id="afLoading"
-      class="af-loading"
-    >
+        <h3>
+          No Members Found
+        </h3>
 
-      <div class="af-loader"></div>
+        <p>
+          Try changing your search query.
+        </p>
 
-      <p>
-        Loading workforce registry...
-      </p>
+      </div>
 
-    </div>
+      <!-- GRID -->
 
-    <!-- EMPTY -->
-
-    <div
-      id="afEmpty"
-      class="af-empty glass"
-      style="display:none;"
-    >
-
-      <h3>
-        No Members Found
-      </h3>
-
-      <p>
-        Try adjusting your search query.
-      </p>
+      <div
+        id="membersGrid"
+        class="members-grid"
+      ></div>
 
     </div>
 
-    <!-- GRID -->
-
-    <div
-      id="afMembersGrid"
-      class="af-members-grid"
-    ></div>
-
-  </div>
+  </section>
 
   <script>
+
     /* =========================================================
        CONFIG
-    ========================================================= */
+    ========================================================== */
 
-    const AF_WORKFORCE_API =
+    const AF_API =
       "https://YOUR_PROJECT.supabase.co/functions/v1/get-af-team-members";
 
     /* =========================================================
        STATE
-    ========================================================= */
+    ========================================================== */
 
-    let afAllMembers = [];
+    let afMembers = [];
 
     /* =========================================================
        ELEMENTS
-    ========================================================= */
+    ========================================================== */
 
-    const afGrid = document.getElementById("afMembersGrid");
-    const afLoading = document.getElementById("afLoading");
-    const afEmpty = document.getElementById("afEmpty");
+    const membersGrid =
+      document.getElementById("membersGrid");
 
-    const afSearchInput =
-      document.getElementById("afSearchInput");
+    const loadingEl =
+      document.getElementById("loading");
+
+    const emptyEl =
+      document.getElementById("empty");
+
+    const searchInput =
+      document.getElementById("searchInput");
 
     /* =========================================================
-       UTILITIES
-    ========================================================= */
+       MOBILE MENU
+    ========================================================== */
 
-    function afEscapeHtml(value) {
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+    document
+      .getElementById("openMenu")
+      .addEventListener(
+        "click",
+        () => {
+          mobileMenu.classList.add("open");
+        }
+      );
+
+    document
+      .getElementById("closeMenu")
+      .addEventListener(
+        "click",
+        () => {
+          mobileMenu.classList.remove("open");
+        }
+      );
+
+    /* =========================================================
+       THEME
+    ========================================================== */
+
+    const themeToggle =
+      document.getElementById("themeToggle");
+
+    const savedTheme =
+      localStorage.getItem("af-theme");
+
+    if (savedTheme === "dark") {
+      document.documentElement.setAttribute(
+        "data-theme",
+        "dark"
+      );
+    }
+
+    themeToggle.addEventListener(
+      "click",
+      () => {
+
+        const currentTheme =
+          document.documentElement.getAttribute(
+            "data-theme"
+          );
+
+        const nextTheme =
+          currentTheme === "dark"
+            ? "light"
+            : "dark";
+
+        document.documentElement.setAttribute(
+          "data-theme",
+          nextTheme
+        );
+
+        localStorage.setItem(
+          "af-theme",
+          nextTheme
+        );
+      }
+    );
+
+    /* =========================================================
+       HELPERS
+    ========================================================== */
+
+    function escapeHtml(value) {
+
       return String(value || "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
@@ -759,24 +1739,33 @@
         .replace(/"/g, "&quot;");
     }
 
-    function afFormatDate(dateString) {
-      if (!dateString) return "Present";
+    function formatDate(dateString) {
+
+      if (!dateString) {
+        return "Present";
+      }
 
       try {
-        return new Date(dateString).toLocaleDateString(
-          "en-IN",
-          {
-            year: "numeric",
-            month: "short"
-          }
-        );
-      } catch (_error) {
+
+        return new Date(dateString)
+          .toLocaleDateString(
+            "en-IN",
+            {
+              year: "numeric",
+              month: "short"
+            }
+          );
+
+      } catch {
+
         return dateString;
       }
     }
 
-    function afGetStatusLabel(status) {
+    function statusLabel(status) {
+
       switch (status) {
+
         case "active":
           return "Active";
 
@@ -797,47 +1786,57 @@
       }
     }
 
-    function afGetAvatar(member) {
+    function avatarTemplate(member) {
+
       if (member.avatar_url) {
+
         return `
           <img
-            src="${afEscapeHtml(member.avatar_url)}"
-            alt="${afEscapeHtml(member.full_name)}"
+            src="${escapeHtml(member.avatar_url)}"
+            alt="${escapeHtml(member.full_name)}"
           />
         `;
       }
 
-      return afEscapeHtml(
-        member.full_name.charAt(0).toUpperCase()
+      return escapeHtml(
+        member.full_name
+          .charAt(0)
+          .toUpperCase()
       );
     }
 
     /* =========================================================
        CARD
-    ========================================================= */
+    ========================================================== */
 
-    function afMemberCard(member) {
+    function memberCard(member) {
+
       return `
-        <div class="af-member-card glass">
 
-          <div class="af-member-top">
+        <div class="member-card glass">
 
-            <div class="af-member-avatar">
-              ${afGetAvatar(member)}
+          <div class="member-top">
+
+            <div class="member-avatar">
+
+              ${avatarTemplate(member)}
+
             </div>
 
-            <div class="af-member-main">
+            <div>
 
-              <div class="af-member-name-row">
+              <div class="member-name-row">
 
-                <div class="af-member-name">
-                  ${afEscapeHtml(member.full_name)}
+                <div class="member-name">
+
+                  ${escapeHtml(member.full_name)}
+
                 </div>
 
                 ${
                   member.is_verified
                     ? `
-                      <div class="af-verified">
+                      <div class="verified">
                         ✓
                       </div>
                     `
@@ -846,26 +1845,30 @@
 
               </div>
 
-              <div class="af-member-role">
-                ${afEscapeHtml(member.role_title)}
+              <div class="member-role">
+
+                ${escapeHtml(member.role_title)}
+
               </div>
 
-              <div class="af-member-meta">
+              <div class="chips">
 
                 ${
                   member.department
                     ? `
-                      <div class="af-chip department">
-                        ${afEscapeHtml(member.department)}
+                      <div class="chip department-chip">
+                        ${escapeHtml(member.department)}
                       </div>
                     `
                     : ""
                 }
 
-                <div class="af-chip ${afEscapeHtml(member.status)}">
-                  ${afEscapeHtml(
-                    afGetStatusLabel(member.status)
+                <div class="chip status-${escapeHtml(member.status)}">
+
+                  ${escapeHtml(
+                    statusLabel(member.status)
                   )}
+
                 </div>
 
               </div>
@@ -874,16 +1877,21 @@
 
           </div>
 
-          <div class="af-member-bio">
-            ${afEscapeHtml(member.bio || "No bio available.")}
+          <div class="member-bio">
+
+            ${escapeHtml(
+              member.bio ||
+              "No bio available."
+            )}
+
           </div>
 
-          <div class="af-member-bottom">
+          <div class="member-bottom">
 
-            <div class="af-member-duration">
+            <div class="member-duration">
 
               Joined:
-              ${afFormatDate(member.joined_at)}
+              ${formatDate(member.joined_at)}
 
               <br />
 
@@ -891,7 +1899,7 @@
                 member.ended_at
                   ? `
                     Ended:
-                    ${afFormatDate(member.ended_at)}
+                    ${formatDate(member.ended_at)}
                   `
                   : `
                     Currently Active
@@ -901,10 +1909,10 @@
             </div>
 
             <button
-              class="af-view-btn"
+              class="view-btn"
               type="button"
             >
-              View Profile
+              Verified Member
             </button>
 
           </div>
@@ -915,40 +1923,50 @@
 
     /* =========================================================
        RENDER
-    ========================================================= */
+    ========================================================== */
 
-    function afRenderMembers(members) {
-      afGrid.innerHTML = "";
+    function renderMembers(members) {
 
-      if (!Array.isArray(members) || !members.length) {
-        afEmpty.style.display = "block";
+      membersGrid.innerHTML = "";
+
+      if (!members.length) {
+
+        emptyEl.style.display = "block";
+
         return;
       }
 
-      afEmpty.style.display = "none";
+      emptyEl.style.display = "none";
 
-      afGrid.innerHTML =
-        members.map(afMemberCard).join("");
+      membersGrid.innerHTML =
+        members
+          .map(memberCard)
+          .join("");
     }
 
     /* =========================================================
        FILTER
-    ========================================================= */
+    ========================================================== */
 
-    function afFilterMembers() {
+    function filterMembers() {
+
       const query =
-        String(afSearchInput.value || "")
-          .toLowerCase()
-          .trim();
+        String(searchInput.value || "")
+          .trim()
+          .toLowerCase();
 
       if (!query) {
-        afRenderMembers(afAllMembers);
+
+        renderMembers(afMembers);
+
         return;
       }
 
       const filtered =
-        afAllMembers.filter((member) => {
+        afMembers.filter((member) => {
+
           return (
+
             String(member.full_name || "")
               .toLowerCase()
               .includes(query)
@@ -967,91 +1985,107 @@
           );
         });
 
-      afRenderMembers(filtered);
+      renderMembers(filtered);
     }
 
     /* =========================================================
        FETCH
-    ========================================================= */
+    ========================================================== */
 
-    async function afLoadWorkforceMembers() {
+    async function loadMembers() {
+
       try {
-        afLoading.style.display = "flex";
+
+        loadingEl.style.display = "flex";
 
         const response =
-          await fetch(AF_WORKFORCE_API);
+          await fetch(AF_API);
 
         const data =
           await response.json();
 
-        if (!response.ok || !data.ok) {
+        if (
+          !response.ok ||
+          !data.ok
+        ) {
+
           throw new Error(
             data.message ||
-            "Failed to fetch workforce members."
+            "Failed to load registry."
           );
         }
 
-        afAllMembers =
+        afMembers =
           Array.isArray(data.members)
             ? data.members
             : [];
 
         document.getElementById(
-          "afTotalMembers"
+          "totalMembers"
         ).textContent =
           String(data.total_members || 0);
 
         document.getElementById(
-          "afActiveMembers"
+          "activeMembers"
         ).textContent =
           String(data.active_members || 0);
 
         document.getElementById(
-          "afAlumniMembers"
+          "alumniMembers"
         ).textContent =
           String(data.alumni_members || 0);
 
-        afRenderMembers(afAllMembers);
+        renderMembers(afMembers);
+
       } catch (error) {
+
         console.error(
-          "Failed to load workforce registry:",
+          "Registry fetch failed:",
           error
         );
 
-        afGrid.innerHTML = `
-          <div class="af-empty glass">
+        membersGrid.innerHTML = `
+
+          <div class="empty glass">
+
             <h3>
-              Failed to Load Registry
+              Failed To Load Registry
             </h3>
 
             <p>
+
               ${
                 error instanceof Error
-                  ? afEscapeHtml(error.message)
+                  ? escapeHtml(error.message)
                   : "Unexpected error occurred."
               }
+
             </p>
+
           </div>
         `;
+
       } finally {
-        afLoading.style.display = "none";
+
+        loadingEl.style.display = "none";
       }
     }
 
     /* =========================================================
        EVENTS
-    ========================================================= */
+    ========================================================== */
 
-    afSearchInput.addEventListener(
+    searchInput.addEventListener(
       "input",
-      afFilterMembers
+      filterMembers
     );
 
     /* =========================================================
        INIT
-    ========================================================= */
+    ========================================================== */
 
-    afLoadWorkforceMembers();
+    loadMembers();
+
   </script>
 
 </body>
