@@ -557,8 +557,10 @@ MEMBERS
 .members-section{
   padding:20px 0 100px;
 }
+```css
 /* =========================================================
-MODERN PREMIUM MEMBER CARDS
+NEW CLEAN PREMIUM CARD UI
+REPLACE OLD MEMBER CARD CSS WITH THIS
 ========================================================= */
 
 .members-grid{
@@ -568,22 +570,19 @@ MODERN PREMIUM MEMBER CARDS
   grid-template-columns:
     repeat(
       auto-fit,
-      minmax(320px,1fr)
+      minmax(340px,1fr)
     );
 
-  gap:28px;
-
-  align-items:stretch;
+  gap:26px;
 }
 
 .member-card{
 
   position:relative;
 
-  width:100%;
-  height:520px;
+  height:440px;
 
-  perspective:2400px;
+  perspective:2200px;
 }
 
 .member-inner{
@@ -596,7 +595,7 @@ MODERN PREMIUM MEMBER CARDS
   transform-style:preserve-3d;
 
   transition:
-    transform .9s cubic-bezier(.22,.61,.36,1);
+    transform .8s cubic-bezier(.22,.61,.36,1);
 }
 
 .member-card.flipped .member-inner{
@@ -608,11 +607,11 @@ MODERN PREMIUM MEMBER CARDS
   position:absolute;
   inset:0;
 
-  overflow:hidden;
-
-  border-radius:34px;
-
   padding:24px;
+
+  border-radius:30px;
+
+  overflow:hidden;
 
   display:flex;
   flex-direction:column;
@@ -622,93 +621,44 @@ MODERN PREMIUM MEMBER CARDS
   background:
     linear-gradient(
       180deg,
-      rgba(8,15,35,.92),
-      rgba(3,8,24,.98)
+      rgba(7,13,32,.96),
+      rgba(2,6,22,.98)
     );
 
   border:
     1px solid rgba(255,255,255,.06);
 
   box-shadow:
-    0 20px 80px rgba(0,0,0,.45);
+    0 20px 70px rgba(0,0,0,.42);
 }
 
-/* =========================================================
-ANIMATED BORDER
-========================================================= */
-
-.member-face::before{
-
-  content:"";
-
-  position:absolute;
-  inset:-2px;
-
-  border-radius:36px;
-
-  padding:1px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(249,115,22,.7),
-      rgba(59,130,246,.6),
-      rgba(168,85,247,.7)
-    );
-
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-
-  -webkit-mask-composite:xor;
-
-  opacity:.45;
-
-  pointer-events:none;
-}
-
-/* =========================================================
-BACKGROUND GLOW
-========================================================= */
-
-.member-face::after{
+.member-front::before,
+.member-back::before{
 
   content:"";
 
   position:absolute;
 
-  width:220px;
-  height:220px;
+  width:180px;
+  height:180px;
 
-  top:-100px;
-  right:-80px;
+  top:-70px;
+  right:-70px;
 
   border-radius:999px;
 
   background:
     radial-gradient(
       circle,
-      rgba(249,115,22,.18),
+      rgba(249,115,22,.14),
       transparent 70%
     );
 
   pointer-events:none;
 }
 
-/* =========================================================
-BACK CARD
-========================================================= */
-
 .member-back{
-
   transform:rotateY(180deg);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(12,20,42,.96),
-      rgba(5,10,25,.98)
-    );
 }
 
 /* =========================================================
@@ -718,21 +668,17 @@ TOP
 .member-top{
 
   display:flex;
-  align-items:flex-start;
+  align-items:center;
 
   gap:16px;
-
-  position:relative;
-
-  z-index:2;
 }
 
 .member-avatar{
 
-  width:88px;
-  height:88px;
+  width:82px;
+  height:82px;
 
-  border-radius:28px;
+  border-radius:24px;
 
   overflow:hidden;
 
@@ -751,11 +697,11 @@ TOP
 
   color:white;
 
-  font-size:40px;
+  font-size:38px;
   font-weight:1000;
 
   box-shadow:
-    0 12px 34px rgba(236,72,153,.35);
+    0 14px 36px rgba(236,72,153,.28);
 }
 
 .member-avatar img{
@@ -766,76 +712,19 @@ TOP
   object-fit:cover;
 }
 
-.member-status{
+.member-main{
+  flex:1;
+  min-width:0;
+}
 
-  position:absolute;
-
-  top:18px;
-  right:18px;
-
-  width:52px;
-  height:52px;
-
-  border-radius:999px;
+.member-row{
 
   display:flex;
-  align-items:center;
-  justify-content:center;
+  align-items:flex-start;
+  justify-content:space-between;
 
-  font-size:18px;
-  font-weight:1000;
-
-  color:white;
-
-  backdrop-filter:blur(14px);
+  gap:14px;
 }
-
-.member-status.active{
-
-  background:
-    linear-gradient(
-      135deg,
-      #22c55e,
-      #16a34a
-    );
-
-  box-shadow:
-    0 10px 30px rgba(34,197,94,.35);
-}
-
-.member-status.alumni{
-
-  background:
-    linear-gradient(
-      135deg,
-      #64748b,
-      #475569
-    );
-}
-
-.member-status.on_leave{
-
-  background:
-    linear-gradient(
-      135deg,
-      #f59e0b,
-      #d97706
-    );
-}
-
-.member-status.inactive{
-
-  background:
-    linear-gradient(
-      135deg,
-      #ef4444,
-      #dc2626
-    );
-}
-
-/* =========================================================
-TEXT
-========================================================= */
 
 .member-name{
 
@@ -855,7 +744,7 @@ TEXT
 
   color:#cbd5e1;
 
-  font-size:1.02rem;
+  font-size:1rem;
   font-weight:800;
 
   line-height:1.5;
@@ -867,10 +756,79 @@ TEXT
 
   color:#fb923c;
 
-  font-size:12px;
+  font-size:11px;
   font-weight:1000;
 
-  letter-spacing:.22em;
+  letter-spacing:.2em;
+}
+
+/* =========================================================
+STATUS ICON
+========================================================= */
+
+.member-status{
+
+  width:54px;
+  height:54px;
+
+  border-radius:999px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:white;
+
+  font-size:20px;
+  font-weight:1000;
+}
+
+.member-status.active{
+
+  background:
+    linear-gradient(
+      135deg,
+      #22c55e,
+      #16a34a
+    );
+
+  box-shadow:
+    0 14px 34px rgba(34,197,94,.32);
+}
+
+.member-status.on_leave{
+
+  background:
+    linear-gradient(
+      135deg,
+      #f59e0b,
+      #d97706
+    );
+}
+
+.member-status.alumni{
+
+  background:
+    linear-gradient(
+      135deg,
+      #64748b,
+      #475569
+    );
+}
+
+.member-status.inactive{
+
+  background:
+    linear-gradient(
+      135deg,
+      #ef4444,
+      #dc2626
+    );
+
+  box-shadow:
+    0 14px 34px rgba(239,68,68,.28);
 }
 
 /* =========================================================
@@ -880,7 +838,9 @@ CHIPS
 .chips{
 
   display:flex;
+  align-items:center;
   flex-wrap:wrap;
+
   gap:10px;
 
   margin-top:18px;
@@ -888,10 +848,10 @@ CHIPS
 
 .chip{
 
-  height:38px;
+  height:36px;
 
   padding:
-    0 18px;
+    0 16px;
 
   border-radius:999px;
 
@@ -902,7 +862,7 @@ CHIPS
   font-size:11px;
   font-weight:900;
 
-  letter-spacing:.14em;
+  letter-spacing:.12em;
   text-transform:uppercase;
 }
 
@@ -914,10 +874,10 @@ CHIPS
   color:#818cf8;
 
   border:
-    1px solid rgba(129,140,248,.16);
+    1px solid rgba(129,140,248,.18);
 }
 
-.status-chip{
+.status-chip.active{
 
   background:
     rgba(34,197,94,.14);
@@ -925,7 +885,31 @@ CHIPS
   color:#22c55e;
 
   border:
-    1px solid rgba(34,197,94,.16);
+    1px solid rgba(34,197,94,.18);
+}
+
+.status-chip.alumni{
+
+  background:
+    rgba(148,163,184,.14);
+
+  color:#cbd5e1;
+}
+
+.status-chip.on_leave{
+
+  background:
+    rgba(245,158,11,.14);
+
+  color:#f59e0b;
+}
+
+.status-chip.inactive{
+
+  background:
+    rgba(239,68,68,.14);
+
+  color:#ef4444;
 }
 
 /* =========================================================
@@ -934,59 +918,94 @@ BIO
 
 .member-bio{
 
-  margin-top:26px;
+  margin-top:22px;
 
   color:#94a3b8;
 
   font-size:15px;
 
-  line-height:1.95;
-
-  flex:1;
-
-  overflow:hidden;
+  line-height:1.85;
 
   display:-webkit-box;
 
-  -webkit-line-clamp:4;
+  -webkit-line-clamp:3;
   -webkit-box-orient:vertical;
+
+  overflow:hidden;
 }
 
 /* =========================================================
-BOTTOM
+INFO BOXES
 ========================================================= */
 
-.member-bottom{
+.member-info-grid{
 
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
+  display:grid;
 
-  gap:16px;
+  grid-template-columns:1fr 1fr;
 
-  margin-top:24px;
+  gap:12px;
+
+  margin-top:auto;
 }
 
-.member-duration{
+.info-box{
 
-  color:#94a3b8;
+  padding:14px;
 
-  font-size:13px;
-  font-weight:800;
+  border-radius:18px;
 
-  line-height:1.8;
+  background:
+    rgba(255,255,255,.04);
+
+  border:
+    1px solid rgba(255,255,255,.06);
+}
+
+.info-label{
+
+  color:#64748b;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.info-value{
+
+  margin-top:8px;
+
+  color:white;
+
+  font-size:15px;
+  font-weight:900;
+
+  line-height:1.5;
+}
+
+/* =========================================================
+BUTTONS
+========================================================= */
+
+.member-actions{
+
+  display:flex;
+  gap:12px;
+
+  margin-top:18px;
 }
 
 .verify-btn{
 
-  height:54px;
+  flex:1;
 
-  padding:
-    0 22px;
-
-  border-radius:18px;
+  height:52px;
 
   border:none;
+
+  border-radius:18px;
 
   background:
     linear-gradient(
@@ -1001,23 +1020,17 @@ BOTTOM
   font-weight:1000;
 
   box-shadow:
-    0 14px 36px rgba(34,197,94,.28);
+    0 14px 34px rgba(34,197,94,.24);
 }
-
-/* =========================================================
-FLIP BUTTON
-========================================================= */
 
 .flip-btn{
 
-  margin-top:24px;
-
-  width:100%;
-  height:58px;
+  width:64px;
+  height:52px;
 
   border:none;
 
-  border-radius:20px;
+  border-radius:18px;
 
   background:
     linear-gradient(
@@ -1028,28 +1041,15 @@ FLIP BUTTON
 
   color:white;
 
-  font-size:15px;
+  font-size:20px;
   font-weight:1000;
 
-  letter-spacing:.02em;
-
-  transition:.25s ease;
-
   box-shadow:
-    0 18px 50px rgba(249,115,22,.35);
-}
-
-.flip-btn:hover{
-
-  transform:
-    translateY(-3px);
-
-  box-shadow:
-    0 24px 60px rgba(249,115,22,.42);
+    0 14px 34px rgba(249,115,22,.24);
 }
 
 /* =========================================================
-LINKS
+BACK SIDE
 ========================================================= */
 
 .member-links{
@@ -1059,12 +1059,12 @@ LINKS
 
   gap:14px;
 
-  margin-top:26px;
+  margin-top:28px;
 }
 
 .member-link{
 
-  min-height:60px;
+  min-height:58px;
 
   padding:
     0 18px;
@@ -1086,28 +1086,34 @@ LINKS
   font-size:14px;
   font-weight:900;
 
-  transition:.24s ease;
+  transition:.22s ease;
 }
 
 .member-link:hover{
 
   transform:
-    translateX(6px);
-
-  background:
-    rgba(249,115,22,.1);
+    translateX(5px);
 
   border-color:
-    rgba(249,115,22,.3);
-}
+    rgba(249,115,22,.25);
 
-/* =========================================================
-BACK INFO
-========================================================= */
+  background:
+    rgba(249,115,22,.08);
+}
 
 .back-info{
 
   margin-top:auto;
+
+  padding:16px;
+
+  border-radius:18px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  border:
+    1px solid rgba(255,255,255,.06);
 
   color:#94a3b8;
 
@@ -1126,8 +1132,8 @@ html[data-theme="light"] .member-face{
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,.96),
-      rgba(245,247,255,.94)
+      rgba(255,255,255,.98),
+      rgba(245,247,255,.96)
     );
 }
 
@@ -1143,10 +1149,6 @@ html[data-theme="light"] .member-bio{
   color:#475569;
 }
 
-html[data-theme="light"] .member-duration{
-  color:#64748b;
-}
-
 html[data-theme="light"] .member-link{
   color:#020617;
   background:rgba(15,23,42,.03);
@@ -1154,26 +1156,15 @@ html[data-theme="light"] .member-link{
 
 html[data-theme="light"] .back-info{
   color:#475569;
+  background:rgba(15,23,42,.03);
 }
 
-/* =========================================================
-TABLET
-========================================================= */
+html[data-theme="light"] .info-box{
+  background:rgba(15,23,42,.03);
+}
 
-@media (max-width:1024px){
-
-  .members-grid{
-
-    grid-template-columns:
-      repeat(
-        auto-fit,
-        minmax(300px,1fr)
-      );
-  }
-
-  .member-card{
-    height:500px;
-  }
+html[data-theme="light"] .info-value{
+  color:#020617;
 }
 
 /* =========================================================
@@ -1187,23 +1178,7 @@ MOBILE
   }
 
   .member-card{
-    height:540px;
-  }
-
-  .member-face{
-    padding:20px;
-  }
-
-  .member-top{
-    flex-direction:column;
-  }
-
-  .member-avatar{
-
-    width:74px;
-    height:74px;
-
-    font-size:32px;
+    height:500px;
   }
 
   .member-name{
@@ -1214,20 +1189,19 @@ MOBILE
     font-size:.95rem;
   }
 
-  .member-bottom{
+  .member-avatar{
 
-    flex-direction:column;
-    align-items:flex-start;
+    width:74px;
+    height:74px;
+
+    font-size:32px;
   }
 
-  .verify-btn{
-    width:100%;
-  }
-
-  .flip-btn{
-    height:54px;
+  .member-info-grid{
+    grid-template-columns:1fr;
   }
 }
+
 /* =========================================================
 LOADING
 ========================================================= */
@@ -1780,7 +1754,20 @@ function normalize(member){
 CARD
 ========================================================= */
 
+/* =========================================================
+REPLACE ONLY YOUR CARD TEMPLATE FUNCTION
+========================================================= */
+
 function card(member){
+
+  const statusIcon =
+    member.status === "inactive"
+      ? "✕"
+      : member.status === "on_leave"
+        ? "⏸"
+        : member.status === "alumni"
+          ? "⌛"
+          : "✓";
 
   return `
 
@@ -1788,11 +1775,9 @@ function card(member){
 
       <div class="member-inner">
 
-        <div class="member-face member-front glass">
+        <!-- FRONT -->
 
-          <div class="member-status ${member.status}">
-            ✓
-          </div>
+        <div class="member-face member-front">
 
           <div class="member-top">
 
@@ -1800,14 +1785,26 @@ function card(member){
               ${avatar(member)}
             </div>
 
-            <div>
+            <div class="member-main">
 
-              <div class="member-name">
-                ${escapeHtml(member.full_name)}
-              </div>
+              <div class="member-row">
 
-              <div class="member-role">
-                ${escapeHtml(member.role_title)}
+                <div>
+
+                  <div class="member-name">
+                    ${escapeHtml(member.full_name)}
+                  </div>
+
+                  <div class="member-role">
+                    ${escapeHtml(member.role_title)}
+                  </div>
+
+                </div>
+
+                <div class="member-status ${member.status}">
+                  ${statusIcon}
+                </div>
+
               </div>
 
               <div class="member-id">
@@ -1820,7 +1817,7 @@ function card(member){
                   ${escapeHtml(member.department)}
                 </div>
 
-                <div class="chip status-chip">
+                <div class="chip status-chip ${member.status}">
                   ${escapeHtml(member.status)}
                 </div>
 
@@ -1834,36 +1831,55 @@ function card(member){
             ${escapeHtml(member.bio)}
           </div>
 
-          <div class="member-bottom">
+          <div class="member-info-grid">
 
-            <div class="member-duration">
+            <div class="info-box">
 
-              Joined:
-              ${formatDate(member.joined_at)}
+              <div class="info-label">
+                Joined
+              </div>
 
-              <br>
-
-              ${
-                member.ended_at
-                ? `Ended: ${formatDate(member.ended_at)}`
-                : `Currently Active`
-              }
+              <div class="info-value">
+                ${formatDate(member.joined_at)}
+              </div>
 
             </div>
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Status
+              </div>
+
+              <div class="info-value">
+                ${
+                  member.ended_at
+                  ? `Ended`
+                  : `Currently Active`
+                }
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="member-actions">
 
             <button class="verify-btn">
               Verified Member
             </button>
 
-          </div>
+            <button class="flip-btn">
+              ↻
+            </button>
 
-          <button class="flip-btn">
-            Flip Card ↻
-          </button>
+          </div>
 
         </div>
 
-        <div class="member-face member-back glass">
+        <!-- BACK -->
+
+        <div class="member-face member-back">
 
           <div>
 
@@ -1882,20 +1898,19 @@ function card(member){
             ${
               member.linkedin_url
               ? `
-                <a
-                  href="${escapeHtml(member.linkedin_url)}"
-                  target="_blank"
-                  class="member-link"
-                >
-                  <span>
-                    LinkedIn
-                  </span>
+              <a
+                href="${escapeHtml(member.linkedin_url)}"
+                target="_blank"
+                class="member-link"
+              >
+                <span>
+                  LinkedIn
+                </span>
 
-                  <span>
-                    →
-                  </span>
-
-                </a>
+                <span>
+                  →
+                </span>
+              </a>
               `
               : ""
             }
@@ -1903,20 +1918,19 @@ function card(member){
             ${
               member.github_url
               ? `
-                <a
-                  href="${escapeHtml(member.github_url)}"
-                  target="_blank"
-                  class="member-link"
-                >
-                  <span>
-                    GitHub
-                  </span>
+              <a
+                href="${escapeHtml(member.github_url)}"
+                target="_blank"
+                class="member-link"
+              >
+                <span>
+                  GitHub
+                </span>
 
-                  <span>
-                    →
-                  </span>
-
-                </a>
+                <span>
+                  →
+                </span>
+              </a>
               `
               : ""
             }
@@ -1924,20 +1938,19 @@ function card(member){
             ${
               member.portfolio_url
               ? `
-                <a
-                  href="${escapeHtml(member.portfolio_url)}"
-                  target="_blank"
-                  class="member-link"
-                >
-                  <span>
-                    Portfolio
-                  </span>
+              <a
+                href="${escapeHtml(member.portfolio_url)}"
+                target="_blank"
+                class="member-link"
+              >
+                <span>
+                  Portfolio
+                </span>
 
-                  <span>
-                    →
-                  </span>
-
-                </a>
+                <span>
+                  →
+                </span>
+              </a>
               `
               : ""
             }
@@ -1955,9 +1968,17 @@ function card(member){
 
           </div>
 
-          <button class="flip-btn">
-            Return ↻
-          </button>
+          <div class="member-actions">
+
+            <button class="verify-btn">
+              Verified Member
+            </button>
+
+            <button class="flip-btn">
+              ↻
+            </button>
+
+          </div>
 
         </div>
 
