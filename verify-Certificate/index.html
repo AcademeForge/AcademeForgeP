@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+/>
+
+<title>
+AcademeForge Certificate Verification
+</title>
+
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+/>
+
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+/>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+/>
+
+<style>
+
+:root{
+
+  --bg:#f3f6fb;
+  --bg2:#e8edf6;
+
+  --card:rgba(255,255,255,.72);
+
+  --text:#0f172a;
+  --muted:#64748b;
+  --heading:#020617;
+
+  --line:rgba(15,23,42,.08);
+
+  --orange:#f97316;
+  --orange2:#fb923c;
+
+  --green:#22c55e;
+  --green2:#16a34a;
+
+  --red:#ef4444;
+
+  --shadow:
+    0 20px 80px rgba(15,23,42,.10);
+}
+
+html[data-theme="dark"]{
+
+  --bg:#050816;
+  --bg2:#0b1120;
+
+  --card:rgba(15,23,42,.78);
+
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --heading:#ffffff;
+
+  --line:rgba(255,255,255,.08);
+
+  --shadow:
+    0 20px 80px rgba(0,0,0,.45);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,
+body{
+  width:100%;
+  min-height:100%;
+}
+
+body{
+
+  font-family:
+    Inter,
+    system-ui,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(249,115,22,.12),
+      transparent 30rem
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(59,130,246,.10),
+      transparent 30rem
+    ),
+    linear-gradient(
+      180deg,
+      var(--bg),
+      var(--bg2)
+    );
+
+  color:var(--text);
+
+  min-height:100vh;
+
+  overflow-x:hidden;
+}
+
+body::before{
+
+  content:"";
+
+  position:fixed;
+  inset:0;
+
+  pointer-events:none;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.02) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.02) 1px,
+      transparent 1px
+    );
+
+  background-size:52px 52px;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button{
+  border:none;
+  outline:none;
+  cursor:pointer;
+  font:inherit;
+}
+
+.cw{
+  width:100%;
+  max-width:1300px;
+  margin-inline:auto;
+  padding-inline:24px;
+}
+
+/* =========================================================
+HEADER
+========================================================= */
+
+.header{
+
+  position:sticky;
+  top:0;
+
+  z-index:500;
+
+  border-bottom:
+    1px solid var(--line);
+
+  background:
+    rgba(255,255,255,.45);
+
+  backdrop-filter:blur(20px);
+}
+
+html[data-theme="dark"] .header{
+  background:rgba(5,8,22,.65);
+}
+
+.header-inner{
+
+  min-height:76px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  flex-shrink:0;
+}
+
+.logo{
+
+  width:52px;
+  height:52px;
+
+  border-radius:18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      var(--orange2)
+    );
+
+  color:#111827;
+
+  font-size:20px;
+  font-weight:1000;
+}
+
+.brand-title{
+
+  display:block;
+
+  color:var(--heading);
+
+  font-size:1.15rem;
+  font-weight:900;
+}
+
+.brand-sub{
+
+  display:block;
+
+  margin-top:4px;
+
+  color:var(--muted);
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.nav{
+
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+
+.nav a{
+
+  color:var(--muted);
+
+  font-size:.92rem;
+  font-weight:800;
+
+  transition:.2s ease;
+}
+
+.nav a:hover{
+  color:var(--heading);
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.back-btn{
+
+  height:48px;
+
+  padding:
+    0 18px;
+
+  border-radius:999px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    rgba(255,255,255,.04);
+
+  border:
+    1px solid var(--line);
+
+  color:var(--heading);
+
+  font-size:.9rem;
+  font-weight:900;
+
+  transition:.25s ease;
+
+  backdrop-filter:blur(20px);
+}
+
+.back-btn:hover{
+
+  transform:translateY(-2px);
+
+  border-color:
+    rgba(249,115,22,.45);
+
+  color:var(--orange);
+}
+
+.theme-toggle{
+
+  height:48px;
+
+  padding:
+    0 16px;
+
+  border-radius:999px;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  background:var(--card);
+
+  border:
+    1px solid var(--line);
+
+  color:var(--heading);
+
+  font-weight:800;
+
+  backdrop-filter:blur(20px);
+}
+
+.switch{
+
+  position:relative;
+
+  width:42px;
+  height:22px;
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.12);
+}
+
+.knob{
+
+  position:absolute;
+
+  top:2px;
+  left:2px;
+
+  width:18px;
+  height:18px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      var(--orange2)
+    );
+
+  transition:.25s ease;
+}
+
+html[data-theme="dark"] .knob{
+  transform:translateX(20px);
+}
+
+/* =========================================================
+MOBILE MENU
+========================================================= */
+
+.menu-btn{
+
+  display:none;
+
+  width:48px;
+  height:48px;
+
+  border-radius:16px;
+
+  background:var(--card);
+
+  border:
+    1px solid var(--line);
+
+  color:var(--heading);
+
+  font-size:24px;
+
+  backdrop-filter:blur(20px);
+}
+
+.mobile-menu{
+
+  position:fixed;
+
+  top:0;
+  right:-100%;
+
+  width:300px;
+  height:100vh;
+
+  z-index:999;
+
+  padding:24px;
+
+  background:
+    rgba(5,8,22,.96);
+
+  backdrop-filter:blur(20px);
+
+  transition:.3s ease;
+}
+
+.mobile-menu.open{
+  right:0;
+}
+
+.mobile-top{
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.close-btn{
+
+  width:42px;
+  height:42px;
+
+  border-radius:14px;
+
+  background:
+    rgba(255,255,255,.06);
+
+  color:white;
+
+  font-size:20px;
+}
+
+.mobile-nav{
+
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+
+  margin-top:34px;
+}
+
+.mobile-nav a{
+
+  height:56px;
+
+  padding:
+    0 18px;
+
+  border-radius:18px;
+
+  display:flex;
+  align-items:center;
+
+  background:
+    rgba(255,255,255,.06);
+
+  color:white;
+
+  font-size:15px;
+  font-weight:800;
+}
+
+/* =========================================================
+MAIN
+========================================================= */
+
+.main{
+
+  min-height:
+    calc(100vh - 76px);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:50px 24px;
+}
+
+.wrapper{
+  width:100%;
+  max-width:760px;
+}
+
+.card{
+
+  position:relative;
+
+  overflow:hidden;
+
+  background:var(--card);
+
+  border:
+    1px solid var(--line);
+
+  border-radius:34px;
+
+  padding:
+    clamp(24px,4vw,46px);
+
+  box-shadow:var(--shadow);
+
+  backdrop-filter:blur(20px);
+}
+
+.glow{
+
+  position:absolute;
+
+  width:240px;
+  height:240px;
+
+  border-radius:999px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(249,115,22,.25),
+      transparent 70%
+    );
+
+  top:-80px;
+  right:-80px;
+
+  pointer-events:none;
+}
+
+.verify-logo{
+
+  width:72px;
+  height:72px;
+
+  border-radius:24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      var(--orange2)
+    );
+
+  color:#111827;
+
+  font-size:28px;
+  font-weight:1000;
+}
+
+.eyebrow{
+
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+
+  margin-top:22px;
+
+  padding:
+    10px 16px;
+
+  border-radius:999px;
+
+  background:
+    rgba(249,115,22,.12);
+
+  color:var(--orange);
+
+  font-size:11px;
+  font-weight:900;
+
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+.title{
+
+  margin-top:22px;
+
+  color:var(--heading);
+
+  font-size:
+    clamp(2.2rem,6vw,4.5rem);
+
+  line-height:.95;
+
+  font-weight:1000;
+
+  letter-spacing:-.05em;
+}
+
+.desc{
+
+  margin-top:18px;
+
+  color:var(--muted);
+
+  line-height:1.8;
+
+  font-size:15px;
+}
+
+/* =========================================================
+INPUT
+========================================================= */
+
+.certificate-input-wrap{
+
+  margin-top:34px;
+
+  display:flex;
+  gap:14px;
+}
+
+.prefix-select-wrap{
+  flex:1;
+}
+
+.prefix-select-wrap select{
+
+  width:100%;
+  height:64px;
+
+  border:none;
+  outline:none;
+
+  padding:
+    0 20px;
+
+  border-radius:20px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  border:
+    1px solid var(--line);
+
+  color:var(--heading);
+
+  font-size:15px;
+  font-weight:900;
+
+  appearance:none;
+
+  cursor:pointer;
+}
+
+#certificateSuffix{
+
+  width:150px;
+  height:64px;
+
+  border:none;
+  outline:none;
+
+  text-align:center;
+
+  border-radius:20px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  border:
+    1px solid var(--line);
+
+  color:var(--heading);
+
+  font-size:20px;
+  font-weight:1000;
+
+  letter-spacing:.18em;
+}
+
+#certificateSuffix:focus,
+.prefix-select-wrap select:focus{
+
+  border-color:
+    rgba(249,115,22,.45);
+
+  box-shadow:
+    0 0 0 4px rgba(249,115,22,.12);
+}
+
+/* =========================================================
+BUTTON
+========================================================= */
+
+.verify-btn{
+
+  margin-top:18px;
+
+  width:100%;
+  height:64px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      var(--orange2)
+    );
+
+  color:white;
+
+  font-size:15px;
+  font-weight:900;
+
+  transition:.25s ease;
+}
+
+.verify-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* =========================================================
+LOADING
+========================================================= */
+
+.loading{
+
+  margin-top:22px;
+
+  display:none;
+  align-items:center;
+  gap:12px;
+
+  color:var(--muted);
+
+  font-weight:700;
+}
+
+.loading.active{
+  display:flex;
+}
+
+.spinner{
+
+  width:22px;
+  height:22px;
+
+  border-radius:999px;
+
+  border:
+    3px solid rgba(255,255,255,.12);
+
+  border-top-color:
+    var(--orange);
+
+  animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* =========================================================
+RESULT
+========================================================= */
+
+.result{
+
+  margin-top:28px;
+
+  display:none;
+}
+
+.result.active{
+  display:block;
+}
+
+.result-card{
+
+  border-radius:28px;
+
+  padding:30px;
+
+  border:
+    1px solid var(--line);
+
+  background:
+    rgba(255,255,255,.03);
+}
+
+.success{
+
+  border-color:
+    rgba(34,197,94,.24);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(34,197,94,.08),
+      rgba(255,255,255,.03)
+    );
+}
+
+.failed{
+
+  border-color:
+    rgba(239,68,68,.25);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(239,68,68,.08),
+      rgba(255,255,255,.03)
+    );
+}
+
+.verify-top{
+
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.verify-icon{
+
+  width:68px;
+  height:68px;
+
+  border-radius:22px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:32px;
+  font-weight:1000;
+
+  flex-shrink:0;
+}
+
+.verify-icon.success{
+  background:
+    linear-gradient(
+      135deg,
+      var(--green),
+      var(--green2)
+    );
+}
+
+.verify-icon.failed{
+  background:
+    linear-gradient(
+      135deg,
+      #ef4444,
+      #dc2626
+    );
+}
+
+.verify-title{
+
+  font-size:1.5rem;
+  font-weight:900;
+}
+
+.verify-sub{
+
+  margin-top:8px;
+
+  color:var(--muted);
+
+  line-height:1.7;
+}
+
+.details{
+
+  margin-top:26px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:18px;
+}
+
+.detail{
+
+  padding:20px;
+
+  border-radius:20px;
+
+  background:
+    rgba(255,255,255,.03);
+
+  border:
+    1px solid var(--line);
+}
+
+.label{
+
+  color:var(--muted);
+
+  font-size:11px;
+  font-weight:900;
+
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.value{
+
+  margin-top:10px;
+
+  font-size:1rem;
+  font-weight:900;
+
+  line-height:1.5;
+
+  word-break:break-word;
+}
+
+.footer{
+
+  margin-top:26px;
+
+  color:var(--muted);
+
+  text-align:center;
+
+  font-size:13px;
+  line-height:1.8;
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media (max-width:980px){
+
+  .nav{
+    display:none;
+  }
+
+  .back-btn{
+    display:none;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+}
+
+@media (max-width:768px){
+
+  .certificate-input-wrap{
+    flex-direction:column;
+  }
+
+  #certificateSuffix{
+    width:100%;
+  }
+
+  .details{
+    grid-template-columns:1fr;
+  }
+
+  .verify-top{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =======================================================
+HEADER
+======================================================= -->
+
+<header class="header">
+
+  <div class="cw header-inner">
+
+    <a
+      href="https://academeforge.in"
+      class="brand"
+    >
+
+      <div class="logo">
+        AF
+      </div>
+
+      <div>
+
+        <span class="brand-title">
+          AcademeForge
+        </span>
+
+        <span class="brand-sub">
+          Verification Infrastructure
+        </span>
+
+      </div>
+
+    </a>
+
+    <nav class="nav">
+
+      <a href="https://academeforge.in">
+        Home
+      </a>
+
+      <a href="https://academeforge.in/join-team/">
+        Join Team
+      </a>
+
+      <a href="https://academeforge.in/verify-team/">
+        Verify Team
+      </a>
+
+      <a href="#">
+        Certificates
+      </a>
+
+    </nav>
+
+    <div class="header-actions">
+
+      <a
+        href="https://academeforge.in"
+        class="back-btn"
+      >
+        ← Back To Site
+      </a>
+
+      <button
+        id="themeToggle"
+        class="theme-toggle"
+      >
+
+        <span id="themeText">
+          Light
+        </span>
+
+        <span class="switch">
+          <span class="knob"></span>
+        </span>
+
+      </button>
+
+      <button
+        id="menuBtn"
+        class="menu-btn"
+      >
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+<!-- =======================================================
+MOBILE MENU
+======================================================= -->
+
+<aside
+  id="mobileMenu"
+  class="mobile-menu"
+>
+
+  <div class="mobile-top">
+
+    <div class="logo">
+      AF
+    </div>
+
+    <button
+      id="closeBtn"
+      class="close-btn"
+    >
+      ✕
+    </button>
+
+  </div>
+
+  <nav class="mobile-nav">
+
+    <a href="https://academeforge.in">
+      Home
+    </a>
+
+    <a href="https://academeforge.in/join-team/">
+      Join Team
+    </a>
+
+    <a href="https://academeforge.in/verify-team/">
+      Verify Team
+    </a>
+
+    <a href="#">
+      Certificates
+    </a>
+
+    <a href="https://academeforge.in">
+      ← Back To Site
+    </a>
+
+  </nav>
+
+</aside>
+
+<!-- =======================================================
+MAIN
+======================================================= -->
+
+<main class="main">
+
+  <div class="wrapper">
+
+    <div class="card">
+
+      <div class="glow"></div>
+
+      <div class="verify-logo">
+        ✓
+      </div>
+
+      <div class="eyebrow">
+        Official Certificate Verification
+      </div>
+
+      <h1 class="title">
+        Certificate Verification
+      </h1>
+
+      <p class="desc">
+
+        Verify AcademeForge certificates instantly
+        using the official certificate number.
+
+      </p>
+
+      <div class="certificate-input-wrap">
+
+        <div class="prefix-select-wrap">
+
+          <select id="certificatePrefix">
+
+            <option value="AF-CERT-2024-">
+              AF-CERT-2024-
+            </option>
+
+            <option value="AF-CERT-2025-">
+              AF-CERT-2025-
+            </option>
+
+            <option
+              value="AF-CERT-2026-"
+              selected
+            >
+              AF-CERT-2026-
+            </option>
+
+            <option value="AF-CERT-2027-">
+              AF-CERT-2027-
+            </option>
+
+            <option value="AF-CERT-2028-">
+              AF-CERT-2028-
+            </option>
+
+            <option value="AF-CERT-2029-">
+              AF-CERT-2029-
+            </option>
+
+          </select>
+
+        </div>
+
+        <input
+          id="certificateSuffix"
+          type="text"
+          placeholder="0001"
+          maxlength="4"
+          inputmode="numeric"
+          autocomplete="off"
+          spellcheck="false"
+        />
+
+      </div>
+
+      <button
+        id="verifyBtn"
+        class="verify-btn"
+      >
+        Verify Certificate
+      </button>
+
+      <div
+        id="loading"
+        class="loading"
+      >
+
+        <div class="spinner"></div>
+
+        <span>
+          Verifying certificate...
+        </span>
+
+      </div>
+
+      <div
+        id="result"
+        class="result"
+      ></div>
+
+      <div class="footer">
+
+        © 2026 AcademeForge Workforce &
+        Credential Verification Infrastructure
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+
+const API_URL =
+  "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/verify-af-certificate";
+
+const html =
+  document.documentElement;
+
+const themeToggle =
+  document.getElementById(
+    "themeToggle"
+  );
+
+const themeText =
+  document.getElementById(
+    "themeText"
+  );
+
+const menuBtn =
+  document.getElementById(
+    "menuBtn"
+  );
+
+const closeBtn =
+  document.getElementById(
+    "closeBtn"
+  );
+
+const mobileMenu =
+  document.getElementById(
+    "mobileMenu"
+  );
+
+const certificatePrefix =
+  document.getElementById(
+    "certificatePrefix"
+  );
+
+const certificateSuffix =
+  document.getElementById(
+    "certificateSuffix"
+  );
+
+const verifyBtn =
+  document.getElementById(
+    "verifyBtn"
+  );
+
+const result =
+  document.getElementById(
+    "result"
+  );
+
+const loading =
+  document.getElementById(
+    "loading"
+  );
+
+/* =========================================================
+THEME
+========================================================= */
+
+const savedTheme =
+  localStorage.getItem(
+    "af-theme"
+  );
+
+if(savedTheme){
+
+  html.setAttribute(
+    "data-theme",
+    savedTheme
+  );
+}
+
+updateThemeText();
+
+themeToggle.addEventListener(
+  "click",
+  () => {
+
+    const current =
+      html.getAttribute(
+        "data-theme"
+      );
+
+    const next =
+      current === "dark"
+        ? "light"
+        : "dark";
+
+    html.setAttribute(
+      "data-theme",
+      next
+    );
+
+    localStorage.setItem(
+      "af-theme",
+      next
+    );
+
+    updateThemeText();
+  }
+);
+
+function updateThemeText(){
+
+  const isDark =
+    html.getAttribute(
+      "data-theme"
+    ) === "dark";
+
+  themeText.textContent =
+    isDark
+      ? "Light"
+      : "Dark";
+}
+
+/* =========================================================
+MOBILE MENU
+========================================================= */
+
+menuBtn.addEventListener(
+  "click",
+  () => {
+    mobileMenu.classList.add(
+      "open"
+    );
+  }
+);
+
+closeBtn.addEventListener(
+  "click",
+  () => {
+    mobileMenu.classList.remove(
+      "open"
+    );
+  }
+);
+
+/* =========================================================
+VERIFY
+========================================================= */
+
+async function verifyCertificate(){
+
+  const suffix =
+    certificateSuffix.value
+      .replace(/\D/g,"")
+      .trim();
+
+  if(!suffix){
+
+    showFailed(
+      "Please enter certificate number."
+    );
+
+    return;
+  }
+
+  const certificateNumber =
+    (
+      certificatePrefix.value +
+      suffix.padStart(4,"0")
+    ).toUpperCase();
+
+  try{
+
+    loading.classList.add(
+      "active"
+    );
+
+    result.classList.remove(
+      "active"
+    );
+
+    const response =
+      await fetch(
+        API_URL,
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:JSON.stringify({
+            certificate_number:
+              certificateNumber
+          })
+        }
+      );
+
+    const data =
+      await response.json();
+
+    if(
+      response.ok &&
+      data.found
+    ){
+
+      showSuccess(
+        data.certificate
+      );
+
+    }else{
+
+      showFailed(
+        data.message ||
+        "Certificate not found."
+      );
+    }
+
+  }catch(error){
+
+    showFailed(
+      error.message ||
+      "Verification failed."
+    );
+
+  }finally{
+
+    loading.classList.remove(
+      "active"
+    );
+  }
+}
+
+/* =========================================================
+SUCCESS
+========================================================= */
+
+function showSuccess(certificate){
+
+  result.innerHTML = `
+
+    <div class="result-card success">
+
+      <div class="verify-top">
+
+        <div class="verify-icon success">
+          ✓
+        </div>
+
+        <div>
+
+          <div class="verify-title">
+            Certificate Verified
+          </div>
+
+          <div class="verify-sub">
+
+            This certificate is officially
+            issued and verified by
+            AcademeForge.
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="details">
+
+        <div class="detail">
+
+          <div class="label">
+            Certificate Number
+          </div>
+
+          <div class="value">
+            ${
+              escapeHtml(
+                certificate.certificate_number
+              )
+            }
+          </div>
+
+        </div>
+
+        <div class="detail">
+
+          <div class="label">
+            Issued To
+          </div>
+
+          <div class="value">
+            ${
+              escapeHtml(
+                certificate.issued_to
+              )
+            }
+          </div>
+
+        </div>
+
+        <div class="detail">
+
+          <div class="label">
+            Issued On
+          </div>
+
+          <div class="value">
+            ${
+              formatDate(
+                certificate.issued_on
+              )
+            }
+          </div>
+
+        </div>
+
+        <div class="detail">
+
+          <div class="label">
+            Certificate Type
+          </div>
+
+          <div class="value">
+            ${
+              escapeHtml(
+                certificate.certificate_type
+              )
+            }
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  result.classList.add(
+    "active"
+  );
+}
+
+/* =========================================================
+FAILED
+========================================================= */
+
+function showFailed(message){
+
+  result.innerHTML = `
+
+    <div class="result-card failed">
+
+      <div class="verify-top">
+
+        <div class="verify-icon failed">
+          ✕
+        </div>
+
+        <div>
+
+          <div class="verify-title">
+            Certificate Not Found
+          </div>
+
+          <div class="verify-sub">
+            ${
+              escapeHtml(message)
+            }
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  result.classList.add(
+    "active"
+  );
+}
+
+/* =========================================================
+HELPERS
+========================================================= */
+
+function escapeHtml(value){
+
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+}
+
+function formatDate(date){
+
+  try{
+
+    return new Date(date)
+      .toLocaleDateString(
+        "en-IN",
+        {
+          year:"numeric",
+          month:"long",
+          day:"numeric"
+        }
+      );
+
+  }catch{
+    return date;
+  }
+}
+
+/* =========================================================
+ONLY NUMBERS
+========================================================= */
+
+certificateSuffix.addEventListener(
+  "input",
+  () => {
+
+    certificateSuffix.value =
+      certificateSuffix.value
+        .replace(/\D/g,"");
+  }
+);
+
+/* =========================================================
+EVENTS
+========================================================= */
+
+verifyBtn.addEventListener(
+  "click",
+  verifyCertificate
+);
+
+certificateSuffix.addEventListener(
+  "keydown",
+  e => {
+
+    if(e.key === "Enter"){
+      verifyCertificate();
+    }
+  }
+);
+
+</script>
+
+</body>
+</html>
