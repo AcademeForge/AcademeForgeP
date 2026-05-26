@@ -1627,466 +1627,523 @@
 
   </section>
 
-  <script>
+ <script>
 
-    /* =========================================================
-       CONFIG
-    ========================================================== */
+  /* =========================================================
+     CONFIG
+  ========================================================== */
 
-    const AF_API =
-      "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/get-af-team-members";
+  const AF_API =
+    "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/get-af-team-members";
 
-    /* =========================================================
-       STATE
-    ========================================================== */
+  /* =========================================================
+     STATE
+  ========================================================== */
 
-    let afMembers = [];
+  let afMembers = [];
 
-    /* =========================================================
-       ELEMENTS
-    ========================================================== */
+  /* =========================================================
+     ELEMENTS
+  ========================================================== */
 
-    const membersGrid =
-      document.getElementById("membersGrid");
+  const membersGrid =
+    document.getElementById("membersGrid");
 
-    const loadingEl =
-      document.getElementById("loading");
+  const loadingEl =
+    document.getElementById("loading");
 
-    const emptyEl =
-      document.getElementById("empty");
+  const emptyEl =
+    document.getElementById("empty");
 
-    const searchInput =
-      document.getElementById("searchInput");
+  const searchInput =
+    document.getElementById("searchInput");
 
-    /* =========================================================
-       MOBILE MENU
-    ========================================================== */
+  /* =========================================================
+     MOBILE MENU
+  ========================================================== */
 
-    const mobileMenu =
-      document.getElementById("mobileMenu");
+  const mobileMenu =
+    document.getElementById("mobileMenu");
 
-    document
-      .getElementById("openMenu")
-      .addEventListener(
-        "click",
-        () => {
-          mobileMenu.classList.add("open");
-        }
-      );
-
-    document
-      .getElementById("closeMenu")
-      .addEventListener(
-        "click",
-        () => {
-          mobileMenu.classList.remove("open");
-        }
-      );
-
-    /* =========================================================
-       THEME
-    ========================================================== */
-
-    const themeToggle =
-      document.getElementById("themeToggle");
-
-    const savedTheme =
-      localStorage.getItem("af-theme");
-
-    if (savedTheme === "dark") {
-      document.documentElement.setAttribute(
-        "data-theme",
-        "dark"
-      );
-    }
-
-    themeToggle.addEventListener(
+  document
+    .getElementById("openMenu")
+    ?.addEventListener(
       "click",
       () => {
-
-        const currentTheme =
-          document.documentElement.getAttribute(
-            "data-theme"
-          );
-
-        const nextTheme =
-          currentTheme === "dark"
-            ? "light"
-            : "dark";
-
-        document.documentElement.setAttribute(
-          "data-theme",
-          nextTheme
-        );
-
-        localStorage.setItem(
-          "af-theme",
-          nextTheme
-        );
+        mobileMenu.classList.add("open");
       }
     );
 
-    /* =========================================================
-       HELPERS
-    ========================================================== */
-
-    function escapeHtml(value) {
-
-      return String(value || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-    }
-
-    function formatDate(dateString) {
-
-      if (!dateString) {
-        return "Present";
+  document
+    .getElementById("closeMenu")
+    ?.addEventListener(
+      "click",
+      () => {
+        mobileMenu.classList.remove("open");
       }
+    );
 
-      try {
+  /* =========================================================
+     THEME
+  ========================================================== */
 
-        return new Date(dateString)
-          .toLocaleDateString(
-            "en-IN",
-            {
-              year: "numeric",
-              month: "short"
-            }
-          );
+  const themeToggle =
+    document.getElementById("themeToggle");
 
-      } catch {
+  const savedTheme =
+    localStorage.getItem("af-theme");
 
-        return dateString;
-      }
-    }
+  if (savedTheme === "dark") {
 
-    function statusLabel(status) {
+    document.documentElement.setAttribute(
+      "data-theme",
+      "dark"
+    );
+  }
 
-      switch (status) {
+  themeToggle?.addEventListener(
+    "click",
+    () => {
 
-        case "active":
-          return "Active";
+      const currentTheme =
+        document.documentElement.getAttribute(
+          "data-theme"
+        );
 
-        case "alumni":
-          return "Alumni";
+      const nextTheme =
+        currentTheme === "dark"
+          ? "light"
+          : "dark";
 
-        case "on_leave":
-          return "On Leave";
+      document.documentElement.setAttribute(
+        "data-theme",
+        nextTheme
+      );
 
-        case "suspended":
-          return "Suspended";
-
-        case "contract_ended":
-          return "Contract Ended";
-
-        default:
-          return "Unknown";
-      }
-    }
-
-    function avatarTemplate(member) {
-
-      if (member.avatar_url) {
-
-        return `
-          <img
-            src="${escapeHtml(member.avatar_url)}"
-            alt="${escapeHtml(member.full_name)}"
-          />
-        `;
-      }
-
-      return escapeHtml(
-        member.full_name
-          .charAt(0)
-          .toUpperCase()
+      localStorage.setItem(
+        "af-theme",
+        nextTheme
       );
     }
+  );
 
-    /* =========================================================
-       CARD
-    ========================================================== */
+  /* =========================================================
+     HELPERS
+  ========================================================== */
 
-    function memberCard(member) {
+  function escapeHtml(value) {
+
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function formatDate(dateString) {
+
+    if (!dateString) {
+      return "Present";
+    }
+
+    try {
+
+      return new Date(dateString)
+        .toLocaleDateString(
+          "en-IN",
+          {
+            year: "numeric",
+            month: "short"
+          }
+        );
+
+    } catch {
+
+      return dateString;
+    }
+  }
+
+  function getStatusClass(status) {
+
+    const safeStatus =
+      String(status || "")
+        .trim()
+        .toLowerCase();
+
+    switch (safeStatus) {
+
+      case "active":
+        return "status-active";
+
+      case "alumni":
+        return "status-alumni";
+
+      case "on_leave":
+        return "status-on_leave";
+
+      default:
+        return "status-active";
+    }
+  }
+
+  function avatarTemplate(member) {
+
+    const avatar =
+      member.avatar_url ||
+      member.avatar ||
+      "";
+
+    if (avatar) {
 
       return `
+        <img
+          src="${escapeHtml(avatar)}"
+          alt="${escapeHtml(member.full_name)}"
+          loading="lazy"
+        />
+      `;
+    }
 
-        <div class="member-card glass">
+    return escapeHtml(
+      String(member.full_name || "A")
+        .charAt(0)
+        .toUpperCase()
+    );
+  }
 
-          <div class="member-top">
+  /* =========================================================
+     CARD TEMPLATE
+  ========================================================== */
 
-            <div class="member-avatar">
+  function memberCard(member) {
 
-              ${avatarTemplate(member)}
+    const role =
+      member.role_title ||
+      member.current_role ||
+      member.role ||
+      "AcademeForge Team Member";
 
-            </div>
+    const department =
+      member.department ||
+      member.team ||
+      "";
 
-            <div>
+    const status =
+      member.status ||
+      member.work_status ||
+      "active";
 
-              <div class="member-name-row">
+    const bio =
+      member.bio ||
+      member.description ||
+      "Verified AcademeForge workforce member.";
 
-                <div class="member-name">
+    const joinedDate =
+      member.joined_at ||
+      member.joined_date ||
+      member.created_at;
 
-                  ${escapeHtml(member.full_name)}
+    const endedDate =
+      member.ended_at ||
+      member.end_date ||
+      "";
 
-                </div>
+    return `
 
-                ${
-                  member.is_verified
-                    ? `
-                      <div class="verified">
-                        ✓
-                      </div>
-                    `
-                    : ""
-                }
+      <div class="member-card glass">
 
-              </div>
+        <div class="member-top">
 
-              <div class="member-role">
+          <div class="member-avatar">
 
-                ${escapeHtml(member.role_title)}
-
-              </div>
-
-              <div class="chips">
-
-                ${
-                  member.department
-                    ? `
-                      <div class="chip department-chip">
-                        ${escapeHtml(member.department)}
-                      </div>
-                    `
-                    : ""
-                }
-
-                <div class="chip status-${escapeHtml(member.status)}">
-
-                  ${escapeHtml(
-                    statusLabel(member.status)
-                  )}
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="member-bio">
-
-            ${escapeHtml(
-              member.bio ||
-              "No bio available."
-            )}
+            ${avatarTemplate(member)}
 
           </div>
 
-          <div class="member-bottom">
+          <div>
 
-            <div class="member-duration">
+            <div class="member-name-row">
 
-              Joined:
-              ${formatDate(member.joined_at)}
+              <div class="member-name">
 
-              <br />
+                ${escapeHtml(member.full_name || "Unknown")}
+
+              </div>
+
+              <div class="verified">
+                ✓
+              </div>
+
+            </div>
+
+            <div class="member-role">
+
+              ${escapeHtml(role)}
+
+            </div>
+
+            <div class="chips">
 
               ${
-                member.ended_at
+                department
                   ? `
-                    Ended:
-                    ${formatDate(member.ended_at)}
+                    <div class="chip department-chip">
+                      ${escapeHtml(department)}
+                    </div>
                   `
-                  : `
-                    Currently Active
-                  `
+                  : ""
               }
 
-            </div>
+              <div class="chip ${getStatusClass(status)}">
 
-            <button
-              class="view-btn"
-              type="button"
-            >
-              Verified Member
-            </button>
+                ${escapeHtml(status)}
+
+              </div>
+
+            </div>
 
           </div>
 
         </div>
-      `;
-    }
 
-    /* =========================================================
-       RENDER
-    ========================================================== */
+        <div class="member-bio">
 
-    function renderMembers(members) {
+          ${escapeHtml(bio)}
 
-      membersGrid.innerHTML = "";
+        </div>
 
-      if (!members.length) {
+        <div class="member-bottom">
 
-        emptyEl.style.display = "block";
+          <div class="member-duration">
 
-        return;
-      }
+            Joined:
+            ${formatDate(joinedDate)}
 
-      emptyEl.style.display = "none";
+            <br />
 
-      membersGrid.innerHTML =
-        members
-          .map(memberCard)
-          .join("");
-    }
-
-    /* =========================================================
-       FILTER
-    ========================================================== */
-
-    function filterMembers() {
-
-      const query =
-        String(searchInput.value || "")
-          .trim()
-          .toLowerCase();
-
-      if (!query) {
-
-        renderMembers(afMembers);
-
-        return;
-      }
-
-      const filtered =
-        afMembers.filter((member) => {
-
-          return (
-
-            String(member.full_name || "")
-              .toLowerCase()
-              .includes(query)
-
-            ||
-
-            String(member.role_title || "")
-              .toLowerCase()
-              .includes(query)
-
-            ||
-
-            String(member.department || "")
-              .toLowerCase()
-              .includes(query)
-          );
-        });
-
-      renderMembers(filtered);
-    }
-
-    /* =========================================================
-       FETCH
-    ========================================================== */
-
-    async function loadMembers() {
-
-      try {
-
-        loadingEl.style.display = "flex";
-
-        const response =
-          await fetch(AF_API);
-
-        const data =
-          await response.json();
-
-        if (
-          !response.ok ||
-          !data.ok
-        ) {
-
-          throw new Error(
-            data.message ||
-            "Failed to load registry."
-          );
-        }
-
-        afMembers =
-          Array.isArray(data.members)
-            ? data.members
-            : [];
-
-        document.getElementById(
-          "totalMembers"
-        ).textContent =
-          String(data.total_members || 0);
-
-        document.getElementById(
-          "activeMembers"
-        ).textContent =
-          String(data.active_members || 0);
-
-        document.getElementById(
-          "alumniMembers"
-        ).textContent =
-          String(data.alumni_members || 0);
-
-        renderMembers(afMembers);
-
-      } catch (error) {
-
-        console.error(
-          "Registry fetch failed:",
-          error
-        );
-
-        membersGrid.innerHTML = `
-
-          <div class="empty glass">
-
-            <h3>
-              Failed To Load Registry
-            </h3>
-
-            <p>
-
-              ${
-                error instanceof Error
-                  ? escapeHtml(error.message)
-                  : "Unexpected error occurred."
-              }
-
-            </p>
+            ${
+              endedDate
+                ? `
+                  Ended:
+                  ${formatDate(endedDate)}
+                `
+                : `
+                  Currently Active
+                `
+            }
 
           </div>
-        `;
 
-      } finally {
+          <button
+            class="view-btn"
+            type="button"
+          >
+            Verified Member
+          </button>
 
-        loadingEl.style.display = "none";
-      }
+        </div>
+
+      </div>
+    `;
+  }
+
+  /* =========================================================
+     RENDER
+  ========================================================== */
+
+  function renderMembers(members) {
+
+    membersGrid.innerHTML = "";
+
+    if (!members.length) {
+
+      emptyEl.style.display = "block";
+
+      return;
     }
 
-    /* =========================================================
-       EVENTS
-    ========================================================== */
+    emptyEl.style.display = "none";
 
-    searchInput.addEventListener(
-      "input",
-      filterMembers
-    );
+    membersGrid.innerHTML =
+      members
+        .map(memberCard)
+        .join("");
+  }
 
-    /* =========================================================
-       INIT
-    ========================================================== */
+  /* =========================================================
+     FILTER
+  ========================================================== */
 
-    loadMembers();
+  function filterMembers() {
 
-  </script>
+    const query =
+      String(searchInput.value || "")
+        .trim()
+        .toLowerCase();
 
+    if (!query) {
+
+      renderMembers(afMembers);
+
+      return;
+    }
+
+    const filtered =
+      afMembers.filter((member) => {
+
+        return (
+
+          String(member.full_name || "")
+            .toLowerCase()
+            .includes(query)
+
+          ||
+
+          String(
+            member.role_title ||
+            member.current_role ||
+            ""
+          )
+            .toLowerCase()
+            .includes(query)
+
+          ||
+
+          String(member.department || "")
+            .toLowerCase()
+            .includes(query)
+        );
+      });
+
+    renderMembers(filtered);
+  }
+
+  /* =========================================================
+     FETCH MEMBERS
+  ========================================================== */
+
+  async function loadMembers() {
+
+    try {
+
+      loadingEl.style.display = "flex";
+
+      const response =
+        await fetch(AF_API, {
+
+          method: "GET",
+
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+
+      if (!response.ok) {
+
+        throw new Error(
+          `HTTP ${response.status}`
+        );
+      }
+
+      const data =
+        await response.json();
+
+      console.log(
+        "AF Registry API Response:",
+        data
+      );
+
+      afMembers =
+        Array.isArray(data.members)
+          ? data.members
+          : Array.isArray(data.data)
+            ? data.data
+            : Array.isArray(data)
+              ? data
+              : [];
+
+      document.getElementById(
+        "totalMembers"
+      ).textContent =
+        String(afMembers.length);
+
+      document.getElementById(
+        "activeMembers"
+      ).textContent =
+        String(
+          afMembers.filter(
+            (m) =>
+              (
+                m.status ||
+                m.work_status
+              ) === "active"
+          ).length
+        );
+
+      document.getElementById(
+        "alumniMembers"
+      ).textContent =
+        String(
+          afMembers.filter(
+            (m) =>
+              (
+                m.status ||
+                m.work_status
+              ) === "alumni"
+          ).length
+        );
+
+      renderMembers(afMembers);
+
+    } catch (error) {
+
+      console.error(
+        "Registry fetch failed:",
+        error
+      );
+
+      membersGrid.innerHTML = `
+
+        <div class="empty glass">
+
+          <h3>
+            Failed To Load Registry
+          </h3>
+
+          <p>
+
+            ${
+              error instanceof Error
+                ? escapeHtml(error.message)
+                : "Unexpected error occurred."
+            }
+
+          </p>
+
+        </div>
+      `;
+
+    } finally {
+
+      loadingEl.style.display = "none";
+    }
+  }
+
+  /* =========================================================
+     EVENTS
+  ========================================================== */
+
+  searchInput?.addEventListener(
+    "input",
+    filterMembers
+  );
+
+  /* =========================================================
+     INIT
+  ========================================================== */
+
+  loadMembers();
+
+</script>
 </body>
 </html>
