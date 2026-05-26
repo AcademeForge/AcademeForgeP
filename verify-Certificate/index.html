@@ -1604,7 +1604,6 @@ async function verifyCertificate(){
 /* =========================================================
 SUCCESS
 ========================================================= */
-
 function showSuccess(certificate){
 
   result.innerHTML = `
@@ -1720,13 +1719,13 @@ function showSuccess(certificate){
         <div class="detail">
 
           <div class="label">
-            Duration
+            Work Type
           </div>
 
           <div class="value">
             ${
               escapeHtml(
-                certificate.duration
+                certificate.work_type
               )
             }
           </div>
@@ -1791,7 +1790,6 @@ function showSuccess(certificate){
     block:"start"
   });
 }
-
 /* =========================================================
 FAILED
 ========================================================= */
