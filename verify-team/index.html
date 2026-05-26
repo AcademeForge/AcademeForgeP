@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
 
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 
 <meta
   name="viewport"
@@ -33,21 +34,46 @@ AcademeForge Workforce Registry
 
 :root{
 
-  --bg:#020817;
-  --card:#071127;
+  --bg:#f3f6fb;
+  --bg2:#e8edf6;
 
-  --text:#ffffff;
-  --muted:#9fb0cc;
+  --card:rgba(255,255,255,.72);
 
-  --line:rgba(255,255,255,.07);
+  --text:#0f172a;
+  --muted:#64748b;
+  --heading:#020617;
 
+  --line:rgba(15,23,42,.08);
+
+  --orange:#f97316;
+  --yellow:#facc15;
   --green:#22c55e;
-  --orange:#ff8a26;
-  --purple:#8b5cf6;
-  --red:#ef4444;
 
   --shadow:
-    0 20px 70px rgba(0,0,0,.42);
+    0 10px 40px rgba(15,23,42,.08);
+
+  --shadow2:
+    0 20px 70px rgba(15,23,42,.12);
+}
+
+html[data-theme="dark"]{
+
+  --bg:#050816;
+  --bg2:#0b1120;
+
+  --card:rgba(15,23,42,.72);
+
+  --text:#e2e8f0;
+  --muted:#94a3b8;
+  --heading:#ffffff;
+
+  --line:rgba(255,255,255,.08);
+
+  --shadow:
+    0 14px 50px rgba(0,0,0,.42);
+
+  --shadow2:
+    0 24px 90px rgba(0,0,0,.55);
 }
 
 *{
@@ -70,9 +96,21 @@ body{
     sans-serif;
 
   background:
-    radial-gradient(circle at top left, rgba(59,130,246,.10), transparent 30%),
-    radial-gradient(circle at top right, rgba(168,85,247,.10), transparent 30%),
-    linear-gradient(180deg,#020617 0%,#040d1d 100%);
+    radial-gradient(
+      circle at top left,
+      rgba(249,115,22,.12),
+      transparent 32rem
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(59,130,246,.08),
+      transparent 32rem
+    ),
+    linear-gradient(
+      180deg,
+      var(--bg),
+      var(--bg2)
+    );
 
   color:var(--text);
 
@@ -89,10 +127,22 @@ body::before{
   pointer-events:none;
 
   background-image:
-    linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+    linear-gradient(
+      rgba(255,255,255,.02) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.02) 1px,
+      transparent 1px
+    );
 
-  background-size:52px 52px;
+  background-size:54px 54px;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
 }
 
 button{
@@ -102,239 +152,433 @@ button{
   font:inherit;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
+.cw{
+  width:100%;
+  padding-inline:clamp(16px,4vw,60px);
 }
 
-.container{
-  width:100%;
-  padding-inline:38px;
+.glass{
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  backdrop-filter:blur(20px);
+
+  -webkit-backdrop-filter:blur(20px);
+
+  box-shadow:var(--shadow);
 }
 
 /* =========================================================
-TOP
+HEADER
 ========================================================= */
 
-.topbar{
-  padding-top:24px;
-  padding-bottom:34px;
+.header{
+
+  position:sticky;
+  top:0;
+
+  z-index:200;
+
+  border-bottom:1px solid var(--line);
+
+  background:rgba(255,255,255,.5);
+
+  backdrop-filter:blur(20px);
 }
 
-.topbar-inner{
+html[data-theme="dark"] .header{
+  background:rgba(5,8,22,.65);
+}
+
+.header-inner{
+
+  min-height:76px;
 
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:24px;
-  flex-wrap:wrap;
 }
 
 .brand{
-
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:14px;
 }
 
 .logo{
 
-  width:58px;
-  height:58px;
+  width:50px;
+  height:50px;
 
   border-radius:18px;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:grid;
+  place-items:center;
 
   background:
     linear-gradient(
       135deg,
-      #ff7a00,
-      #ffb020
+      var(--orange),
+      var(--yellow)
     );
 
-  color:white;
+  color:#111827;
 
-  font-size:28px;
   font-weight:1000;
-
-  box-shadow:
-    0 16px 40px rgba(255,122,0,.35);
 }
 
 .brand-title{
 
-  font-size:2.1rem;
-  font-weight:1000;
+  display:block;
+
+  color:var(--heading);
+
+  font-size:1.2rem;
+  font-weight:900;
 }
 
 .brand-sub{
 
-  margin-top:4px;
+  display:block;
 
-  color:#b8c4da;
+  margin-top:3px;
 
-  font-size:1rem;
-  font-weight:600;
+  color:var(--muted);
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:.16em;
+  text-transform:uppercase;
 }
 
-.right-top{
+.nav{
 
   display:flex;
   align-items:center;
-  gap:18px;
-  flex-wrap:wrap;
+  gap:24px;
 }
 
-.stats{
+.nav a{
+
+  color:var(--muted);
+
+  font-size:.92rem;
+  font-weight:800;
+
+  transition:.2s ease;
+}
+
+.nav a:hover{
+  color:var(--heading);
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.theme-toggle{
+
+  height:46px;
+
+  padding:
+    0 14px;
+
+  border-radius:999px;
 
   display:flex;
   align-items:center;
-  gap:18px;
-  flex-wrap:wrap;
+  gap:10px;
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  color:var(--heading);
+
+  font-weight:800;
 }
 
-.stat-card{
+.switch{
 
-  min-width:180px;
+  position:relative;
 
-  height:74px;
+  width:42px;
+  height:22px;
 
-  padding:0 20px;
+  border-radius:999px;
 
-  border-radius:22px;
+  background:rgba(255,255,255,.12);
+}
 
-  display:flex;
-  align-items:center;
-  gap:16px;
+.knob{
+
+  position:absolute;
+
+  top:2px;
+  left:2px;
+
+  width:18px;
+  height:18px;
+
+  border-radius:999px;
 
   background:
     linear-gradient(
-      180deg,
-      rgba(8,18,38,.98),
-      rgba(5,10,24,.98)
+      135deg,
+      var(--orange),
+      var(--yellow)
     );
 
-  border:
-    1px solid var(--line);
-
-  box-shadow:var(--shadow);
+  transition:.25s ease;
 }
 
-.stat-icon{
+html[data-theme="dark"] .knob{
+  transform:translateX(20px);
+}
 
-  width:48px;
-  height:48px;
+.menu-btn{
 
-  border-radius:16px;
+  display:none;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  width:46px;
+  height:46px;
+
+  border-radius:14px;
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  color:var(--heading);
 
   font-size:22px;
 }
 
-.stat-icon.blue{
-  background:rgba(59,130,246,.12);
+.mobile-menu{
+
+  position:fixed;
+
+  top:0;
+  right:-100%;
+
+  width:280px;
+  height:100vh;
+
+  z-index:500;
+
+  padding:24px;
+
+  transition:.3s ease;
+
+  background:#0f172a;
 }
 
-.stat-icon.green{
-  background:rgba(34,197,94,.12);
+.mobile-menu.open{
+  right:0;
 }
 
-.stat-icon.purple{
-  background:rgba(168,85,247,.12);
-}
-
-.stat-info small{
-
-  display:block;
-
-  color:#b8c4da;
-
-  font-size:.88rem;
-  font-weight:700;
-}
-
-.stat-info strong{
-
-  display:block;
-
-  margin-top:5px;
-
-  font-size:1.9rem;
-  font-weight:1000;
-}
-
-.search{
-
-  width:320px;
-  height:74px;
-
-  padding:0 24px;
-
-  border-radius:22px;
+.mobile-nav{
 
   display:flex;
-  align-items:center;
+  flex-direction:column;
   gap:14px;
 
-  background:
-    linear-gradient(
-      180deg,
-      rgba(8,18,38,.98),
-      rgba(5,10,24,.98)
-    );
-
-  border:
-    1px solid var(--line);
-
-  box-shadow:var(--shadow);
+  margin-top:30px;
 }
 
-.search input{
+.mobile-nav a{
 
-  width:100%;
+  padding:14px 16px;
 
-  background:none;
-  border:none;
-  outline:none;
+  border-radius:14px;
+
+  background:rgba(255,255,255,.06);
 
   color:white;
 
-  font-size:1rem;
   font-weight:700;
 }
 
-.search input::placeholder{
-  color:#8ea0bf;
+/* =========================================================
+HERO
+========================================================= */
+
+.hero{
+  padding:70px 0 34px;
+}
+
+.hero-card{
+
+  padding:
+    clamp(24px,4vw,42px);
+
+  border-radius:34px;
+}
+
+.eyebrow{
+
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+
+  padding:
+    10px 14px;
+
+  border-radius:999px;
+
+  background:
+    rgba(249,115,22,.12);
+
+  color:var(--orange);
+
+  font-size:11px;
+  font-weight:900;
+
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.hero-title{
+
+  margin-top:20px;
+
+  color:var(--heading);
+
+  font-size:
+    clamp(2.6rem,7vw,5.5rem);
+
+  line-height:.95;
+
+  font-weight:1000;
+
+  letter-spacing:-.06em;
+}
+
+.hero-text{
+
+  max-width:760px;
+
+  margin-top:18px;
+
+  color:var(--muted);
+
+  line-height:1.8;
+}
+
+.stats-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:18px;
+
+  margin-top:30px;
+}
+
+.stat-card{
+
+  padding:24px;
+
+  border-radius:24px;
+
+  text-align:center;
+}
+
+.stat-card strong{
+
+  display:block;
+
+  color:var(--heading);
+
+  font-size:2rem;
+  font-weight:1000;
+}
+
+.stat-card span{
+
+  display:block;
+
+  margin-top:8px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  font-weight:900;
+
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+/* =========================================================
+SEARCH
+========================================================= */
+
+.search-wrap{
+  margin-top:22px;
+}
+
+.search-box{
+
+  display:flex;
+  align-items:center;
+
+  padding:
+    16px 18px;
+
+  border-radius:22px;
+}
+
+.search-box input{
+
+  width:100%;
+
+  border:none;
+  outline:none;
+
+  background:transparent;
+
+  color:var(--heading);
+
+  font-size:15px;
+  font-weight:700;
 }
 
 /* =========================================================
 MEMBERS
 ========================================================= */
 
-.members{
-  padding-bottom:90px;
+.members-section{
+  padding:20px 0 100px;
 }
 
 .members-grid{
 
-  display:flex;
-  flex-direction:column;
-  gap:34px;
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(320px,1fr)
+    );
+
+  gap:24px;
 }
 
 .member-card{
 
   position:relative;
 
-  perspective:2400px;
-
   width:100%;
+  height:460px;
+
+  perspective:2000px;
 }
 
 .member-inner{
@@ -342,13 +586,12 @@ MEMBERS
   position:relative;
 
   width:100%;
-
-  min-height:290px;
+  height:100%;
 
   transform-style:preserve-3d;
 
   transition:
-    transform .85s cubic-bezier(.22,.61,.36,1);
+    transform .8s cubic-bezier(.2,.8,.2,1);
 }
 
 .member-card.flipped .member-inner{
@@ -360,122 +603,58 @@ MEMBERS
   position:absolute;
   inset:0;
 
-  width:100%;
-  min-height:290px;
+  border-radius:30px;
 
-  border-radius:34px;
-
-  padding:34px;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(7,17,39,.99),
-      rgba(2,8,24,.99)
-    );
-
-  border:
-    1px solid rgba(255,255,255,.07);
-
-  box-shadow:var(--shadow);
-
-  backface-visibility:hidden;
-
-  overflow:hidden;
-}
-
-.member-face::before{
-
-  content:"";
-
-  position:absolute;
-
-  width:240px;
-  height:240px;
-
-  border-radius:999px;
-
-  top:-100px;
-  right:-100px;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(59,130,246,.14),
-      transparent 70%
-    );
-
-  pointer-events:none;
-}
-
-.member-front{
-
-  display:grid;
-
-  grid-template-columns:
-    430px
-    210px
-    1fr
-    260px
-    200px;
-
-  gap:28px;
-  align-items:center;
-}
-
-.member-back{
-
-  transform:rotateY(180deg);
+  padding:22px;
 
   display:flex;
   flex-direction:column;
+
+  overflow:hidden;
+
+  backface-visibility:hidden;
 }
 
-/* =========================================================
-PROFILE
-========================================================= */
+.member-back{
+  transform:rotateY(180deg);
+}
 
-.profile{
+.member-top{
 
   display:flex;
-  align-items:center;
-  gap:24px;
-
-  min-width:0;
+  align-items:flex-start;
+  gap:16px;
 }
 
-.avatar{
+.member-avatar{
 
-  width:122px;
-  height:122px;
+  width:82px;
+  height:82px;
 
-  border-radius:32px;
+  border-radius:24px;
+
+  overflow:hidden;
 
   flex-shrink:0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #06b6d4
+    );
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  overflow:hidden;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ff006e,
-      #7c3aed
-    );
-
-  color:white;
-
-  font-size:3.4rem;
+  font-size:32px;
   font-weight:1000;
 
-  box-shadow:
-    0 22px 50px rgba(236,72,153,.30);
+  color:white;
 }
 
-.avatar img{
+.member-avatar img{
 
   width:100%;
   height:100%;
@@ -483,32 +662,15 @@ PROFILE
   object-fit:cover;
 }
 
-.profile-info{
-  min-width:0;
-}
+.member-status{
 
-.name-row{
+  position:absolute;
 
-  display:flex;
-  align-items:center;
-  gap:14px;
-  flex-wrap:wrap;
-}
+  top:18px;
+  right:18px;
 
-.member-name{
-
-  font-size:2.7rem;
-  font-weight:1000;
-
-  letter-spacing:-.06em;
-
-  line-height:1;
-}
-
-.verify{
-
-  width:44px;
-  height:44px;
+  width:40px;
+  height:40px;
 
   border-radius:999px;
 
@@ -516,240 +678,149 @@ PROFILE
   align-items:center;
   justify-content:center;
 
-  font-size:20px;
-  font-weight:1000;
-
   color:white;
 
-  background:
-    linear-gradient(
-      135deg,
-      #22c55e,
-      #16a34a
-    );
+  font-size:15px;
+  font-weight:1000;
 }
 
-.verify.red{
-
-  background:
-    linear-gradient(
-      135deg,
-      #ef4444,
-      #dc2626
-    );
+.member-status.active{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
 }
 
-.role{
+.member-status.alumni{
+  background:linear-gradient(135deg,#64748b,#475569);
+}
 
-  margin-top:14px;
+.member-status.on_leave{
+  background:linear-gradient(135deg,#f59e0b,#d97706);
+}
 
-  color:#dbe5f4;
+.member-status.inactive{
+  background:linear-gradient(135deg,#ef4444,#dc2626);
+}
 
-  font-size:1.55rem;
-  font-weight:700;
+.member-name{
 
-  line-height:1.4;
+  color:var(--heading);
+
+  font-size:1.35rem;
+  font-weight:1000;
+
+  line-height:1.1;
+}
+
+.member-role{
+
+  margin-top:8px;
+
+  color:var(--muted);
+
+  font-size:.92rem;
+  font-weight:800;
+
+  line-height:1.5;
 }
 
 .member-id{
 
-  margin-top:14px;
+  margin-top:8px;
 
-  color:#ff9b31;
+  color:var(--orange);
 
-  font-size:1rem;
+  font-size:10px;
   font-weight:1000;
 
   letter-spacing:.18em;
 }
 
-/* =========================================================
-SEPARATOR
-========================================================= */
-
-.separator{
-
-  width:1px;
-  height:150px;
-
-  background:
-    linear-gradient(
-      180deg,
-      transparent,
-      rgba(255,255,255,.10),
-      transparent
-    );
-}
-
-/* =========================================================
-BADGES
-========================================================= */
-
-.badges{
+.chips{
 
   display:flex;
-  flex-direction:column;
-  gap:16px;
+  flex-wrap:wrap;
+  gap:8px;
+
+  margin-top:14px;
 }
 
-.badge{
+.chip{
 
-  min-height:58px;
+  height:32px;
 
   padding:
-    0 24px;
+    0 14px;
 
   border-radius:999px;
 
   display:flex;
   align-items:center;
-  justify-content:center;
 
-  font-size:1rem;
-  font-weight:1000;
+  font-size:10px;
+  font-weight:900;
 
-  letter-spacing:.10em;
+  letter-spacing:.12em;
   text-transform:uppercase;
 }
 
-.badge.department{
-
-  background:
-    rgba(99,102,241,.12);
-
-  color:#93a4ff;
-
-  border:
-    1px solid rgba(99,102,241,.16);
+.department-chip{
+  background:rgba(99,102,241,.14);
+  color:#6366f1;
 }
 
-.badge.active{
-
-  background:
-    rgba(34,197,94,.12);
-
-  color:#4ade80;
-
-  border:
-    1px solid rgba(34,197,94,.18);
+.status-chip{
+  background:rgba(34,197,94,.14);
+  color:#22c55e;
 }
 
-.badge.alumni{
+.member-bio{
 
-  background:
-    rgba(168,85,247,.12);
+  margin-top:18px;
 
-  color:#d8b4fe;
+  color:var(--muted);
 
-  border:
-    1px solid rgba(168,85,247,.18);
+  font-size:14px;
+
+  line-height:1.75;
+
+  flex:1;
+
+  overflow:hidden;
+
+  display:-webkit-box;
+
+  -webkit-line-clamp:5;
+  -webkit-box-orient:vertical;
 }
 
-.badge.on_leave{
-
-  background:
-    rgba(234,179,8,.12);
-
-  color:#fde047;
-
-  border:
-    1px solid rgba(234,179,8,.18);
-}
-
-.badge.inactive{
-
-  background:
-    rgba(239,68,68,.12);
-
-  color:#f87171;
-
-  border:
-    1px solid rgba(239,68,68,.18);
-}
-
-/* =========================================================
-BIO
-========================================================= */
-
-.bio{
-
-  color:#d0daea;
-
-  font-size:1.28rem;
-
-  line-height:2.1;
-}
-
-/* =========================================================
-META
-========================================================= */
-
-.meta{
-
-  padding:24px;
-
-  border-radius:24px;
-
-  background:
-    rgba(255,255,255,.03);
-
-  border:
-    1px solid rgba(255,255,255,.06);
+.member-bottom{
 
   display:flex;
-  flex-direction:column;
-  gap:22px;
-}
+  align-items:flex-end;
+  justify-content:space-between;
 
-.meta-item{
-
-  display:flex;
-  align-items:center;
   gap:14px;
+
+  margin-top:18px;
 }
 
-.dot{
+.member-duration{
 
-  width:14px;
-  height:14px;
+  color:var(--muted);
 
-  border-radius:999px;
-}
+  font-size:12px;
+  font-weight:800;
 
-.dot.green{
-  background:#22c55e;
-}
-
-.dot.red{
-  background:#ef4444;
-}
-
-.meta-item span{
-
-  color:#dbe5f4;
-
-  font-size:1.15rem;
-  font-weight:700;
-
-  line-height:1.7;
-}
-
-/* =========================================================
-BUTTONS
-========================================================= */
-
-.actions{
-
-  display:flex;
-  flex-direction:column;
-  gap:18px;
+  line-height:1.8;
 }
 
 .verify-btn{
 
-  height:76px;
+  height:46px;
 
-  border-radius:22px;
+  padding:
+    0 18px;
+
+  border-radius:14px;
 
   background:
     linear-gradient(
@@ -760,217 +831,119 @@ BUTTONS
 
   color:white;
 
-  font-size:1.2rem;
-  font-weight:1000;
-
-  box-shadow:
-    0 18px 40px rgba(34,197,94,.25);
+  font-size:12px;
+  font-weight:900;
 }
 
 .flip-btn{
 
-  height:76px;
+  margin-top:18px;
 
-  border-radius:22px;
+  width:100%;
+
+  height:48px;
+
+  border-radius:16px;
 
   background:
     linear-gradient(
       135deg,
-      #ff7a00,
-      #ff9830
+      var(--orange),
+      #fb923c
     );
 
   color:white;
 
-  font-size:1.2rem;
-  font-weight:1000;
-
-  box-shadow:
-    0 18px 40px rgba(255,122,0,.25);
-}
-
-/* =========================================================
-BACK
-========================================================= */
-
-.back-top{
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-
-.back-title{
-
-  font-size:2.1rem;
-  font-weight:1000;
-}
-
-.back-sub{
-
-  margin-top:10px;
-
-  color:#a9bad6;
-
-  font-size:1rem;
-  font-weight:600;
-}
-
-.back-links{
-
-  margin-top:34px;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:20px;
-}
-
-.back-link{
-
-  min-height:90px;
-
-  padding:24px;
-
-  border-radius:24px;
-
-  background:
-    rgba(255,255,255,.04);
-
-  border:
-    1px solid rgba(255,255,255,.06);
-
-  transition:.25s ease;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:10px;
-}
-
-.back-link:hover{
-
-  transform:
-    translateY(-5px);
-
-  background:
-    rgba(255,122,0,.08);
-
-  border-color:
-    rgba(255,122,0,.24);
-}
-
-.back-link strong{
-
-  font-size:1.15rem;
+  font-size:13px;
   font-weight:900;
 }
 
-.back-link span{
+.member-links{
 
-  color:#94a3b8;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 
-  font-size:.95rem;
-  font-weight:700;
+  margin-top:18px;
 }
 
-.back-footer{
+.member-link{
 
-  margin-top:auto;
+  min-height:54px;
+
+  padding:
+    0 16px;
+
+  border-radius:16px;
+
+  background:
+    rgba(255,255,255,.05);
+
+  border:1px solid var(--line);
 
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
-  flex-wrap:wrap;
+
+  color:var(--heading);
+
+  font-size:14px;
+  font-weight:800;
+
+  transition:.2s ease;
 }
 
-.back-user{
+.member-link:hover{
 
-  color:#dbe5f4;
+  transform:translateX(4px);
 
-  font-size:1rem;
+  border-color:
+    rgba(249,115,22,.5);
+}
+
+.back-info{
+
+  margin-top:auto;
+
+  color:var(--muted);
+
+  font-size:13px;
   font-weight:700;
 
-  line-height:2;
-}
-
-.back-actions{
-
-  display:flex;
-  align-items:center;
-  gap:16px;
-}
-
-.back-actions button{
-
-  min-width:180px;
-
-  height:66px;
-
-  padding-inline:20px;
-
-  border-radius:18px;
-
-  font-size:1rem;
-  font-weight:1000;
-}
-
-.back-actions .verified{
-
-  background:
-    linear-gradient(
-      135deg,
-      #22c55e,
-      #16a34a
-    );
-
-  color:white;
-}
-
-.back-actions .back-btn{
-
-  background:
-    linear-gradient(
-      135deg,
-      #ff7a00,
-      #ff9830
-    );
-
-  color:white;
+  line-height:1.8;
 }
 
 /* =========================================================
-LOADER
+LOADING
 ========================================================= */
 
 .loading{
 
-  padding:120px 20px;
-
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:22px;
+
+  gap:18px;
+
+  padding:80px 20px;
 }
 
 .loader{
 
-  width:68px;
-  height:68px;
+  width:54px;
+  height:54px;
 
   border-radius:999px;
 
   border:
-    5px solid rgba(255,255,255,.08);
+    4px solid rgba(249,115,22,.12);
 
-  border-top-color:#ff8a26;
+  border-top-color:
+    var(--orange);
 
-  animation:spin .7s linear infinite;
+  animation:
+    spin .8s linear infinite;
 }
 
 @keyframes spin{
@@ -983,217 +956,226 @@ LOADER
 RESPONSIVE
 ========================================================= */
 
-@media (max-width:1600px){
+@media (max-width:980px){
 
-  .member-front{
-
-    grid-template-columns:
-      1fr;
-
-    gap:26px;
-  }
-
-  .separator{
+  .nav{
     display:none;
   }
 
-  .badges{
-    flex-direction:row;
-    flex-wrap:wrap;
+  .menu-btn{
+    display:block;
   }
 
-  .actions{
-    flex-direction:row;
-  }
-
-  .actions button{
-    flex:1;
+  .stats-grid{
+    grid-template-columns:1fr;
   }
 }
 
-@media (max-width:900px){
+@media (max-width:768px){
 
-  .container{
-    padding-inline:16px;
+  .hero{
+    padding-top:40px;
   }
 
-  .topbar-inner{
-    align-items:flex-start;
+  .hero-title{
+    font-size:3rem;
   }
 
-  .right-top{
-    width:100%;
-  }
-
-  .stats{
-    width:100%;
-  }
-
-  .search{
-    width:100%;
-  }
-
-  .profile{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
-  .member-face{
-    padding:24px;
-  }
-
-  .member-name{
-    font-size:2rem;
-  }
-
-  .role{
-    font-size:1.2rem;
-  }
-
-  .bio{
-    font-size:1.05rem;
-  }
-
-  .back-links{
+  .members-grid{
     grid-template-columns:1fr;
   }
 
-  .back-footer{
+  .member-card{
+    height:500px;
+  }
+
+  .member-top{
+    flex-direction:column;
+  }
+
+  .member-avatar{
+    width:72px;
+    height:72px;
+  }
+
+  .member-bottom{
     flex-direction:column;
     align-items:flex-start;
   }
 
-  .back-actions{
-    width:100%;
-    flex-direction:column;
-  }
-
-  .back-actions button{
-    width:100%;
-  }
-
-  .actions{
-    flex-direction:column;
-  }
-
-  .verify-btn,
-  .flip-btn{
+  .verify-btn{
     width:100%;
   }
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="container">
+<header class="header">
 
-  <!-- =====================================================
-  TOPBAR
-  ====================================================== -->
+  <div class="cw header-inner">
 
-  <section class="topbar">
+    <a
+      href="https://academeforge.in"
+      class="brand"
+    >
 
-    <div class="topbar-inner">
+      <div class="logo">
+        AF
+      </div>
 
-      <div class="brand">
+      <div>
 
-        <div class="logo">
-          AF
-        </div>
+        <span class="brand-title">
+          AcademeForge
+        </span>
 
-        <div>
-
-          <div class="brand-title">
-            AcademeForge
-          </div>
-
-          <div class="brand-sub">
-            Workforce Registry
-          </div>
-
-        </div>
+        <span class="brand-sub">
+          Workforce Registry
+        </span>
 
       </div>
 
-      <div class="right-top">
+    </a>
 
-        <div class="stats">
+    <nav class="nav">
 
-          <div class="stat-card">
+      <a href="https://academeforge.in">
+        Home
+      </a>
 
-            <div class="stat-icon blue">
-              👥
-            </div>
+      <a href="https://academeforge.in/join-team/">
+        Join Team
+      </a>
 
-            <div class="stat-info">
+      <a href="https://academeforge.in/verify-team/">
+        Verify Team
+      </a>
 
-              <small>
-                Total Members
-              </small>
+      <a href="https://academeforge.in/#contact">
+        Contact
+      </a>
 
-              <strong id="totalMembers">
-                0
-              </strong>
+    </nav>
 
-            </div>
+    <div class="header-actions">
 
-          </div>
+      <button
+        id="themeToggle"
+        class="theme-toggle"
+      >
 
-          <div class="stat-card">
+        <span id="themeText">
+          Dark
+        </span>
 
-            <div class="stat-icon green">
-              👤
-            </div>
+        <span class="switch">
+          <span class="knob"></span>
+        </span>
 
-            <div class="stat-info">
+      </button>
 
-              <small>
-                Active Members
-              </small>
+      <button
+        id="menuBtn"
+        class="menu-btn"
+      >
+        ☰
+      </button>
 
-              <strong id="activeMembers">
-                0
-              </strong>
+    </div>
 
-            </div>
+  </div>
 
-          </div>
+</header>
 
-          <div class="stat-card">
+<aside
+  id="mobileMenu"
+  class="mobile-menu"
+>
 
-            <div class="stat-icon purple">
-              🎓
-            </div>
+  <nav class="mobile-nav">
 
-            <div class="stat-info">
+    <a href="https://academeforge.in">
+      Home
+    </a>
 
-              <small>
-                Alumni Members
-              </small>
+    <a href="https://academeforge.in/join-team/">
+      Join Team
+    </a>
 
-              <strong id="alumniMembers">
-                0
-              </strong>
+    <a href="https://academeforge.in/verify-team/">
+      Verify Team
+    </a>
 
-            </div>
+    <a href="https://academeforge.in/#contact">
+      Contact
+    </a>
 
-          </div>
+  </nav>
+
+</aside>
+
+<section class="hero">
+
+  <div class="cw">
+
+    <div class="hero-card glass">
+
+      <span class="eyebrow">
+        Verified Workforce Registry
+      </span>
+
+      <h1 class="hero-title">
+        AcademeForge Workforce Registry
+      </h1>
+
+      <p class="hero-text">
+
+        Verified contributors, developers,
+        designers and ecosystem members
+        officially associated with
+        AcademeForge.
+
+      </p>
+
+      <div class="stats-grid">
+
+        <div class="stat-card glass">
+
+          <strong id="totalMembers">
+            0
+          </strong>
+
+          <span>
+            Total Members
+          </span>
 
         </div>
 
-        <div class="search">
+        <div class="stat-card glass">
 
-          <div style="font-size:22px;">
-            🔍
-          </div>
+          <strong id="activeMembers">
+            0
+          </strong>
 
-          <input
-            id="searchInput"
-            type="text"
-            placeholder="Search members..."
-          />
+          <span>
+            Active Members
+          </span>
+
+        </div>
+
+        <div class="stat-card glass">
+
+          <strong id="alumniMembers">
+            0
+          </strong>
+
+          <span>
+            Alumni Members
+          </span>
 
         </div>
 
@@ -1201,13 +1183,27 @@ RESPONSIVE
 
     </div>
 
-  </section>
+    <div class="search-wrap">
 
-  <!-- =====================================================
-  MEMBERS
-  ====================================================== -->
+      <div class="search-box glass">
 
-  <section class="members">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search members..."
+        />
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="members-section">
+
+  <div class="cw">
 
     <div
       id="loading"
@@ -1216,14 +1212,9 @@ RESPONSIVE
 
       <div class="loader"></div>
 
-      <div
-        style="
-          font-size:1.1rem;
-          font-weight:800;
-        "
-      >
-        Loading Workforce Registry...
-      </div>
+      <p>
+        Loading workforce registry...
+      </p>
 
     </div>
 
@@ -1232,15 +1223,11 @@ RESPONSIVE
       class="members-grid"
     ></div>
 
-  </section>
+  </div>
 
-</div>
+</section>
 
 <script>
-
-/* =========================================================
-CONFIG
-========================================================= */
 
 const AF_API =
   "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/get-af-team-members";
@@ -1248,18 +1235,20 @@ const AF_API =
 const AF_ANON_KEY =
   "YOUR_SUPABASE_ANON_KEY";
 
-const CACHE_KEY =
-  "af_registry_cache_v5";
+const html =
+  document.documentElement;
 
-const CACHE_TIME =
-  "af_registry_cache_time_v5";
+const themeToggle =
+  document.getElementById("themeToggle");
 
-const CACHE_DURATION =
-  1000 * 60 * 10;
+const themeText =
+  document.getElementById("themeText");
 
-/* =========================================================
-ELEMENTS
-========================================================= */
+const menuBtn =
+  document.getElementById("menuBtn");
+
+const mobileMenu =
+  document.getElementById("mobileMenu");
 
 const membersGrid =
   document.getElementById("membersGrid");
@@ -1273,7 +1262,72 @@ const searchInput =
 let allMembers = [];
 
 /* =========================================================
-UTILS
+THEME
+========================================================= */
+
+const savedTheme =
+  localStorage.getItem("af-theme");
+
+if(savedTheme){
+  html.setAttribute(
+    "data-theme",
+    savedTheme
+  );
+}
+
+updateThemeText();
+
+themeToggle.addEventListener(
+  "click",
+  () => {
+
+    const current =
+      html.getAttribute("data-theme");
+
+    const next =
+      current === "dark"
+        ? "light"
+        : "dark";
+
+    html.setAttribute(
+      "data-theme",
+      next
+    );
+
+    localStorage.setItem(
+      "af-theme",
+      next
+    );
+
+    updateThemeText();
+  }
+);
+
+function updateThemeText(){
+
+  const isDark =
+    html.getAttribute("data-theme")
+      === "dark";
+
+  themeText.textContent =
+    isDark
+      ? "Light"
+      : "Dark";
+}
+
+/* =========================================================
+MOBILE MENU
+========================================================= */
+
+menuBtn.addEventListener(
+  "click",
+  () => {
+    mobileMenu.classList.toggle("open");
+  }
+);
+
+/* =========================================================
+HELPERS
 ========================================================= */
 
 function escapeHtml(value){
@@ -1295,8 +1349,8 @@ function safeUrl(url){
     String(url).trim();
 
   if(
-    value.startsWith("https://") ||
-    value.startsWith("http://")
+    value.startsWith("http://") ||
+    value.startsWith("https://")
   ){
     return value;
   }
@@ -1342,14 +1396,15 @@ function avatar(member){
   }
 
   return escapeHtml(
-    member.full_name
-      .split(" ")
-      .map(v => v[0] || "")
-      .join("")
-      .slice(0,2)
+    String(member.full_name || "A")
+      .charAt(0)
       .toUpperCase()
   );
 }
+
+/* =========================================================
+NORMALIZE
+========================================================= */
 
 function normalize(member){
 
@@ -1357,19 +1412,20 @@ function normalize(member){
 
     full_name:
       member.full_name ||
+      member.name ||
       "Unknown Member",
 
     role_title:
       member.role_title ||
+      member.role ||
       "AcademeForge Member",
 
     member_id:
-      member.member_id ||
-      "AF-UNKNOWN",
+      member.member_id || "",
 
     department:
       member.department ||
-      "GENERAL",
+      "AcademeForge",
 
     bio:
       member.bio ||
@@ -1411,82 +1467,31 @@ CARD
 
 function card(member){
 
-  const verifyClass =
-    member.status === "inactive"
-      ? "red"
-      : "";
-
-  const verifyIcon =
-    member.status === "inactive"
-      ? "✕"
-      : "✓";
-
-  const statusClass =
-    member.status === "active"
-      ? "active"
-      : member.status === "alumni"
-        ? "alumni"
-        : member.status === "on_leave"
-          ? "on_leave"
-          : "inactive";
-
-  const statusText =
-    member.ended_at
-      ? `
-      <div class="meta-item">
-
-        <div class="dot red"></div>
-
-        <span>
-          Ended:
-          ${formatDate(member.ended_at)}
-        </span>
-
-      </div>
-      `
-      : `
-      <div class="meta-item">
-
-        <div class="dot green"></div>
-
-        <span>
-          Currently Active
-        </span>
-
-      </div>
-      `;
-
   return `
 
     <div class="member-card">
 
       <div class="member-inner">
 
-        <!-- FRONT -->
+        <div class="member-face member-front glass">
 
-        <div class="member-face member-front">
+          <div class="member-status ${member.status}">
+            ✓
+          </div>
 
-          <div class="profile">
+          <div class="member-top">
 
-            <div class="avatar">
+            <div class="member-avatar">
               ${avatar(member)}
             </div>
 
-            <div class="profile-info">
+            <div>
 
-              <div class="name-row">
-
-                <div class="member-name">
-                  ${escapeHtml(member.full_name)}
-                </div>
-
-                <div class="verify ${verifyClass}">
-                  ${verifyIcon}
-                </div>
-
+              <div class="member-name">
+                ${escapeHtml(member.full_name)}
               </div>
 
-              <div class="role">
+              <div class="member-role">
                 ${escapeHtml(member.role_title)}
               </div>
 
@@ -1494,103 +1499,88 @@ function card(member){
                 ${escapeHtml(member.member_id)}
               </div>
 
+              <div class="chips">
+
+                <div class="chip department-chip">
+                  ${escapeHtml(member.department)}
+                </div>
+
+                <div class="chip status-chip">
+                  ${escapeHtml(member.status)}
+                </div>
+
+              </div>
+
             </div>
 
           </div>
 
-          <div class="separator"></div>
-
-          <div class="badges">
-
-            <div class="badge department">
-              ${escapeHtml(member.department)}
-            </div>
-
-            <div class="badge ${statusClass}">
-              ${escapeHtml(member.status)}
-            </div>
-
-          </div>
-
-          <div class="separator"></div>
-
-          <div class="bio">
+          <div class="member-bio">
             ${escapeHtml(member.bio)}
           </div>
 
-          <div class="meta">
+          <div class="member-bottom">
 
-            <div class="meta-item">
+            <div class="member-duration">
 
-              <div style="font-size:20px;">
-                📅
-              </div>
+              Joined:
+              ${formatDate(member.joined_at)}
 
-              <span>
-                Joined:
-                ${formatDate(member.joined_at)}
-              </span>
+              <br>
+
+              ${
+                member.ended_at
+                ? `Ended: ${formatDate(member.ended_at)}`
+                : `Currently Active`
+              }
 
             </div>
 
-            ${statusText}
-
-          </div>
-
-          <div class="actions">
-
             <button class="verify-btn">
-              🛡 Verified Member
-            </button>
-
-            <button class="flip-btn">
-              Flip Card ↻
+              Verified Member
             </button>
 
           </div>
+
+          <button class="flip-btn">
+            Flip Card ↻
+          </button>
 
         </div>
 
-        <!-- BACK -->
+        <div class="member-face member-back glass">
 
-        <div class="member-face member-back">
+          <div>
 
-          <div class="back-top">
+            <div class="member-name">
+              ${escapeHtml(member.full_name)}
+            </div>
 
-            <div>
-
-              <div class="back-title">
-                ${escapeHtml(member.full_name)}
-              </div>
-
-              <div class="back-sub">
-                Official Workforce Profile
-              </div>
-
+            <div class="member-role">
+              ${escapeHtml(member.role_title)}
             </div>
 
           </div>
 
-          <div class="back-links">
+          <div class="member-links">
 
             ${
               member.linkedin_url
               ? `
-              <a
-                href="${escapeHtml(member.linkedin_url)}"
-                target="_blank"
-                class="back-link"
-              >
+                <a
+                  href="${escapeHtml(member.linkedin_url)}"
+                  target="_blank"
+                  class="member-link"
+                >
+                  <span>
+                    LinkedIn
+                  </span>
 
-                <strong>
-                  LinkedIn
-                </strong>
+                  <span>
+                    →
+                  </span>
 
-                <span>
-                  Open Professional Profile →
-                </span>
-
-              </a>
+                </a>
               `
               : ""
             }
@@ -1598,21 +1588,20 @@ function card(member){
             ${
               member.github_url
               ? `
-              <a
-                href="${escapeHtml(member.github_url)}"
-                target="_blank"
-                class="back-link"
-              >
+                <a
+                  href="${escapeHtml(member.github_url)}"
+                  target="_blank"
+                  class="member-link"
+                >
+                  <span>
+                    GitHub
+                  </span>
 
-                <strong>
-                  GitHub
-                </strong>
+                  <span>
+                    →
+                  </span>
 
-                <span>
-                  Open Repository Profile →
-                </span>
-
-              </a>
+                </a>
               `
               : ""
             }
@@ -1620,53 +1609,40 @@ function card(member){
             ${
               member.portfolio_url
               ? `
-              <a
-                href="${escapeHtml(member.portfolio_url)}"
-                target="_blank"
-                class="back-link"
-              >
+                <a
+                  href="${escapeHtml(member.portfolio_url)}"
+                  target="_blank"
+                  class="member-link"
+                >
+                  <span>
+                    Portfolio
+                  </span>
 
-                <strong>
-                  Portfolio
-                </strong>
+                  <span>
+                    →
+                  </span>
 
-                <span>
-                  Open Website →
-                </span>
-
-              </a>
+                </a>
               `
               : ""
             }
 
           </div>
 
-          <div class="back-footer">
+          <div class="back-info">
 
-            <div class="back-user">
+            📍 ${escapeHtml(member.location)}
 
-              📍 ${escapeHtml(member.location)}
+            <br><br>
 
-              <br>
-
-              Username:
-              @${escapeHtml(member.username)}
-
-            </div>
-
-            <div class="back-actions">
-
-              <button class="verified">
-                Verified Member
-              </button>
-
-              <button class="back-btn">
-                Flip Back ↻
-              </button>
-
-            </div>
+            Username:
+            @${escapeHtml(member.username)}
 
           </div>
+
+          <button class="flip-btn">
+            Return ↻
+          </button>
 
         </div>
 
@@ -1685,146 +1661,42 @@ function render(data){
   membersGrid.innerHTML =
     data.map(card).join("");
 
-  attachEvents();
+  attachFlipEvents();
 }
 
 /* =========================================================
 FLIP
 ========================================================= */
 
-function attachEvents(){
+function attachFlipEvents(){
 
   const cards =
     document.querySelectorAll(".member-card");
 
   cards.forEach(card => {
 
-    const inner =
-      card.querySelector(".member-inner");
+    const buttons =
+      card.querySelectorAll(".flip-btn");
 
-    const links =
-      card.querySelectorAll("a");
+    buttons.forEach(btn => {
 
-    links.forEach(link => {
-
-      link.addEventListener(
+      btn.addEventListener(
         "click",
-        event => {
-          event.stopPropagation();
+        e => {
+
+          e.stopPropagation();
+
+          card.classList.toggle(
+            "flipped"
+          );
         }
       );
     });
-
-    inner.addEventListener(
-      "click",
-      () => {
-
-        card.classList.toggle(
-          "flipped"
-        );
-      }
-    );
   });
 }
 
 /* =========================================================
-STATS
-========================================================= */
-
-function updateStats(){
-
-  document.getElementById(
-    "totalMembers"
-  ).textContent =
-    allMembers.length;
-
-  document.getElementById(
-    "activeMembers"
-  ).textContent =
-    allMembers.filter(
-      m => m.status === "active"
-    ).length;
-
-  document.getElementById(
-    "alumniMembers"
-  ).textContent =
-    allMembers.filter(
-      m => m.status === "alumni"
-    ).length;
-}
-
-/* =========================================================
-CACHE
-========================================================= */
-
-function saveCache(data){
-
-  try{
-
-    localStorage.setItem(
-      CACHE_KEY,
-      JSON.stringify(data)
-    );
-
-    localStorage.setItem(
-      CACHE_TIME,
-      String(Date.now())
-    );
-
-  }catch(error){
-
-    console.error(
-      "Cache save failed",
-      error
-    );
-  }
-}
-
-function loadCache(){
-
-  try{
-
-    const cache =
-      localStorage.getItem(
-        CACHE_KEY
-      );
-
-    const time =
-      Number(
-        localStorage.getItem(
-          CACHE_TIME
-        )
-      );
-
-    if(
-      !cache ||
-      !time
-    ){
-      return null;
-    }
-
-    if(
-      Date.now() - time >
-      CACHE_DURATION
-    ){
-      return null;
-    }
-
-    return JSON.parse(cache);
-
-  }catch(error){
-
-    console.error(
-      "Cache load failed",
-      error
-    );
-
-    return null;
-  }
-}
-
-/* =========================================================
-SEARCH
+FILTER
 ========================================================= */
 
 searchInput.addEventListener(
@@ -1837,7 +1709,6 @@ searchInput.addEventListener(
         .toLowerCase();
 
     if(!query){
-
       render(allMembers);
       return;
     }
@@ -1868,131 +1739,81 @@ searchInput.addEventListener(
 FETCH
 ========================================================= */
 
-async function fetchMembers(){
-
-  const response =
-    await fetch(
-      AF_API,
-      {
-        method:"GET",
-
-        headers:{
-
-          apikey:
-            AF_ANON_KEY,
-
-          Authorization:
-            `Bearer ${AF_ANON_KEY}`,
-
-          "Content-Type":
-            "application/json"
-        }
-      }
-    );
-
-  if(!response.ok){
-
-    throw new Error(
-      `HTTP ${response.status}`
-    );
-  }
-
-  return await response.json();
-}
-
-/* =========================================================
-LOAD
-========================================================= */
-
 async function loadMembers(){
 
   try{
 
-    loading.style.display =
-      "flex";
+    loading.style.display = "flex";
 
-    const cached =
-      loadCache();
+    const response =
+      await fetch(AF_API,{
+        headers:{
+          apikey:AF_ANON_KEY,
+          Authorization:
+            `Bearer ${AF_ANON_KEY}`
+        }
+      });
 
-    if(
-      cached &&
-      Array.isArray(cached.members)
-    ){
-
-      allMembers =
-        cached.members
-          .map(normalize);
-
-      updateStats();
-
-      render(allMembers);
-
-      loading.style.display =
-        "none";
+    if(!response.ok){
+      throw new Error(
+        `HTTP ${response.status}`
+      );
     }
 
     const data =
-      await fetchMembers();
+      await response.json();
 
     allMembers =
       (data.members || [])
         .map(normalize);
 
-    updateStats();
+    document.getElementById(
+      "totalMembers"
+    ).textContent =
+      allMembers.length;
+
+    document.getElementById(
+      "activeMembers"
+    ).textContent =
+      allMembers.filter(
+        m => m.status === "active"
+      ).length;
+
+    document.getElementById(
+      "alumniMembers"
+    ).textContent =
+      allMembers.filter(
+        m => m.status === "alumni"
+      ).length;
 
     render(allMembers);
 
-    saveCache({
-      members:allMembers
-    });
-
   }catch(error){
 
-    console.error(error);
+    membersGrid.innerHTML = `
 
-    if(!allMembers.length){
+      <div class="glass"
+        style="
+          padding:40px;
+          border-radius:30px;
+          text-align:center;
+        "
+      >
 
-      membersGrid.innerHTML = `
+        <h2>
+          Failed To Load Members
+        </h2>
 
-        <div
-          style="
-            width:100%;
-            padding:50px;
-            border-radius:30px;
-            background:#091326;
-            border:1px solid rgba(255,255,255,.08);
-            text-align:center;
-          "
-        >
+        <p style="margin-top:12px;">
+          ${escapeHtml(error.message)}
+        </p>
 
-          <div
-            style="
-              font-size:2rem;
-              font-weight:1000;
-            "
-          >
-            Failed To Load Registry
-          </div>
-
-          <div
-            style="
-              margin-top:18px;
-              color:#94a3b8;
-              font-size:1.05rem;
-              line-height:1.8;
-            "
-          >
-            ${escapeHtml(error.message)}
-          </div>
-
-        </div>
-      `;
-    }
+      </div>
+    `;
 
   }finally{
 
-    loading.style.display =
-      "none";
+    loading.style.display = "none";
   }
 }
 
