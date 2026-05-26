@@ -1,29 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-
+<html lang="en" data-theme="dark">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta charset="UTF-8"/>
+<title>AcademeForge Workforce Registry</title>
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
-/>
-
-<title>
-AcademeForge Workforce Registry
-</title>
-
-<link
-  rel="preconnect"
-  href="https://fonts.googleapis.com"
-/>
-
-<link
-  rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin
-/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
 <link
   href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
@@ -34,46 +18,28 @@ AcademeForge Workforce Registry
 
 :root{
 
-  --bg:#f3f6fb;
-  --bg2:#e8edf6;
+  --bg:#020617;
+  --card:#071127;
+  --card2:#0a1630;
 
-  --card:rgba(255,255,255,.72);
-
-  --text:#0f172a;
-  --muted:#64748b;
-  --heading:#020617;
-
-  --line:rgba(15,23,42,.08);
-
-  --orange:#f97316;
-  --yellow:#facc15;
-  --green:#22c55e;
-
-  --shadow:
-    0 10px 40px rgba(15,23,42,.08);
-
-  --shadow2:
-    0 20px 70px rgba(15,23,42,.12);
-}
-
-html[data-theme="dark"]{
-
-  --bg:#050816;
-  --bg2:#0b1120;
-
-  --card:rgba(15,23,42,.72);
-
-  --text:#e2e8f0;
+  --text:#ffffff;
   --muted:#94a3b8;
-  --heading:#ffffff;
 
   --line:rgba(255,255,255,.08);
 
-  --shadow:
-    0 14px 50px rgba(0,0,0,.42);
+  --orange:#ff8b2b;
+  --orange2:#ff6b00;
 
-  --shadow2:
-    0 24px 90px rgba(0,0,0,.55);
+  --green:#22c55e;
+  --green2:#16a34a;
+
+  --purple:#8b5cf6;
+  --blue:#3b82f6;
+
+  --danger:#ef4444;
+
+  --shadow:
+    0 20px 70px rgba(0,0,0,.45);
 }
 
 *{
@@ -95,24 +61,12 @@ body{
     system-ui,
     sans-serif;
 
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(249,115,22,.12),
-      transparent 32rem
-    ),
-    radial-gradient(
-      circle at top right,
-      rgba(59,130,246,.08),
-      transparent 32rem
-    ),
-    linear-gradient(
-      180deg,
-      var(--bg),
-      var(--bg2)
-    );
-
   color:var(--text);
+
+  background:
+    radial-gradient(circle at top left, rgba(59,130,246,.12), transparent 25%),
+    radial-gradient(circle at top right, rgba(139,92,246,.12), transparent 25%),
+    linear-gradient(180deg,#020617 0%,#030b1c 100%);
 
   min-height:100vh;
 }
@@ -127,17 +81,10 @@ body::before{
   pointer-events:none;
 
   background-image:
-    linear-gradient(
-      rgba(255,255,255,.02) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.02) 1px,
-      transparent 1px
-    );
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
 
-  background-size:54px 54px;
+  background-size:48px 48px;
 }
 
 a{
@@ -152,437 +99,237 @@ button{
   font:inherit;
 }
 
-.cw{
-  width:100%;
-  padding-inline:clamp(16px,4vw,60px);
+img{
+  display:block;
 }
 
-.glass{
-
-  background:var(--card);
-
-  border:1px solid var(--line);
-
-  backdrop-filter:blur(20px);
-
-  -webkit-backdrop-filter:blur(20px);
-
-  box-shadow:var(--shadow);
+.container{
+  width:100%;
+  padding-inline:38px;
 }
 
 /* =========================================================
-HEADER
+TOP
 ========================================================= */
 
-.header{
+.topbar{
 
-  position:sticky;
-  top:0;
-
-  z-index:200;
-
-  border-bottom:1px solid var(--line);
-
-  background:rgba(255,255,255,.5);
-
-  backdrop-filter:blur(20px);
+  padding-top:20px;
+  padding-bottom:20px;
 }
 
-html[data-theme="dark"] .header{
-  background:rgba(5,8,22,.65);
-}
-
-.header-inner{
-
-  min-height:76px;
+.topbar-inner{
 
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:24px;
+  flex-wrap:wrap;
 }
 
 .brand{
+
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:16px;
 }
 
 .logo{
 
-  width:50px;
-  height:50px;
+  width:54px;
+  height:54px;
 
   border-radius:18px;
 
-  display:grid;
-  place-items:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
   background:
     linear-gradient(
       135deg,
-      var(--orange),
-      var(--yellow)
+      #ff7b00,
+      #ffb020
     );
 
-  color:#111827;
+  color:white;
 
+  font-size:28px;
   font-weight:1000;
+
+  box-shadow:
+    0 16px 40px rgba(255,123,0,.35);
 }
 
 .brand-title{
 
-  display:block;
-
-  color:var(--heading);
-
-  font-size:1.2rem;
+  font-size:2rem;
   font-weight:900;
+  line-height:1;
 }
 
 .brand-sub{
 
-  display:block;
+  margin-top:6px;
 
-  margin-top:3px;
+  color:#b7c1d6;
 
-  color:var(--muted);
-
-  font-size:10px;
-  font-weight:900;
-
-  letter-spacing:.16em;
-  text-transform:uppercase;
+  font-size:1rem;
+  font-weight:600;
 }
 
-.nav{
+.top-actions{
 
   display:flex;
   align-items:center;
-  gap:24px;
+  gap:18px;
+  flex-wrap:wrap;
 }
 
-.nav a{
+.stat-box{
 
-  color:var(--muted);
+  min-width:190px;
 
-  font-size:.92rem;
-  font-weight:800;
+  height:72px;
 
-  transition:.2s ease;
-}
+  padding:0 20px;
 
-.nav a:hover{
-  color:var(--heading);
-}
-
-.header-actions{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.theme-toggle{
-
-  height:46px;
-
-  padding:
-    0 14px;
-
-  border-radius:999px;
+  border-radius:20px;
 
   display:flex;
   align-items:center;
-  gap:10px;
-
-  background:var(--card);
-
-  border:1px solid var(--line);
-
-  color:var(--heading);
-
-  font-weight:800;
-}
-
-.switch{
-
-  position:relative;
-
-  width:42px;
-  height:22px;
-
-  border-radius:999px;
-
-  background:rgba(255,255,255,.12);
-}
-
-.knob{
-
-  position:absolute;
-
-  top:2px;
-  left:2px;
-
-  width:18px;
-  height:18px;
-
-  border-radius:999px;
+  gap:16px;
 
   background:
     linear-gradient(
-      135deg,
-      var(--orange),
-      var(--yellow)
+      180deg,
+      rgba(9,18,39,.96),
+      rgba(4,10,24,.98)
     );
 
-  transition:.25s ease;
+  border:
+    1px solid rgba(255,255,255,.06);
+
+  box-shadow:var(--shadow);
 }
 
-html[data-theme="dark"] .knob{
-  transform:translateX(20px);
-}
-
-.menu-btn{
-
-  display:none;
+.stat-icon{
 
   width:46px;
   height:46px;
 
   border-radius:14px;
 
-  background:var(--card);
-
-  border:1px solid var(--line);
-
-  color:var(--heading);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
   font-size:22px;
 }
 
-.mobile-menu{
-
-  position:fixed;
-
-  top:0;
-  right:-100%;
-
-  width:280px;
-  height:100vh;
-
-  z-index:500;
-
-  padding:24px;
-
-  transition:.3s ease;
-
-  background:#0f172a;
+.stat-icon.blue{
+  background:rgba(59,130,246,.12);
+  color:#60a5fa;
 }
 
-.mobile-menu.open{
-  right:0;
+.stat-icon.green{
+  background:rgba(34,197,94,.12);
+  color:#4ade80;
 }
 
-.mobile-nav{
-
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-
-  margin-top:30px;
+.stat-icon.purple{
+  background:rgba(168,85,247,.12);
+  color:#c084fc;
 }
 
-.mobile-nav a{
-
-  padding:14px 16px;
-
-  border-radius:14px;
-
-  background:rgba(255,255,255,.06);
-
-  color:white;
-
-  font-weight:700;
-}
-
-/* =========================================================
-HERO
-========================================================= */
-
-.hero{
-  padding:70px 0 34px;
-}
-
-.hero-card{
-
-  padding:
-    clamp(24px,4vw,42px);
-
-  border-radius:34px;
-}
-
-.eyebrow{
-
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-
-  padding:
-    10px 14px;
-
-  border-radius:999px;
-
-  background:
-    rgba(249,115,22,.12);
-
-  color:var(--orange);
-
-  font-size:11px;
-  font-weight:900;
-
-  letter-spacing:.14em;
-  text-transform:uppercase;
-}
-
-.hero-title{
-
-  margin-top:20px;
-
-  color:var(--heading);
-
-  font-size:
-    clamp(2.6rem,7vw,5.5rem);
-
-  line-height:.95;
-
-  font-weight:1000;
-
-  letter-spacing:-.06em;
-}
-
-.hero-text{
-
-  max-width:760px;
-
-  margin-top:18px;
-
-  color:var(--muted);
-
-  line-height:1.8;
-}
-
-.stats-grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:18px;
-
-  margin-top:30px;
-}
-
-.stat-card{
-
-  padding:24px;
-
-  border-radius:24px;
-
-  text-align:center;
-}
-
-.stat-card strong{
+.stat-data small{
 
   display:block;
 
-  color:var(--heading);
+  color:#cbd5e1;
+
+  font-size:.88rem;
+  font-weight:600;
+}
+
+.stat-data strong{
+
+  display:block;
+
+  margin-top:4px;
 
   font-size:2rem;
   font-weight:1000;
 }
 
-.stat-card span{
-
-  display:block;
-
-  margin-top:8px;
-
-  color:var(--muted);
-
-  font-size:11px;
-  font-weight:900;
-
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
-
-/* =========================================================
-SEARCH
-========================================================= */
-
-.search-wrap{
-  margin-top:22px;
-}
-
 .search-box{
+
+  width:300px;
+  height:68px;
+
+  padding:0 22px;
+
+  border-radius:22px;
 
   display:flex;
   align-items:center;
+  gap:14px;
 
-  padding:
-    16px 18px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(9,18,39,.96),
+      rgba(4,10,24,.98)
+    );
 
-  border-radius:22px;
+  border:
+    1px solid rgba(255,255,255,.08);
+
+  box-shadow:var(--shadow);
 }
 
 .search-box input{
 
   width:100%;
 
+  background:none;
   border:none;
   outline:none;
 
-  background:transparent;
+  color:white;
 
-  color:var(--heading);
-
-  font-size:15px;
+  font-size:1rem;
   font-weight:700;
 }
 
+.search-box input::placeholder{
+  color:#94a3b8;
+}
+
 /* =========================================================
-MEMBERS
+CARDS
 ========================================================= */
 
-.members-section{
-  padding:20px 0 100px;
+.registry{
+
+  padding-bottom:80px;
 }
-```css
-/* =========================================================
-NEW CLEAN PREMIUM CARD UI
-REPLACE OLD MEMBER CARD CSS WITH THIS
-========================================================= */
 
 .members-grid{
 
-  display:grid;
-
-  grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(340px,1fr)
-    );
-
-  gap:26px;
+  display:flex;
+  flex-direction:column;
+  gap:28px;
 }
 
 .member-card{
 
   position:relative;
 
-  height:440px;
+  width:100%;
+  min-height:260px;
 
-  perspective:2200px;
+  perspective:2400px;
 }
 
 .member-inner{
@@ -590,12 +337,12 @@ REPLACE OLD MEMBER CARD CSS WITH THIS
   position:relative;
 
   width:100%;
-  height:100%;
+  min-height:260px;
 
   transform-style:preserve-3d;
 
   transition:
-    transform .8s cubic-bezier(.22,.61,.36,1);
+    transform .9s cubic-bezier(.22,.61,.36,1);
 }
 
 .member-card.flipped .member-inner{
@@ -607,82 +354,100 @@ REPLACE OLD MEMBER CARD CSS WITH THIS
   position:absolute;
   inset:0;
 
-  padding:24px;
+  width:100%;
+  min-height:260px;
 
-  border-radius:30px;
+  padding:34px;
 
-  overflow:hidden;
-
-  display:flex;
-  flex-direction:column;
+  border-radius:28px;
 
   backface-visibility:hidden;
+
+  overflow:hidden;
 
   background:
     linear-gradient(
       180deg,
-      rgba(7,13,32,.96),
-      rgba(2,6,22,.98)
+      rgba(7,13,32,.98),
+      rgba(2,6,22,.99)
     );
 
   border:
-    1px solid rgba(255,255,255,.06);
+    1px solid rgba(255,255,255,.08);
 
-  box-shadow:
-    0 20px 70px rgba(0,0,0,.42);
+  box-shadow:var(--shadow);
 }
 
-.member-front::before,
-.member-back::before{
+.member-face::before{
 
   content:"";
 
   position:absolute;
 
-  width:180px;
-  height:180px;
+  top:-100px;
+  right:-100px;
 
-  top:-70px;
-  right:-70px;
+  width:240px;
+  height:240px;
 
   border-radius:999px;
 
   background:
     radial-gradient(
       circle,
-      rgba(249,115,22,.14),
+      rgba(59,130,246,.16),
       transparent 70%
     );
 
   pointer-events:none;
 }
 
+.member-front{
+
+  display:grid;
+
+  grid-template-columns:
+    380px
+    190px
+    1fr
+    250px
+    200px;
+
+  gap:26px;
+  align-items:center;
+}
+
 .member-back{
+
   transform:rotateY(180deg);
+
+  display:flex;
+  flex-direction:column;
 }
 
 /* =========================================================
-TOP
+LEFT
 ========================================================= */
 
-.member-top{
+.profile-side{
 
   display:flex;
   align-items:center;
+  gap:24px;
 
-  gap:16px;
+  min-width:0;
 }
 
-.member-avatar{
+.avatar{
 
-  width:82px;
-  height:82px;
+  width:110px;
+  height:110px;
 
-  border-radius:24px;
-
-  overflow:hidden;
+  border-radius:28px;
 
   flex-shrink:0;
+
+  overflow:hidden;
 
   display:flex;
   align-items:center;
@@ -691,20 +456,20 @@ TOP
   background:
     linear-gradient(
       135deg,
-      #ec4899,
+      #ff0077,
       #7c3aed
     );
 
   color:white;
 
-  font-size:38px;
+  font-size:3.2rem;
   font-weight:1000;
 
   box-shadow:
-    0 14px 36px rgba(236,72,153,.28);
+    0 18px 50px rgba(236,72,153,.35);
 }
 
-.member-avatar img{
+.avatar img{
 
   width:100%;
   height:100%;
@@ -712,80 +477,37 @@ TOP
   object-fit:cover;
 }
 
-.member-main{
-  flex:1;
+.profile-info{
   min-width:0;
 }
 
-.member-row{
+.name-row{
 
   display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-
+  align-items:center;
   gap:14px;
+
+  flex-wrap:wrap;
 }
 
 .member-name{
 
-  color:white;
-
-  font-size:2rem;
+  font-size:2.4rem;
   font-weight:1000;
-
-  line-height:1;
 
   letter-spacing:-.05em;
 }
 
-.member-role{
+.verify-icon{
 
-  margin-top:10px;
-
-  color:#cbd5e1;
-
-  font-size:1rem;
-  font-weight:800;
-
-  line-height:1.5;
-}
-
-.member-id{
-
-  margin-top:12px;
-
-  color:#fb923c;
-
-  font-size:11px;
-  font-weight:1000;
-
-  letter-spacing:.2em;
-}
-
-/* =========================================================
-STATUS ICON
-========================================================= */
-
-.member-status{
-
-  width:54px;
-  height:54px;
+  width:34px;
+  height:34px;
 
   border-radius:999px;
-
-  flex-shrink:0;
 
   display:flex;
   align-items:center;
   justify-content:center;
-
-  color:white;
-
-  font-size:20px;
-  font-weight:1000;
-}
-
-.member-status.active{
 
   background:
     linear-gradient(
@@ -794,31 +516,13 @@ STATUS ICON
       #16a34a
     );
 
-  box-shadow:
-    0 14px 34px rgba(34,197,94,.32);
+  color:white;
+
+  font-size:16px;
+  font-weight:1000;
 }
 
-.member-status.on_leave{
-
-  background:
-    linear-gradient(
-      135deg,
-      #f59e0b,
-      #d97706
-    );
-}
-
-.member-status.alumni{
-
-  background:
-    linear-gradient(
-      135deg,
-      #64748b,
-      #475569
-    );
-}
-
-.member-status.inactive{
+.verify-icon.inactive{
 
   background:
     linear-gradient(
@@ -826,32 +530,65 @@ STATUS ICON
       #ef4444,
       #dc2626
     );
+}
 
-  box-shadow:
-    0 14px 34px rgba(239,68,68,.28);
+.role{
+
+  margin-top:10px;
+
+  color:#d7deed;
+
+  font-size:1.4rem;
+  font-weight:700;
+}
+
+.member-id{
+
+  margin-top:12px;
+
+  color:#ff982f;
+
+  font-size:1rem;
+  font-weight:1000;
+
+  letter-spacing:.18em;
 }
 
 /* =========================================================
-CHIPS
+SEPARATOR
 ========================================================= */
 
-.chips{
+.separator{
 
-  display:flex;
-  align-items:center;
-  flex-wrap:wrap;
+  width:1px;
+  height:130px;
 
-  gap:10px;
-
-  margin-top:18px;
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(255,255,255,.12),
+      transparent
+    );
 }
 
-.chip{
+/* =========================================================
+BADGES
+========================================================= */
 
-  height:36px;
+.badges{
+
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.badge{
+
+  min-height:54px;
 
   padding:
-    0 16px;
+    0 22px;
 
   border-radius:999px;
 
@@ -859,153 +596,149 @@ CHIPS
   align-items:center;
   justify-content:center;
 
-  font-size:11px;
-  font-weight:900;
+  font-size:1rem;
+  font-weight:1000;
 
-  letter-spacing:.12em;
+  letter-spacing:.08em;
   text-transform:uppercase;
 }
 
-.department-chip{
+.badge.department{
 
   background:
-    rgba(99,102,241,.16);
+    rgba(99,102,241,.12);
 
-  color:#818cf8;
+  color:#8ea1ff;
 
   border:
-    1px solid rgba(129,140,248,.18);
+    1px solid rgba(99,102,241,.16);
 }
 
-.status-chip.active{
+.badge.active{
 
   background:
-    rgba(34,197,94,.14);
+    rgba(34,197,94,.12);
 
-  color:#22c55e;
+  color:#4ade80;
 
   border:
-    1px solid rgba(34,197,94,.18);
+    1px solid rgba(34,197,94,.16);
 }
 
-.status-chip.alumni{
+.badge.alumni{
 
   background:
-    rgba(148,163,184,.14);
+    rgba(168,85,247,.12);
 
-  color:#cbd5e1;
+  color:#d8b4fe;
+
+  border:
+    1px solid rgba(168,85,247,.16);
 }
 
-.status-chip.on_leave{
+.badge.on_leave{
 
   background:
-    rgba(245,158,11,.14);
+    rgba(234,179,8,.12);
 
-  color:#f59e0b;
+  color:#fde047;
+
+  border:
+    1px solid rgba(234,179,8,.16);
 }
 
-.status-chip.inactive{
+.badge.inactive{
 
   background:
-    rgba(239,68,68,.14);
+    rgba(239,68,68,.12);
 
-  color:#ef4444;
+  color:#f87171;
+
+  border:
+    1px solid rgba(239,68,68,.16);
 }
 
 /* =========================================================
 BIO
 ========================================================= */
 
-.member-bio{
+.bio{
 
-  margin-top:22px;
+  color:#d4dbea;
 
-  color:#94a3b8;
+  font-size:1.18rem;
 
-  font-size:15px;
-
-  line-height:1.85;
-
-  display:-webkit-box;
-
-  -webkit-line-clamp:3;
-  -webkit-box-orient:vertical;
-
-  overflow:hidden;
+  line-height:2.1;
 }
 
 /* =========================================================
-INFO BOXES
+META
 ========================================================= */
 
-.member-info-grid{
+.meta-box{
 
-  display:grid;
+  padding:24px;
 
-  grid-template-columns:1fr 1fr;
-
-  gap:12px;
-
-  margin-top:auto;
-}
-
-.info-box{
-
-  padding:14px;
-
-  border-radius:18px;
+  border-radius:24px;
 
   background:
-    rgba(255,255,255,.04);
+    rgba(255,255,255,.03);
 
   border:
     1px solid rgba(255,255,255,.06);
+
+  display:flex;
+  flex-direction:column;
+  gap:22px;
 }
 
-.info-label{
+.meta-item{
 
-  color:#64748b;
-
-  font-size:10px;
-  font-weight:900;
-
-  letter-spacing:.14em;
-  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:14px;
 }
 
-.info-value{
+.dot{
 
-  margin-top:8px;
+  width:14px;
+  height:14px;
 
-  color:white;
+  border-radius:999px;
+}
 
-  font-size:15px;
-  font-weight:900;
+.dot.green{
+  background:#22c55e;
+}
 
-  line-height:1.5;
+.dot.red{
+  background:#ef4444;
+}
+
+.meta-item span{
+
+  color:#dbe5f4;
+
+  font-size:1.15rem;
+  font-weight:700;
 }
 
 /* =========================================================
-BUTTONS
+ACTIONS
 ========================================================= */
 
-.member-actions{
+.actions{
 
   display:flex;
-  gap:12px;
-
-  margin-top:18px;
+  flex-direction:column;
+  gap:18px;
 }
 
 .verify-btn{
 
-  flex:1;
+  height:74px;
 
-  height:52px;
-
-  border:none;
-
-  border-radius:18px;
+  border-radius:22px;
 
   background:
     linear-gradient(
@@ -1016,98 +749,82 @@ BUTTONS
 
   color:white;
 
-  font-size:14px;
+  font-size:1.3rem;
   font-weight:1000;
 
   box-shadow:
-    0 14px 34px rgba(34,197,94,.24);
+    0 18px 40px rgba(34,197,94,.25);
 }
 
 .flip-btn{
 
-  width:64px;
-  height:52px;
+  height:74px;
 
-  border:none;
-
-  border-radius:18px;
+  border-radius:22px;
 
   background:
     linear-gradient(
       135deg,
-      #f97316,
-      #fb923c
+      #ff7b00,
+      #ff9830
     );
 
   color:white;
 
-  font-size:20px;
+  font-size:1.3rem;
   font-weight:1000;
 
   box-shadow:
-    0 14px 34px rgba(249,115,22,.24);
+    0 18px 40px rgba(255,123,0,.28);
 }
 
 /* =========================================================
-BACK SIDE
+BACK
 ========================================================= */
 
-.member-links{
-
-  display:flex;
-  flex-direction:column;
-
-  gap:14px;
-
-  margin-top:28px;
-}
-
-.member-link{
-
-  min-height:58px;
-
-  padding:
-    0 18px;
-
-  border-radius:18px;
-
-  background:
-    rgba(255,255,255,.04);
-
-  border:
-    1px solid rgba(255,255,255,.06);
+.back-top{
 
   display:flex;
   align-items:center;
   justify-content:space-between;
-
-  color:white;
-
-  font-size:14px;
-  font-weight:900;
-
-  transition:.22s ease;
+  gap:20px;
 }
 
-.member-link:hover{
+.back-title{
 
-  transform:
-    translateX(5px);
-
-  border-color:
-    rgba(249,115,22,.25);
-
-  background:
-    rgba(249,115,22,.08);
+  font-size:2rem;
+  font-weight:1000;
 }
 
-.back-info{
+.back-sub{
 
-  margin-top:auto;
+  margin-top:10px;
 
-  padding:16px;
+  color:#b6c1d4;
 
-  border-radius:18px;
+  font-size:1rem;
+  font-weight:600;
+}
+
+.back-links{
+
+  margin-top:34px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:20px;
+}
+
+.back-link{
+
+  min-height:88px;
+
+  padding:22px;
+
+  border-radius:22px;
 
   background:
     rgba(255,255,255,.04);
@@ -1115,91 +832,104 @@ BACK SIDE
   border:
     1px solid rgba(255,255,255,.06);
 
-  color:#94a3b8;
+  transition:.25s ease;
 
-  font-size:14px;
-  font-weight:700;
-
-  line-height:1.9;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:10px;
 }
 
-/* =========================================================
-LIGHT MODE
-========================================================= */
+.back-link:hover{
 
-html[data-theme="light"] .member-face{
+  transform:
+    translateY(-5px);
+
+  border-color:
+    rgba(255,123,0,.22);
+
+  background:
+    rgba(255,123,0,.08);
+}
+
+.back-link strong{
+
+  font-size:1.15rem;
+  font-weight:900;
+}
+
+.back-link span{
+
+  color:#94a3b8;
+
+  font-size:.95rem;
+  font-weight:700;
+}
+
+.back-footer{
+
+  margin-top:auto;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.back-user{
+
+  color:#d5deec;
+
+  font-size:1rem;
+  font-weight:700;
+
+  line-height:2;
+}
+
+.back-actions{
+
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.back-actions button{
+
+  min-width:170px;
+
+  height:64px;
+
+  padding-inline:20px;
+
+  border-radius:18px;
+
+  font-size:1rem;
+  font-weight:1000;
+}
+
+.back-actions .back-btn{
 
   background:
     linear-gradient(
-      180deg,
-      rgba(255,255,255,.98),
-      rgba(245,247,255,.96)
+      135deg,
+      #ff7b00,
+      #ff9830
     );
+
+  color:white;
 }
 
-html[data-theme="light"] .member-name{
-  color:#020617;
-}
+.back-actions .verified{
 
-html[data-theme="light"] .member-role{
-  color:#475569;
-}
+  background:
+    linear-gradient(
+      135deg,
+      #22c55e,
+      #16a34a
+    );
 
-html[data-theme="light"] .member-bio{
-  color:#475569;
-}
-
-html[data-theme="light"] .member-link{
-  color:#020617;
-  background:rgba(15,23,42,.03);
-}
-
-html[data-theme="light"] .back-info{
-  color:#475569;
-  background:rgba(15,23,42,.03);
-}
-
-html[data-theme="light"] .info-box{
-  background:rgba(15,23,42,.03);
-}
-
-html[data-theme="light"] .info-value{
-  color:#020617;
-}
-
-/* =========================================================
-MOBILE
-========================================================= */
-
-@media (max-width:768px){
-
-  .members-grid{
-    grid-template-columns:1fr;
-  }
-
-  .member-card{
-    height:500px;
-  }
-
-  .member-name{
-    font-size:1.55rem;
-  }
-
-  .member-role{
-    font-size:.95rem;
-  }
-
-  .member-avatar{
-
-    width:74px;
-    height:74px;
-
-    font-size:32px;
-  }
-
-  .member-info-grid{
-    grid-template-columns:1fr;
-  }
+  color:white;
 }
 
 /* =========================================================
@@ -1208,31 +938,28 @@ LOADING
 
 .loading{
 
+  padding:120px 20px;
+
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-
-  gap:18px;
-
-  padding:80px 20px;
+  gap:20px;
 }
 
 .loader{
 
-  width:54px;
-  height:54px;
+  width:64px;
+  height:64px;
 
   border-radius:999px;
 
   border:
-    4px solid rgba(249,115,22,.12);
+    5px solid rgba(255,255,255,.08);
 
-  border-top-color:
-    var(--orange);
+  border-top-color:#ff8b2b;
 
-  animation:
-    spin .8s linear infinite;
+  animation:spin .7s linear infinite;
 }
 
 @keyframes spin{
@@ -1242,229 +969,200 @@ LOADING
 }
 
 /* =========================================================
-RESPONSIVE
+MOBILE
 ========================================================= */
 
-@media (max-width:980px){
+@media (max-width:1450px){
 
-  .nav{
+  .member-front{
+
+    grid-template-columns:
+      1fr;
+
+    gap:24px;
+  }
+
+  .separator{
     display:none;
   }
 
-  .menu-btn{
-    display:block;
+  .badges{
+    flex-direction:row;
+    flex-wrap:wrap;
   }
 
-  .stats-grid{
-    grid-template-columns:1fr;
+  .actions{
+    flex-direction:row;
+  }
+
+  .actions button{
+    flex:1;
+  }
+
+  .meta-box{
+    width:100%;
   }
 }
 
-@media (max-width:768px){
+@media (max-width:900px){
 
-  .hero{
-    padding-top:40px;
+  .container{
+    padding-inline:18px;
   }
 
-  .hero-title{
-    font-size:3rem;
+  .top-actions{
+    width:100%;
   }
 
-  .members-grid{
-    grid-template-columns:1fr;
+  .search-box{
+    width:100%;
   }
 
-  .member-card{
-    height:500px;
-  }
-
-  .member-top{
-    flex-direction:column;
-  }
-
-  .member-avatar{
-    width:72px;
-    height:72px;
-  }
-
-  .member-bottom{
+  .profile-side{
     flex-direction:column;
     align-items:flex-start;
   }
 
-  .verify-btn{
+  .member-face{
+    padding:24px;
+  }
+
+  .member-name{
+    font-size:2rem;
+  }
+
+  .role{
+    font-size:1.1rem;
+  }
+
+  .back-links{
+    grid-template-columns:1fr;
+  }
+
+  .back-footer{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .back-actions{
+    width:100%;
+    flex-direction:column;
+  }
+
+  .back-actions button{
+    width:100%;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .verify-btn,
+  .flip-btn{
     width:100%;
   }
 }
 
 </style>
-
 </head>
 
 <body>
 
-<header class="header">
+<div class="container">
 
-  <div class="cw header-inner">
+  <!-- =====================================================
+  TOPBAR
+  ====================================================== -->
 
-    <a
-      href="https://academeforge.in"
-      class="brand"
-    >
+  <section class="topbar">
 
-      <div class="logo">
-        AF
-      </div>
+    <div class="topbar-inner">
 
-      <div>
+      <div class="brand">
 
-        <span class="brand-title">
-          AcademeForge
-        </span>
+        <div class="logo">
+          AF
+        </div>
 
-        <span class="brand-sub">
-          Workforce Registry
-        </span>
+        <div>
 
-      </div>
+          <div class="brand-title">
+            AcademeForge
+          </div>
 
-    </a>
-
-    <nav class="nav">
-
-      <a href="https://academeforge.in">
-        Home
-      </a>
-
-      <a href="https://academeforge.in/join-team/">
-        Join Team
-      </a>
-
-      <a href="https://academeforge.in/verify-team/">
-        Verify Team
-      </a>
-
-      <a href="https://academeforge.in/#contact">
-        Contact
-      </a>
-
-    </nav>
-
-    <div class="header-actions">
-
-      <button
-        id="themeToggle"
-        class="theme-toggle"
-      >
-
-        <span id="themeText">
-          Dark
-        </span>
-
-        <span class="switch">
-          <span class="knob"></span>
-        </span>
-
-      </button>
-
-      <button
-        id="menuBtn"
-        class="menu-btn"
-      >
-        ☰
-      </button>
-
-    </div>
-
-  </div>
-
-</header>
-
-<aside
-  id="mobileMenu"
-  class="mobile-menu"
->
-
-  <nav class="mobile-nav">
-
-    <a href="https://academeforge.in">
-      Home
-    </a>
-
-    <a href="https://academeforge.in/join-team/">
-      Join Team
-    </a>
-
-    <a href="https://academeforge.in/verify-team/">
-      Verify Team
-    </a>
-
-    <a href="https://academeforge.in/#contact">
-      Contact
-    </a>
-
-  </nav>
-
-</aside>
-
-<section class="hero">
-
-  <div class="cw">
-
-    <div class="hero-card glass">
-
-      <span class="eyebrow">
-        Verified Workforce Registry
-      </span>
-
-      <h1 class="hero-title">
-        AcademeForge Workforce Registry
-      </h1>
-
-      <p class="hero-text">
-
-        Verified contributors, developers,
-        designers and ecosystem members
-        officially associated with
-        AcademeForge.
-
-      </p>
-
-      <div class="stats-grid">
-
-        <div class="stat-card glass">
-
-          <strong id="totalMembers">
-            0
-          </strong>
-
-          <span>
-            Total Members
-          </span>
+          <div class="brand-sub">
+            Workforce Registry
+          </div>
 
         </div>
 
-        <div class="stat-card glass">
+      </div>
 
-          <strong id="activeMembers">
-            0
-          </strong>
+      <div class="top-actions">
 
-          <span>
-            Active Members
-          </span>
+        <div class="stat-box">
+
+          <div class="stat-icon blue">
+            👥
+          </div>
+
+          <div class="stat-data">
+
+            <small>Total Members</small>
+
+            <strong id="totalMembers">
+              0
+            </strong>
+
+          </div>
 
         </div>
 
-        <div class="stat-card glass">
+        <div class="stat-box">
 
-          <strong id="alumniMembers">
-            0
-          </strong>
+          <div class="stat-icon green">
+            👤
+          </div>
 
-          <span>
-            Alumni Members
-          </span>
+          <div class="stat-data">
+
+            <small>Active Members</small>
+
+            <strong id="activeMembers">
+              0
+            </strong>
+
+          </div>
+
+        </div>
+
+        <div class="stat-box">
+
+          <div class="stat-icon purple">
+            👥
+          </div>
+
+          <div class="stat-data">
+
+            <small>Alumni Members</small>
+
+            <strong id="alumniMembers">
+              0
+            </strong>
+
+          </div>
+
+        </div>
+
+        <div class="search-box">
+
+          <span style="font-size:22px;">🔍</span>
+
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search members..."
+          />
 
         </div>
 
@@ -1472,27 +1170,13 @@ RESPONSIVE
 
     </div>
 
-    <div class="search-wrap">
+  </section>
 
-      <div class="search-box glass">
+  <!-- =====================================================
+  REGISTRY
+  ====================================================== -->
 
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="Search members..."
-        />
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section class="members-section">
-
-  <div class="cw">
+  <section class="registry">
 
     <div
       id="loading"
@@ -1501,9 +1185,9 @@ RESPONSIVE
 
       <div class="loader"></div>
 
-      <p>
-        Loading workforce registry...
-      </p>
+      <div style="font-size:1.1rem;font-weight:800;">
+        Loading Workforce Registry...
+      </div>
 
     </div>
 
@@ -1512,11 +1196,15 @@ RESPONSIVE
       class="members-grid"
     ></div>
 
-  </div>
+  </section>
 
-</section>
+</div>
 
 <script>
+
+/* =========================================================
+CONFIG
+========================================================= */
 
 const AF_API =
   "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/get-af-team-members";
@@ -1524,26 +1212,24 @@ const AF_API =
 const AF_ANON_KEY =
   "YOUR_SUPABASE_ANON_KEY";
 
-const html =
-  document.documentElement;
+const CACHE_KEY =
+  "af_registry_cache_v3";
 
-const themeToggle =
-  document.getElementById("themeToggle");
+const CACHE_TIME =
+  "af_registry_cache_time_v3";
 
-const themeText =
-  document.getElementById("themeText");
+const CACHE_DURATION =
+  1000 * 60 * 10;
 
-const menuBtn =
-  document.getElementById("menuBtn");
-
-const mobileMenu =
-  document.getElementById("mobileMenu");
-
-const membersGrid =
-  document.getElementById("membersGrid");
+/* =========================================================
+ELEMENTS
+========================================================= */
 
 const loading =
   document.getElementById("loading");
+
+const membersGrid =
+  document.getElementById("membersGrid");
 
 const searchInput =
   document.getElementById("searchInput");
@@ -1551,72 +1237,7 @@ const searchInput =
 let allMembers = [];
 
 /* =========================================================
-THEME
-========================================================= */
-
-const savedTheme =
-  localStorage.getItem("af-theme");
-
-if(savedTheme){
-  html.setAttribute(
-    "data-theme",
-    savedTheme
-  );
-}
-
-updateThemeText();
-
-themeToggle.addEventListener(
-  "click",
-  () => {
-
-    const current =
-      html.getAttribute("data-theme");
-
-    const next =
-      current === "dark"
-        ? "light"
-        : "dark";
-
-    html.setAttribute(
-      "data-theme",
-      next
-    );
-
-    localStorage.setItem(
-      "af-theme",
-      next
-    );
-
-    updateThemeText();
-  }
-);
-
-function updateThemeText(){
-
-  const isDark =
-    html.getAttribute("data-theme")
-      === "dark";
-
-  themeText.textContent =
-    isDark
-      ? "Light"
-      : "Dark";
-}
-
-/* =========================================================
-MOBILE MENU
-========================================================= */
-
-menuBtn.addEventListener(
-  "click",
-  () => {
-    mobileMenu.classList.toggle("open");
-  }
-);
-
-/* =========================================================
-HELPERS
+UTILS
 ========================================================= */
 
 function escapeHtml(value){
@@ -1638,8 +1259,8 @@ function safeUrl(url){
     String(url).trim();
 
   if(
-    value.startsWith("http://") ||
-    value.startsWith("https://")
+    value.startsWith("https://") ||
+    value.startsWith("http://")
   ){
     return value;
   }
@@ -1685,15 +1306,14 @@ function avatar(member){
   }
 
   return escapeHtml(
-    String(member.full_name || "A")
-      .charAt(0)
+    member.full_name
+      .split(" ")
+      .map(v => v[0] || "")
+      .join("")
+      .slice(0,2)
       .toUpperCase()
   );
 }
-
-/* =========================================================
-NORMALIZE
-========================================================= */
 
 function normalize(member){
 
@@ -1701,20 +1321,19 @@ function normalize(member){
 
     full_name:
       member.full_name ||
-      member.name ||
       "Unknown Member",
 
     role_title:
       member.role_title ||
-      member.role ||
       "AcademeForge Member",
 
     member_id:
-      member.member_id || "",
+      member.member_id ||
+      "AF-UNKNOWN",
 
     department:
       member.department ||
-      "AcademeForge",
+      "GENERAL",
 
     bio:
       member.bio ||
@@ -1754,20 +1373,48 @@ function normalize(member){
 CARD
 ========================================================= */
 
-/* =========================================================
-REPLACE ONLY YOUR CARD TEMPLATE FUNCTION
-========================================================= */
-
 function card(member){
 
-  const statusIcon =
-    member.status === "inactive"
+  const isInactive =
+    member.status === "inactive";
+
+  const verifyClass =
+    isInactive
+      ? "inactive"
+      : "";
+
+  const verifyIcon =
+    isInactive
       ? "✕"
-      : member.status === "on_leave"
-        ? "⏸"
-        : member.status === "alumni"
-          ? "⌛"
-          : "✓";
+      : "✓";
+
+  const activeClass =
+    member.status === "active"
+      ? "active"
+      : member.status === "alumni"
+        ? "alumni"
+        : member.status === "on_leave"
+          ? "on_leave"
+          : "inactive";
+
+  const currentStatus =
+    member.ended_at
+      ? `
+        <div class="meta-item">
+          <div class="dot red"></div>
+          <span>
+            Ended: ${formatDate(member.ended_at)}
+          </span>
+        </div>
+      `
+      : `
+        <div class="meta-item">
+          <div class="dot green"></div>
+          <span>
+            Currently Active
+          </span>
+        </div>
+      `;
 
   return `
 
@@ -1775,125 +1422,120 @@ function card(member){
 
       <div class="member-inner">
 
-        <!-- FRONT -->
+        <!-- =================================================
+        FRONT
+        ================================================== -->
 
         <div class="member-face member-front">
 
-          <div class="member-top">
+          <div class="profile-side">
 
-            <div class="member-avatar">
+            <div class="avatar">
               ${avatar(member)}
             </div>
 
-            <div class="member-main">
+            <div class="profile-info">
 
-              <div class="member-row">
+              <div class="name-row">
 
-                <div>
-
-                  <div class="member-name">
-                    ${escapeHtml(member.full_name)}
-                  </div>
-
-                  <div class="member-role">
-                    ${escapeHtml(member.role_title)}
-                  </div>
-
+                <div class="member-name">
+                  ${escapeHtml(member.full_name)}
                 </div>
 
-                <div class="member-status ${member.status}">
-                  ${statusIcon}
+                <div class="verify-icon ${verifyClass}">
+                  ${verifyIcon}
                 </div>
 
+              </div>
+
+              <div class="role">
+                ${escapeHtml(member.role_title)}
               </div>
 
               <div class="member-id">
                 ${escapeHtml(member.member_id)}
               </div>
 
-              <div class="chips">
-
-                <div class="chip department-chip">
-                  ${escapeHtml(member.department)}
-                </div>
-
-                <div class="chip status-chip ${member.status}">
-                  ${escapeHtml(member.status)}
-                </div>
-
-              </div>
-
             </div>
 
           </div>
 
-          <div class="member-bio">
+          <div class="separator"></div>
+
+          <div class="badges">
+
+            <div class="badge department">
+              ${escapeHtml(member.department)}
+            </div>
+
+            <div class="badge ${activeClass}">
+              ${escapeHtml(member.status)}
+            </div>
+
+          </div>
+
+          <div class="separator"></div>
+
+          <div class="bio">
             ${escapeHtml(member.bio)}
           </div>
 
-          <div class="member-info-grid">
+          <div class="meta-box">
 
-            <div class="info-box">
+            <div class="meta-item">
 
-              <div class="info-label">
-                Joined
+              <div style="font-size:22px;">
+                📅
               </div>
 
-              <div class="info-value">
+              <span>
+                Joined:
                 ${formatDate(member.joined_at)}
-              </div>
+              </span>
 
             </div>
 
-            <div class="info-box">
-
-              <div class="info-label">
-                Status
-              </div>
-
-              <div class="info-value">
-                ${
-                  member.ended_at
-                  ? `Ended`
-                  : `Currently Active`
-                }
-              </div>
-
-            </div>
+            ${currentStatus}
 
           </div>
 
-          <div class="member-actions">
+          <div class="actions">
 
             <button class="verify-btn">
-              Verified Member
+              🛡 Verified Member
             </button>
 
             <button class="flip-btn">
-              ↻
+              Flip Card ↻
             </button>
 
           </div>
 
         </div>
 
-        <!-- BACK -->
+        <!-- =================================================
+        BACK
+        ================================================== -->
 
         <div class="member-face member-back">
 
-          <div>
+          <div class="back-top">
 
-            <div class="member-name">
-              ${escapeHtml(member.full_name)}
-            </div>
+            <div>
 
-            <div class="member-role">
-              ${escapeHtml(member.role_title)}
+              <div class="back-title">
+                ${escapeHtml(member.full_name)}
+              </div>
+
+              <div class="back-sub">
+                Official AcademeForge Workforce Profile
+              </div>
+
             </div>
 
           </div>
 
-          <div class="member-links">
+          <div class="back-links">
 
             ${
               member.linkedin_url
@@ -1901,15 +1543,17 @@ function card(member){
               <a
                 href="${escapeHtml(member.linkedin_url)}"
                 target="_blank"
-                class="member-link"
+                class="back-link"
               >
-                <span>
+
+                <strong>
                   LinkedIn
-                </span>
+                </strong>
 
                 <span>
-                  →
+                  Open Professional Profile →
                 </span>
+
               </a>
               `
               : ""
@@ -1921,15 +1565,17 @@ function card(member){
               <a
                 href="${escapeHtml(member.github_url)}"
                 target="_blank"
-                class="member-link"
+                class="back-link"
               >
-                <span>
+
+                <strong>
                   GitHub
-                </span>
+                </strong>
 
                 <span>
-                  →
+                  Open Repository Profile →
                 </span>
+
               </a>
               `
               : ""
@@ -1941,15 +1587,17 @@ function card(member){
               <a
                 href="${escapeHtml(member.portfolio_url)}"
                 target="_blank"
-                class="member-link"
+                class="back-link"
               >
-                <span>
+
+                <strong>
                   Portfolio
-                </span>
+                </strong>
 
                 <span>
-                  →
+                  Open Website →
                 </span>
+
               </a>
               `
               : ""
@@ -1957,26 +1605,30 @@ function card(member){
 
           </div>
 
-          <div class="back-info">
+          <div class="back-footer">
 
-            📍 ${escapeHtml(member.location)}
+            <div class="back-user">
 
-            <br><br>
+              📍 ${escapeHtml(member.location)}
 
-            Username:
-            @${escapeHtml(member.username)}
+              <br>
 
-          </div>
+              Username:
+              @${escapeHtml(member.username)}
 
-          <div class="member-actions">
+            </div>
 
-            <button class="verify-btn">
-              Verified Member
-            </button>
+            <div class="back-actions">
 
-            <button class="flip-btn">
-              ↻
-            </button>
+              <button class="verified">
+                Verified Member
+              </button>
+
+              <button class="back-btn">
+                Flip Back ↻
+              </button>
+
+            </div>
 
           </div>
 
@@ -1997,42 +1649,147 @@ function render(data){
   membersGrid.innerHTML =
     data.map(card).join("");
 
-  attachFlipEvents();
+  attachCardEvents();
 }
 
 /* =========================================================
-FLIP
+FLIP EVENTS
 ========================================================= */
 
-function attachFlipEvents(){
+function attachCardEvents(){
 
   const cards =
     document.querySelectorAll(".member-card");
 
   cards.forEach(card => {
 
-    const buttons =
-      card.querySelectorAll(".flip-btn");
+    const inner =
+      card.querySelector(".member-inner");
 
-    buttons.forEach(btn => {
+    const links =
+      card.querySelectorAll("a");
 
-      btn.addEventListener(
+    links.forEach(link => {
+
+      link.addEventListener(
         "click",
-        e => {
-
-          e.stopPropagation();
-
-          card.classList.toggle(
-            "flipped"
-          );
+        event => {
+          event.stopPropagation();
         }
       );
     });
+
+    inner.addEventListener(
+      "click",
+      () => {
+
+        card.classList.toggle(
+          "flipped"
+        );
+      }
+    );
   });
 }
 
 /* =========================================================
-FILTER
+STATS
+========================================================= */
+
+function updateStats(){
+
+  document.getElementById(
+    "totalMembers"
+  ).textContent =
+    allMembers.length;
+
+  document.getElementById(
+    "activeMembers"
+  ).textContent =
+    allMembers.filter(
+      m => m.status === "active"
+    ).length;
+
+  document.getElementById(
+    "alumniMembers"
+  ).textContent =
+    allMembers.filter(
+      m => m.status === "alumni"
+    ).length;
+}
+
+/* =========================================================
+CACHE
+========================================================= */
+
+function saveCache(data){
+
+  try{
+
+    localStorage.setItem(
+      CACHE_KEY,
+      JSON.stringify(data)
+    );
+
+    localStorage.setItem(
+      CACHE_TIME,
+      String(Date.now())
+    );
+
+  }catch(error){
+
+    console.error(
+      "Cache save failed",
+      error
+    );
+  }
+}
+
+function loadCache(){
+
+  try{
+
+    const cache =
+      localStorage.getItem(
+        CACHE_KEY
+      );
+
+    const time =
+      Number(
+        localStorage.getItem(
+          CACHE_TIME
+        )
+      );
+
+    if(
+      !cache ||
+      !time
+    ){
+      return null;
+    }
+
+    const expired =
+      Date.now() - time >
+      CACHE_DURATION;
+
+    if(expired){
+      return null;
+    }
+
+    return JSON.parse(cache);
+
+  }catch(error){
+
+    console.error(
+      "Cache load failed",
+      error
+    );
+
+    return null;
+  }
+}
+
+/* =========================================================
+SEARCH
 ========================================================= */
 
 searchInput.addEventListener(
@@ -2045,6 +1802,7 @@ searchInput.addEventListener(
         .toLowerCase();
 
     if(!query){
+
       render(allMembers);
       return;
     }
@@ -2065,6 +1823,7 @@ searchInput.addEventListener(
         .join(" ")
         .toLowerCase()
         .includes(query);
+
       });
 
     render(filtered);
@@ -2075,81 +1834,139 @@ searchInput.addEventListener(
 FETCH
 ========================================================= */
 
+async function fetchMembers(){
+
+  const response =
+    await fetch(
+      AF_API,
+      {
+        method:"GET",
+
+        headers:{
+
+          apikey:
+            AF_ANON_KEY,
+
+          Authorization:
+            `Bearer ${AF_ANON_KEY}`,
+
+          "Content-Type":
+            "application/json"
+        }
+      }
+    );
+
+  if(!response.ok){
+
+    throw new Error(
+      `HTTP ${response.status}`
+    );
+  }
+
+  return await response.json();
+}
+
+/* =========================================================
+LOAD
+========================================================= */
+
 async function loadMembers(){
 
   try{
 
-    loading.style.display = "flex";
+    loading.style.display =
+      "flex";
 
-    const response =
-      await fetch(AF_API,{
-        headers:{
-          apikey:AF_ANON_KEY,
-          Authorization:
-            `Bearer ${AF_ANON_KEY}`
-        }
-      });
+    /* =====================================================
+    CACHE FIRST
+    ====================================================== */
 
-    if(!response.ok){
-      throw new Error(
-        `HTTP ${response.status}`
-      );
+    const cached =
+      loadCache();
+
+    if(
+      cached &&
+      Array.isArray(cached.members)
+    ){
+
+      allMembers =
+        cached.members
+          .map(normalize);
+
+      updateStats();
+
+      render(allMembers);
+
+      loading.style.display =
+        "none";
     }
 
+    /* =====================================================
+    NETWORK FETCH
+    ====================================================== */
+
     const data =
-      await response.json();
+      await fetchMembers();
 
     allMembers =
       (data.members || [])
         .map(normalize);
 
-    document.getElementById(
-      "totalMembers"
-    ).textContent =
-      allMembers.length;
-
-    document.getElementById(
-      "activeMembers"
-    ).textContent =
-      allMembers.filter(
-        m => m.status === "active"
-      ).length;
-
-    document.getElementById(
-      "alumniMembers"
-    ).textContent =
-      allMembers.filter(
-        m => m.status === "alumni"
-      ).length;
+    updateStats();
 
     render(allMembers);
 
+    saveCache({
+      members:allMembers
+    });
+
   }catch(error){
 
-    membersGrid.innerHTML = `
+    console.error(error);
 
-      <div class="glass"
-        style="
-          padding:40px;
-          border-radius:30px;
-          text-align:center;
-        "
-      >
+    if(!allMembers.length){
 
-        <h2>
-          Failed To Load Members
-        </h2>
+      membersGrid.innerHTML = `
 
-        <p style="margin-top:12px;">
-          ${escapeHtml(error.message)}
-        </p>
+        <div
+          style="
+            width:100%;
+            padding:50px;
+            border-radius:30px;
+            background:#091326;
+            border:1px solid rgba(255,255,255,.08);
+            text-align:center;
+          "
+        >
 
-      </div>
-    `;
+          <div
+            style="
+              font-size:2rem;
+              font-weight:1000;
+            "
+          >
+            Failed To Load Registry
+          </div>
+
+          <div
+            style="
+              margin-top:18px;
+              color:#94a3b8;
+              font-size:1.05rem;
+              line-height:1.8;
+            "
+          >
+            ${escapeHtml(error.message)}
+          </div>
+
+        </div>
+      `;
+    }
 
   }finally{
 
-    loading.style.display = "none";
+    loading.style.display =
+      "none";
   }
 }
 
