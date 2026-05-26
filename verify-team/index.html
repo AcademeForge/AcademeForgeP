@@ -874,279 +874,468 @@
     }
 
     /* =========================================================
-       MEMBERS
-    ========================================================== */
+   ADVANCED MEMBERS
+========================================================= */
 
-    .members-section {
+.members-section {
 
-      padding:
-        36px
-        0
-        110px;
-    }
+  padding:
+    40px
+    0
+    120px;
+}
 
-    .members-grid {
+.members-grid {
 
-      display: grid;
+  display: grid;
 
-      grid-template-columns:
-        repeat(
-          auto-fit,
-          minmax(320px,1fr)
-        );
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(360px,1fr)
+    );
 
-      gap: 20px;
-    }
+  gap: 28px;
+}
 
-    .member-card {
+.member-card {
 
-      position: relative;
+  position: relative;
 
-      overflow: hidden;
+  height: 540px;
 
-      padding: 24px;
+  perspective: 2200px;
+}
 
-      border-radius: 34px;
+.member-inner {
 
-      transition: .24s ease;
-    }
+  position: relative;
 
-    .member-card:hover {
+  width: 100%;
+  height: 100%;
 
-      transform:
-        translateY(-6px);
+  transition:
+    transform .9s cubic-bezier(.2,.8,.2,1);
 
-      box-shadow:
-        var(--shadow2);
-    }
+  transform-style: preserve-3d;
+}
 
-    .member-top {
+.member-card:hover .member-inner {
 
-      display: flex;
-      align-items: flex-start;
+  transform:
+    rotateY(180deg);
+}
 
-      gap: 16px;
-    }
+.member-face {
 
-    .member-avatar {
+  position: absolute;
 
-      width: 82px;
-      height: 82px;
+  inset: 0;
 
-      flex-shrink: 0;
+  padding: 26px;
 
-      overflow: hidden;
+  border-radius: 36px;
 
-      border-radius: 28px;
+  overflow: hidden;
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--brand),
-          var(--gold)
-        );
+  backface-visibility: hidden;
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+.member-front {
 
-      color: #111827;
+  display: flex;
+  flex-direction: column;
+}
 
-      font-size: 30px;
-      font-weight: 1000;
-    }
+.member-back {
 
-    .member-avatar img {
+  transform:
+    rotateY(180deg);
 
-      width: 100%;
-      height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-      object-fit: cover;
-    }
+/* =========================================================
+   TOP
+========================================================= */
 
-    .member-name-row {
+.member-top {
 
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+  display: flex;
+  align-items: flex-start;
 
-    .member-name {
+  gap: 18px;
+}
 
-      color: var(--heading);
+.member-avatar {
 
-      font-size: 1.5rem;
-      font-weight: 900;
+  position: relative;
 
-      letter-spacing: -.04em;
-    }
+  width: 96px;
+  height: 96px;
 
-    .verified {
+  border-radius: 30px;
 
-      width: 22px;
-      height: 22px;
+  overflow: hidden;
 
-      border-radius: 999px;
+  flex-shrink: 0;
 
-      background:
-        linear-gradient(
-          135deg,
-          #22c55e,
-          #10b981
-        );
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #06b6d4
+    );
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-      color: white;
+  font-size: 38px;
+  font-weight: 1000;
 
-      font-size: 12px;
-      font-weight: 1000;
+  color: white;
+}
 
-      box-shadow:
-        0 0 18px rgba(16,185,129,.4);
-    }
+.member-avatar img {
 
-    .member-role {
+  width: 100%;
+  height: 100%;
 
-      margin-top: 8px;
+  object-fit: cover;
+}
 
-      color: var(--muted);
+.member-status {
 
-      font-size: 15px;
-      font-weight: 800;
-    }
+  position: absolute;
 
-    .chips {
+  top: 18px;
+  right: 18px;
 
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+  width: 44px;
+  height: 44px;
 
-      margin-top: 14px;
-    }
+  border-radius: 999px;
 
-    .chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-      height: 32px;
+  color: white;
 
-      padding:
-        0
-        14px;
+  font-size: 18px;
+  font-weight: 1000;
+}
 
-      border-radius: 999px;
+.member-status.active {
 
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+  background:
+    linear-gradient(
+      135deg,
+      #22c55e,
+      #16a34a
+    );
+}
 
-      font-size: 11px;
-      font-weight: 900;
+.member-status.alumni {
 
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
+  background:
+    linear-gradient(
+      135deg,
+      #64748b,
+      #475569
+    );
+}
 
-    .department-chip {
+.member-status.on_leave {
 
-      background:
-        rgba(99,102,241,.12);
+  background:
+    linear-gradient(
+      135deg,
+      #f59e0b,
+      #d97706
+    );
+}
 
-      color:
-        #4f46e5;
-    }
+.member-status.inactive {
 
-    .status-active {
+  background:
+    linear-gradient(
+      135deg,
+      #ef4444,
+      #dc2626
+    );
+}
 
-      background:
-        rgba(34,197,94,.14);
+.member-name {
 
-      color:
-        #15803d;
-    }
+  color: var(--heading);
 
-    .status-alumni {
+  font-size: 1.8rem;
+  font-weight: 1000;
 
-      background:
-        rgba(100,116,139,.16);
+  line-height: 1.1;
 
-      color:
-        #475569;
-    }
+  letter-spacing: -.05em;
+}
 
-    .status-on_leave {
+.member-role {
 
-      background:
-        rgba(245,158,11,.16);
+  margin-top: 10px;
 
-      color:
-        #b45309;
-    }
+  color: var(--muted);
 
-    .member-bio {
+  font-size: 1rem;
+  font-weight: 800;
 
-      margin-top: 18px;
+  line-height: 1.7;
+}
 
-      color: var(--muted);
+.member-id {
 
-      line-height: 1.75;
+  margin-top: 10px;
 
-      font-size: 14px;
-    }
+  color: var(--brand);
 
-    .member-bottom {
+  font-size: 11px;
+  font-weight: 1000;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+  letter-spacing: .22em;
+}
 
-      gap: 16px;
+/* =========================================================
+   CHIPS
+========================================================= */
 
-      margin-top: 22px;
-    }
+.chips {
 
-    .member-duration {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 
-      color: var(--soft);
+  margin-top: 18px;
+}
 
-      font-size: 12px;
-      font-weight: 900;
+.chip {
 
-      line-height: 1.7;
-    }
+  height: 38px;
 
-    .view-btn {
+  padding:
+    0
+    18px;
 
-      height: 44px;
+  border-radius: 999px;
 
-      padding:
-        0
-        18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-      border-radius: 16px;
+  font-size: 11px;
+  font-weight: 1000;
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--brand),
-          var(--gold)
-        );
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
 
-      color: #111827;
+.department-chip {
 
-      font-size: 13px;
-      font-weight: 1000;
+  background:
+    rgba(99,102,241,.14);
 
-      transition: .22s ease;
-    }
+  color:
+    #6366f1;
+}
 
-    .view-btn:hover {
+.status-active {
 
-      transform:
-        translateY(-2px);
-    }
+  background:
+    rgba(34,197,94,.14);
 
+  color:
+    #22c55e;
+}
+
+.status-alumni {
+
+  background:
+    rgba(100,116,139,.18);
+
+  color:
+    #94a3b8;
+}
+
+.status-on_leave {
+
+  background:
+    rgba(245,158,11,.16);
+
+  color:
+    #f59e0b;
+}
+
+.status-inactive {
+
+  background:
+    rgba(239,68,68,.18);
+
+  color:
+    #ef4444;
+}
+
+/* =========================================================
+   BIO
+========================================================= */
+
+.member-bio {
+
+  margin-top: 22px;
+
+  color: var(--muted);
+
+  line-height: 1.9;
+
+  font-size: 15px;
+}
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.member-bottom {
+
+  margin-top: auto;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 18px;
+}
+
+.member-duration {
+
+  color: var(--soft);
+
+  font-size: 13px;
+  font-weight: 900;
+
+  line-height: 1.9;
+}
+
+.verify-btn {
+
+  height: 54px;
+
+  padding:
+    0
+    24px;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--brand),
+      var(--gold)
+    );
+
+  color: #111827;
+
+  font-size: 14px;
+  font-weight: 1000;
+}
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+.member-links {
+
+  display: grid;
+  gap: 14px;
+
+  margin-top: 30px;
+}
+
+.member-link {
+
+  min-height: 58px;
+
+  padding:
+    0
+    18px;
+
+  border-radius: 20px;
+
+  border: 1px solid var(--line);
+
+  background:
+    rgba(255,255,255,.05);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: var(--heading);
+
+  font-size: 14px;
+  font-weight: 900;
+
+  transition: .22s ease;
+}
+
+.member-link:hover {
+
+  transform:
+    translateX(4px);
+
+  border-color:
+    rgba(249,115,22,.4);
+}
+
+.flip-text {
+
+  margin-top: 20px;
+
+  color: var(--soft);
+
+  font-size: 11px;
+  font-weight: 1000;
+
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width:768px) {
+
+  .members-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .member-card {
+    height: 580px;
+  }
+
+  .member-top {
+    flex-direction: column;
+  }
+
+  .member-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .verify-btn {
+    width: 100%;
+  }
+}
+    
     /* =========================================================
        LOADING
     ========================================================== */
@@ -1627,7 +1816,7 @@
 
   </section>
 
- <script>
+<script>
 
   /* =========================================================
      CONFIG
@@ -1635,6 +1824,9 @@
 
   const AF_API =
     "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/get-af-team-members";
+
+  const AF_ANON_KEY =
+    "YOUR_SUPABASE_ANON_KEY";
 
   /* =========================================================
      GLOBAL STATE
@@ -1659,81 +1851,6 @@
     document.getElementById("searchInput");
 
   /* =========================================================
-     SAFE ELEMENT CHECK
-  ========================================================== */
-
-  function safeElement(id) {
-    return document.getElementById(id);
-  }
-
-  /* =========================================================
-     MOBILE MENU
-  ========================================================== */
-
-  const mobileMenu =
-    safeElement("mobileMenu");
-
-  safeElement("openMenu")
-    ?.addEventListener(
-      "click",
-      () => {
-        mobileMenu?.classList.add("open");
-      }
-    );
-
-  safeElement("closeMenu")
-    ?.addEventListener(
-      "click",
-      () => {
-        mobileMenu?.classList.remove("open");
-      }
-    );
-
-  /* =========================================================
-     THEME
-  ========================================================== */
-
-  const themeToggle =
-    safeElement("themeToggle");
-
-  const savedTheme =
-    localStorage.getItem("af-theme");
-
-  if (savedTheme === "dark") {
-
-    document.documentElement.setAttribute(
-      "data-theme",
-      "dark"
-    );
-  }
-
-  themeToggle?.addEventListener(
-    "click",
-    () => {
-
-      const currentTheme =
-        document.documentElement.getAttribute(
-          "data-theme"
-        );
-
-      const nextTheme =
-        currentTheme === "dark"
-          ? "light"
-          : "dark";
-
-      document.documentElement.setAttribute(
-        "data-theme",
-        nextTheme
-      );
-
-      localStorage.setItem(
-        "af-theme",
-        nextTheme
-      );
-    }
-  );
-
-  /* =========================================================
      HELPERS
   ========================================================== */
 
@@ -1744,6 +1861,55 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
+  }
+
+  function normalizeStatus(status) {
+
+    return String(status || "active")
+      .trim()
+      .toLowerCase();
+  }
+
+  function getStatusClass(status) {
+
+    switch(normalizeStatus(status)) {
+
+      case "active":
+        return "status-active";
+
+      case "alumni":
+        return "status-alumni";
+
+      case "on_leave":
+        return "status-on_leave";
+
+      case "inactive":
+        return "status-inactive";
+
+      default:
+        return "status-active";
+    }
+  }
+
+  function getStatusIcon(status) {
+
+    switch(normalizeStatus(status)) {
+
+      case "active":
+        return "✓";
+
+      case "alumni":
+        return "⌛";
+
+      case "on_leave":
+        return "⏸";
+
+      case "inactive":
+        return "✕";
+
+      default:
+        return "✓";
+    }
   }
 
   function formatDate(dateString) {
@@ -1758,8 +1924,8 @@
         .toLocaleDateString(
           "en-IN",
           {
-            year: "numeric",
-            month: "short"
+            year:"numeric",
+            month:"short"
           }
         );
 
@@ -1769,47 +1935,33 @@
     }
   }
 
-  function normalizeStatus(status) {
+  function safeUrl(url) {
 
-    return String(status || "active")
-      .trim()
-      .toLowerCase();
-  }
+    if (!url) return "";
 
-  function getStatusClass(status) {
+    const value =
+      String(url).trim();
 
-    const normalized =
-      normalizeStatus(status);
-
-    switch (normalized) {
-
-      case "active":
-        return "status-active";
-
-      case "alumni":
-        return "status-alumni";
-
-      case "on_leave":
-        return "status-on_leave";
-
-      default:
-        return "status-active";
+    if (
+      value.startsWith("http://") ||
+      value.startsWith("https://")
+    ) {
+      return value;
     }
+
+    return "";
   }
 
   function avatarTemplate(member) {
 
-    const avatar =
-      member.avatar_url || "";
-
     if (
-      avatar &&
-      avatar.startsWith("http")
+      member.avatar_url &&
+      member.avatar_url.startsWith("http")
     ) {
 
       return `
         <img
-          src="${escapeHtml(avatar)}"
+          src="${escapeHtml(member.avatar_url)}"
           alt="${escapeHtml(member.full_name)}"
           loading="lazy"
           onerror="this.remove()"
@@ -1818,9 +1970,7 @@
     }
 
     return escapeHtml(
-      String(
-        member.full_name || "A"
-      )
+      String(member.full_name || "A")
         .charAt(0)
         .toUpperCase()
     );
@@ -1871,7 +2021,7 @@
       department:
         member.department ||
         member.team ||
-        "",
+        "AcademeForge",
 
       bio:
         member.bio ||
@@ -1899,7 +2049,16 @@
         member.is_verified !== false,
 
       location:
-        member.location || ""
+        member.location || "India",
+
+      linkedin_url:
+        safeUrl(member.linkedin_url),
+
+      github_url:
+        safeUrl(member.github_url),
+
+      portfolio_url:
+        safeUrl(member.portfolio_url)
     };
   }
 
@@ -1911,102 +2070,173 @@
 
     return `
 
-      <div class="member-card glass">
+      <div class="member-card">
 
-        <div class="member-top">
+        <div class="member-inner">
 
-          <div class="member-avatar">
+          <!-- FRONT -->
 
-            ${avatarTemplate(member)}
+          <div class="member-face member-front glass">
+
+            <div class="member-status ${normalizeStatus(member.status)}">
+              ${getStatusIcon(member.status)}
+            </div>
+
+            <div class="member-top">
+
+              <div class="member-avatar">
+                ${avatarTemplate(member)}
+              </div>
+
+              <div>
+
+                <div class="member-name">
+                  ${escapeHtml(member.full_name)}
+                </div>
+
+                <div class="member-role">
+                  ${escapeHtml(member.role_title)}
+                </div>
+
+                <div class="member-id">
+                  ${escapeHtml(member.member_id)}
+                </div>
+
+                <div class="chips">
+
+                  <div class="chip department-chip">
+                    ${escapeHtml(member.department)}
+                  </div>
+
+                  <div class="chip ${getStatusClass(member.status)}">
+                    ${escapeHtml(member.status)}
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="member-bio">
+              ${escapeHtml(member.bio)}
+            </div>
+
+            <div class="member-bottom">
+
+              <div class="member-duration">
+
+                Joined:
+                ${formatDate(member.joined_at)}
+
+                <br>
+
+                ${
+                  member.ended_at
+                  ? `
+                    Ended:
+                    ${formatDate(member.ended_at)}
+                  `
+                  : `
+                    Currently Active
+                  `
+                }
+
+              </div>
+
+              <button class="verify-btn">
+                Verified Member
+              </button>
+
+            </div>
+
+            <div class="flip-text">
+              Hover To View Links
+            </div>
 
           </div>
 
-          <div>
+          <!-- BACK -->
 
-            <div class="member-name-row">
+          <div class="member-face member-back glass">
+
+            <div>
 
               <div class="member-name">
-
                 ${escapeHtml(member.full_name)}
-
               </div>
 
-              ${
-                member.is_verified
-                  ? `
-                    <div class="verified">
-                      ✓
-                    </div>
-                  `
-                  : ""
-              }
+              <div class="member-role">
+                ${escapeHtml(member.role_title)}
+              </div>
 
-            </div>
-
-            <div class="member-role">
-
-              ${escapeHtml(member.role_title)}
-
-            </div>
-
-            <div class="chips">
-
-              ${
-                member.department
-                  ? `
-                    <div class="chip department-chip">
-                      ${escapeHtml(member.department)}
-                    </div>
-                  `
-                  : ""
-              }
-
-              <div class="chip ${getStatusClass(member.status)}">
-
-                ${escapeHtml(member.status)}
-
+              <div class="member-id">
+                ${escapeHtml(member.member_id)}
               </div>
 
             </div>
 
-          </div>
+            <div class="member-links">
 
-        </div>
-
-        <div class="member-bio">
-
-          ${escapeHtml(member.bio)}
-
-        </div>
-
-        <div class="member-bottom">
-
-          <div class="member-duration">
-
-            Joined:
-            ${formatDate(member.joined_at)}
-
-            <br />
-
-            ${
-              member.ended_at
+              ${
+                member.linkedin_url
                 ? `
-                  Ended:
-                  ${formatDate(member.ended_at)}
+                  <a
+                    class="member-link"
+                    href="${escapeHtml(member.linkedin_url)}"
+                    target="_blank"
+                  >
+                    <span>LinkedIn</span>
+                    <span>→</span>
+                  </a>
                 `
-                : `
-                  Currently Active
+                : ""
+              }
+
+              ${
+                member.github_url
+                ? `
+                  <a
+                    class="member-link"
+                    href="${escapeHtml(member.github_url)}"
+                    target="_blank"
+                  >
+                    <span>GitHub</span>
+                    <span>→</span>
+                  </a>
                 `
-            }
+                : ""
+              }
+
+              ${
+                member.portfolio_url
+                ? `
+                  <a
+                    class="member-link"
+                    href="${escapeHtml(member.portfolio_url)}"
+                    target="_blank"
+                  >
+                    <span>Portfolio</span>
+                    <span>→</span>
+                  </a>
+                `
+                : ""
+              }
+
+            </div>
+
+            <div class="member-duration">
+
+              📍 ${escapeHtml(member.location)}
+
+              <br><br>
+
+              Username:
+              @${escapeHtml(member.username || "member")}
+
+            </div>
 
           </div>
-
-          <button
-            class="view-btn"
-            type="button"
-          >
-            Verified Member
-          </button>
 
         </div>
 
@@ -2020,13 +2250,11 @@
 
   function renderMembers(members) {
 
-    if (!membersGrid) {
-      return;
-    }
+    if (!membersGrid) return;
 
     membersGrid.innerHTML = "";
 
-    if (!Array.isArray(members) || !members.length) {
+    if (!members.length) {
 
       if (emptyEl) {
         emptyEl.style.display = "block";
@@ -2052,9 +2280,7 @@
   function filterMembers() {
 
     const query =
-      String(
-        searchInput?.value || ""
-      )
+      String(searchInput?.value || "")
         .trim()
         .toLowerCase();
 
@@ -2085,6 +2311,30 @@
           String(member.department)
             .toLowerCase()
             .includes(query)
+
+          ||
+
+          String(member.member_id)
+            .toLowerCase()
+            .includes(query)
+
+          ||
+
+          String(member.username)
+            .toLowerCase()
+            .includes(query)
+
+          ||
+
+          String(member.status)
+            .toLowerCase()
+            .includes(query)
+
+          ||
+
+          String(member.bio)
+            .toLowerCase()
+            .includes(query)
         );
       });
 
@@ -2107,17 +2357,21 @@
         membersGrid.innerHTML = "";
       }
 
-      console.log(
-        "Fetching AF workforce registry..."
-      );
-
       const response =
         await fetch(AF_API, {
 
           method: "GET",
 
           headers: {
-            "Content-Type": "application/json"
+
+            "Content-Type":
+              "application/json",
+
+            "apikey":
+              AF_ANON_KEY,
+
+            "Authorization":
+              "Bearer " + AF_ANON_KEY
           }
         });
 
@@ -2131,11 +2385,6 @@
       const data =
         await response.json();
 
-      console.log(
-        "Raw API Response:",
-        data
-      );
-
       const rawMembers =
         Array.isArray(data.members)
           ? data.members
@@ -2144,33 +2393,30 @@
       afMembers =
         rawMembers.map(normalizeMember);
 
-      console.log(
-        "Normalized Members:",
-        afMembers
-      );
+      document.getElementById(
+        "totalMembers"
+      ).textContent =
+        afMembers.length;
 
-      safeElement("totalMembers").textContent =
-        String(afMembers.length);
+      document.getElementById(
+        "activeMembers"
+      ).textContent =
+        afMembers.filter(
+          member =>
+            normalizeStatus(member.status) === "active"
+        ).length;
 
-      safeElement("activeMembers").textContent =
-        String(
-          afMembers.filter(
-            (member) =>
-              member.status === "active"
-          ).length
-        );
-
-      safeElement("alumniMembers").textContent =
-        String(
-          afMembers.filter(
-            (member) =>
-              member.status === "alumni"
-          ).length
-        );
+      document.getElementById(
+        "alumniMembers"
+      ).textContent =
+        afMembers.filter(
+          member =>
+            normalizeStatus(member.status) === "alumni"
+        ).length;
 
       renderMembers(afMembers);
 
-    } catch (error) {
+    } catch(error) {
 
       console.error(
         "AF Registry Fetch Failed:",
@@ -2180,7 +2426,6 @@
       if (membersGrid) {
 
         membersGrid.innerHTML = `
-
           <div class="empty glass">
 
             <h3>
@@ -2188,13 +2433,11 @@
             </h3>
 
             <p>
-
               ${
                 error instanceof Error
                   ? escapeHtml(error.message)
                   : "Unexpected error occurred."
               }
-
             </p>
 
           </div>
@@ -2208,6 +2451,27 @@
       }
     }
   }
+
+  /* =========================================================
+     TOUCH FLIP FOR MOBILE
+  ========================================================== */
+
+  document.addEventListener(
+    "click",
+    function(event) {
+
+      const card =
+        event.target.closest(".member-card");
+
+      if (!card) return;
+
+      if (window.innerWidth > 768) {
+        return;
+      }
+
+      card.classList.toggle("mobile-flipped");
+    }
+  );
 
   /* =========================================================
      EVENTS
