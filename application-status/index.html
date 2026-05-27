@@ -1984,19 +1984,27 @@ html[data-theme="dark"] .theme-dot {
         <span class="eyebrow">Job Application Status</span>
         <h1>Track your application.</h1>
         <p class="muted">
-          Enter Email which was used while submitting the form.
+          Enter Email or Phone Number which was used while submitting the form.
         </p>
 
         <form id="statusForm" class="lookup-form" novalidate>
-         
+          <div class="field">
+            <label for="applicationId">Application ID [Not Recommended]</label>
+            <input id="applicationId" type="text" placeholder="Paste application ID if available" autocomplete="off" />
+            <span class="hint">Use Email or Mobile Number for fastest result.</span>
+          </div>
 
           <div class="field">
-            <label for="statusEmail">Email ID</label>
+            <label for="statusEmail">Submitted Email</label>
             <input id="statusEmail" type="email" placeholder="Enter submitted email" autocomplete="email" />
             <span class="hint">Track your application status with Email ID used while filling the form.</span>
           </div>
 
-         
+          <div class="field">
+            <label for="statusMobile">Submitted Mobile Number</label>
+            <input id="statusMobile" type="tel" inputmode="numeric" placeholder="Enter submitted mobile number" autocomplete="tel" />
+            <span class="hint">Track status by Using only mobile number you submitted. Country code is not required.</span>
+          </div>
 
           <div class="form-actions">
             <button id="checkStatusBtn" class="btn primary" type="submit">Check Status</button>
@@ -2013,7 +2021,7 @@ html[data-theme="dark"] .theme-dot {
             <span class="eyebrow">AcademeForge</span>
             <h2>Status will appear here.</h2>
             <p class="muted">
-              Enter Email then click Check Status.
+              Enter Email OR mobile number, then click Check Status.
             </p>
           </div>
         </div>
@@ -2239,13 +2247,50 @@ html[data-theme="dark"] .theme-dot {
       ? "Application ID: " + applicationId
       : "Application ID unavailable";
 
-    summaryGrid.innerHTML =
-      summaryItem("Name", status.full_name) +
-      summaryItem("Email", status.email) +
-      summaryItem("Mobile", status.contact_number) +
-      summaryItem("Role", status.selected_role) +
-      summaryItem("Work Type", status.work_type) +
-      summaryItem("Status", status.status);
+ const maskedEmail = (function () {
+  const email = clean(status.email);
+
+  if (!email || !email.includes("@")) {
+    return "Not available";
+  }
+
+  const parts = email.split("@");
+  const name = parts[0];
+  const domain = parts[1];
+
+  if (name.length <= 2) {
+    return "*".repeat(name.length) + "@" + domain;
+  }
+
+  return (
+    name.slice(0, 2) +
+    "*".repeat(Math.max(name.length - 2, 3)) +
+    "@" +
+    domain
+  );
+})();
+
+const maskedMobile = (function () {
+  const mobile = digits(status.contact_number);
+
+  if (!mobile) {
+    return "Not available";
+  }
+
+  if (mobile.length <= 3) {
+    return "*".repeat(mobile.length);
+  }
+
+  return "*".repeat(mobile.length - 3) + mobile.slice(-3);
+})();
+
+summaryGrid.innerHTML =
+  summaryItem("Name", status.full_name) +
+  summaryItem("Email", maskedEmail) +
+  summaryItem("Mobile", maskedMobile) +
+  summaryItem("Role", status.selected_role) +
+  summaryItem("Work Type", status.work_type) +
+  summaryItem("Status", status.status);
 
     const hrRead = normalizeStatusFlag(status.hr_read);
     const hrApproved = normalizeStatusFlag(status.hr_approved_resume);
