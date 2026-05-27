@@ -1947,13 +1947,20 @@ html[data-theme="dark"] .theme-dot {
   <div class="cw header-inner">
     <a href="../index.html" class="brand" aria-label="AcademeForge Home">
       <span class="logo">AF</span>
+
       <span class="brand-text">
         <span class="brand-name">AcademeForge</span>
         <span class="brand-sub">Application Status</span>
       </span>
     </a>
 
-    <button id="mobileNavToggle" class="mobile-nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+    <button
+      id="mobileNavToggle"
+      class="mobile-nav-toggle"
+      type="button"
+      aria-label="Open navigation"
+      aria-expanded="false"
+    >
       <span></span>
       <span></span>
       <span></span>
@@ -1969,460 +1976,619 @@ html[data-theme="dark"] .theme-dot {
     <div class="actions">
       <button id="themeToggle" class="btn secondary theme-pill" type="button">
         <span class="theme-label">Night</span>
+
         <span class="theme-switch" aria-hidden="true">
           <span class="theme-dot"></span>
         </span>
       </button>
-      <a class="btn secondary back-btn" href="../index.html">Back</a>
-      <a class="btn primary apply-btn" href="../index.html#apply">Apply</a>
+
+      <a class="btn secondary back-btn" href="../index.html">
+        Back
+      </a>
+
+      <a class="btn primary apply-btn" href="../index.html#apply">
+        Apply
+      </a>
     </div>
   </div>
 </header>
-  <main class="page">
-    <div class="cw grid-layout">
-      <section class="card">
-        <span class="eyebrow">Job Application Status</span>
-        <h1>Track your application.</h1>
-        <p class="muted">
-          Enter Email or Phone Number which was used while submitting the form.
+
+<main class="page">
+  <div class="cw grid-layout">
+
+    <section class="card">
+      <span class="eyebrow">Job Application Status</span>
+
+      <h1>Track your application.</h1>
+
+      <p class="muted">
+        Enter your submitted Email ID or Mobile Number to securely fetch your application status.
+      </p>
+
+      <form id="statusForm" class="lookup-form" novalidate>
+
+        <div class="field">
+          <label for="statusEmail">Submitted Email</label>
+
+          <input
+            id="statusEmail"
+            type="email"
+            placeholder="Enter submitted email"
+            autocomplete="email"
+          />
+
+          <span class="hint">
+            Track your application status with Email ID used while filling the form.
+          </span>
+        </div>
+
+        <div class="field">
+          <label for="statusMobile">Submitted Mobile Number</label>
+
+          <input
+            id="statusMobile"
+            type="tel"
+            inputmode="numeric"
+            placeholder="Enter submitted mobile number"
+            autocomplete="tel"
+          />
+
+          <span class="hint">
+            Track status using only the mobile number submitted during application.
+            Country code is not required.
+          </span>
+        </div>
+
+        <div class="form-actions">
+          <button id="checkStatusBtn" class="btn primary" type="submit">
+            Check Status
+          </button>
+
+          <button id="clearBtn" class="btn secondary" type="button">
+            Clear
+          </button>
+        </div>
+
+        <div id="statusAlert" class="alert"></div>
+      </form>
+    </section>
+
+    <section id="statusPanel" class="card">
+
+      <div id="emptyState" class="empty-state">
+        <div>
+          <span class="eyebrow">AcademeForge</span>
+
+          <h2>Status will appear here.</h2>
+
+          <p class="muted">
+            Enter Email OR mobile number, then click Check Status.
+          </p>
+        </div>
+      </div>
+
+      <div id="loadedState" hidden>
+
+        <span class="eyebrow">Current Progress</span>
+
+        <h2 id="statusTitle">
+          Application Status
+        </h2>
+
+        <p id="statusText" class="muted">
+          Current application progress is shown below.
         </p>
 
-        <form id="statusForm" class="lookup-form" novalidate>
-          <div class="field">
-            <label for="applicationId">Application ID [Not Recommended]</label>
-            <input id="applicationId" type="text" placeholder="Paste application ID if available" autocomplete="off" />
-            <span class="hint">Use Email or Mobile Number for fastest result.</span>
-          </div>
-
-          <div class="field">
-            <label for="statusEmail">Submitted Email</label>
-            <input id="statusEmail" type="email" placeholder="Enter submitted email" autocomplete="email" />
-            <span class="hint">Track your application status with Email ID used while filling the form.</span>
-          </div>
-
-          <div class="field">
-            <label for="statusMobile">Submitted Mobile Number</label>
-            <input id="statusMobile" type="tel" inputmode="numeric" placeholder="Enter submitted mobile number" autocomplete="tel" />
-            <span class="hint">Track status by Using only mobile number you submitted. Country code is not required.</span>
-          </div>
-
-          <div class="form-actions">
-            <button id="checkStatusBtn" class="btn primary" type="submit">Check Status</button>
-            <button id="clearBtn" class="btn secondary" type="button">Clear</button>
-          </div>
-
-          <div id="statusAlert" class="alert"></div>
-        </form>
-      </section>
-
-      <section id="statusPanel" class="card">
-        <div id="emptyState" class="empty-state">
-          <div>
-            <span class="eyebrow">AcademeForge</span>
-            <h2>Status will appear here.</h2>
-            <p class="muted">
-              Enter Email OR mobile number, then click Check Status.
-            </p>
-          </div>
+        <div id="statusId" class="status-id">
+          Secure Application Lookup
         </div>
 
-        <div id="loadedState" hidden>
-          <span class="eyebrow">Current Progress</span>
-          <h2 id="statusTitle">Application Status</h2>
-          <p id="statusText" class="muted">Current application progress is shown below.</p>
-          <div id="statusId" class="status-id">No application loaded</div>
+        <div id="summaryGrid" class="summary-grid"></div>
 
-          <div id="summaryGrid" class="summary-grid"></div>
-          <div id="timeline" class="timeline"></div>
-        </div>
-      </section>
-    </div>
-  </main>
+        <div id="timeline" class="timeline"></div>
+      </div>
+    </section>
+  </div>
+</main>
 
-  <footer class="footer">
-    <div class="cw">
-      © <span id="year"></span> AcademeForge. All rights reserved.
-    </div>
-  </footer>
+<footer class="footer">
+  <div class="cw">
+    © <span id="year"></span> AcademeForge. All rights reserved.
+  </div>
+</footer>
 
- <script>
-  "use strict";
+<script>
+"use strict";
 
-  const STATUS_FUNCTION_URL = "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/join-team-application-status";
-  const LAST_APP_KEY = "academeforge_join_team_last_application_v4";
-  const THEME_KEY = "academeforge_theme";
+const STATUS_FUNCTION_URL =
+  "https://afooyyydhlwngzssgqih.supabase.co/functions/v1/join-team-application-status";
 
-  function byId(id) {
-    return document.getElementById(id);
+const LAST_APP_KEY =
+  "academeforge_join_team_last_application_v4";
+
+const THEME_KEY =
+  "academeforge_theme";
+
+function byId(id) {
+  return document.getElementById(id);
+}
+
+function clean(value) {
+  return String(value || "")
+    .trim()
+    .replace(/\s+/g, " ");
+}
+
+function digits(value) {
+  return String(value || "")
+    .replace(/\D/g, "");
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function safeJsonParse(value, fallback) {
+  try {
+    return JSON.parse(value);
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function showAlert(type, message) {
+  const alert = byId("statusAlert");
+
+  if (!alert) {
+    return;
   }
 
-  function clean(value) {
-    return String(value || "").trim().replace(/\s+/g, " ");
+  alert.className = "alert show " + type;
+  alert.textContent = message;
+}
+
+function clearAlert() {
+  const alert = byId("statusAlert");
+
+  if (!alert) {
+    return;
   }
 
-  function digits(value) {
-    return String(value || "").replace(/\D/g, "");
+  alert.className = "alert";
+  alert.textContent = "";
+}
+
+function getPreferredTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+
+  if (saved === "light" || saved === "dark") {
+    return saved;
   }
 
-  function escapeHtml(value) {
-    return String(value || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+  if (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  ) {
+    return "dark";
   }
 
-  function safeJsonParse(value, fallback) {
-    try {
-      return JSON.parse(value);
-    } catch (error) {
-      return fallback;
-    }
+  return "light";
+}
+
+function setThemeButtonLabel(theme) {
+  const themeToggle = byId("themeToggle");
+
+  const label = themeToggle
+    ? themeToggle.querySelector(".theme-label")
+    : null;
+
+  if (!themeToggle) {
+    return;
   }
 
-  function showAlert(type, message) {
-    const alert = byId("statusAlert");
+  if (label) {
+    label.textContent =
+      theme === "dark"
+        ? "Light"
+        : "Night";
 
-    if (!alert) {
-      return;
-    }
-
-    alert.className = "alert show " + type;
-    alert.textContent = message;
+    return;
   }
 
-  function clearAlert() {
-    const alert = byId("statusAlert");
+  themeToggle.textContent =
+    theme === "dark"
+      ? "Light"
+      : "Night";
+}
 
-    if (!alert) {
-      return;
-    }
+function applyTheme(theme) {
+  const safeTheme =
+    theme === "dark"
+      ? "dark"
+      : "light";
 
-    alert.className = "alert";
-    alert.textContent = "";
+  document.documentElement.setAttribute(
+    "data-theme",
+    safeTheme
+  );
+
+  setThemeButtonLabel(safeTheme);
+
+  localStorage.setItem(
+    THEME_KEY,
+    safeTheme
+  );
+}
+
+function initTheme() {
+  const themeToggle = byId("themeToggle");
+
+  applyTheme(getPreferredTheme());
+
+  if (!themeToggle) {
+    return;
   }
 
-  function getPreferredTheme() {
-    const saved = localStorage.getItem(THEME_KEY);
+  themeToggle.addEventListener("click", function () {
+    const current =
+      document.documentElement.getAttribute("data-theme");
 
-    if (saved === "light" || saved === "dark") {
-      return saved;
-    }
+    applyTheme(
+      current === "dark"
+        ? "light"
+        : "dark"
+    );
+  });
+}
 
-    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
+function getLastApplication() {
+  return safeJsonParse(
+    localStorage.getItem(LAST_APP_KEY) || "{}",
+    {}
+  );
+}
 
-    return "light";
-  }
-
-  function setThemeButtonLabel(theme) {
-    const themeToggle = byId("themeToggle");
-    const label = themeToggle ? themeToggle.querySelector(".theme-label") : null;
-
-    if (!themeToggle) {
-      return;
-    }
-
-    if (label) {
-      label.textContent = theme === "dark" ? "Light" : "Night";
-      return;
-    }
-
-    themeToggle.textContent = theme === "dark" ? "Light" : "Night";
-  }
-
-  function applyTheme(theme) {
-    const safeTheme = theme === "dark" ? "dark" : "light";
-
-    document.documentElement.setAttribute("data-theme", safeTheme);
-    setThemeButtonLabel(safeTheme);
-    localStorage.setItem(THEME_KEY, safeTheme);
-  }
-
-  function initTheme() {
-    const themeToggle = byId("themeToggle");
-
-    applyTheme(getPreferredTheme());
-
-    if (!themeToggle) {
-      return;
-    }
-
-    themeToggle.addEventListener("click", function () {
-      const current = document.documentElement.getAttribute("data-theme");
-      applyTheme(current === "dark" ? "light" : "dark");
-    });
-  }
-
-  function getLastApplication() {
-    return safeJsonParse(localStorage.getItem(LAST_APP_KEY) || "{}", {});
-  }
-
-  function saveLastApplication(applicationId, email, mobile) {
-    try {
-      localStorage.setItem(LAST_APP_KEY, JSON.stringify({
-        applicationId: applicationId || "",
+function saveLastApplication(email, mobile) {
+  try {
+    localStorage.setItem(
+      LAST_APP_KEY,
+      JSON.stringify({
         email: email || "",
         mobile: mobile || "",
         savedAt: new Date().toISOString()
-      }));
-    } catch (error) {
-      console.warn("Could not save last application.", error);
-    }
-  }
-
-  function normalizeStatusFlag(value) {
-    if (
-      value === true ||
-      value === "T" ||
-      value === "t" ||
-      value === "true" ||
-      value === "TRUE" ||
-      value === 1 ||
-      value === "1"
-    ) {
-      return true;
-    }
-
-    if (
-      value === false ||
-      value === "F" ||
-      value === "f" ||
-      value === "false" ||
-      value === "FALSE" ||
-      value === 0 ||
-      value === "0"
-    ) {
-      return false;
-    }
-
-    return null;
-  }
-
-  function stepHtml(className, icon, title, message) {
-    return (
-      '<div class="step ' + escapeHtml(className) + '">' +
-        '<div class="step-icon">' + escapeHtml(icon) + '</div>' +
-        '<div>' +
-          '<h3>' + escapeHtml(title) + '</h3>' +
-          '<p>' + escapeHtml(message) + '</p>' +
-        '</div>' +
-      '</div>'
+      })
+    );
+  } catch (error) {
+    console.warn(
+      "Could not save last application.",
+      error
     );
   }
+}
 
-  function summaryItem(label, value) {
-    return (
-      '<div class="summary-item">' +
-        '<span>' + escapeHtml(label) + '</span>' +
-        '<strong>' + escapeHtml(value || "Not available") + '</strong>' +
-      '</div>'
-    );
+function normalizeStatusFlag(value) {
+  if (
+    value === true ||
+    value === "T" ||
+    value === "t" ||
+    value === "true" ||
+    value === "TRUE" ||
+    value === 1 ||
+    value === "1"
+  ) {
+    return true;
   }
 
-  function renderStatus(status) {
-    const panel = byId("statusPanel");
-    const emptyState = byId("emptyState");
-    const loadedState = byId("loadedState");
-    const timeline = byId("timeline");
-    const title = byId("statusTitle");
-    const text = byId("statusText");
-    const statusId = byId("statusId");
-    const summaryGrid = byId("summaryGrid");
-
-    if (!panel || !emptyState || !loadedState || !timeline || !title || !text || !statusId || !summaryGrid) {
-      showAlert("error", "Status page HTML is missing required elements.");
-      return;
-    }
-
-    panel.classList.remove("celebrate");
-    emptyState.hidden = true;
-    loadedState.hidden = false;
-
-    const applicationId = status.application_id || status.id || "";
-
-    statusId.textContent = applicationId
-      ? "Application ID: " + applicationId
-      : "Application ID unavailable";
-
- const maskedEmail = (function () {
-  const email = clean(status.email);
-
-  if (!email || !email.includes("@")) {
-    return "Not available";
+  if (
+    value === false ||
+    value === "F" ||
+    value === "f" ||
+    value === "false" ||
+    value === "FALSE" ||
+    value === 0 ||
+    value === "0"
+  ) {
+    return false;
   }
 
-  const parts = email.split("@");
-  const name = parts[0];
-  const domain = parts[1];
+  return null;
+}
 
-  if (name.length <= 2) {
-    return "*".repeat(name.length) + "@" + domain;
-  }
-
+function stepHtml(className, icon, title, message) {
   return (
-    name.slice(0, 2) +
-    "*".repeat(Math.max(name.length - 2, 3)) +
-    "@" +
-    domain
+    '<div class="step ' + escapeHtml(className) + '">' +
+      '<div class="step-icon">' + escapeHtml(icon) + '</div>' +
+      '<div>' +
+        '<h3>' + escapeHtml(title) + '</h3>' +
+        '<p>' + escapeHtml(message) + '</p>' +
+      '</div>' +
+    '</div>'
   );
-})();
+}
 
-const maskedMobile = (function () {
-  const mobile = digits(status.contact_number);
+function summaryItem(label, value) {
+  return (
+    '<div class="summary-item">' +
+      '<span>' + escapeHtml(label) + '</span>' +
+      '<strong>' + escapeHtml(value || "Not available") + '</strong>' +
+    '</div>'
+  );
+}
 
-  if (!mobile) {
-    return "Not available";
+function renderStatus(status) {
+
+  const panel = byId("statusPanel");
+  const emptyState = byId("emptyState");
+  const loadedState = byId("loadedState");
+  const timeline = byId("timeline");
+  const title = byId("statusTitle");
+  const text = byId("statusText");
+  const statusId = byId("statusId");
+  const summaryGrid = byId("summaryGrid");
+
+  if (
+    !panel ||
+    !emptyState ||
+    !loadedState ||
+    !timeline ||
+    !title ||
+    !text ||
+    !statusId ||
+    !summaryGrid
+  ) {
+    showAlert(
+      "error",
+      "Status page HTML is missing required elements."
+    );
+
+    return;
   }
 
-  if (mobile.length <= 3) {
-    return "*".repeat(mobile.length);
-  }
+  panel.classList.remove("celebrate");
 
-  return "*".repeat(mobile.length - 3) + mobile.slice(-3);
-})();
+  emptyState.hidden = true;
+  loadedState.hidden = false;
 
-summaryGrid.innerHTML =
-  summaryItem("Name", status.full_name) +
-  summaryItem("Email", maskedEmail) +
-  summaryItem("Mobile", maskedMobile) +
-  summaryItem("Role", status.selected_role) +
-  summaryItem("Work Type", status.work_type) +
-  summaryItem("Status", status.status);
+  statusId.textContent =
+    "Secure Application Lookup";
 
-    const hrRead = normalizeStatusFlag(status.hr_read);
-    const hrApproved = normalizeStatusFlag(status.hr_approved_resume);
-    const triedToContact = normalizeStatusFlag(status.tried_to_contact);
-    const jobSecured = normalizeStatusFlag(status.job_secured);
-    const finalRejected = normalizeStatusFlag(status.final_rejected);
+  const maskedEmail = (function () {
 
-    const reason = status.hr_rejection_reason ||
-      status.final_rejection_reason ||
-      status.rejection_reason ||
-      "No reason added by HR yet.";
+    const email = clean(status.email);
 
-    let html = "";
+    if (!email || !email.includes("@")) {
+      return "Not available";
+    }
+
+    const parts = email.split("@");
+
+    const name = parts[0];
+    const domain = parts[1];
+
+    if (name.length <= 2) {
+      return "*".repeat(name.length) + "@" + domain;
+    }
+
+    return (
+      name.slice(0, 2) +
+      "*".repeat(Math.max(name.length - 2, 4)) +
+      "@" +
+      domain
+    );
+  })();
+
+  const maskedMobile = (function () {
+
+    const mobile = digits(status.contact_number);
+
+    if (!mobile) {
+      return "Not available";
+    }
+
+    if (mobile.length <= 3) {
+      return "*".repeat(mobile.length);
+    }
+
+    return (
+      "*".repeat(mobile.length - 3) +
+      mobile.slice(-3)
+    );
+  })();
+
+  summaryGrid.innerHTML =
+    summaryItem("Name", status.full_name) +
+    summaryItem("Email", maskedEmail) +
+    summaryItem("Mobile", maskedMobile) +
+    summaryItem("Role", status.selected_role) +
+    summaryItem("Work Type", status.work_type) +
+    summaryItem("Status", status.status);
+
+  const hrRead =
+    normalizeStatusFlag(status.hr_read);
+
+  const hrApproved =
+    normalizeStatusFlag(status.hr_approved_resume);
+
+  const triedToContact =
+    normalizeStatusFlag(status.tried_to_contact);
+
+  const jobSecured =
+    normalizeStatusFlag(status.job_secured);
+
+  const finalRejected =
+    normalizeStatusFlag(status.final_rejected);
+
+  const reason =
+    status.hr_rejection_reason ||
+    status.final_rejection_reason ||
+    status.rejection_reason ||
+    "No reason added by HR yet.";
+
+  let html = "";
+
+  html += stepHtml(
+    "done",
+    "✓",
+    "Application submitted",
+    "Your application has been submitted successfully."
+  );
+
+  html += stepHtml(
+    hrRead === true
+      ? "done"
+      : "pending",
+
+    hrRead === true
+      ? "✓"
+      : "…",
+
+    "HR read",
+
+    hrRead === true
+      ? "HR has read your application."
+      : "Pending. HR has not marked this as read yet."
+  );
+
+  if (hrApproved === true) {
 
     html += stepHtml(
       "done",
       "✓",
-      "Application submitted",
-      "Your application has been submitted successfully."
+      "HR approved resume",
+      "HR has approved your profile/resume for the next stage."
     );
+
+  } else if (hrApproved === false) {
 
     html += stepHtml(
-      hrRead === true ? "done" : "pending",
-      hrRead === true ? "✓" : "…",
-      "HR read",
-      hrRead === true
-        ? "HR has read your application."
-        : "Pending. HR has not marked this as read yet."
+      "fail",
+      "×",
+      "Application rejected by HR",
+      "Application rejected by HR. Reason: " + reason
     );
 
-    if (hrApproved === true) {
-      html += stepHtml(
-        "done",
-        "✓",
-        "HR approved resume",
-        "HR has approved your profile/resume for the next stage."
-      );
-    } else if (hrApproved === false) {
-      html += stepHtml(
-        "fail",
-        "×",
-        "Application rejected by HR",
-        "Application rejected by HR. Reason: " + reason
-      );
-    } else {
-      html += stepHtml(
-        "pending",
-        "…",
-        "HR approved resume",
-        "Pending. HR approval decision is not marked yet."
-      );
-    }
+  } else {
 
     html += stepHtml(
-      triedToContact === true ? "done" : "pending",
-      triedToContact === true ? "✓" : "…",
-      "Tried to contact",
-      triedToContact === true
-        ? "Hiring team has tried to contact you."
-        : "Pending. Hiring team has not marked contact attempt yet."
+      "pending",
+      "…",
+      "HR approved resume",
+      "Pending. HR approval decision is not marked yet."
     );
-
-    if (jobSecured === true) {
-      html += stepHtml(
-        "done",
-        "✓",
-        "Job secured",
-        "Congratulations. Your job profile has been approved. You are now officially a member of AcademeForge. Hiring Department will contact you for further process."
-      );
-
-      title.textContent = "Congratulations — Job Profile Approved";
-      text.textContent = "Your job profile has been approved by AcademeForge.";
-      panel.classList.add("celebrate");
-    } else if (jobSecured === false || finalRejected === true) {
-      html += stepHtml(
-        "fail",
-        "×",
-        "Final result",
-        "Your application has been rejected. Reapply with good presentation."
-      );
-
-      title.textContent = "Application Rejected";
-      text.textContent = "Your application is not approved at this stage.";
-    } else {
-      html += stepHtml(
-        "pending",
-        "…",
-        "Job secured",
-        "Pending. Final job secured status is not marked yet."
-      );
-
-      title.textContent = "Job Application Status";
-      text.textContent = "Current application progress is shown below.";
-    }
-
-    timeline.innerHTML = html;
-
-    if (applicationId) {
-      saveLastApplication(applicationId, status.email || "", status.contact_number || "");
-    }
   }
 
-  async function fetchApplicationStatus(applicationId, email, mobile) {
-    const cleanApplicationId = clean(applicationId);
-    const cleanEmail = clean(email).toLowerCase();
-    const cleanMobile = digits(mobile);
+  html += stepHtml(
+    triedToContact === true
+      ? "done"
+      : "pending",
 
-    if (!cleanApplicationId && !cleanEmail && !cleanMobile) {
-      throw new Error("Enter Application ID, Email, or Mobile Number.");
-    }
+    triedToContact === true
+      ? "✓"
+      : "…",
 
-    const params = new URLSearchParams();
+    "Tried to contact",
 
-    if (cleanApplicationId) {
-      params.set("application_id", cleanApplicationId);
-      params.set("applicationId", cleanApplicationId);
-      params.set("id", cleanApplicationId);
-    }
+    triedToContact === true
+      ? "Hiring team has tried to contact you."
+      : "Pending. Hiring team has not marked contact attempt yet."
+  );
 
-    if (cleanEmail) {
-      params.set("email", cleanEmail);
-      params.set("submitted_email", cleanEmail);
-    }
+  if (jobSecured === true) {
 
-    if (cleanMobile) {
-      params.set("mobile", cleanMobile);
-      params.set("phone", cleanMobile);
-      params.set("mobile_number", cleanMobile);
-      params.set("contact_number", cleanMobile);
-    }
+    html += stepHtml(
+      "done",
+      "✓",
+      "Job secured",
+      "Congratulations. Your job profile has been approved. You are now officially a member of AcademeForge. Hiring Department will contact you for further process."
+    );
 
-    const response = await fetch(STATUS_FUNCTION_URL + "?" + params.toString(), {
+    title.textContent =
+      "Congratulations — Job Profile Approved";
+
+    text.textContent =
+      "Your job profile has been approved by AcademeForge.";
+
+    panel.classList.add("celebrate");
+
+  } else if (
+    jobSecured === false ||
+    finalRejected === true
+  ) {
+
+    html += stepHtml(
+      "fail",
+      "×",
+      "Final result",
+      "Your application has been rejected. Reapply with good presentation."
+    );
+
+    title.textContent =
+      "Application Rejected";
+
+    text.textContent =
+      "Your application is not approved at this stage.";
+
+  } else {
+
+    html += stepHtml(
+      "pending",
+      "…",
+      "Job secured",
+      "Pending. Final job secured status is not marked yet."
+    );
+
+    title.textContent =
+      "Job Application Status";
+
+    text.textContent =
+      "Current application progress is shown below.";
+  }
+
+  timeline.innerHTML = html;
+
+  saveLastApplication(
+    status.email || "",
+    status.contact_number || ""
+  );
+}
+
+async function fetchApplicationStatus(email, mobile) {
+
+  const cleanEmail =
+    clean(email).toLowerCase();
+
+  const cleanMobile =
+    digits(mobile);
+
+  if (!cleanEmail && !cleanMobile) {
+    throw new Error(
+      "Enter Email or Mobile Number."
+    );
+  }
+
+  const params =
+    new URLSearchParams();
+
+  if (cleanEmail) {
+    params.set("email", cleanEmail);
+    params.set("submitted_email", cleanEmail);
+  }
+
+  if (cleanMobile) {
+    params.set("mobile", cleanMobile);
+    params.set("phone", cleanMobile);
+    params.set("mobile_number", cleanMobile);
+    params.set("contact_number", cleanMobile);
+  }
+
+  const response = await fetch(
+    STATUS_FUNCTION_URL + "?" + params.toString(),
+    {
       method: "GET",
       mode: "cors",
       cache: "no-store",
@@ -2430,9 +2596,11 @@ summaryGrid.innerHTML =
       headers: {
         "Accept": "application/json"
       }
-    });
+    }
+  );
 
-    const result = await response.json().catch(function () {
+  const result =
+    await response.json().catch(function () {
       return {
         success: false,
         ok: false,
@@ -2440,71 +2608,116 @@ summaryGrid.innerHTML =
       };
     });
 
-    if (!response.ok || !(result.success === true || result.ok === true)) {
-      throw new Error(
-        result.error ||
-        result.details ||
-        result.message ||
-        "Could not load application status."
-      );
-    }
-
-    const data = result.data || result.status || result.application || result.record || result;
-
-    if (!data || typeof data !== "object") {
-      throw new Error("Application status data not found in server response.");
-    }
-
-    return data;
+  if (
+    !response.ok ||
+    !(result.success === true || result.ok === true)
+  ) {
+    throw new Error(
+      result.error ||
+      result.details ||
+      result.message ||
+      "Could not load application status."
+    );
   }
 
-  function fillFromLocalStorage() {
-    const last = getLastApplication();
+  const data =
+    result.data ||
+    result.status ||
+    result.application ||
+    result.record ||
+    result;
 
-    /*
-      Application ID auto-fill intentionally disabled.
-      If old/wrong Application ID auto-fills, backend may prioritize ID lookup
-      and email/mobile lookup can look broken.
-    */
-
-    if (last.email) {
-      byId("statusEmail").value = last.email;
-    }
-
-    if (last.mobile) {
-      byId("statusMobile").value = last.mobile;
-    }
+  if (!data || typeof data !== "object") {
+    throw new Error(
+      "Application status data not found in server response."
+    );
   }
 
-  function initStatusForm() {
-    const form = byId("statusForm");
-    const button = byId("checkStatusBtn");
-    const clearButton = byId("clearBtn");
+  return data;
+}
 
-    if (!form || !button || !clearButton) {
-      return;
-    }
+function fillFromLocalStorage() {
 
-    form.addEventListener("submit", async function (event) {
+  const last =
+    getLastApplication();
+
+  if (last.email) {
+    byId("statusEmail").value =
+      last.email;
+  }
+
+  if (last.mobile) {
+    byId("statusMobile").value =
+      last.mobile;
+  }
+}
+
+function initStatusForm() {
+
+  const form =
+    byId("statusForm");
+
+  const button =
+    byId("checkStatusBtn");
+
+  const clearButton =
+    byId("clearBtn");
+
+  if (!form || !button || !clearButton) {
+    return;
+  }
+
+  form.addEventListener(
+    "submit",
+    async function (event) {
+
       event.preventDefault();
+
       clearAlert();
 
-      const applicationId = clean(byId("applicationId").value);
-      const email = clean(byId("statusEmail").value).toLowerCase();
-      const mobile = digits(byId("statusMobile").value);
+      const email =
+        clean(
+          byId("statusEmail").value
+        ).toLowerCase();
 
-      if (!applicationId && !email && !mobile) {
-        showAlert("error", "Enter Application ID, Email, or Mobile Number.");
+      const mobile =
+        digits(
+          byId("statusMobile").value
+        );
+
+      if (!email && !mobile) {
+
+        showAlert(
+          "error",
+          "Enter Email or Mobile Number."
+        );
+
         return;
       }
 
-      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-        showAlert("error", "Enter a valid email address.");
+      if (
+        email &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)
+      ) {
+
+        showAlert(
+          "error",
+          "Enter a valid email address."
+        );
+
         return;
       }
 
-      if (mobile && mobile.length < 5) {
-        showAlert("error", "Enter a valid mobile number.");
+      if (
+        mobile &&
+        mobile.length < 5
+      ) {
+
+        showAlert(
+          "error",
+          "Enter a valid mobile number."
+        );
+
         return;
       }
 
@@ -2512,59 +2725,126 @@ summaryGrid.innerHTML =
       button.textContent = "Checking...";
 
       try {
-        const status = await fetchApplicationStatus(applicationId, email, mobile);
+
+        const status =
+          await fetchApplicationStatus(
+            email,
+            mobile
+          );
+
         renderStatus(status);
-        showAlert("success", "Application status loaded successfully.");
+
+        showAlert(
+          "success",
+          "Application status loaded successfully."
+        );
+
       } catch (error) {
-        showAlert("error", error.message || "Could not load status.");
+
+        showAlert(
+          "error",
+          error.message || "Could not load status."
+        );
+
       } finally {
+
         button.disabled = false;
         button.textContent = "Check Status";
       }
-    });
+    }
+  );
 
-    clearButton.addEventListener("click", function () {
-      byId("applicationId").value = "";
+  clearButton.addEventListener(
+    "click",
+    function () {
+
       byId("statusEmail").value = "";
       byId("statusMobile").value = "";
+
       byId("emptyState").hidden = false;
       byId("loadedState").hidden = true;
-      byId("statusPanel").classList.remove("celebrate");
+
+      byId("statusPanel")
+        .classList.remove("celebrate");
+
       clearAlert();
-    });
-  }
-
-  function initMobileNav() {
-    const toggle = byId("mobileNavToggle");
-    const nav = byId("quickNav");
-
-    if (!toggle || !nav) {
-      return;
     }
+  );
+}
 
-    toggle.addEventListener("click", function () {
-      const isOpen = nav.classList.toggle("is-open");
+function initMobileNav() {
 
-      toggle.classList.toggle("is-open", isOpen);
-      toggle.setAttribute("aria-expanded", String(isOpen));
-      toggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
-    });
+  const toggle =
+    byId("mobileNavToggle");
 
-    nav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        nav.classList.remove("is-open");
-        toggle.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.setAttribute("aria-label", "Open navigation");
-      });
-    });
+  const nav =
+    byId("quickNav");
+
+  if (!toggle || !nav) {
+    return;
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const year = byId("year");
+  toggle.addEventListener(
+    "click",
+    function () {
+
+      const isOpen =
+        nav.classList.toggle("is-open");
+
+      toggle.classList.toggle(
+        "is-open",
+        isOpen
+      );
+
+      toggle.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+
+      toggle.setAttribute(
+        "aria-label",
+        isOpen
+          ? "Close navigation"
+          : "Open navigation"
+      );
+    }
+  );
+
+  nav.querySelectorAll("a")
+    .forEach(function (link) {
+
+      link.addEventListener(
+        "click",
+        function () {
+
+          nav.classList.remove("is-open");
+
+          toggle.classList.remove("is-open");
+
+          toggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          toggle.setAttribute(
+            "aria-label",
+            "Open navigation"
+          );
+        }
+      );
+    });
+}
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    const year =
+      byId("year");
 
     if (year) {
-      year.textContent = new Date().getFullYear();
+      year.textContent =
+        new Date().getFullYear();
     }
 
     initTheme();
@@ -2572,39 +2852,40 @@ summaryGrid.innerHTML =
     fillFromLocalStorage();
     initStatusForm();
 
-    const params = new URLSearchParams(window.location.search);
+    const params =
+      new URLSearchParams(window.location.search);
 
-    const applicationId = clean(
-      params.get("application_id") ||
-      params.get("applicationId") ||
-      params.get("id")
-    );
+    const email =
+      clean(
+        params.get("email") ||
+        params.get("submitted_email")
+      ).toLowerCase();
 
-    const email = clean(
-      params.get("email") ||
-      params.get("submitted_email")
-    ).toLowerCase();
+    const mobile =
+      digits(
+        params.get("mobile") ||
+        params.get("phone") ||
+        params.get("mobile_number") ||
+        params.get("contact_number")
+      );
 
-    const mobile = digits(
-      params.get("mobile") ||
-      params.get("phone") ||
-      params.get("mobile_number") ||
-      params.get("contact_number")
-    );
-
-    if (applicationId && byId("applicationId")) {
-      byId("applicationId").value = applicationId;
+    if (
+      email &&
+      byId("statusEmail")
+    ) {
+      byId("statusEmail").value =
+        email;
     }
 
-    if (email && byId("statusEmail")) {
-      byId("statusEmail").value = email;
+    if (
+      mobile &&
+      byId("statusMobile")
+    ) {
+      byId("statusMobile").value =
+        mobile;
     }
-
-    if (mobile && byId("statusMobile")) {
-      byId("statusMobile").value = mobile;
-    }
-  });
-
-  </script>
-</body>
+  }
+);
+</script>
+</head>
 </html>
