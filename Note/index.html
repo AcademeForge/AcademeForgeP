@@ -2132,6 +2132,390 @@ afnxRestoreSession();
 
 }
 );
+/* =====================================================
+AFNX NOTES SUBJECTS
+===================================================== */
+
+const afnxSubjects = {
+
+9:[
+"Science",
+"Math",
+"English",
+"Hindi",
+"Social Science"
+],
+
+10:[
+"Science",
+"Math",
+"English",
+"Hindi",
+"Social Science"
+]
+
+};
+
+/* =====================================================
+NOTES ACCESS CONTROL
+===================================================== */
+
+function afnxUpdateNotesAccess(){
+
+const loginRequiredBox =
+afnxEl(
+"afnxLoginRequiredBox"
+);
+
+const notesContainer =
+afnxEl(
+"afnxNotesContainer"
+);
+
+if(
+afnxState.loggedIn
+){
+
+if(loginRequiredBox){
+
+loginRequiredBox.style.display =
+"none";
+
+}
+
+if(notesContainer){
+
+notesContainer.style.display =
+"block";
+
+}
+
+}else{
+
+if(loginRequiredBox){
+
+loginRequiredBox.style.display =
+"block";
+
+}
+
+if(notesContainer){
+
+notesContainer.style.display =
+"none";
+
+}
+
+}
+
+}
+
+/* =====================================================
+LOAD SUBJECTS
+===================================================== */
+
+function afnxLoadSubjects(){
+
+const classValue =
+afnxEl(
+"afnxClassSelect"
+).value;
+
+const subjectSelect =
+afnxEl(
+"afnxSubjectSelect"
+);
+
+subjectSelect.innerHTML =
+`
+<option value="">
+Choose Subject
+</option>
+`;
+
+if(
+!classValue ||
+!afnxSubjects[classValue]
+){
+
+return;
+
+}
+
+afnxSubjects[classValue]
+.forEach(subject=>{
+
+const option =
+document.createElement(
+"option"
+);
+
+option.value =
+subject;
+
+option.textContent =
+subject;
+
+subjectSelect.appendChild(
+option
+);
+
+});
+
+}
+
+/* =====================================================
+CLASS CHANGE
+===================================================== */
+
+afnxEl(
+"afnxClassSelect"
+)
+.addEventListener(
+"change",
+()=>{
+
+afnxState.selectedClass =
+afnxEl(
+"afnxClassSelect"
+).value;
+
+afnxLoadSubjects();
+
+}
+);
+
+/* =====================================================
+SUBJECT CHANGE
+===================================================== */
+
+afnxEl(
+"afnxSubjectSelect"
+)
+.addEventListener(
+"change",
+()=>{
+
+afnxState.selectedSubject =
+afnxEl(
+"afnxSubjectSelect"
+).value;
+
+afnxLoadNotes();
+
+}
+);
+
+/* =====================================================
+LOAD NOTES
+===================================================== */
+
+async function afnxLoadNotes(){
+
+if(
+!afnxState.loggedIn
+){
+
+afnxToast(
+"Login required"
+);
+
+return;
+
+}
+
+if(
+!afnxState.selectedClass
+){
+
+return;
+
+}
+
+if(
+!afnxState.selectedSubject
+){
+
+return;
+
+}
+
+const viewer =
+afnxEl(
+"afnxNotesViewer"
+);
+
+viewer.src =
+"about:blank";
+
+const result =
+await afnxEdgeCall(
+AFNX_ENDPOINTS.notes,
+{
+
+class:
+afnxState.selectedClass,
+
+subject:
+afnxState.selectedSubject,
+
+student_id:
+afnxState.student?.student_id || ""
+
+}
+);
+
+if(
+!result ||
+!result.ok
+){
+
+afnxToast(
+result?.message ||
+"Could not load notes"
+);
+
+return;
+
+}
+
+if(
+!result.drive_url
+){
+
+afnxToast(
+"No notes found"
+);
+
+return;
+
+}
+
+afnxOpenDriveViewer(
+result.drive_url
+);
+
+}
+
+/* =====================================================
+DRIVE VIEWER
+===================================================== */
+
+function afnxOpenDriveViewer(
+url
+){
+
+const viewer =
+afnxEl(
+"afnxNotesViewer"
+);
+
+if(!viewer){
+
+return;
+
+}
+
+const cleanUrl =
+afnxConvertDriveUrl(
+url
+);
+
+viewer.src =
+cleanUrl;
+
+}
+
+/* =====================================================
+GOOGLE DRIVE EMBED FIX
+===================================================== */
+
+function afnxConvertDriveUrl(
+url
+){
+
+if(
+!url
+){
+
+return "";
+
+}
+
+if(
+url.includes(
+"/folders/"
+)
+){
+
+return url;
+
+}
+
+const fileMatch =
+url.match(
+/\/d\/(.*?)\//
+);
+
+if(
+fileMatch &&
+fileMatch[1]
+){
+
+return
+`https://drive.google.com/file/d/${fileMatch[1]}/preview`;
+
+}
+
+return url;
+
+}
+
+/* =====================================================
+NOTES PAGE PROTECTION
+===================================================== */
+
+const afnxOriginalOpenPage =
+afnxOpenPage;
+
+afnxOpenPage =
+function(page){
+
+afnxOriginalOpenPage(
+page
+);
+
+if(
+page === "notes"
+){
+
+afnxUpdateNotesAccess();
+
+}
+
+};
+
+/* =====================================================
+AUTO OPEN NOTES AFTER LOGIN
+===================================================== */
+
+function afnxAfterLoginNotesSetup(){
+
+afnxUpdateNotesAccess();
+
+const loginBox =
+afnxEl(
+"afnxAlreadyLoggedBox"
+);
+
+if(loginBox){
+
+loginBox.style.display =
+"block";
+
+}
+
+}
 
 </script>
 </body>
