@@ -1307,7 +1307,7 @@ keeps users logged in.
 </section>
 
 <!-- ===================================================== -->
-<!-- LOGIN -->
+<!-- LOGIN PAGE -->
 <!-- ===================================================== -->
 
 <section
@@ -1326,21 +1326,32 @@ Open Notes to access content.
 
 </div>
 
-<div class="afnx-auth-card">
+<div
+id="afnxAuthMessage"
+class="afnx-alert"
+style="display:none;">
+</div>
+
+<!-- ===================================================== -->
+<!-- LOGIN CARD -->
+<!-- ===================================================== -->
+
+<div
+class="afnx-auth-card">
 
 <h2>
 Student Login
 </h2>
 
 <p>
-Login using your
-Student ID and Password.
+Login using your Student ID,
+Phone Number or Email Address.
 </p>
 
 <input
 type="text"
 id="afnxLoginId"
-placeholder="Student ID">
+placeholder="Student ID / Phone / Email">
 
 <input
 type="password"
@@ -1354,6 +1365,8 @@ id="afnxLoginBtn">
 Login
 
 </button>
+
+<div class="afnx-auth-links">
 
 <button
 class="afnx-link-btn"
@@ -1373,15 +1386,25 @@ Forgot Password
 
 </div>
 
+</div>
+
+<!-- ===================================================== -->
 <!-- CREATE ACCOUNT -->
+<!-- ===================================================== -->
 
 <div
 class="afnx-auth-card"
-id="afnxCreateCard">
+id="afnxCreateCard"
+style="display:none;">
 
 <h2>
 Create Account
 </h2>
+
+<p>
+Create your Student ID and
+verify your email using OTP.
+</p>
 
 <input
 type="text"
@@ -1407,41 +1430,105 @@ placeholder="Password">
 class="afnx-primary"
 id="afnxCreateBtn">
 
-Create Account
+Send OTP
+
+</button>
+
+<div
+id="afnxCreateOtpArea"
+style="display:none; margin-top:16px;">
+
+<input
+type="text"
+id="afnxCreateOtp"
+placeholder="Enter OTP">
+
+<button
+class="afnx-primary"
+id="afnxVerifyCreateBtn">
+
+Verify OTP & Create Account
 
 </button>
 
 </div>
 
+</div>
+
+<!-- ===================================================== -->
 <!-- FORGOT PASSWORD -->
+<!-- ===================================================== -->
 
 <div
 class="afnx-auth-card"
-id="afnxForgotCard">
+id="afnxForgotCard"
+style="display:none;">
 
 <h2>
 Forgot Password
 </h2>
 
+<p>
+Find your account and verify
+OTP to reset password.
+</p>
+
 <input
 type="text"
 id="afnxForgotValue"
-placeholder="Student ID / Email">
+placeholder="Student ID / Phone / Email">
 
 <button
 class="afnx-primary"
 id="afnxForgotBtn">
 
-Reset Password
+Find Account
 
 </button>
+
+<div
+id="afnxForgotOtpArea"
+style="display:none; margin-top:16px;">
+
+<input
+type="text"
+id="afnxForgotOtp"
+placeholder="Enter OTP">
+
+<button
+class="afnx-primary"
+id="afnxVerifyForgotOtpBtn">
+
+Verify OTP
+
+</button>
+
+</div>
+
+<div
+id="afnxResetPasswordArea"
+style="display:none; margin-top:16px;">
+
+<input
+type="password"
+id="afnxNewPassword"
+placeholder="New Password">
+
+<button
+class="afnx-primary"
+id="afnxResetPasswordBtn">
+
+Update Password
+
+</button>
+
+</div>
 
 </div>
 
 </div>
 
 </section>
-
 <!-- ===================================================== -->
 <!-- NOTES -->
 <!-- ===================================================== -->
@@ -1711,10 +1798,22 @@ const AFNX_ENDPOINTS = {
 login:
 "student-login-af",
 
-register:
+checkExisting:
+"student-check-existing-af",
+
+sendOtp:
+"student-send-otp-af",
+
+verifyOtp:
+"student-verify-otp-af",
+
+create:
 "student-create-af",
 
-forgot:
+findReset:
+"student-find-reset-af",
+
+reset:
 "student-reset-password-af",
 
 notes:
@@ -1724,7 +1823,6 @@ translations:
 "afnx-translations"
 
 };
-
 const afnxState = {
 
 loggedIn:false,
@@ -2100,7 +2198,7 @@ function afnxRestoreSession(){
 
 const loggedIn =
 localStorage.getItem(
-"afnx_logged_in"
+"af_student_logged_in"
 );
 
 if(
@@ -2111,41 +2209,47 @@ return;
 
 }
 
-const student =
-localStorage.getItem(
-"afnx_student"
-);
-
-if(!student){
-
-return;
-
-}
-
-try{
-
 afnxState.loggedIn =
 true;
 
-afnxState.student =
-JSON.parse(student);
+afnxState.student = {
 
-const already =
+id:
+localStorage.getItem(
+"af_student_uuid"
+),
+
+student_id:
+localStorage.getItem(
+"af_student_id"
+),
+
+mobile:
+localStorage.getItem(
+"af_student_mobile"
+),
+
+name:
+localStorage.getItem(
+"af_student_name"
+),
+
+email:
+localStorage.getItem(
+"af_student_email"
+)
+
+};
+
+const box =
 afnxEl(
 "afnxAlreadyLogged"
 );
 
-if(already){
+if(box){
 
-already.style.display =
+box.style.display =
 "block";
-
-}
-
-}
-catch(error){
-
-console.error(error);
 
 }
 
@@ -2157,35 +2261,26 @@ LOGOUT
 
 function afnxLogout(){
 
-localStorage.removeItem(
-"afnx_logged_in"
-);
+[
+"af_student_logged_in",
+"af_session_token",
+"af_student_uuid",
+"af_student_id",
+"af_student_mobile",
+"af_student_name",
+"af_student_email"
+]
+.forEach(key=>{
 
 localStorage.removeItem(
-"afnx_student"
+key
 );
 
-localStorage.removeItem(
-"afnx_last_login"
-);
-
-afnxState.loggedIn =
-false;
-
-afnxState.student =
-null;
+});
 
 location.reload();
 
 }
-
-afnxEl(
-"afnxLogoutBtn"
-)
-.addEventListener(
-"click",
-afnxLogout
-);
 
 /* =====================================================
 AUTH ACCESS
@@ -2231,24 +2326,20 @@ LOGIN
 
 async function afnxLogin(){
 
-const studentId =
-afnxEl(
-"afnxLoginId"
-)
+const loginId =
+afnxEl("afnxLoginId")
 .value
 .trim();
 
 const password =
-afnxEl(
-"afnxLoginPassword"
-)
+afnxEl("afnxLoginPassword")
 .value
 .trim();
 
-if(!studentId){
+if(!loginId){
 
 afnxToast(
-"Enter Student ID"
+"Enter Student ID / Phone Number"
 );
 
 return;
@@ -2265,20 +2356,36 @@ return;
 
 }
 
+const cleanLoginId =
+loginId.replace(
+/\D/g,
+""
+);
+
 const result =
 await afnxApi(
 AFNX_ENDPOINTS.login,
 {
-student_id:
-studentId,
+login_id:
+loginId,
+
+clean_login_id:
+cleanLoginId,
+
 password:
-password
+password,
+
+device_id:
+navigator.userAgent,
+
+device_name:
+navigator.platform
 }
 );
 
 if(
 !result ||
-!result.success
+!result.ok
 ){
 
 afnxToast(
@@ -2290,9 +2397,58 @@ return;
 
 }
 
-afnxSaveSession(
-result.student
+if(
+!result.student
+){
+
+afnxToast(
+"Student data missing"
 );
+
+return;
+
+}
+
+localStorage.setItem(
+"af_student_logged_in",
+"true"
+);
+
+localStorage.setItem(
+"af_session_token",
+result.session_token || ""
+);
+
+localStorage.setItem(
+"af_student_uuid",
+result.student.id || ""
+);
+
+localStorage.setItem(
+"af_student_id",
+result.student.student_id || ""
+);
+
+localStorage.setItem(
+"af_student_mobile",
+result.student.mobile || ""
+);
+
+localStorage.setItem(
+"af_student_name",
+result.student.name || ""
+);
+
+localStorage.setItem(
+"af_student_email",
+result.student.email || ""
+);
+
+afnxState.loggedIn =
+true;
+
+afnxState.student =
+result.student;
 
 afnxRefreshNotesAccess();
 
@@ -2305,14 +2461,6 @@ afnxOpenPage(
 );
 
 }
-
-afnxEl(
-"afnxLoginBtn"
-)
-.addEventListener(
-"click",
-afnxLogin
-);
 
 /* =====================================================
 REGISTER
@@ -2931,6 +3079,191 @@ window.addEventListener(
 "load",
 afnxInit
 );
+
+    let afnxPendingStudent =
+null;
+
+async function afnxCreateAccount(){
+
+const name =
+afnxEl(
+"afnxCreateName"
+).value.trim();
+
+const phone =
+afnxEl(
+"afnxCreatePhone"
+).value.trim();
+
+const email =
+afnxEl(
+"afnxCreateEmail"
+).value.trim();
+
+const password =
+afnxEl(
+"afnxCreatePassword"
+).value.trim();
+
+const check =
+await afnxApi(
+AFNX_ENDPOINTS.checkExisting,
+{
+mobile:phone,
+email:email
+}
+);
+
+if(
+!check ||
+!check.ok
+){
+
+afnxToast(
+check?.message ||
+"Validation failed"
+);
+
+return;
+
+}
+
+if(
+check.mobile_exists
+){
+
+afnxToast(
+"Phone already registered"
+);
+
+return;
+
+}
+
+if(
+check.email_exists
+){
+
+afnxToast(
+"Email already registered"
+);
+
+return;
+
+}
+
+afnxPendingStudent = {
+
+student_id:
+phone,
+
+name:
+name,
+
+mobile:
+phone,
+
+email:
+email,
+
+password:
+password,
+
+status:
+"active",
+
+email_verified:
+false
+
+};
+
+const otpResult =
+await afnxApi(
+AFNX_ENDPOINTS.sendOtp,
+{
+email,
+mobile:phone,
+purpose:"create"
+}
+);
+
+if(
+!otpResult ||
+!otpResult.ok
+){
+
+afnxToast(
+"OTP send failed"
+);
+
+return;
+
+}
+
+afnxEl(
+"afnxCreateOtpArea"
+).style.display =
+"block";
+
+afnxToast(
+"OTP sent to email"
+);
+
+}
+
+    async function afnxVerifyCreateOtp(){
+
+const otp =
+afnxEl(
+"afnxCreateOtp"
+).value.trim();
+
+if(
+!afnxPendingStudent
+){
+
+afnxToast(
+"Send OTP first"
+);
+
+return;
+
+}
+
+const result =
+await afnxApi(
+AFNX_ENDPOINTS.create,
+{
+...afnxPendingStudent,
+
+otp,
+
+purpose:
+"create"
+}
+);
+
+if(
+!result ||
+!result.ok
+){
+
+afnxToast(
+result?.message ||
+"Creation failed"
+);
+
+return;
+
+}
+
+afnxToast(
+"Student ID created successfully"
+);
+
+}
+
+    
 </script>
 
 </body>
