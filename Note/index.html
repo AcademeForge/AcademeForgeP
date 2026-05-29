@@ -2516,7 +2516,372 @@ loginBox.style.display =
 }
 
 }
+/* =====================================================
+AFNX LANGUAGES
+===================================================== */
 
+const afnxSupportedLanguages = [
+
+"en",
+"hi",
+"bho",
+"bn",
+"mr",
+"gu",
+"ta",
+"te",
+"kn",
+"ur"
+
+];
+
+let afnxTranslations = {};
+
+/* =====================================================
+LOAD TRANSLATIONS
+===================================================== */
+
+async function afnxLoadTranslations(
+language = "en"
+){
+
+try{
+
+const result =
+await afnxEdgeCall(
+AFNX_ENDPOINTS.translations,
+{
+language
+}
+);
+
+if(
+!result ||
+!result.ok
+){
+
+return;
+
+}
+
+afnxTranslations =
+result.translations || {};
+
+afnxApplyTranslations();
+
+}
+catch(error){
+
+console.error(
+"Translation Error:",
+error
+);
+
+}
+
+}
+
+/* =====================================================
+TRANSLATION HELPER
+===================================================== */
+
+function afnxT(key){
+
+return (
+afnxTranslations[key] ||
+key
+);
+
+}
+
+/* =====================================================
+APPLY TRANSLATIONS
+===================================================== */
+
+function afnxApplyTranslations(){
+
+const map = {
+
+"afnxGoLoginBtn":
+"login_button",
+
+"afnxGoNotesBtn":
+"notes_button"
+
+};
+
+Object.keys(map)
+.forEach(id=>{
+
+const element =
+afnxEl(id);
+
+if(!element){
+
+return;
+
+}
+
+element.textContent =
+afnxT(
+map[id]
+);
+
+});
+
+}
+
+/* =====================================================
+LANGUAGE CHANGE
+===================================================== */
+
+async function afnxChangeLanguage(
+language
+){
+
+if(
+!afnxSupportedLanguages.includes(
+language
+)
+){
+
+return;
+
+}
+
+localStorage.setItem(
+"afnx_language",
+language
+);
+
+afnxState.language =
+language;
+
+await afnxLoadTranslations(
+language
+);
+
+}
+
+afnxEl(
+"afnxLanguageSelect"
+)
+.addEventListener(
+"change",
+async e=>{
+
+await afnxChangeLanguage(
+e.target.value
+);
+
+}
+);
+
+/* =====================================================
+RESTORE LANGUAGE
+===================================================== */
+
+function afnxRestoreLanguage(){
+
+const language =
+localStorage.getItem(
+"afnx_language"
+) || "en";
+
+afnxState.language =
+language;
+
+const select =
+afnxEl(
+"afnxLanguageSelect"
+);
+
+if(select){
+
+select.value =
+language;
+
+}
+
+afnxLoadTranslations(
+language
+);
+
+}
+
+/* =====================================================
+SESSION VALIDATION
+===================================================== */
+
+function afnxValidateSession(){
+
+const loggedIn =
+localStorage.getItem(
+"afnx_logged_in"
+);
+
+if(
+loggedIn !== "true"
+){
+
+return false;
+
+}
+
+const studentId =
+localStorage.getItem(
+"afnx_student_id"
+);
+
+if(
+!studentId
+){
+
+return false;
+
+}
+
+return true;
+
+}
+
+/* =====================================================
+AUTO LOGIN CHECK
+===================================================== */
+
+function afnxCheckLoginState(){
+
+if(
+!afnxValidateSession()
+){
+
+return;
+
+}
+
+afnxState.loggedIn =
+true;
+
+afnxUpdateNotesAccess();
+
+}
+
+/* =====================================================
+SETTINGS PAGE INIT
+===================================================== */
+
+function afnxInitSettings(){
+
+const currentTheme =
+localStorage.getItem(
+"afnx_theme"
+);
+
+if(currentTheme){
+
+document
+.documentElement
+.setAttribute(
+"data-theme",
+currentTheme
+);
+
+}
+
+}
+
+/* =====================================================
+APP HEALTH CHECK
+===================================================== */
+
+function afnxHealthCheck(){
+
+console.log(
+"AFNX READY"
+);
+
+console.log(
+"Theme:",
+afnxState.theme
+);
+
+console.log(
+"Language:",
+afnxState.language
+);
+
+console.log(
+"Logged In:",
+afnxState.loggedIn
+);
+
+}
+
+/* =====================================================
+PRELOAD NOTES PAGE
+===================================================== */
+
+function afnxPrepareNotesPage(){
+
+const viewer =
+afnxEl(
+"afnxNotesViewer"
+);
+
+if(
+viewer &&
+!viewer.src
+){
+
+viewer.src =
+"about:blank";
+
+}
+
+}
+
+/* =====================================================
+PRODUCTION SAFE INIT
+===================================================== */
+
+async function afnxInitialize(){
+
+try{
+
+afnxRestoreSession();
+
+afnxRestoreLanguage();
+
+afnxInitSettings();
+
+afnxCheckLoginState();
+
+afnxPrepareNotesPage();
+
+afnxUpdateNotesAccess();
+
+afnxHealthCheck();
+
+}
+catch(error){
+
+console.error(
+"AFNX INIT ERROR",
+error
+);
+
+}
+
+}
+
+/* =====================================================
+START APP
+===================================================== */
+
+window.addEventListener(
+"load",
+afnxInitialize
+);
 </script>
 </body>
 </html>
