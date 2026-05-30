@@ -39,7 +39,13 @@
 --shadow:
 0 25px 70px rgba(0,0,0,.35);
 
+--navbarHeight:88px;
+
 }
+
+/* =========================
+RESET
+========================= */
 
 *{
 margin:0;
@@ -59,8 +65,18 @@ system-ui,
 sans-serif;
 
 background:
-radial-gradient(circle at 10% 15%,rgba(249,115,22,.18),transparent 25%),
-radial-gradient(circle at 90% 80%,rgba(250,204,21,.08),transparent 30%),
+radial-gradient(
+circle at 10% 15%,
+rgba(249,115,22,.18),
+transparent 25%
+),
+
+radial-gradient(
+circle at 90% 80%,
+rgba(250,204,21,.08),
+transparent 30%
+),
+
 linear-gradient(
 135deg,
 var(--bg),
@@ -70,6 +86,50 @@ var(--bg2)
 color:var(--text);
 
 overflow-x:hidden;
+
+padding-top:
+var(--navbarHeight);
+
+}
+
+/* =========================
+CONTAINER
+========================= */
+
+.container{
+
+width:
+min(
+1320px,
+calc(100% - 40px)
+);
+
+margin:auto;
+
+}
+
+/* =========================
+READING PROGRESS
+========================= */
+
+#readingProgressAf{
+
+position:fixed;
+
+top:0;
+left:0;
+
+height:4px;
+width:0;
+
+z-index:999999;
+
+background:
+linear-gradient(
+90deg,
+var(--orange),
+var(--yellow)
+);
 
 }
 
@@ -89,7 +149,8 @@ pointer-events:none;
 
 z-index:-1;
 
-animation:afFloat 12s ease-in-out infinite;
+animation:
+afFloat 12s ease-in-out infinite;
 
 }
 
@@ -149,54 +210,20 @@ transform:translateY(-45px);
 }
 
 /* =========================
-PROGRESS BAR
+NAVBAR
 ========================= */
 
-#readingProgressAf{
+.af-navbar{
 
 position:fixed;
 
 top:0;
 left:0;
 
-height:4px;
-width:0;
+width:100%;
 
-z-index:999999;
-
-background:
-linear-gradient(
-90deg,
-var(--orange),
-var(--yellow)
-);
-
-}
-
-/* =========================
-CONTAINER
-========================= */
-
-.container{
-
-width:
-min(
-1320px,
-calc(100% - 40px)
-);
-
-margin:auto;
-
-}
-
-/* =========================
-NAVBAR
-========================= */
-
-.af-navbar{
-
-position:sticky;
-top:0;
+height:
+var(--navbarHeight);
 
 z-index:9999;
 
@@ -209,22 +236,38 @@ blur(20px);
 border-bottom:
 1px solid rgba(255,255,255,.08);
 
+transition:
+transform .3s ease;
+
+}
+
+.af-navbar.hide{
+
+transform:
+translateY(-100%);
+
 }
 
 .af-navbar-inner{
 
-height:82px;
+height:100%;
 
 display:flex;
+
 align-items:center;
+
 justify-content:space-between;
+
+gap:20px;
 
 }
 
 .af-logo{
 
 display:flex;
+
 align-items:center;
+
 gap:14px;
 
 }
@@ -237,7 +280,9 @@ height:58px;
 border-radius:20px;
 
 display:flex;
+
 align-items:center;
+
 justify-content:center;
 
 font-size:22px;
@@ -257,11 +302,18 @@ var(--yellow)
 .af-logo-text h1{
 
 font-size:26px;
+
 line-height:1;
+
+font-weight:900;
 
 }
 
 .af-logo-text span{
+
+display:block;
+
+margin-top:6px;
 
 font-size:11px;
 
@@ -276,6 +328,9 @@ color:#94a3b8;
 .af-nav-links{
 
 display:flex;
+
+align-items:center;
+
 gap:28px;
 
 }
@@ -295,17 +350,21 @@ text-decoration:none;
 }
 
 .af-nav-links a:hover{
+
 color:#fff;
+
 }
 
 .af-nav-actions{
 
 display:flex;
+
+align-items:center;
+
 gap:12px;
 
 }
-
-/* =========================
+  /* =========================
 BUTTONS
 ========================= */
 
@@ -322,6 +381,8 @@ border-radius:999px;
 cursor:pointer;
 
 font-weight:800;
+
+font-size:14px;
 
 transition:.25s;
 
@@ -359,6 +420,45 @@ border:
 
 }
 
+.af-home-btn{
+
+background:
+linear-gradient(
+135deg,
+var(--orange),
+var(--yellow)
+);
+
+color:#111827;
+
+}
+
+/* =========================
+MOBILE MENU BUTTON
+========================= */
+
+.af-menu-btn{
+
+display:none;
+
+width:46px;
+height:46px;
+
+border:none;
+
+border-radius:14px;
+
+cursor:pointer;
+
+font-size:22px;
+
+background:
+rgba(255,255,255,.08);
+
+color:#fff;
+
+}
+
 /* =========================
 HERO
 ========================= */
@@ -375,6 +475,7 @@ padding:
 display:inline-flex;
 
 align-items:center;
+
 gap:10px;
 
 padding:
@@ -389,6 +490,7 @@ border:
 1px solid rgba(255,255,255,.1);
 
 font-size:12px;
+
 font-weight:800;
 
 letter-spacing:.15em;
@@ -443,6 +545,7 @@ linear-gradient(
 );
 
 -webkit-background-clip:text;
+
 color:transparent;
 
 }
@@ -464,7 +567,9 @@ color:var(--muted);
 .hero-actions{
 
 display:flex;
+
 flex-wrap:wrap;
+
 gap:14px;
 
 margin-top:35px;
@@ -514,9 +619,11 @@ COMMON
 
 .glass{
 
-background:var(--card);
+background:
+var(--card);
 
-backdrop-filter:blur(18px);
+backdrop-filter:
+blur(18px);
 
 border:
 1px solid var(--line);
@@ -643,9 +750,8 @@ margin-top:6px;
 color:#94a3b8;
 
 }
-
-/* =========================
-CARDS
+  /* =========================
+POLICY CARDS
 ========================= */
 
 .policy-grid{
@@ -670,7 +776,7 @@ padding:30px;
 
 border-radius:28px;
 
-transition:.25s;
+transition:.3s;
 
 }
 
@@ -678,6 +784,9 @@ transition:.25s;
 
 transform:
 translateY(-8px);
+
+background:
+rgba(255,255,255,.08);
 
 border-color:
 rgba(249,115,22,.35);
@@ -692,6 +801,7 @@ height:70px;
 border-radius:20px;
 
 display:flex;
+
 align-items:center;
 justify-content:center;
 
@@ -733,7 +843,9 @@ TIMELINE
 margin-top:50px;
 
 display:flex;
+
 flex-direction:column;
+
 gap:20px;
 
 }
@@ -745,6 +857,7 @@ padding:28px;
 border-radius:28px;
 
 display:flex;
+
 gap:20px;
 
 align-items:flex-start;
@@ -759,6 +872,7 @@ height:70px;
 border-radius:20px;
 
 display:flex;
+
 align-items:center;
 justify-content:center;
 
@@ -835,6 +949,7 @@ POPUP
 .popup-overlay{
 
 position:fixed;
+
 inset:0;
 
 display:none;
@@ -845,14 +960,17 @@ justify-content:center;
 background:
 rgba(0,0,0,.65);
 
-backdrop-filter:blur(6px);
+backdrop-filter:
+blur(6px);
 
 z-index:999999;
 
 }
 
 .popup-overlay.show{
+
 display:flex;
+
 }
 
 .popup-card{
@@ -904,7 +1022,9 @@ border-top:
 .af-footer-top{
 
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
 
 flex-wrap:wrap;
@@ -916,7 +1036,9 @@ gap:30px;
 .af-footer-links{
 
 display:flex;
+
 flex-wrap:wrap;
+
 gap:18px;
 
 }
@@ -927,12 +1049,54 @@ color:#cbd5e1;
 
 font-weight:700;
 
-text-decoration:none;
+transition:.25s;
+
+}
+
+.af-footer-links a:hover{
+
+color:#fff;
+
+}
+
+.af-footer-bottom{
+
+margin-top:30px;
+
+padding-top:30px;
+
+border-top:
+1px solid rgba(255,255,255,.08);
+
+color:#94a3b8;
+
+text-align:center;
 
 }
 
 /* =========================
-RESPONSIVE
+BACK TO TOP
+========================= */
+
+#backToTopAf{
+
+position:fixed;
+
+right:20px;
+bottom:20px;
+
+z-index:9999;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:.25s;
+
+}
+
+/* =========================
+MOBILE RESPONSIVE
 ========================= */
 
 @media(max-width:950px){
@@ -941,148 +1105,217 @@ RESPONSIVE
 display:none;
 }
 
+.af-menu-btn{
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
 .hero-stats{
 grid-template-columns:1fr 1fr;
 }
 
 }
 
-@media (max-width: 768px){
+@media(max-width:768px){
+
+:root{
+--navbarHeight:72px;
+}
 
 .container{
 width:calc(100% - 24px);
 }
 
 .af-navbar-inner{
-height:auto;
-padding:16px 0;
-flex-direction:column;
-gap:16px;
+
+height:72px;
+
 }
 
 .af-logo{
-width:100%;
-justify-content:center;
+
+gap:10px;
+
 }
 
-.af-nav-actions{
-width:100%;
-display:flex;
-flex-direction:column;
+.af-logo-box{
+
+width:44px;
+height:44px;
+
+font-size:18px;
+
+border-radius:14px;
+
 }
 
-.af-nav-actions .af-btn{
-width:100%;
+.af-logo-text h1{
+
+font-size:18px;
+
+}
+
+.af-logo-text span{
+
+font-size:8px;
+
+letter-spacing:.16em;
+
+}
+
+.af-home-btn{
+
+height:40px;
+
+padding:0 14px;
+
+font-size:12px;
+
 }
 
 .hero{
-padding:60px 0 40px;
+
+padding:50px 0 40px;
+
 text-align:center;
+
 }
 
 .hero h1{
+
 font-size:42px;
+
 line-height:1;
+
 }
 
 .hero-sub{
+
 font-size:16px;
+
 line-height:1.7;
+
 }
 
 .hero-actions{
+
 flex-direction:column;
+
 }
 
 .hero-actions .af-btn{
+
 width:100%;
+
 }
 
 .hero-stats{
+
 grid-template-columns:1fr;
+
 }
 
 .hero-stat{
-padding:20px;
+
 text-align:center;
+
 }
 
 .section{
+
 padding:60px 0;
+
 }
 
 .section-header h2{
+
 font-size:36px;
+
 }
 
 .founder-box{
+
 padding:28px;
+
 }
 
 .founder-box h3{
-font-size:28px;
+
+font-size:30px;
+
 }
 
 .policy-grid{
+
 grid-template-columns:1fr;
+
 }
 
 .policy-card{
+
 padding:24px;
+
 }
 
 .timeline-item{
+
 flex-direction:column;
+
 }
 
 .timeline-icon{
+
 width:60px;
 height:60px;
+
 font-size:24px;
+
 }
 
 .manifesto-box{
-padding:30px 20px;
+
+padding:35px 24px;
+
 }
 
 .manifesto-box h2{
-font-size:42px;
+
+font-size:44px;
+
 }
 
 .popup-card{
+
 padding:24px;
+
 }
 
 .af-footer-top{
+
 flex-direction:column;
+
 align-items:flex-start;
+
 }
 
 .af-footer-links{
+
 flex-direction:column;
+
 gap:12px;
+
 }
 
 #backToTopAf{
+
 right:15px;
 bottom:15px;
-}
-}
-.af-navbar{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-transition:transform .3s ease;
+
 }
 
-.af-navbar.hide{
-transform:translateY(-100%);
 }
 
-body{
-padding-top:82px;
-}
   </style>
 </head>
 
