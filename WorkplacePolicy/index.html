@@ -1068,7 +1068,21 @@ right:15px;
 bottom:15px;
 }
 }
+.af-navbar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+transition:transform .3s ease;
+}
 
+.af-navbar.hide{
+transform:translateY(-100%);
+}
+
+body{
+padding-top:82px;
+}
   </style>
 </head>
 
@@ -2103,7 +2117,29 @@ document.body.style.opacity='1';
 console.log(
 'AcademeForge Remote Work Charter Loaded'
 );
-    
+    let lastScrollTop = 0;
+
+window.addEventListener('scroll', () => {
+
+const navbar = document.querySelector('.af-navbar');
+
+const currentScroll =
+window.pageYOffset ||
+document.documentElement.scrollTop;
+
+if (window.innerWidth <= 768) {
+
+if (currentScroll > lastScrollTop && currentScroll > 100) {
+navbar.classList.add('hide');
+} else {
+navbar.classList.remove('hide');
+}
+
+}
+
+lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+
+});
 </script>
 </body>
 </html>
