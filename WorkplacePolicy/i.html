@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>AcademeForge Remote Work Charter</title>
+
+<meta name="description" content="AcademeForge Remote Work Charter — High Trust. Zero Micromanagement. Maximum Execution.">
+
+<style>
+
+:root{
+  --bg:#070a14;
+  --bg2:#0d1324;
+
+  --card:rgba(255,255,255,.06);
+  --card2:rgba(255,255,255,.09);
+
+  --line:rgba(255,255,255,.12);
+
+  --text:#e8edf7;
+  --soft:#b8c3d7;
+  --muted:#8a96ac;
+
+  --brand:#f97316;
+  --gold:#facc15;
+
+  --success:#22c55e;
+  --danger:#ef4444;
+
+  --shadow:
+  0 25px 60px rgba(0,0,0,.35);
+
+  --radius:28px;
+
+  --font:
+  Inter,
+  system-ui,
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  sans-serif;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:
+  radial-gradient(circle at 10% 10%,rgba(249,115,22,.15),transparent 30%),
+  radial-gradient(circle at 90% 80%,rgba(250,204,21,.08),transparent 30%),
+  linear-gradient(135deg,var(--bg),var(--bg2));
+
+  color:var(--text);
+  font-family:var(--font);
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.container{
+  width:min(1350px,calc(100% - 40px));
+  margin:auto;
+}
+
+.glass{
+  background:var(--card);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--line);
+}
+
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:9999;
+
+  background:rgba(7,10,20,.88);
+  backdrop-filter:blur(20px);
+
+  border-bottom:1px solid var(--line);
+}
+
+.nav-inner{
+  height:82px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo-wrap{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo-box{
+  width:58px;
+  height:58px;
+
+  border-radius:20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight:1000;
+  font-size:20px;
+
+  color:#111827;
+
+  background:
+  linear-gradient(
+  135deg,
+  var(--brand),
+  var(--gold)
+  );
+}
+
+.logo-text h1{
+  font-size:26px;
+  line-height:1;
+}
+
+.logo-text span{
+  color:var(--muted);
+  font-size:12px;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+}
+
+.nav-links{
+  display:flex;
+  gap:30px;
+}
+
+.nav-links a{
+  font-weight:800;
+  color:var(--soft);
+}
+
+.nav-links a:hover{
+  color:#fff;
+}
+
+.hero{
+  padding:90px 0 60px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+
+  padding:12px 18px;
+
+  border-radius:999px;
+
+  border:1px solid var(--line);
+
+  background:var(--card2);
+
+  font-size:12px;
+  font-weight:900;
+
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+.badge-dot{
+  width:10px;
+  height:10px;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+  135deg,
+  var(--brand),
+  var(--gold)
+  );
+}
+
+.hero h2{
+  margin-top:26px;
+
+  font-size:clamp(58px,8vw,120px);
+
+  line-height:.92;
+
+  font-weight:1000;
+
+  letter-spacing:-.08em;
+}
+
+.hero-gradient{
+  background:
+  linear-gradient(
+  135deg,
+  #fff,
+  #ffd166,
+  #fff
+  );
+
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero-sub{
+  max-width:900px;
+
+  margin-top:28px;
+
+  color:var(--soft);
+
+  font-size:22px;
+
+  line-height:1.8;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+
+  margin-top:36px;
+}
+
+.btn{
+  min-height:56px;
+
+  border:none;
+
+  padding:0 28px;
+
+  border-radius:999px;
+
+  cursor:pointer;
+
+  font-weight:900;
+}
+
+.btn-primary{
+  color:#111827;
+
+  background:
+  linear-gradient(
+  135deg,
+  var(--brand),
+  var(--gold)
+  );
+}
+
+.btn-secondary{
+  color:#fff;
+  background:var(--card2);
+  border:1px solid var(--line);
+}
+
+.stats{
+  display:grid;
+
+  grid-template-columns:
+  repeat(4,minmax(0,1fr));
+
+  gap:18px;
+
+  margin-top:50px;
+}
+
+.stat{
+  padding:24px;
+  border-radius:24px;
+}
+
+.stat h3{
+  font-size:38px;
+}
+
+.stat p{
+  margin-top:8px;
+  color:var(--soft);
+}
+
+.section{
+  padding:80px 0;
+}
+
+.section-title{
+  text-align:center;
+}
+
+.section-title h2{
+  font-size:clamp(40px,5vw,70px);
+  letter-spacing:-.06em;
+}
+
+.section-title p{
+  max-width:800px;
+  margin:16px auto 0;
+
+  color:var(--soft);
+
+  line-height:1.8;
+}
+
+.cards{
+  margin-top:50px;
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(300px,1fr));
+
+  gap:24px;
+}
+
+.card{
+  padding:30px;
+  border-radius:30px;
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:
+  rgba(249,115,22,.4);
+}
+
+.icon{
+  width:72px;
+  height:72px;
+
+  border-radius:22px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:34px;
+
+  background:
+  linear-gradient(
+  135deg,
+  var(--brand),
+  var(--gold)
+  );
+}
+
+.card h3{
+  margin-top:18px;
+  font-size:28px;
+}
+
+.card p{
+  margin-top:12px;
+  color:var(--soft);
+  line-height:1.8;
+}
+
+@media(max-width:900px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .hero h2{
+    font-size:58px;
+  }
+
+  .hero-sub{
+    font-size:18px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="container nav-inner">
+
+<div class="logo-wrap">
+<div class="logo-box">AF</div>
+
+<div class="logo-text">
+<h1>AcademeForge</h1>
+<span>Remote Work Charter</span>
+</div>
+</div>
+
+<div class="nav-links">
+<a href="#culture">Culture</a>
+<a href="#execution">Execution</a>
+<a href="#security">Security</a>
+<a href="#perks">Perks</a>
+<a href="#manifesto">Manifesto</a>
+</div>
+
+</div>
+</nav>
+
+<section class="hero">
+<div class="container">
+
+<div class="badge">
+<div class="badge-dot"></div>
+Effective May 2026
+</div>
+
+<h2>
+High Trust.<br>
+<span class="hero-gradient">
+Zero Micromanagement.
+</span><br>
+Maximum Execution.
+</h2>
+
+<p class="hero-sub">
+AcademeForge is a remote-first ecosystem built around ownership, accountability and execution. We don't measure productivity through screen time. We measure impact through outcomes, quality and consistency.
+</p>
+
+<div class="hero-actions">
+<button class="btn btn-primary">
+Join The Mission
+</button>
+
+<button class="btn btn-secondary">
+Read Charter
+</button>
+</div>
+
+<div class="stats">
+
+<div class="stat glass">
+<h3>100%</h3>
+<p>Remote First</p>
+</div>
+
+<div class="stat glass">
+<h3>0</h3>
+<p>Micromanagement</p>
+</div>
+
+<div class="stat glass">
+<h3>24/7</h3>
+<p>Global Collaboration</p>
+</div>
+
+<div class="stat glass">
+<h3>∞</h3>
+<p>Growth Potential</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+  <section id="culture" class="section">
+
+<div class="container">
+
+<div class="section-title">
+<h2>Built For Builders</h2>
+
+<p>
+AcademeForge operates as an execution-first ecosystem.
+Every contributor is trusted to own their track, communicate clearly and deliver meaningful outcomes.
+</p>
+</div>
+
+<div class="cards">
+
+<div class="card glass">
+<div class="icon">⏱️</div>
+
+<h3>Flexibility + Availability</h3>
+
+<p>
+Design your own work schedule. We do not believe in rigid desk hours. What matters is staying accessible during collaboration windows and maintaining reliable communication.
+</p>
+</div>
+
+<div class="card glass">
+<div class="icon">🚀</div>
+
+<h3>Performance Over Presence</h3>
+
+<p>
+Your impact is measured by outcomes, quality and consistency. Screen time, online indicators and unnecessary reporting do not define success.
+</p>
+</div>
+
+<div class="card glass">
+<div class="icon">🤝</div>
+
+<h3>Ownership Mindset</h3>
+
+<p>
+Every member is expected to take responsibility for their assigned track and proactively move projects forward.
+</p>
+</div>
+
+<div class="card glass">
+<div class="icon">⚡</div>
+
+<h3>Execution Culture</h3>
+
+<p>
+Ideas matter. Execution matters more. We value contributors who ship, improve and continuously raise standards.
+</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section id="execution" class="section">
+
+<div class="container">
+
+<div class="section-title">
+<h2>Execution Framework</h2>
+
+<p>
+Freedom comes with accountability. Every contributor receives flexibility while remaining responsible for results.
+</p>
+</div>
+
+<div class="cards">
+
+<div class="card glass">
+
+<div class="icon">🌍</div>
+
+<h3>Core Communication Window</h3>
+
+<p>
+All contributors should remain active and accessible during a shared collaboration period of approximately 3–4 hours each day.
+This enables smooth coordination across teams.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="icon">📨</div>
+
+<h3>Response Expectations</h3>
+
+<p>
+Urgent mentions, critical tasks and direct communication should generally receive acknowledgment within 2–3 hours during active working periods.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="icon">🎯</div>
+
+<h3>Deadline Driven</h3>
+
+<p>
+Every project and sub-task is assigned clear expectations and timelines.
+Meeting commitments is a key part of our culture.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="icon">🏆</div>
+
+<h3>Quality Standard</h3>
+
+<p>
+Deliverables must be production-ready.
+Shortcuts, placeholder work, incomplete implementations and rushed submissions are not acceptable.
+</p>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-title">
+<h2>Weekly Collaboration</h2>
+
+<p>
+Communication is designed to remove blockers and accelerate progress across the ecosystem.
+</p>
+</div>
+
+<div class="cards">
+
+<div class="card glass">
+
+<div class="icon">📅</div>
+
+<h3>Weekly Sync Meeting</h3>
+
+<p>
+A recurring digital meeting is conducted every week where track leaders present progress updates, achievements and upcoming objectives.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="icon">📈</div>
+
+<h3>Roadmap Reviews</h3>
+
+<p>
+Teams align on upcoming milestones, ecosystem priorities and long-term initiatives to ensure momentum remains strong.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="icon">🛠️</div>
+
+<h3>Blocker Resolution</h3>
+
+<p>
+If you encounter technical, operational or workflow challenges, escalate immediately rather than waiting. Fast problem-solving keeps the ecosystem moving.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="icon">🔥</div>
+
+<h3>Continuous Momentum</h3>
+
+<p>
+We prioritize speed with quality. Communication loops are designed to reduce delays and eliminate unnecessary friction.
+</p>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section id="security" class="section">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>Security & Infrastructure</h2>
+
+<p>
+Trust is earned through responsible handling of systems, data and internal operations.
+</p>
+
+</div>
+
+<div class="cards">
+
+<div class="card glass">
+
+<div class="icon">💬</div>
+
+<h3>Approved Platforms</h3>
+
+<p>
+Official collaboration must occur through approved channels such as Slack, WhatsApp, GitHub and designated internal systems.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="icon">🔒</div>
+
+<h3>Confidentiality</h3>
+
+<p>
+Administrative controls, dashboard access, internal systems and confidential resources must never be shared outside authorized teams.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="icon">🗄️</div>
+
+<h3>Data Protection</h3>
+
+<p>
+Every contributor is responsible for maintaining secure access practices and protecting organizational resources.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="icon">🛡️</div>
+
+<h3>Infrastructure Integrity</h3>
+
+<p>
+Security is everyone's responsibility. Decisions should always prioritize platform stability, privacy and operational resilience.
+</p>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+  <section id="perks" class="section">
+
+<div class="container">
+
+<div class="section-title">
+<h2>Recognition & Growth</h2>
+
+<p>
+Exceptional execution never goes unnoticed. Contributors who consistently create impact unlock leadership opportunities and ecosystem-wide recognition.
+</p>
+
+</div>
+
+<div class="cards">
+
+<div class="card glass">
+
+<div class="icon">🎁</div>
+
+<h3>Execution Rewards</h3>
+
+<p>
+High performers gain priority access to internal opportunities, strategic projects and advanced responsibilities across the ecosystem.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="icon">📜</div>
+
+<h3>Upgraded Credentials</h3>
+
+<p>
+Consistent contributors can receive upgraded certifications, enhanced recognition and stronger public professional credibility.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="icon">💼</div>
+
+<h3>Leadership Fast Track</h3>
+
+<p>
+Outstanding contributors may be promoted into leadership tracks such as Core Module Lead, Operations Lead or Community Manager.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<div class="icon">⭐</div>
+
+<h3>Professional Recommendations</h3>
+
+<p>
+Top contributors may receive public recommendations and endorsements recognizing exceptional contributions and leadership.
+</p>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-title">
+<h2>Growth Pathway</h2>
+
+<p>
+Your journey inside AcademeForge is determined by contribution, initiative and execution.
+</p>
+
+</div>
+
+<div class="cards">
+
+<div class="card glass">
+<div class="icon">🌱</div>
+
+<h3>Contributor</h3>
+
+<p>
+Start by contributing to projects, supporting initiatives and building practical experience.
+</p>
+
+</div>
+
+<div class="card glass">
+<div class="icon">📈</div>
+
+<h3>Specialist</h3>
+
+<p>
+Develop expertise within your track and become a trusted problem solver.
+</p>
+
+</div>
+
+<div class="card glass">
+<div class="icon">🚀</div>
+
+<h3>Track Lead</h3>
+
+<p>
+Lead initiatives, coordinate contributors and drive execution across major projects.
+</p>
+
+</div>
+
+<div class="card glass">
+<div class="icon">👑</div>
+
+<h3>Core Leadership</h3>
+
+<p>
+Shape strategy, mentor teams and influence the future direction of the ecosystem.
+</p>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section id="manifesto" class="section">
+
+<div class="container">
+
+<div class="glass"
+style="
+padding:60px;
+border-radius:40px;
+text-align:center;
+background:
+linear-gradient(
+135deg,
+rgba(249,115,22,.12),
+rgba(250,204,21,.08)
+);
+border:1px solid rgba(249,115,22,.25);
+">
+
+<div style="
+font-size:18px;
+font-weight:900;
+letter-spacing:.22em;
+text-transform:uppercase;
+color:#facc15;
+">
+Founder Manifesto
+</div>
+
+<h2 style="
+margin-top:20px;
+font-size:clamp(50px,6vw,90px);
+line-height:.95;
+letter-spacing:-.07em;
+">
+The Bottom Line
+</h2>
+
+<p style="
+max-width:900px;
+margin:30px auto 0;
+font-size:22px;
+line-height:1.9;
+color:var(--soft);
+">
+
+We operate on high trust and zero micromanagement.
+
+Take ownership of your work.
+
+Stay transparent.
+
+Communicate clearly.
+
+Support the people around you.
+
+Ship meaningful outcomes.
+
+Together, we are building more than an organization.
+
+We are building an ecosystem.
+
+</p>
+
+<div style="
+display:flex;
+justify-content:center;
+gap:16px;
+flex-wrap:wrap;
+margin-top:40px;
+">
+
+<div class="glass"
+style="
+padding:16px 24px;
+border-radius:999px;
+font-weight:900;
+">
+🚀 Execute
+</div>
+
+<div class="glass"
+style="
+padding:16px 24px;
+border-radius:999px;
+font-weight:900;
+">
+🔥 Improve
+</div>
+
+<div class="glass"
+style="
+padding:16px 24px;
+border-radius:999px;
+font-weight:900;
+">
+👑 Lead
+</div>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section class="section">
+
+<div class="container">
+
+<div class="glass"
+style="
+padding:70px 40px;
+border-radius:40px;
+text-align:center;
+">
+
+<h2 style="
+font-size:clamp(48px,6vw,88px);
+line-height:.95;
+letter-spacing:-.07em;
+">
+Ready To Build The Future?
+</h2>
+
+<p style="
+max-width:800px;
+margin:24px auto 0;
+color:var(--soft);
+font-size:20px;
+line-height:1.8;
+">
+
+AcademeForge is looking for builders, creators, educators, developers, designers and problem-solvers who want to create real impact.
+
+</p>
+
+<div style="
+display:flex;
+justify-content:center;
+gap:14px;
+flex-wrap:wrap;
+margin-top:36px;
+">
+
+<button class="btn btn-primary">
+Join AcademeForge
+</button>
+
+<button class="btn btn-secondary">
+Explore Opportunities
+</button>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<footer style="
+padding:40px 0 70px;
+border-top:1px solid var(--line);
+">
+
+<div class="container">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+flex-wrap:wrap;
+">
+
+<div>
+
+<div style="
+font-size:30px;
+font-weight:1000;
+letter-spacing:-.05em;
+">
+AcademeForge
+</div>
+
+<div style="
+margin-top:6px;
+color:var(--muted);
+">
+Remote Work Charter • May 2026
+</div>
+
+</div>
+
+<div style="
+display:flex;
+gap:18px;
+flex-wrap:wrap;
+color:var(--soft);
+font-weight:800;
+">
+
+<a href="#culture">Culture</a>
+<a href="#execution">Execution</a>
+<a href="#security">Security</a>
+<a href="#perks">Perks</a>
+
+</div>
+
+</div>
+
+<div style="
+margin-top:30px;
+color:var(--muted);
+font-size:14px;
+">
+© 2026 AcademeForge. Built on trust, ownership and execution.
+</div>
+
+</div>
+
+</footer>
+
+<script>
+
+const observer =
+new IntersectionObserver(
+(entries)=>{
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.animate(
+[
+{
+opacity:0,
+transform:"translateY(40px)"
+},
+{
+opacity:1,
+transform:"translateY(0)"
+}
+],
+{
+duration:700,
+fill:"forwards",
+easing:"ease-out"
+}
+);
+
+observer.unobserve(entry.target);
+
+}
+
+});
+},
+{
+threshold:.1
+}
+);
+
+document
+.querySelectorAll(
+".card,.stat,.section-title,.glass"
+)
+.forEach(el=>{
+
+el.style.opacity="0";
+
+observer.observe(el);
+
+});
+
+document
+.querySelectorAll('a[href^="#"]')
+.forEach(link=>{
+
+link.addEventListener(
+"click",
+function(e){
+
+const id=
+this.getAttribute("href");
+
+if(
+id &&
+id !== "#"
+){
+
+e.preventDefault();
+
+document
+.querySelector(id)
+?.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+}
+);
+
+});
+
+</script>
+
+</body>
+</html>
