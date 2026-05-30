@@ -1897,6 +1897,117 @@
 .download-badge-clickable:active{
   transform:scale(.96);
 }
+
+    /* Desktop Preview Redesign */
+
+.hero-right{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.phone-shell{
+  width:min(430px,100%) !important;
+  padding:14px !important;
+  border-radius:52px !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #eef2ff
+    ) !important;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.25),
+    0 0 0 1px rgba(255,255,255,.25);
+
+  position:relative;
+}
+
+.phone-shell::after{
+  content:"Desktop Preview";
+  position:absolute;
+  top:-18px;
+  left:50%;
+  transform:translateX(-50%);
+
+  background:linear-gradient(
+    135deg,
+    #f97316,
+    #facc15
+  );
+
+  color:#111827;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+
+  padding:8px 14px;
+  border-radius:999px;
+
+  box-shadow:
+    0 10px 25px rgba(249,115,22,.35);
+}
+
+.phone-screen{
+  border-radius:40px !important;
+  overflow:hidden;
+}
+
+.floating-card{
+  display:none !important;
+}
+    .desktop-preview-cta{
+  margin-top:20px;
+  text-align:center;
+  max-width:420px;
+}
+
+.desktop-preview-cta h3{
+  margin:0;
+  font-size:22px;
+  font-weight:900;
+}
+
+.desktop-preview-cta p{
+  margin:10px 0 18px;
+  color:#94a3b8;
+}
+
+.desktop-preview-cta button{
+  min-height:56px;
+  padding:0 28px;
+  border:none;
+  border-radius:999px;
+  cursor:pointer;
+
+  background:linear-gradient(
+    135deg,
+    #f97316,
+    #facc15
+  );
+
+  font-weight:900;
+}
+    .phone-screen::before{
+  content:"Limited Preview";
+  position:absolute;
+  top:16px;
+  right:16px;
+  z-index:20;
+
+  padding:6px 12px;
+
+  border-radius:999px;
+
+  background:rgba(0,0,0,.65);
+  color:#fff;
+
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
   </style>
 </head>
 
