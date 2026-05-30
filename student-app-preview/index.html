@@ -1885,6 +1885,18 @@
     padding-top:12px !important;
   }
 }
+    .download-badge-clickable{
+  cursor:pointer;
+  transition:transform .2s ease;
+}
+
+.download-badge-clickable:hover{
+  transform:scale(1.05);
+}
+
+.download-badge-clickable:active{
+  transform:scale(.96);
+}
   </style>
 </head>
 
@@ -2058,13 +2070,17 @@
             </p>
           </div>
 
-          <div class="download-badge" aria-hidden="true">
-            <div>
-              <strong>APK</strong>
-              <span>Android</span>
-            </div>
-          </div>
-        </div>
+      <div
+  class="download-badge download-badge-clickable"
+  data-download-android
+  role="button"
+  tabindex="0"
+>
+  <div>
+    <strong>APK</strong>
+    <span>Android</span>
+  </div>
+</div>
 
         <div id="offlineNote" class="offline-note">
           <i>!</i>
