@@ -24085,32 +24085,11 @@ body[data-theme="dark"] .settings-app-version-box span,
     <p id="studentDashboardCardSubAf">Login to view profile</p>
   </div>
 </button>
-  
-  </div>
 
-  <!-- EXPLORE + TEAM -->
-<div class="actions home-extra-actions">
-  <button class="action-card glass wide" onclick="showSection('explore'); loadAFTestPageV1();">
-    <div class="icon">✨</div>
-    <div>
-      <h3>AF Test Arena</h3>
-      <p>Attempt quizzes and see your ranking.</p>
-    </div>
-  </button>
-</div>
 
-    <button class="action-card glass wide" onclick="showSection('management')">
-      <div class="icon">🔥</div>
-      <div>
-        <h3>About Us</h3>
-        <p>Know the story behind AcademeForge.</p>
-      </div>
-    </button>
-  </div>
-     
 <div class="developer-credit-line">
-  <span>Developed by Devraj Kumar</span>
-  <small>Made with ❤️ in India.</small>
+  <span>🔒 Limited Preview</span>
+  <small>Install AcademeForge App to unlock everything</small>
 </div>
 </section>
 
@@ -25411,37 +25390,23 @@ body[data-theme="dark"] .settings-app-version-box span,
       <span class="settings-arrow" aria-hidden="true">›</span>
     </a>
 
+ <button
+  type="button"
+  class="settings-row settings-row-btn"
+  onclick="showLockedFeaturePopup(
+    'AF Test Arena',
+    'You are viewing a limited preview. Install the AcademeForge App to access AF Test Arena and all learning tools.'
+  )"
+  aria-label="AF Test Arena Locked"
+>
+  <div class="settings-row-left">
+    <span class="settings-row-icon" aria-hidden="true">🎓</span>
+    <span>AF Test Arena</span>
+  </div>
 
-    <div class="settings-list">
-      <div class="settings-row settings-row-static">
-        <div class="settings-row-left">
-          <span class="settings-row-icon" aria-hidden="true">🌙</span>
-          <span>Night Mode</span>
-        </div>
-
-        <label class="settings-switch" for="settingsDarkToggle" aria-label="Toggle dark mode">
-          <input
-            id="settingsDarkToggle"
-            type="checkbox"
-            onchange="toggleSettingsDarkMode(this.checked)"
-          />
-          <span class="settings-slider" aria-hidden="true"></span>
-        </label>
-      </div>
-
-      <button
-        type="button"
-        class="settings-row settings-row-btn"
-        onclick="showSection('explore')"
-        aria-label="Open Explore"
-      >
-        <div class="settings-row-left">
-          <span class="settings-row-icon" aria-hidden="true">🎓</span>
-          <span>AF Test Arena</span>
-        </div>
-        <span class="settings-arrow" aria-hidden="true">›</span>
-      </button>
-
+  <span class="settings-new-badge">🔒</span>
+</button>
+    
       <button
         type="button"
         class="settings-row settings-row-btn"
@@ -25481,33 +25446,23 @@ body[data-theme="dark"] .settings-app-version-box span,
   <span class="settings-new-badge">Track</span>
 </button>
       
-      <button
-        type="button"
-        class="settings-row settings-row-btn"
-        onclick="showSection('learningHeatmap')"
-        aria-label="Open Learning Heatmap"
-      >
-        <div class="settings-row-left">
-          <span class="settings-row-icon" aria-hidden="true">🔥</span>
-          <span>Learning Heatmap</span>
-        </div>
-        <span class="settings-arrow" aria-hidden="true">›</span>
-      </button>
+<button
+  type="button"
+  class="settings-row settings-row-btn"
+  onclick="showLockedFeaturePopup(
+    'Learning Heatmap',
+    'You are viewing a limited preview. Install the AcademeForge App to access Learning Heatmap and all learning tools.'
+  )"
+  aria-label="Learning Heatmap Locked"
+>
+  <div class="settings-row-left">
+    <span class="settings-row-icon" aria-hidden="true">🔥</span>
+    <span>Learning Heatmap</span>
+  </div>
 
-      <button
-        type="button"
-        class="settings-row settings-row-btn"
-        onclick="showSection('notifications')"
-        aria-label="Open Notifications"
-      >
-        <div class="settings-row-left">
-          <span class="settings-row-icon" aria-hidden="true">📚</span>
-          <span>Notifications</span>
-        </div>
-        <span class="settings-new-badge">New</span>
-      </button>
-    </div>
-
+  <span class="settings-new-badge">🔒</span>
+</button>
+    
  <div class="settings-support-list">
   <button
     type="button"
@@ -25583,8 +25538,8 @@ body[data-theme="dark"] .settings-app-version-box span,
 </div>
 
 <div class="settings-app-version-box">
-  <strong>App Version: 09.01.2024</strong>
-  <span>Made with ❤️ in India</span>
+  <strong>Developed by Devraj Kumar.</strong>
+  <span>Made with ❤️ in Bharat</span>
 </div>
 </section>
 
@@ -41384,6 +41339,12 @@ async function loadContactRequestStatusAf(forceRefresh) {
     }
   });
 })();
+  function showLockedFeaturePopup(featureName, message) {
+  showToast(
+    "🔒 " + featureName,
+    message
+  );
+}
 </script>
 </body>
 </html>
