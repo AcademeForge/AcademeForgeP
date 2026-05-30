@@ -1709,6 +1709,164 @@
     padding-top: 20px !important;
   }
 }
+    .af-install-popup{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(8px);
+  animation:afFade .35s ease;
+}
+
+.af-install-popup.show{
+  display:flex;
+}
+
+.af-install-card{
+  position:relative;
+  width:min(420px,100%);
+  padding:28px;
+  border-radius:28px;
+  text-align:center;
+  background:linear-gradient(
+    145deg,
+    #111827,
+    #1f2937
+  );
+  border:2px solid rgba(249,115,22,.4);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.08),
+    0 0 40px rgba(249,115,22,.35),
+    0 0 80px rgba(250,204,21,.15);
+  animation:afPop .35s ease;
+}
+
+.af-install-icon{
+  width:90px;
+  height:90px;
+  margin:auto;
+  border-radius:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:46px;
+  background:linear-gradient(135deg,#f97316,#facc15);
+  animation:afPulse 1.4s infinite;
+}
+
+.af-install-card h2{
+  margin:18px 0 10px;
+  color:#fff;
+  font-size:30px;
+  font-weight:1000;
+}
+
+.af-install-card p{
+  margin:0;
+  color:#cbd5e1;
+  line-height:1.6;
+}
+
+.af-download-btn{
+  width:100%;
+  border:none;
+  margin-top:22px;
+  min-height:60px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:18px;
+  font-weight:1000;
+  color:#111827;
+  background:linear-gradient(135deg,#f97316,#facc15);
+  box-shadow:0 0 30px rgba(249,115,22,.45);
+  animation:afGlow .9s infinite alternate;
+}
+
+.af-blink-row{
+  margin-top:18px;
+  font-size:28px;
+  animation:afBlink .8s infinite;
+}
+
+.af-hand{
+  margin-top:10px;
+  font-size:40px;
+  animation:afBounce .7s infinite;
+}
+
+.af-close-btn{
+  position:absolute;
+  right:12px;
+  top:12px;
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  color:#fff;
+  background:rgba(255,255,255,.1);
+}
+
+@keyframes afFade{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes afPop{
+  from{
+    opacity:0;
+    transform:scale(.85);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes afPulse{
+  0%,100%{
+    transform:scale(1);
+  }
+  50%{
+    transform:scale(1.08);
+  }
+}
+
+@keyframes afBlink{
+  50%{
+    opacity:.2;
+  }
+}
+
+@keyframes afGlow{
+  from{
+    transform:scale(1);
+    box-shadow:0 0 20px rgba(249,115,22,.35);
+  }
+  to{
+    transform:scale(1.05);
+    box-shadow:0 0 45px rgba(249,115,22,.75);
+  }
+}
+
+@keyframes afBounce{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-10px);
+  }
+}
+
+@media (min-width:769px){
+  .af-install-popup{
+    display:none !important;
+  }
+}
   </style>
 </head>
 
@@ -1966,7 +2124,37 @@
     <strong id="toastTitle">Notice</strong>
     <span id="toastMessage">Message</span>
   </div>
+<div id="installPopup" class="af-install-popup">
+  <div class="af-install-card">
 
+    <button id="closeInstallPopup" class="af-close-btn">✕</button>
+
+    <div class="af-install-icon">
+      📱
+    </div>
+
+    <h2>Install AcademeForge App</h2>
+
+    <p>
+      Get faster access, better performance and a smoother learning experience.
+    </p>
+
+    <div class="af-blink-row">
+      👇 👇 👇
+    </div>
+
+    <button id="popupDownloadBtn" class="af-download-btn">
+      👉 DOWNLOAD NOW 👈
+    </button>
+
+    <div class="af-hand">
+      👆
+    </div>
+
+  </div>
+</div>
+
+  
   <script>
     "use strict";
 
@@ -2463,6 +2651,52 @@ self.addEventListener("fetch", function(event) {
 
       window.setInterval(updatePhoneTime, 60000);
     });
+
+  
+(function(){
+
+  const isMobile =
+    /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(
+      navigator.userAgent
+    );
+
+  if(!isMobile) return;
+
+  const popup = document.getElementById("installPopup");
+  const closeBtn = document.getElementById("closeInstallPopup");
+  const downloadBtn = document.getElementById("popupDownloadBtn");
+
+  function showInstallPopup(){
+    popup.classList.add("show");
+  }
+
+  function hideInstallPopup(){
+    popup.classList.remove("show");
+  }
+
+  window.addEventListener("load",function(){
+    setTimeout(showInstallPopup,700);
+  });
+
+  closeBtn.addEventListener("click",hideInstallPopup);
+
+  downloadBtn.addEventListener("click",function(){
+
+    const mainDownloadButton =
+      document.querySelector("[data-download-android]");
+
+    if(mainDownloadButton){
+      mainDownloadButton.click();
+    }
+
+    hideInstallPopup();
+  });
+
+  setInterval(function(){
+    showInstallPopup();
+  },180000);
+
+})();
   </script>
 </body>
 </html>
