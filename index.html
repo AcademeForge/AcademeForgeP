@@ -884,19 +884,27 @@
       gap: 24px;
     }
 
-    .avatar {
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      width: 96px;
-      height: 96px;
-      border-radius: 30px;
-      color: #111827;
-      background: linear-gradient(135deg, var(--brand), var(--gold));
-      box-shadow: 0 20px 70px rgba(249, 115, 22, 0.3);
-      font-size: 48px;
-      font-weight: 1000;
-    }
+.avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  border-radius: 30px;
+  overflow: hidden;
+  color: #111827;
+  background: linear-gradient(135deg, var(--brand), var(--gold));
+  box-shadow: 0 20px 70px rgba(249, 115, 22, 0.3);
+  font-size: 48px;
+  font-weight: 1000;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
     .quote {
       margin-top: 28px;
@@ -1775,12 +1783,7 @@
   object-fit: contain; /* logo poora box ke andar dikhega */
   display: block;
 }
-    .avatar-img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+   
     /* =========================================================
    AI LAUNCHER HIDE WHEN CHAT PANEL IS OPEN
    Paste at VERY END of CSS
@@ -2165,7 +2168,7 @@
                   <p style="margin:8px 0 0;font-weight:900;color:var(--brand);">Founder, AcademeForge</p>
                 </div>
 
-               <div class="avatar">
+             <div class="avatar">
   <img src="founder-profile.jpeg" alt="Founder Profile" class="avatar-img">
 </div>
               </div>
